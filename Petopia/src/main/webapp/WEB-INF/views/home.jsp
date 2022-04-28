@@ -7,16 +7,14 @@
 내용추가
 내용추가
 내용추가
+<br>
 내용추가
 ㄴㅇㄴ
 test
-<<<<<<< HEAD
 서범석
 음?
-</div>
-=======
 서범석
 Good3123221415
 push가 되나 안되나 권지훈1234567
 </div>
->>>>>>> branch 'main' of https://github.com/bumseokSeo/finalTeamProject.git
+
