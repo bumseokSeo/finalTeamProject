@@ -7,11 +7,40 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/css/style.css" type="text/css"/>
+<link rel="stylesheet" href="/css/Top.css" type="text/css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-<div>
-탑
+<div id="Top_menu"> <!-- 탑 메뉴 전체 영역 -->
+	<div id="Top_Logo"> <!--  로고 -->
+		<img src="/img/Logo(main).png" style="width:100px; height:100px;"/>
+	</div>
+	<ul id="Top_menu_select"><!-- 메뉴 -->
+		<li class="Top_menu_select">정보
+			<ul>
+				<li><a href="#">내 근처 병원</a></li>
+				<li><a href="#">반려동물 정보</a></li>
+			</ul>
+		</li>
+		<li class="Top_menu_select">커뮤니티
+			<ul>
+				<li><a href="#">공지사항</a></li>
+				<li><a href="#">정보공유</a></li>
+				<li><a href="#">나눔할래요</a></li>
+				<li><a href="#">산책할래요</a></li>
+				<li><a href="#">자랑할래요</a></li>
+				<li><a href="#">건의할래요</a></li>
+			</ul>
+		</li>
+		<li class="Top_menu_select">입양
+			<ul>
+				<li><a href="#">입양게시판</a></li>
+			</ul>
+		</li>
+	</ul>
+	<div id="Top_LGN_section"><!-- 로그인, 회원가입 들어갈 박스 -->
+		<div id="Login_box"><a href="#">로그인</a></div>
+		<div id="join_box"><a href="#">회원가입</a></div>
+	</div>
 </div>
 	
