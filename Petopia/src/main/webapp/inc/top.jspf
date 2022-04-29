@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>펫토피아</title>
 <link rel="stylesheet" href="/css/Top.css" type="text/css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -39,8 +39,8 @@
 		</li>
 	</ul>
 	<div id="Top_LGN_section"><!-- 로그인, 회원가입 들어갈 박스 -->
-		<div id="Login_box"><a href="#">로그인</a></div>
-		<div id="join_box"><a href="#">회원가입</a></div>
+		<div id="Login_box"><a href="/member/login">로그인</a></div>
+		<div id="join_box"><a href="/member/signUp">회원가입</a></div>
 	</div>
 </div>
 	
