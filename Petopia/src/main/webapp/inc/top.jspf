@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>펫토피아</title>
 <link rel="stylesheet" href="/css/Top.css" type="text/css"/>
 <!-- 부트스트랩 아이콘 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
@@ -43,8 +43,8 @@
 		</li>
 	</ul>
 	<div id="Top_LGN_section"><!-- 로그인, 회원가입 들어갈 박스 -->
-		<div id="Login_box"><a href="#">로그인</a></div>
-		<div id="join_box"><a href="#">회원가입</a></div>
+		<div id="Login_box"><a href="/member/login">로그인</a></div>
+		<div id="join_box"><a href="/member/signUp">회원가입</a></div>
 	</div>
 </div>
 	
