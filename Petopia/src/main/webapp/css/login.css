@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+#login_form{
+	margin: 0 auto;
+	width: 550px;
+	text-align: center;
+}
+	
+.title_box{
+	margin: 50px 0 50px;
+	text-align: center;
+	font-size: 32px;
+}
+	
+.bubble_box{
+	position: relative;
+	width: 300px;
+	margin: 0 auto 15px;
+	height: 35px;
+	padding: 0px;
+	line-height: 30px;
+	border: #ff6e61 solid 1px;
+	border-radius: 10px;
+}
+.bubble_box:before{
+	content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 9px 9px 0;
+    border-color: #ff6e61 transparent;
+    display: block;
+    width: 0;
+    z-index: 0;
+    bottom: -9px;
+    left: 91px;
+}
+.bubble_box:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 7px 7px 0;
+    border-color: #FFFFFF transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    bottom: -7px;
+    left: 93px;
+}
+	
+.kakao_box{
+	background-color: #FEE500;
+	width: 100%;
+	height: 55px;
+	line-height: 55px;
+	border-radius: 10px;
+}
+.btnKakao{
+	font-weight: 700;
+	text-decoration: none;
+}
+	
+.or_box {
+	display: flex;
+	flex-basis: 100%;
+	align-items: center;
+	color: rgba(0, 0, 0, 1);
+	font-size: 12px;
+	margin: 30px 0px;
+}
+.or_box::before,
+.or_box::after {
+	content: "";
+	flex-grow: 1;
+	background: rgba(0, 0, 0, 1);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+	margin: 0px 16px;
+}
+      
+.form_box input{
+	width: 100%;
+	height: 50px;
+	margin-bottom: 15px;
+	padding: 10px 20px;
+	font-size: 15px;
+}
+.form_box button{
+	width: 100%;
+	height: 46px;
+	margin-top: 15px;
+	line-height: 44px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #fff;
+	background: #FF7900;
+	border: #FF7900;
+}
+      
+.loginUtil{
+	margin: 30px 0 50px;
+}
+.loginUtil a{
+	font-weight: 700;
+	text-decoration: none;
+}
