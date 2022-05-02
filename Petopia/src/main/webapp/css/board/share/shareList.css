@@ -37,7 +37,7 @@
 .Share_search{
 	float:right;
 }
-.Share_paging {
+.Share_paging{
 	display:flex;
 	justify-content:center;
 }
