@@ -1,0 +1,51 @@
+@charset "UTF-8";
+.Share_logo{
+	margin:40px 10px;
+}
+.Share_top{
+	border:1px solid gray;
+}
+.Share_group{
+	margin:10px 0;
+	width:250px;
+	position:relative;
+	overflow:hidden;
+}
+.Share_group a{
+	color:black;
+	text-decoration:none;
+}
+.Share_group a:hover{
+	opacity:10%;
+}
+.Share_group img{
+	border-bottom:1px solid gray;
+	width:250px;
+}
+.Share_btn{
+	float:right;
+	margin:10px;
+}
+.Share_btn a{
+	text-decoration:none;
+	color:black;
+	font-size:1.2em;
+}
+.Share_btn a:hover{
+	color:#FF7900;
+}
+.Share_search{
+	float:right;
+}
+.Share_paging {
+	display:flex;
+	justify-content:center;
+}
+.Share_paging>ul>a>li{
+	float:left;
+	margin-left:10px;
+	margin-right:10px;
+}
+.Share_paging>ul>a{
+	color:black;
+}
