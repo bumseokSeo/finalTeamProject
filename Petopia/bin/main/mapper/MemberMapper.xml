@@ -8,6 +8,7 @@
 		select userid, username, profileimage, userlevel from member
 		where userid=#{userid} and userpwd=#{userpwd}
 	</select>
+	
 	<select id="memberSelect" resultType="com.campus.myapp.vo.MemberVO">
 		select userid, username, profileimage, useremail from member
 		where userid=#{param1}
@@ -20,4 +21,22 @@
 		, userpwd=#{userpwd}, useremail=#{useremail}
 		where userid=#{userid}
 	</update>
+	
+	<select id="memberIdOk" resultType="int">
+  		select count(userid) from member where userid=#{param1}
+  	</select>
+
+	<select id="memberNameOk" resultType="int">
+  		select count(username) from member where username=#{param1}
+  	</select>
+  	
+  	<select id="memberEmailOk" resultType="int">
+  		select count(useremail) from member where useremail=#{param1}
+  	</select>
+  	
+  	<insert id="memberInsert">
+  		insert into member(userid, username, userpwd, useremail, tel)
+  		values(#{userid}, #{username}, #{userpwd}, #{useremail}, #{tel})
+  	</insert>
+
 </mapper>
