@@ -168,6 +168,7 @@ public class MemberController {
 		}
 	}
 	
+
 	// 회원가입: 아이디 중복검사
 	@GetMapping("idCheck")
 	@ResponseBody
@@ -195,6 +196,23 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		service.memberInsert(vo);
 		mav.setViewName("redirect:/");
+		return mav;
+	}
+		
+		
+	//아이디찾기 진입
+	@GetMapping("findId")
+	public ModelAndView findId() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/findId");
+		return mav;
+	}
+	
+	//비밀번호 초기화 진입
+	@GetMapping("resetPwd")
+	public ModelAndView resetPwd() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/resetPwd");
 		return mav;
 	}
 }
