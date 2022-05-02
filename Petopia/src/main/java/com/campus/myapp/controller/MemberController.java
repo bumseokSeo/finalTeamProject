@@ -70,9 +70,9 @@ public class MemberController {
 		String userid = (String) session.getAttribute("logId");
 		ModelAndView mav = new ModelAndView();
 			
-		//MemberVO vo = service.memberSelect(userid);
+		MemberVO vo = service.memberSelect(userid);
 			
-		//mav.addObject("vo", vo);
+		mav.addObject("vo", vo);
 		mav.setViewName("member/memberEdit");
 		return mav;
 	}

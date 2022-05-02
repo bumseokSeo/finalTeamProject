@@ -14,11 +14,11 @@
 		</div>
 		<div class="form_box">
 			<span class="menuName">아이디</span><br/>
-			<input class="inputStyle" type='text' name='userid' id='userid' placeholder='아이디 입력'/>
+			<input class="inputStyle" type='text' name='userid' id='userid' disabled="disabled" value="${vo.userid}"/>
 			<br/>
 			
 			<span class="menuName">닉네임</span><br/>
-			<input class="inputStyle" type='text' name='username' id='username' placeholder='닉네임 입력'/>
+			<input class="inputStyle" type='text' name='username' id='username' placeholder='닉네임 입력' value="${vo.username}"/>
 			<button id="checkBtn">중복확인</button><br/>
 			
 			<span class="menuName">비밀번호</span><br/>
@@ -28,7 +28,7 @@
 			<input class="inputStyle" type='password' name='userpwd' id='userpwd2' placeholder='비밀번호 확인'/><br/>
 			
 			<span class="menuName">이메일</span><br/>
-			<input class="inputStyle" type='text' name='useremail' id='useremail' placeholder='이메일 입력'/>
+			<input class="inputStyle" type='text' name='useremail' id='useremail' placeholder='이메일 입력' value="${vo.useremail }"/>
 			<button id="checkBtn">중복확인</button><br/>
 			
 		</div>

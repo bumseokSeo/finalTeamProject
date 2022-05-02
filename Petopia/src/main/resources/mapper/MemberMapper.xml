@@ -8,6 +8,9 @@
 		select userid, username, profileimage, userlevel from member
 		where userid=#{userid} and userpwd=#{userpwd}
 	</select>
-
+	<select id="memberSelect" resultType="com.campus.myapp.vo.MemberVO">
+		select userid, username, profileimage, useremail from member
+		where userid=#{param1}
+	</select>
 
 </mapper>
