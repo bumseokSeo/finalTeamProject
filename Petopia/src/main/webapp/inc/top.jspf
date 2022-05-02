@@ -9,6 +9,7 @@
 <title>펫토피아</title>
 <link rel="stylesheet" href="/css/Top.css" type="text/css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
 <body>
 <div id="Top_menu"> <!-- 탑 메뉴 전체 영역 -->
@@ -45,7 +46,7 @@
 		</c:if>
 		<c:if test="${logStatus == 'Y' }">
 			<div id="Login_box"><a href="/member/logout">로그아웃</a></div>
-			<div id="join_box"><a href="#">회원정보수정</a></div>
+			<div id="join_box"><a href="/member/memberEdit">회원정보수정</a></div>
 		</c:if>
 		
 	</div>

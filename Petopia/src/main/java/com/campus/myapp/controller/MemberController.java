@@ -63,4 +63,17 @@ public class MemberController {
 		mav.setViewName("redirect:/");
 		return mav;
 	}
+	
+	//회원정보수정 페이지로 이동
+	@GetMapping("memberEdit")
+	public ModelAndView memberEdit(HttpSession session) {
+		String userid = (String) session.getAttribute("logId");
+		ModelAndView mav = new ModelAndView();
+			
+		//MemberVO vo = service.memberSelect(userid);
+			
+		//mav.addObject("vo", vo);
+		mav.setViewName("member/memberEdit");
+		return mav;
+	}
 }
