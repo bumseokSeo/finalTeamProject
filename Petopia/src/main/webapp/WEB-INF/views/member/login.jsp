@@ -100,10 +100,10 @@
 						아직 회원이 아니신가요? <a href="/member/signUp">회원가입</a>
 					</li>
 					<li>
-						아이디를 잊으셨나요? <a href="#">아이디찾기</a>
+						아이디를 잊으셨나요? <a href="/member/findId">아이디찾기</a>
 					</li>
 					<li>
-						비밀번호를 잊으셨나요? <a href="#">비밀번호찾기</a>
+						비밀번호를 잊으셨나요? <a href="/member/resetPwd">비밀번호찾기</a>
 					</li>
 				</ul>
 			</div>

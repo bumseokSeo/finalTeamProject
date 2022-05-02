@@ -166,4 +166,20 @@ public class MemberController {
 			file.delete();
 		}
 	}
+	
+	//아이디찾기 진입
+	@GetMapping("findId")
+	public ModelAndView findId() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/findId");
+		return mav;
+	}
+	
+	//비밀번호 초기화 진입
+	@GetMapping("resetPwd")
+	public ModelAndView resetPwd() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/resetPwd");
+		return mav;
+	}
 }
