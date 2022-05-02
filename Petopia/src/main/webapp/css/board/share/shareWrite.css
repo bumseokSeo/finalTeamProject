@@ -1,1 +1,7 @@
 @charset "UTF-8";
+#shareSubject{
+	width:100%;
+}
+#shareFrm li{
+	padding:10px 5px;
+}
