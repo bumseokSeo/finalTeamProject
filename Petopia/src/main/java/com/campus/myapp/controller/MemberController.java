@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -60,6 +61,36 @@ public class MemberController {
 		
 		session.invalidate();
 		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+	
+	// 회원가입: 아이디 중복검사
+	@GetMapping("idCheck")
+	@ResponseBody
+	public int idCheck(String id) {
+		return service.memberIdOk(id);
+	}
+	
+	// 회원가입: 닉네임 중복검사
+	@GetMapping("nameCheck")
+	@ResponseBody
+	public int nameCheck(String name) {
+		return service.memberNameOk(name);
+	}
+	
+	// 회원가입: 이메일 중복검사
+	@GetMapping("emailCheck")
+	@ResponseBody
+	public int emailCheck(String email) {
+		return service.memberEmailOk(email);
+	}
+	
+	// 회원가입
+	@PostMapping("/signUpOk")
+	public ModelAndView signUpOk(MemberVO vo) {
+		ModelAndView mav = new ModelAndView();
+		service.memberInsert(vo);
 		mav.setViewName("redirect:/");
 		return mav;
 	}
