@@ -12,5 +12,12 @@
 		select userid, username, profileimage, useremail from member
 		where userid=#{param1}
 	</select>
-
+	<update id="memberUpdate">
+		update member set username=#{username}
+		<if test="profileimage != null">
+		, profileimage=#{profileimage}
+		</if>
+		, userpwd=#{userpwd}, useremail=#{useremail}
+		where userid=#{userid}
+	</update>
 </mapper>
