@@ -7,12 +7,17 @@
 	box-sizing: border-box;
     list-style-type:none;
 }
+.container{
+	min-height:717px;
+}
 /* Top */
 #Top_menu{
 	width:100%;
-	height:250px;
+	height:123px;
 	border:2px solid rgba(189,189,189,0.5);
 	position: relative;
+	padding-top:40px;
+	margin-bottom:40px;
 }
 #Top_Logo{
 	float:left;
@@ -23,17 +28,42 @@
 
 #Top_menu_select{
 	float:left;
-	position:absolute;
-	left:35%;
+	text-align:center;
+	position:relative;
+	width:100%;
+
 }
 
-.Top_menu_select{
-	float:left;
-	width:200px;
+#se{
+	word-spacing: 62px;
+	height:80px;
 }
-
-.Top_menu_select>ul>li>a:hover,.Top_menu_select>ul>li>a:link,.Top_menu_select>ul>li>a:visited{
+.Top_menu_VA{
+	font-size: 23pt;
+	cursor: pointer;
+}
+.Top_menu_select_A>ul>li>a:hover,.Top_menu_select_A>ul>li>a:link,.Top_menu_select_A>ul>li>a:visited{
 	color:black;
+}
+
+.Top_menu_select_A{
+	float:left;
+	margin-left:72px;
+	position: relative;
+	left:79.5vh;
+}
+
+.Top_menu_select_A>ul>li{
+	text-align: center;
+
+}
+
+#Top_menu_select_S{
+	position:absolute;
+	width:100%;
+	background-color: rgba(255, 133, 0 , 0.7);
+	height:150px;
+	display:none;
 }
 
 #Top_LGN_section{
