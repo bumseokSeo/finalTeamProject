@@ -18,6 +18,18 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.loginCheck(vo);
 	}
+
+	@Override
+	public MemberVO memberSelect(String userid) {
+		// TODO Auto-generated method stub
+		return dao.memberSelect(userid);
+	}
+
+	@Override
+	public int memberUpdate(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return dao.memberUpdate(vo);
+	}
 	
 	
 

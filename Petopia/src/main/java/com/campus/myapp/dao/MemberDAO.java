@@ -12,5 +12,11 @@ public interface MemberDAO {
 	//로그인
 	public MemberVO loginCheck(MemberVO vo);
 	
+	//회원정보수정 진입
+	public MemberVO memberSelect(String userid);
+	
+	//회원정보수정
+	public int memberUpdate(MemberVO vo);
+	
 }
 
