@@ -36,34 +36,36 @@
 
 
 <div id="Top_menu"> <!-- 탑 메뉴 전체 영역 -->
-	<a href="/">
-		<div id="Top_Logo">
-			<img src="/img/Logo(main).png" style="width:100px; height:100px;"/>
+	
+		<div id="Top_Logo"> <!--  로고 -->
+			<a href="/"><img src="/img/Logo(main).png" style="width:100px; height:100px;"/></a>
 		</div>
-	</a>
-	<ul id="Top_menu_select"><!-- 메뉴 -->
-		<li class="Top_menu_select">정보
-			<ul>
-				<li><a href="#">내 근처 병원</a></li>
-				<li><a href="#">반려동물 정보</a></li>
-			</ul>
-		</li>
-		<li class="Top_menu_select">커뮤니티
-			<ul>
-				<li><a href="#">공지사항</a></li>
-				<li><a href="#">정보공유</a></li>
-				<li><a href="#">나눔할래요</a></li>
-				<li><a href="#">산책할래요</a></li>
-				<li><a href="#">자랑할래요</a></li>
-				<li><a href="#">건의할래요</a></li>
-			</ul>
-		</li>
-		<li class="Top_menu_select">입양
-			<ul>
-				<li><a href="#">입양게시판</a></li>
-			</ul>
-		</li>
-	</ul>
+		<div id="Top_menu_select"><!-- 메뉴 -->
+			<div id="se"><b class="Top_menu_VA">정보</b> <b class="Top_menu_VA">커뮤니티</b> <b class="Top_menu_VA">입양</b></div>
+				<div id="Top_menu_select_S">
+					<div class="Top_menu_select_A">
+						<ul>
+							<li><a href="#">내 근처 병원</a></li>
+							<li><a href="#">반려동물 정보</a></li>
+						</ul>
+					</div>
+					<div class="Top_menu_select_A">
+						<ul>
+							<li><a href="/board/SubMenuSelect">공지사항</a></li>
+							<li><a href="#">정보공유</a></li>
+							<li><a href="#">나눔할래요</a></li>
+							<li><a href="#">산책할래요</a></li>
+							<li><a href="#">자랑할래요</a></li>
+							<li><a href="#">건의할래요</a></li>
+						</ul>
+					</div>
+					<div class="Top_menu_select_A">
+						<ul>
+							<li><a href="#">입양게시판</a></li>
+						</ul>
+					</div>
+				</div>
+		</div>
 	<div id="Top_LGN_section"><!-- 로그인, 회원가입 들어갈 박스 -->
 		<c:if test="${logStatus != 'Y' }">
 			<div id="Login_box"><a href="/member/login">로그인</a></div>
