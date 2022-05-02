@@ -3,7 +3,13 @@
 <link rel="stylesheet" href="/css//signUp.css" type="text/css"/>
 
 <script>
+
 // 아이디 중복검사
+function idCheckInit(){
+	if($("#idCheckResult").val()=="1") {
+		$("#idCheckResult").val("0");
+	}
+}
 function idCheck(){
 	var error = document.querySelectorAll('.msgError');
 	var url = '/member/idCheck';
@@ -12,18 +18,20 @@ function idCheck(){
 		dataType: 'text',
 		url: url,
 		data: {
-			'email':$("#useremail").val()
+			'id':$("#userid").val()
 		},
 		success: function(result){
 			if(result>=1){
 				error[0].innerHTML = "아이디가 중복되었습니다.";
 				error[0].style.display = "block";
 				error[0].style.color = "red";
+				$("#idCheckResult").val("0");
 			}else{
 				if(!$("#userid").val()==''){
 					error[0].innerHTML = "사용가능한 아이디입니다.";
 					error[0].style.display = "block";
 					error[0].style.color = "green";
+					$("#idCheckResult").val("1");
 				}
 			}
 		},
@@ -34,6 +42,11 @@ function idCheck(){
 }
 
 // 닉네임 중복검사
+function nameCheckInit(){
+	if($("#nameCheckResult").val()=="1") {
+		$("#nameCheckResult").val("0");
+	}
+}
 function nameCheck(){
 	var error = document.querySelectorAll('.msgError');
 	var url = '/member/nameCheck';
@@ -49,11 +62,13 @@ function nameCheck(){
 				error[1].innerHTML = "닉네임이 중복되었습니다.";
 				error[1].style.display = "block";
 				error[1].style.color = "red";
+				$("#nameCheckResult").val("0");
 			}else{
 				if(!$("#username").val()==''){
 					error[1].innerHTML = "사용가능한 닉네임입니다.";
 					error[1].style.display = "block";
 					error[1].style.color = "green";
+					$("#nameCheckResult").val("1");
 				}
 			}
 		},
@@ -64,6 +79,11 @@ function nameCheck(){
 }
 
 //이메일 중복검사
+function emailCheckInit(){
+	if($("#emailCheckResult").val()=="1") {
+		$("#emailCheckResult").val("0");
+	}
+}
 function emailCheck(){
 	var error = document.querySelectorAll('.msgError');
 	var url = '/member/emailCheck';
@@ -79,11 +99,13 @@ function emailCheck(){
 				error[4].innerHTML = "이메일이 중복되었습니다.";
 				error[4].style.display = "block";
 				error[4].style.color = "red";
+				$("#emailCheckResult").val("0");
 			}else{
 				if(!$("#useremail").val()==''){
 					error[4].innerHTML = "사용가능한 이메일입니다.";
 					error[4].style.display = "block";
 					error[4].style.color = "green";
+					$("#emailCheckResult").val("1");
 				}
 			}
 		},
@@ -115,6 +137,10 @@ $(()=>{
 			error[0].style.display = "none";
 		}
 		
+		if($("#idCheckResult").val()=="0"){
+			alert("아이디 중복검사를 해주세요.");
+			return false;
+		}
 		
 		// 닉네임 유효성검사
 		reg = /^[가-힣a-zA-Z0-9]{2,16}$/;
@@ -133,7 +159,13 @@ $(()=>{
 		} else{
 			error[1].style.display = "none";
 		}
-			
+		
+		if($("#nameCheckResult").val()=="0"){
+			alert("닉네임 중복검사를 해주세요.");
+			return false;
+		}
+		
+		
 		// 비밀번호 유효성검사
 		reg = /^[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}$/;
 		if($("#userpwd").val()==''){
@@ -178,6 +210,11 @@ $(()=>{
 	        return false;
 		}else{
 			error[4].style.display = "none";
+		}
+		
+		if($("#emailCheckResult").val()=="0"){
+			alert("이메일 중복검사를 해주세요.");
+			return false;
 		}
 		
 		// 휴대전화 유효성검사
@@ -257,13 +294,15 @@ $(document).ready(function(){
 		</div>
 		<div class="form_box">
 			<span class="menuName">아이디</span><br/>
-			<input class="inputStyle" type='text' name='userid' id='userid' placeholder='아이디 입력'/>	
+			<input class="inputStyle" type='text' name='userid' id='userid' onkeyup="idCheckInit()" placeholder='아이디 입력'/>	
 			<input type="button" class="checkBtn" onclick="idCheck()" value="중복확인"><br/>
+			<input type="hidden" id="idCheckResult" value="0"/>
 			<span class="msgError"></span><br/>
 			
 			<span class="menuName">닉네임</span><br/>
-			<input class="inputStyle" type='text' name='username' id='username' placeholder='닉네임 입력'/>
+			<input class="inputStyle" type='text' name='username' id='username' onkeyup="nameCheckInit()" placeholder='닉네임 입력'/>
 			<input type="button" class="checkBtn" onclick="nameCheck()" value="중복확인"><br/>
+			<input type="hidden" id="nameCheckResult" value="0"/>
 			<span class="msgError"></span><br/>
 			
 			<span class="menuName">비밀번호</span><br/>
@@ -275,8 +314,9 @@ $(document).ready(function(){
 			<span class="msgError"></span><br/>
 			
 			<span class="menuName">이메일</span><br/>
-			<input class="inputStyle" type='text' name='useremail' id='useremail' placeholder='이메일 입력'/>
+			<input class="inputStyle" type='text' name='useremail' id='useremail' onkeyup="emailCheckInit()" placeholder='이메일 입력'/>
 			<input type="button" class="checkBtn" onclick="emailCheck()" value="중복확인"><br/>
+			<input type="hidden" id="emailCheckResult" value="0"/>
 			<span class="msgError"></span><br/>
 			
 			<span class="menuName">휴대전화</span><br/>
