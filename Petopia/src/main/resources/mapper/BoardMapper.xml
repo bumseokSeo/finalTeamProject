@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.campus.myapp.dao.BoardDAO">
+	<select id="selectList" resultType="BoardVO">
+		select boardno, title, content, userid, hit, date_format(writedate,"%m/%d %H:%i") writedate, like, filename1
+		from board where boardtype=#{boardtype} order by boardno desc
+	</select>
+</mapper>
