@@ -31,15 +31,25 @@ public class MemberServiceImpl implements MemberService {
 		return dao.memberUpdate(vo);
 	}
 	
-	
+	@Override
+	public int memberIdOk(String id) {
+		return dao.memberIdOk(id);
+	}
 
-	
-	
+	@Override
+	public int memberNameOk(String name) {
+		return dao.memberNameOk(name);
+	}
 
-	
+	@Override
+	public int memberEmailOk(String email) {
+		return dao.memberEmailOk(email);
+	}
 
+	@Override
+	public int memberInsert(MemberVO vo) {
+		return dao.memberInsert(vo);
+	}
 	
-
 	
-
 }
