@@ -13,7 +13,7 @@
 <body>
 <div id="Top_menu"> <!-- 탑 메뉴 전체 영역 -->
 	<div id="Top_Logo"> <!--  로고 -->
-		<img src="/img/Logo(main).png" style="width:100px; height:100px;"/>
+		<a href="/"><img src="/img/Logo(main).png" style="width:100px; height:100px;"/></a>
 	</div>
 	<ul id="Top_menu_select"><!-- 메뉴 -->
 		<li class="Top_menu_select">정보
@@ -39,8 +39,15 @@
 		</li>
 	</ul>
 	<div id="Top_LGN_section"><!-- 로그인, 회원가입 들어갈 박스 -->
-		<div id="Login_box"><a href="/member/login">로그인</a></div>
-		<div id="join_box"><a href="/member/signUp">회원가입</a></div>
+		<c:if test="${logStatus != 'Y' }">
+			<div id="Login_box"><a href="/member/login">로그인</a></div>
+			<div id="join_box"><a href="/member/signUp">회원가입</a></div>
+		</c:if>
+		<c:if test="${logStatus == 'Y' }">
+			<div id="Login_box"><a href="/member/logout">로그아웃</a></div>
+			<div id="join_box"><a href="#">회원정보수정</a></div>
+		</c:if>
+		
 	</div>
 </div>
 	
