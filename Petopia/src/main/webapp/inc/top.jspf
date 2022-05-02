@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>펫토피아</title>
 <link rel="stylesheet" href="/css/Top.css" type="text/css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
@@ -26,7 +26,7 @@
 <body>
 <div id="Top_menu"> <!-- 탑 메뉴 전체 영역 -->
 	<div id="Top_Logo"> <!--  로고 -->
-		<img src="/img/Logo(main).png" style="width:100px; height:100px;"/>
+		<a href="/"><img src="/img/Logo(main).png" style="width:100px; height:100px;"/></a>
 	</div>
 	<div id="Top_menu_select"><!-- 메뉴 -->
 		<div id="se"><b class="Top_menu_VA">정보</b> <b class="Top_menu_VA">커뮤니티</b> <b class="Top_menu_VA">입양</b></div>
@@ -55,8 +55,15 @@
 			</div>
 	</div>
 	<div id="Top_LGN_section"><!-- 로그인, 회원가입 들어갈 박스 -->
-		<div id="Login_box"><a href="#">로그인</a></div>
-		<div id="join_box"><a href="#">회원가입</a></div>
+		<c:if test="${logStatus != 'Y' }">
+			<div id="Login_box"><a href="/member/login">로그인</a></div>
+			<div id="join_box"><a href="/member/signUp">회원가입</a></div>
+		</c:if>
+		<c:if test="${logStatus == 'Y' }">
+			<div id="Login_box"><a href="/member/logout">로그아웃</a></div>
+			<div id="join_box"><a href="#">회원정보수정</a></div>
+		</c:if>
+		
 	</div>
 </div>
 	
