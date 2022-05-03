@@ -38,5 +38,18 @@
   		insert into member(userid, username, userpwd, useremail, tel)
   		values(#{userid}, #{username}, #{userpwd}, #{useremail}, #{tel})
   	</insert>
+  	
+  	<select id="findId" parameterType="String" resultType="String">
+		select rpad(substring(userid,1,char_length(userid)*0.5),char_length(userid),"*"), username from member where useremail=#{useremail} 
+	</select>
+	
+	<update id="updatePw" >
+		update member set userpwd = #{userpwd} where userid = #{userid}
+	</update>
+	
+	<select id="readMember" resultType="com.campus.myapp.vo.MemberVO">
+		select * from member
+		where userid=#{param1}
+	</select>
 
 </mapper>
