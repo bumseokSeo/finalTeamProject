@@ -7,7 +7,7 @@
 	<form method="post" action="/board/share/shareWriteOk" id="shareFrm">
 		<div class="form-group">
 			<div>제목</div>
-			<div><input type="text" name="tilte" id="shareTitle"/></div>
+			<div><input type="text" name="title" id="shareTitle"/></div>
 			<div><textarea name="content" id="shareContent"></textarea></div>
 			<div class="shareBtn">
 				<input type="submit" id="shareWrite" value="등록"/>
