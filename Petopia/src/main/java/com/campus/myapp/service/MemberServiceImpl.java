@@ -65,13 +65,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void smsCheckOk(String tel, String numStr)  {
 		
-		String api_key = "NCS6A2RFO5RPW4WD";
-		String api_secret = "XXES9C4D6GUPK1PU85ENVUISSNCNOKZE";
+		String api_key = "NCSC9AFRRPOPNXPX";
+		String api_secret = "JN5HV6JCETIXJW1VHMQRIOQOJWZQV3DE";
 		Message coolsms = new Message(api_key, api_secret);
 		
 		HashMap<String, String> params = new HashMap<String, String>();
 		params.put("to", tel);
-		params.put("from", "010-5011-8673");
+		params.put("from", "010-2826-4294");
 		params.put("type", "SMS");
 		params.put("text", "[펫토피아]에서보낸 인증번호 [" + numStr + "] 입니다.");
 		params.put("app_version", "test app 1.2");
