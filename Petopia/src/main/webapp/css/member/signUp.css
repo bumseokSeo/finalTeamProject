@@ -86,3 +86,14 @@
 h3{
 	margin-top: 15px;
 }
+
+.smsCheck{
+	display: none;
+}
+#tel{
+	width: 45%;
+}
+.btn2{
+	float: right;
+	margin-left: 5px;
+}

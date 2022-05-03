@@ -17,6 +17,8 @@ public interface MemberDAO {
 	public int memberNameOk(String name);
 	// 회원가입: 이메일 중복검사
 	public int memberEmailOk(String email);
+	// 회원가입: 휴대전화 인증
+	public int memberTelOk(String tel);
 	// 회원가입
 	public int memberInsert(MemberVO vo);
 	
