@@ -8,7 +8,7 @@ spring:
       suffix: .jsp
   datasource: #바이바티스
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://finalprojectdb.cushblmt4tin.ap-northeast-2.rds.amazonaws.com:3306/finaldb?characterEncoding=utf-8
+    url: jdbc:mysql://finalproject.cf15puxifxqe.ap-northeast-2.rds.amazonaws.com:3306/finaldb?characterEncoding=utf-8
     username: root
     password: root1234
 
