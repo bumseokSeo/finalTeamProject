@@ -1,26 +1,19 @@
 package com.campus.myapp.service;
 
-<<<<<<< HEAD
+
 import java.util.HashMap;
-
 import javax.inject.Inject;
-=======
 import java.io.PrintWriter;
->>>>>>> refs/heads/bumseok
 
-<<<<<<< HEAD
+
+
 import org.json.simple.JSONObject;
-=======
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.mail.HtmlEmail;
->>>>>>> refs/heads/bumseok
 import org.springframework.stereotype.Service;
-
 import com.campus.myapp.dao.MemberDAO;
 import com.campus.myapp.vo.MemberVO;
-
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
@@ -69,7 +62,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public int memberTelOk(String tel) {
 		return dao.memberTelOk(tel);
 	}
@@ -95,7 +87,6 @@ public class MemberServiceImpl implements MemberService {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }
-=======
 	public String findId(MemberVO vo) {
 		// TODO Auto-generated method stub
 		return dao.findId(vo);
@@ -197,7 +188,6 @@ public class MemberServiceImpl implements MemberService {
 	public MemberVO readMember(String userid) {
 		// TODO Auto-generated method stub
 		return dao.readMember(userid);
->>>>>>> refs/heads/bumseok
 	}
 	
 	

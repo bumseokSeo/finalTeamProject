@@ -1,12 +1,8 @@
 package com.campus.myapp.service;
 
-<<<<<<< HEAD
-=======
-
-
 import javax.servlet.http.HttpServletResponse;
 
->>>>>>> refs/heads/bumseok
+
 import com.campus.myapp.vo.MemberVO;
 
 public interface MemberService {
