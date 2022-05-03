@@ -1,15 +1,15 @@
 package com.campus.myapp.vo;
 
 public class BoardVO {
-	public int boardno;
-	public String title;
-	public String content;
-	public int hit;
-	public String userid;
-	public String writedate;
-	public int like;
-	public String filename1;
-	public String boardtype;
+	private int boardno;
+	private String title;
+	private String content;
+	private int hit;
+	private String userid;
+	private String writedate;
+	private int like;
+	private String filename1;
+	private String boardtype;
 	
 	public int getBoardno() {
 		return boardno;
