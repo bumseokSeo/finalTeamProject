@@ -34,6 +34,10 @@
   		select count(useremail) from member where useremail=#{param1}
   	</select>
   	
+  	<select id="memberTelOk" resultType="int">
+  		select count(tel) from member where tel=#{param1}
+  	</select>
+  	
   	<insert id="memberInsert">
   		insert into member(userid, username, userpwd, useremail, tel)
   		values(#{userid}, #{username}, #{userpwd}, #{useremail}, #{tel})

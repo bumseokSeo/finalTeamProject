@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/css//signUp.css" type="text/css"/>
+<link rel="stylesheet" href="/css/member/signUp.css" type="text/css"/>
 
 <script>
 
 // 아이디 중복검사
 function idCheckInit(){
+	var error = document.querySelectorAll('.msgError');
 	if($("#idCheckResult").val()=="1") {
+		error[0].style.display = "none";
 		$("#idCheckResult").val("0");
 	}
 }
@@ -43,7 +45,9 @@ function idCheck(){
 
 // 닉네임 중복검사
 function nameCheckInit(){
+	var error = document.querySelectorAll('.msgError');
 	if($("#nameCheckResult").val()=="1") {
+		error[1].style.display = "none";
 		$("#nameCheckResult").val("0");
 	}
 }
@@ -80,7 +84,9 @@ function nameCheck(){
 
 //이메일 중복검사
 function emailCheckInit(){
+	var error = document.querySelectorAll('.msgError');
 	if($("#emailCheckResult").val()=="1") {
+		error[4].style.display = "none";
 		$("#emailCheckResult").val("0");
 	}
 }
@@ -115,6 +121,99 @@ function emailCheck(){
 	});
 }
 
+// 휴대전화 중복검사&인증
+function telCheckInit(){
+	var error = document.querySelectorAll('.msgError');
+	if($("#telCheckResult").val()=="1") {
+		error[5].style.display = "none";
+		$("#telCheckResult").val("0");
+	}
+	if($("#smsCheckResult").val()=="1") {
+		error[6].style.display = "none";
+		$("#smsCheckResult").val("0");
+	}
+}
+function telCheck() {
+	var error = document.querySelectorAll('.msgError');
+	var reg = /^[0-9]{2,3}[0-9]{3,4}[0-9]{4}/;
+	var url = '/member/telCheck';
+	$.ajax({
+		type: 'get',
+		dataType: 'text',
+		url: url,
+		data: {
+			'tel':$("#tel").val()
+		},
+		success: function(result){
+			if($("#tel").val()==''){
+				error[5].innerHTML = "전화번호를 입력하세요.";
+		        error[5].style.display = "block";
+		        error[5].style.color = "red";
+		        $("#tel").focus();
+		        return false;
+			}else if(!reg.test($("#tel").val())){
+				error[5].innerHTML = "전화번호을 확인해주세요. '-'없이 숫자만 입력해주세요.";
+				error[5].style.display = "block";
+				error[5].style.color = "red";
+		        $("#tel").focus();
+		        return false;
+			}else if(result>=1){
+				error[5].innerHTML = "전화번호가 중복되었습니다.";
+				error[5].style.display = "block";
+				error[5].style.color = "red";
+				$("#telCheckResult").val("0");
+			}else{
+				if(!$("#tel").val()==''){
+					error[5].innerHTML = "사용가능한 전화번호입니다.";
+					error[5].style.display = "block";
+					error[5].style.color = "green";
+					$("#telCheckResult").val("1");
+				}
+			}
+		},
+		
+		
+		error: function(e){
+			console.log(e.responseText);
+		}
+	});
+}
+function smsCheck() {
+	var error = document.querySelectorAll('.msgError');
+	if($("#telCheckResult").val()=="0"){
+		alert("휴대전화 중복검사를 해주세요.");
+		return false;
+	}else{
+		$(".form_box>div[class='smsCheck']").eq(0).show();
+		alert('인증번호 발송 완료!');
+		
+		$.ajax({
+			type: "get",
+			url: "/member/smsCheck",
+			data: {
+				'tel':$("#tel").val()
+			},
+			success: function(res){
+				$('#smsConfirm').click(function(){
+					if($.trim(res) == $("#telCheckNumber").val()){
+						error[6].innerHTML = "휴대전화 인증이 정상적으로 완료되었습니다.";
+						error[6].style.display = "block";
+						error[6].style.color = "green";
+						$("#smsCheckResult").val("1");
+					}else{
+						error[6].innerHTML = "인증번호가 올바르지 않습니다.";
+						error[6].style.display = "block";
+						error[6].style.color = "red";
+						$("#smsCheckResult").val("0");
+					}
+				});
+			}
+		});
+	}
+}
+
+
+// 유효성검사
 $(()=>{
 	var error = document.querySelectorAll('.msgError');
 	$("#signUp_form").submit(function(){
@@ -234,27 +333,35 @@ $(()=>{
 		}else{
 			error[5].style.display = "none";
 		}
+		if($("#telCheckResult").val()=="0"){
+			alert("휴대전화 중복검사를 해주세요.");
+			return false;
+		}
+		if($("#smsCheckResult").val()=="0"){
+			alert("휴대전화 인증을 해주세요.");
+			return false;
+		}
 		
 		// 이용약관 체크박스
 		if($("#check1").is(":checked") == false){
-			error[6].innerHTML = "회원가입을 위해 이용약관에 동의해주시기 바랍니다.";
-	        error[6].style.display = "block";
-	        error[6].style.color = "red";
+			error[7].innerHTML = "회원가입을 위해 이용약관에 동의해주시기 바랍니다.";
+	        error[7].style.display = "block";
+	        error[7].style.color = "red";
 	        $("#check1").focus();
 	        return false;
 		}else{
-			error[6].style.display = "none";
+			error[7].style.display = "none";
 		}
 		
 		// 개인정보취급방침 체크박스
 		if($("#check2").is(":checked") == false){
-			error[7].innerHTML = "회원가입을 위해 개인정보취급방침에 동의해주시기 바랍니다.";
-	        error[7].style.display = "block";
-	        error[7].style.color = "red";
+			error[8].innerHTML = "회원가입을 위해 개인정보취급방침에 동의해주시기 바랍니다.";
+	        error[8].style.display = "block";
+	        error[8].style.color = "red";
 	        $("#check2").focus();
 	        return false;
 		}else{
-			error[7].style.display = "none";
+			error[8].style.display = "none";
 		}
 
 		var data = $("#signUp_form").serialize();
@@ -320,9 +427,17 @@ $(document).ready(function(){
 			<span class="msgError"></span><br/>
 			
 			<span class="menuName">휴대전화</span><br/>
-			<input class="inputStyle" type='text' name='tel' id='tel' placeholder='전화번호 입력'/>
-			<input type="button" class="checkBtn" onclick="" value="인증요청"><br/>
+			<input class="inputStyle" type='text' name='tel' id='tel' onkeyup="telCheckInit()" placeholder='전화번호 입력'/>
+			<input type="button" class="checkBtn btn2" onclick="smsCheck()" value="인증요청">
+			<input type="button" class="checkBtn btn2" onclick="telCheck()" value="중복확인"><br/>
+			<input type="hidden" id="telCheckResult" value="0"/>
 			<span class="msgError"></span><br/>
+			<div class="smsCheck">
+				<input class="inputStyle" type='text' id='telCheckNumber' placeholder='인증번호 입력'/>
+				<input type="button" class="checkBtn" id="smsConfirm" value="확인"><br/>
+				<input type="hidden" id="smsCheckResult" value="0"/>
+				<span class="msgError"></span><br/>
+			</div>
 		</div>
 		<div class="agree_box">
 			<h3>이용약관</h3>
