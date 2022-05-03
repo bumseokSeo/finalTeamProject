@@ -28,5 +28,14 @@ public interface MemberDAO {
 	//회원정보수정
 	public int memberUpdate(MemberVO vo);
 	
+	//아이디 찾기
+	public String findId(MemberVO vo);
+		
+	// 비밀번호 변경
+	public int updatePw(MemberVO vo) throws Exception;
+		
+	//해당 계정의 정보 조회
+	public MemberVO readMember(String userid);
+	
 }
 

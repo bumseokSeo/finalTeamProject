@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
 *{
 	margin:0;
@@ -10,6 +10,17 @@
 .container{
 	min-height:717px;
 }
+
+a:link, a:visited {
+	text-decoration: none;
+	color: black;
+}
+.container a:hover{
+	text-decoration:underline;
+	color: black;
+}
+
+
 /* Top */
 #Top_menu{
 	width:100%;
@@ -78,8 +89,12 @@
 	float:left;
 	margin-left:15px;
 }
+#Top_LGN_section a:hover{
+	color:black;
+	
+}
 
-/* Top ≥°*/
+/* Top ÎÅù*/
 /* Bottom*/
 .bottom{
 	width:100%;
@@ -88,4 +103,5 @@
 	background-color: rgba(132,144,22,0.5);
 	position: relative;
 }
-/* Bottom ≥°*/
+
+/* Bottom ÎÅù*/
