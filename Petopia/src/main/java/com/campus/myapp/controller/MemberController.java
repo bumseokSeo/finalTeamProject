@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpHeaders;
@@ -14,8 +15,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -231,6 +235,12 @@ public class MemberController {
 		mav.setViewName("member/findId");
 		return mav;
 	}
+	@GetMapping("findIdOk")
+	public ModelAndView findIdOk() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/findIdOk");
+		return mav;
+	}
 	
 	//비밀번호 초기화 진입
 	@GetMapping("resetPwd")
@@ -239,4 +249,46 @@ public class MemberController {
 		mav.setViewName("member/resetPwd");
 		return mav;
 	}
+	@GetMapping("resetPwdOk")
+	public ModelAndView resetPwdOk() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/resetPwdOk");
+		return mav;
+	}
+	
+	//아이디 찾기
+	@PostMapping("findIdOk")
+	public ResponseEntity<String> findIdOk(MemberVO vo, HttpServletRequest request, HttpSession session ) {
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		
+		headers.add("Content-Type", "text/html; charset=UTF-8");
+		try {//찾기성공
+			String tempUserId = service.findId(vo);
+			
+			String msg = "<script>";
+			msg += "location.href='/member/findIdOk'";
+			msg += "</script>";
+			session.setAttribute("tempUserId", tempUserId);
+			
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//200
+		}catch(Exception e) {//찾기실패
+			String msg = "<script>";
+			msg+="alert('해당하는 계정이 존재하지 않습니다.');";
+			msg += "history.back()";
+			msg+="</script>";
+			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);//200
+		}
+		return entity;
+	}
+	
+	
+	
+	@RequestMapping(value = "/findpw", method = RequestMethod.POST)
+	public void findPwPOST(@ModelAttribute MemberVO member, HttpServletResponse response) throws Exception{
+		service.findPw(response, member);
+		
+	}
+	
+
 }
