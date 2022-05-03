@@ -36,8 +36,15 @@ dependencies {
 	// https://mvnrepository.com/artifact/commons-io/commons-io
 	implementation 'commons-io:commons-io:2.11.0'
 	
+	// ajax
+	// https://mvnrepository.com/artifact/com.google.code.gson/gson
+	implementation 'com.google.code.gson:gson:2.8.5'
+	
+	
+	//핸드폰번호 인증 라이브러리
+	// https://mvnrepository.com/artifact/net.nurigo/javaSDK
+	implementation 'net.nurigo:javaSDK:2.2'
 	implementation fileTree(dir:'libs', include:'*jar')
-	compile group: 'net.nurigo', name: 'javaSDK', version: '2.2'
 }
 
 tasks.named('test') {
