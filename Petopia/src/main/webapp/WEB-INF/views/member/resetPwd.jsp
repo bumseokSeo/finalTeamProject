@@ -5,7 +5,6 @@
 </style>
 <script type="text/javascript">
 	function formcheck(){
-		console.log("???????????");
 		var userid = document.getElementById("userid");
 		if(userid.value == ""){
 			alert("아이디를 입력해주세요.");
