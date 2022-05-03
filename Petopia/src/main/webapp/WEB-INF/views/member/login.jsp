@@ -78,11 +78,11 @@
 		<div class="bubble_box">
 			<span>3초안에 빠른 회원가입</span>
 		</div>
-		<div class="kakao_box">
-			<a href="#" class="btnKakao">
-				<span>카카오톡으로 계속하기</span>
-			</a>
-		</div>
+		<a href="#" class="btnKakao">
+			<div class="kakao_box">
+				<span>카카오톡으로 계속하기</span>			
+			</div>
+		</a>
 		<div class="or_box">
 			<span>혹은</span>
 		</div>
