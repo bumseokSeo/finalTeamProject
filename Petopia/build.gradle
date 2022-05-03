@@ -22,7 +22,7 @@ dependencies {
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
-	
+	//���������� jsp�� ����ϱ����� �����ӿ�ũ�߰�
 	// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.60'
 	// https://mvnrepository.com/artifact/javax.servlet/jstl
@@ -30,16 +30,27 @@ dependencies {
 	// https://mvnrepository.com/artifact/javax.inject/javax.inject
 	implementation 'javax.inject:javax.inject:1'
 	
-	
+	//���� ���ε�
 	// https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
 	implementation 'commons-fileupload:commons-fileupload:1.4'
 	// https://mvnrepository.com/artifact/commons-io/commons-io
 	implementation 'commons-io:commons-io:2.11.0'
 	
+	// ajax
+	// https://mvnrepository.com/artifact/com.google.code.gson/gson
+	implementation 'com.google.code.gson:gson:2.8.5'
+	
+	
+	// 핸드폰번호 인증 라이브러리
+	// https://mvnrepository.com/artifact/net.nurigo/javaSDK
+	implementation 'net.nurigo:javaSDK:2.2'
+	
+	// 휴대폰인증 외부 라이브러리 불러오기 밑에줄 주석풀고 리프레시 그래들하고 다시 주석처리해야됩니다.
+	//implementation fileTree(dir:'libs', include:'*jar')
+	
 	//이메일 인증용
 	// https://mvnrepository.com/artifact/org.apache.commons/commons-email
 	implementation 'org.apache.commons:commons-email:1.2'
-
 }
 
 tasks.named('test') {
