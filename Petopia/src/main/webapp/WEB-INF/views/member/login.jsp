@@ -7,25 +7,15 @@
 	});
 	function formcheck() {
 		var userid = document.getElementById("userid");
-		var reg = /^[a-z0-9]{5,20}$/;
 		if (userid.value == "") {
 			alert("아이디를 입력해주세요.");
 			userid.focus();
 			return false;
-		}else if(!reg.test(userid.value)){
-			alert("아이디는 5~20자의 영문 소문자, 숫자만 사용 가능합니다.");
-			userid.focus();
-			return false;
 		}
 		
-		reg = /^[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}$/;
 		var userpwd = document.getElementById("userpwd");
 		if (userpwd.value == "") {
 			alert("비밀번호를 입력해주세요.");
-			userpwd.focus();
-			return false;
-		}else if(!reg.test(userpwd.value)){
-			alert("비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
 			userpwd.focus();
 			return false;
 		}
@@ -111,10 +101,10 @@
 						아직 회원이 아니신가요? <a href="/member/signUp">회원가입</a>
 					</li>
 					<li>
-						아이디를 잊으셨나요? <a href="#">아이디찾기</a>
+						아이디를 잊으셨나요? <a href="/member/findId">아이디찾기</a>
 					</li>
 					<li>
-						비밀번호를 잊으셨나요? <a href="#">비밀번호찾기</a>
+						비밀번호를 잊으셨나요? <a href="/member/resetPwd">비밀번호찾기</a>
 					</li>
 				</ul>
 			</div>
