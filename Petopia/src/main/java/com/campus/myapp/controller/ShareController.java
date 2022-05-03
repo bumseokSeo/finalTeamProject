@@ -23,6 +23,8 @@ public class ShareController {
 	//share board list
 	@GetMapping("shareList")
 	public ModelAndView shareList(BoardVO vo, HttpSession session) {
+		vo.setTitle((String)session.getAttribute("title"));
+		vo.setBoardtype("share");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/board/share/shareList");
 		return mav;
@@ -43,6 +45,7 @@ public class ShareController {
 		vo.setTitle((String)request.getSession().getAttribute("title"));
 		vo.setBoardtype("share");
 		
+		System.out.println(vo.getTitle());
 		ModelAndView mav = new ModelAndView();
 		try {
 			int cnt = service.shareInsert(vo);
