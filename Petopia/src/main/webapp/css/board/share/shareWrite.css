@@ -1,7 +1,15 @@
 @charset "UTF-8";
-#shareSubject{
+#shareTitle{
 	width:100%;
 }
-#shareFrm li{
+#shareFrm div{
 	padding:10px 5px;
+}
+.shareBtn{
+	display:flex;
+	justify-content:center;
+	margin:auto;
+}
+#shareWrite, #shareCancle, #shareBack{
+	margin:auto 10px;
 }

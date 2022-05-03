@@ -5,5 +5,6 @@ import java.util.List;
 import com.campus.myapp.vo.BoardVO;
 
 public interface BoardService {
-	public List<BoardVO> selectList();
+	public int shareInsert(BoardVO vo);
+	public List<BoardVO> selectList(BoardVO vo);
 }

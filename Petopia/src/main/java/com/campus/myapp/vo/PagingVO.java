@@ -15,6 +15,9 @@ public class PagingVO {
 	}
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
+		setOffsetIndex((currentPage-1)*recordPerPage);
+		//페이지번호의 시작값
+		startPage = (currentPage-1)/onePageCount*onePageCount+1;
 	}
 	public int getStartPage() {
 		return startPage;
@@ -45,6 +48,12 @@ public class PagingVO {
 	}
 	public void setTotalRecord(int totalRecord) {
 		this.totalRecord = totalRecord;
+		
+		if(totalRecord%recordPerPage==0) {
+			totalPage = totalRecord/recordPerPage;
+		} else {
+			totalPage = totalRecord/recordPerPage+1;
+		}
 	}
 	public int getTotalPage() {
 		return totalPage;
@@ -58,6 +67,4 @@ public class PagingVO {
 	public void setOffsetIndex(int offsetIndex) {
 		this.offsetIndex = offsetIndex;
 	}
-	
-	
 }
