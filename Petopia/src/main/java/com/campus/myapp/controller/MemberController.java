@@ -3,6 +3,7 @@ package com.campus.myapp.controller;
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -188,6 +189,29 @@ public class MemberController {
 	@ResponseBody
 	public int emailCheck(String email) {
 		return service.memberEmailOk(email);
+	}
+	
+	// 회원가입: 휴대전화 중복검사&인증
+	@GetMapping("telCheck")
+	@ResponseBody
+	public int telCheck(String tel) {
+		return service.memberTelOk(tel);
+	}
+	@GetMapping("smsCheck")
+	@ResponseBody
+	public String smsCheck(String tel) {
+		
+		Random random = new Random();
+		String numStr = "";
+		for(int i = 0; i < 4; i++) {
+			String ran = Integer.toString(random.nextInt(10));
+			numStr+=ran;
+		}
+		
+		// System.out.println("수신자 번호 : " + tel);
+		// System.out.println("인증번호 : " + numStr);
+		service.smsCheckOk(tel, numStr);
+		return numStr;
 	}
 	
 	// 회원가입
