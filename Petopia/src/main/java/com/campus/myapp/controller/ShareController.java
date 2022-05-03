@@ -46,6 +46,7 @@ public class ShareController {
 		ModelAndView mav = new ModelAndView();
 		try {
 			int cnt = service.shareInsert(vo);
+			System.out.println("cnt:" + cnt);
 			mav.addObject("cnt", cnt);
 		} catch(Exception e){
 			e.printStackTrace();
