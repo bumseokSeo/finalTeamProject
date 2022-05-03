@@ -7,13 +7,14 @@
 // 아이디 중복검사
 function idCheckInit(){
 	var error = document.querySelectorAll('.msgError');
+	error[0].style.display = "none";
 	if($("#idCheckResult").val()=="1") {
-		error[0].style.display = "none";
 		$("#idCheckResult").val("0");
 	}
 }
 function idCheck(){
 	var error = document.querySelectorAll('.msgError');
+	var reg = /^[a-z0-9]{5,20}$/;
 	var url = '/member/idCheck';
 	$.ajax({
 		type: 'get',
@@ -23,7 +24,20 @@ function idCheck(){
 			'id':$("#userid").val()
 		},
 		success: function(result){
-			if(result>=1){
+			
+			if($("#userid").val()==''){
+				error[0].innerHTML = "아이디를 입력하세요.";
+				error[0].style.display = "block";
+				error[0].style.color = "red";
+				$("#userid").focus();
+				return false;
+			}else if(!reg.test($("#userid").val())){
+				error[0].innerHTML = "5~20자의 영문 소문자, 숫자만 사용 가능합니다."
+			   	error[0].style.display = "block";
+				error[0].style.color = "red";
+			    $("#userid").focus();
+			    return false;
+			}else if(result>=1){
 				error[0].innerHTML = "아이디가 중복되었습니다.";
 				error[0].style.display = "block";
 				error[0].style.color = "red";
@@ -46,13 +60,14 @@ function idCheck(){
 // 닉네임 중복검사
 function nameCheckInit(){
 	var error = document.querySelectorAll('.msgError');
+	error[1].style.display = "none";
 	if($("#nameCheckResult").val()=="1") {
-		error[1].style.display = "none";
 		$("#nameCheckResult").val("0");
 	}
 }
 function nameCheck(){
 	var error = document.querySelectorAll('.msgError');
+	var reg = /^[가-힣a-zA-Z0-9]{2,16}$/;
 	var url = '/member/nameCheck';
 	$.ajax({
 		type: 'get',
@@ -62,7 +77,19 @@ function nameCheck(){
 			'name':$("#username").val()
 		},
 		success: function(result){
-			if(result>=1){
+			if($("#username").val()==''){
+				error[1].innerHTML = "닉네임을 입력하세요.";
+				error[1].style.display = "block";
+				error[1].style.color = "red";
+				$("#username").focus();
+				return false;
+			}else if(!reg.test($("#username").val())){
+				error[1].innerHTML = "2~16자 한글과 영문 대 소문자를 사용하세요.";
+				error[1].style.display = "block";
+				error[1].style.color = "red";
+				$("#username").focus();
+				return false;
+			}else if(result>=1){
 				error[1].innerHTML = "닉네임이 중복되었습니다.";
 				error[1].style.display = "block";
 				error[1].style.color = "red";
@@ -85,13 +112,14 @@ function nameCheck(){
 //이메일 중복검사
 function emailCheckInit(){
 	var error = document.querySelectorAll('.msgError');
+	error[4].style.display = "none";
 	if($("#emailCheckResult").val()=="1") {
-		error[4].style.display = "none";
 		$("#emailCheckResult").val("0");
 	}
 }
 function emailCheck(){
 	var error = document.querySelectorAll('.msgError');
+	var reg = /^\w{6,12}[@]{1}[a-zA-Z]{2,8}[.]{1}[a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
 	var url = '/member/emailCheck';
 	$.ajax({
 		type: 'get',
@@ -101,7 +129,19 @@ function emailCheck(){
 			'email':$("#useremail").val()
 		},
 		success: function(result){
-			if(result>=1){
+			if($("#useremail").val()==''){
+				error[4].innerHTML = "이메일을 입력하세요.";
+		        error[4].style.display = "block";
+		        error[4].style.color = "red";
+		        $("#useremail").focus();
+		        return false;
+			}else if(!reg.test($("#useremail").val())){
+				error[4].innerHTML = "이메일을 확인해주세요.";
+				error[4].style.display = "block";
+				error[4].style.color = "red";
+		        $("#useremail").focus();
+		        return false;
+			}else if(result>=1){
 				error[4].innerHTML = "이메일이 중복되었습니다.";
 				error[4].style.display = "block";
 				error[4].style.color = "red";
@@ -124,12 +164,12 @@ function emailCheck(){
 // 휴대전화 중복검사&인증
 function telCheckInit(){
 	var error = document.querySelectorAll('.msgError');
+	error[5].style.display = "none";
+	error[6].style.display = "none";
 	if($("#telCheckResult").val()=="1") {
-		error[5].style.display = "none";
 		$("#telCheckResult").val("0");
 	}
 	if($("#smsCheckResult").val()=="1") {
-		error[6].style.display = "none";
 		$("#smsCheckResult").val("0");
 	}
 }
@@ -171,8 +211,6 @@ function telCheck() {
 				}
 			}
 		},
-		
-		
 		error: function(e){
 			console.log(e.responseText);
 		}
@@ -444,17 +482,9 @@ $(document).ready(function(){
 			<span class="msgError"></span><br/>
 			<div class="more">자세히보기</div>
 			<div class="moreText">
-				여러분을 환영합니다.
-				네이버 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한 네이버 서비스의 이용과 관련하여 네이버 서비스를 제공하는 네이버 주식회사(이하 ‘네이버’)와 이를 이용하는 네이버 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 네이버 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
+				네이버는 본 개인정보처리방침은 개인정보보호법을 기준으로 작성하되, 네이버 내에서의 이용자 개인정보 처리 현황을 최대한 알기 쉽고 상세하게 설명하기 위해 노력하였습니다.
+				이는 쉬운 용어를 사용한 개인정보처리방침 작성 원칙인 ‘Plain Language Privacy Policy(쉬운 용어를 사용한 개인정보처리방침)’를 도입한 것입니다.
 				
-				네이버 서비스를 이용하시거나 네이버 서비스 회원으로 가입하실 경우 여러분은 본 약관 및 관련 운영 정책을 확인하거나 동의하게 되므로, 잠시 시간을 내시어 주의 깊게 살펴봐 주시기 바랍니다
-				
-				다양한 네이버 서비스를 즐겨보세요.
-				네이버는 www.naver.com을 비롯한 네이버 도메인의 웹사이트 및 응용프로그램(어플리케이션, 앱)을 통해 정보 검색, 다른 이용자와의 커뮤니케이션, 콘텐츠 제공, 상품 쇼핑 등 여러분의 생활에 편리함을 더할 수 있는 다양한 서비스를 제공하고 있습니다. 여러분은 PC, 휴대폰 등 인터넷 이용이 가능한 각종 단말기를 통해 각양각색의 네이버 서비스를 자유롭게 이용하실 수 있으며, 개별 서비스들의 구체적인 내용은 각 서비스 상의 안내, 공지사항, 네이버 웹고객센터(이하‘고객센터’) 도움말 등에서 쉽게 확인하실 수 있습니다.
-				
-				네이버는 기본적으로 여러분 모두에게 동일한 내용의 서비스를 제공합니다. 다만,'청소년보호법'등 관련 법령이나 기타 개별 서비스 제공에서의 특별한 필요에 의해서 연령 또는 일정한 등급을 기준으로 이용자를 구분하여 제공하는 서비스의 내용, 이용 시간, 이용 횟수 등을 다르게 하는 등 일부 이용을 제한하는 경우가 있습니다. 자세한 내용은 역시 각 서비스 상의 안내, 공지사항, 고객센터 도움말 등에서 확인하실 수 있습니다.
-				
-				네이버 서비스에는 기본적으로 본 약관이 적용됩니다만 네이버가 다양한 서비스를 제공하는 과정에서 부득이 본 약관 외 별도의 약관, 운영정책 등을 적용하는 경우(예, 네이버페이, V LIVE 등)가 있습니다. 그리고 네이버 계열사가 제공하는 특정 서비스의 경우에도(예, LINE, SNOW등) 해당 운영 회사가 정한 고유의 약관, 운영정책 등이 적용될 수 있습니다. 이러한 내용은 각각의 해당 서비스 초기 화면에서 확인해 주시기 바랍니다.
 			</div>
 			<p class="check">
 				<span>이용약관에 동의하십니까?</span>
