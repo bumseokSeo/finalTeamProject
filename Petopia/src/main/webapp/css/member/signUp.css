@@ -72,7 +72,7 @@
 	padding: 3px;
 	font-size: 12px;
 	background-color: #EFEFEF;
-	
+	cursor: pointer;
 }
 .moreText{
 	float: left;
