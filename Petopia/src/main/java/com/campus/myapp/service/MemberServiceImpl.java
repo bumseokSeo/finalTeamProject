@@ -87,6 +87,7 @@ public class MemberServiceImpl implements MemberService {
             System.out.println(e.getMessage());
             System.out.println(e.getCode());
         }
+	}
 	public String findId(MemberVO vo) {
 		// TODO Auto-generated method stub
 		return dao.findId(vo);
