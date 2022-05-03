@@ -263,22 +263,26 @@ public class MemberController {
 		HttpHeaders headers = new HttpHeaders();
 		
 		headers.add("Content-Type", "text/html; charset=UTF-8");
-		try {//찾기성공
-			String tempUserId = service.findId(vo);
+		
+		String tempUserId = service.findId(vo);
+		String msg = "<script>";
+		if(tempUserId == null) {
 			
-			String msg = "<script>";
-			msg += "location.href='/member/findIdOk'";
-			msg += "</script>";
-			session.setAttribute("tempUserId", tempUserId);
-			
-			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//200
-		}catch(Exception e) {//찾기실패
-			String msg = "<script>";
 			msg+="alert('해당하는 계정이 존재하지 않습니다.');";
 			msg += "history.back()";
 			msg+="</script>";
-			entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);//200
+		}else {
+			
+			msg += "location.href='/member/findIdOk'";
+			msg += "</script>";
+			session.setAttribute("tempUserId", tempUserId);
 		}
+		
+			
+		entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//200
+
+		//entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);//200
+		
 		return entity;
 	}
 	
