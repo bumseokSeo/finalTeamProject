@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+#animalInfo_container {width:100%; height:100%; color:#fff; overflow:hidden; padding: 30px; }
+#animalInfo_wrap {min-width:1200px; height:100%; margin:0 auto;overflow:hidden
+}
+#ad_logo {
+	display:block;
+	width:200px; height:55px;
+	margin:50px auto 50px auto;
+	transform:translateX(-20px);
+}
+#animalInfo_lnb {
+	width:15vw; height:45vh;
+	float:left;
+	background-color:pink;
+	position: relative;
+}
+
+#ad_profile {position:relative; text-align:center;}
+#ad_p_img{
+	width:150px; height:150px;
+	display:block;
+	margin:50px auto 0 auto;
+	border-radius:75px;
+}
+#ad_profile a {width:150px; height:150px;
+	display:inline-block;
+	margin:30px auto 0 auto;
+	border-radius:75px;
+	position:absolute; left:50%px; top:-30px;
+	transform:translateX(-75px);
+	background-color:rgba(0,0,0,0.3);
+	opacity:0; transition:all 0.5s;
+}
+#ad_profile a:hover {opacity:1}
+#ad_profile p {line-height:100px}
+#animalInfo_lnb ul {margin-top:50px}
+#animalInfo_lnb ul li a {
+	height:50px;
+	display:inline-block;
+	margin-left:20%;
+	line-height:50px;
+	cursor:pointer;
+}
+#resultArea {
+	width:100%; height:100%;
+	margin-left:17vw;
+	
+	text-align:left;
+	background-color:rgba(0,0,0,0.1);
+	color:#222;
+	position: relative;
+}
+.card{
+	margin-top: 30px;
+	width:380px;
+}
+#searchDiv{
+	width:100%;
+	margin-top: 30px;
+	margin-bottom: 40px;
+	
+	
+}
+#searchForm{
+	width: 400px;
+	position: absolute;
+	right: 10px;
+}
+#searchword{
+	width:300px;
+	
+}
+.card-text{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow : ellipsis;/* 넘친내용...*/
+}
+.searchIcon{
+	width:38px; height:38px;
+	margin-right: 10px;
+}
+.card-title{
+	margin-top: 15px;
+	margin-left: 15px;
+}
