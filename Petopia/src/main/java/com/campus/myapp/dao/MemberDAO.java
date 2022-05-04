@@ -37,5 +37,8 @@ public interface MemberDAO {
 	//해당 계정의 정보 조회
 	public MemberVO readMember(String userid);
 	
+	// 회원탈퇴
+	public int memberDelete(MemberVO vo);
+	
 }
 

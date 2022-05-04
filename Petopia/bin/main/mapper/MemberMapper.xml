@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="memberSelect" resultType="com.campus.myapp.vo.MemberVO">
-		select userid, username, profileimage, useremail from member
+		select userid, username, profileimage, useremail, userpwd from member
 		where userid=#{param1}
 	</select>
 	<update id="memberUpdate">
@@ -55,5 +55,9 @@
 		select * from member
 		where userid=#{param1}
 	</select>
+	
+	<delete id="memberDelete">
+		delete from member where userid=#{userid}
+	</delete>
 
 </mapper>

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#form{
+#form, .del_form_box{
 	margin: 0 auto;
 	width: 550px;
 }
@@ -55,7 +55,7 @@
 	font-weight: 700;
 	color: #fff;
 }
-#memberEditBtn{
+#memberEditBtn, #memberDelBtn{
 	width: 240px;
 	background: #FF7900;
 	border: #FF7900;
@@ -71,4 +71,14 @@
 	width:300px;
 	height:300px;
 	
+}
+
+.del_form_box{
+	margin-bottom: 30px;
+}
+#delConfirm{
+	border: none;
+}
+.delCheck{
+	display: none;
 }

@@ -2,7 +2,10 @@ package com.campus.myapp.controller;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -17,9 +20,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -72,7 +75,7 @@ public class MemberController {
 	}
 	
 	// 로그아웃
-	@GetMapping("logout")
+	@GetMapping("/logout")
 	public ModelAndView logout(HttpSession session) {
 		
 		session.invalidate();
@@ -222,8 +225,9 @@ public class MemberController {
 	@PostMapping("/signUpOk")
 	public ModelAndView signUpOk(MemberVO vo) {
 		ModelAndView mav = new ModelAndView();
-		service.memberInsert(vo);
-		mav.setViewName("redirect:/");
+		int cnt = service.memberInsert(vo);
+		mav.addObject("cnt", cnt);
+		mav.setViewName("member/sugnUpResult");
 		return mav;
 	}
 		
@@ -294,5 +298,31 @@ public class MemberController {
 		
 	}
 	
+	// 회원탈퇴
+	@GetMapping("memberDelete")
+	public ModelAndView memberDelete(MemberVO vo, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		service.memberDelete(vo);
+		session.invalidate();
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+	
+	// 카카오로그인
+	@GetMapping("kakao")
+	@ResponseBody
+	public void  kakaoCallback(@RequestParam String code, HttpSession session) {
 
+		String access_Token = service.getAccessToken(code);
+	    HashMap<String, Object> userInfo = service.getUserInfo(access_Token);
+	    System.out.println("login Controller : " + userInfo);
+	    System.out.println(userInfo.get("username"));
+	    
+	    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+	    if (userInfo.get("email") != null) {
+	        session.setAttribute("userId", userInfo.get("email"));
+	        session.setAttribute("access_Token", access_Token);
+	    }
+	}
+	
 }
