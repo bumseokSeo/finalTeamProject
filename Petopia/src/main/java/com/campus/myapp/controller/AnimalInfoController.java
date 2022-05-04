@@ -65,7 +65,6 @@ public class AnimalInfoController {
 	@GetMapping("/animalInfoSub")
 	public ModelAndView animalInfosSub(String breedkey) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(breedkey);
 		mav.addObject("vo",service.animalList(breedkey));
 		mav.setViewName("animalInfo/animalInfoSub");
 		return mav;
