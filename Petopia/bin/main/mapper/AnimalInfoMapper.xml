@@ -14,4 +14,9 @@
 		 order by breed desc
 	</select>
 	
+	<select id="animalList" resultType="com.campus.myapp.vo.AnimalInfoVO">
+		select category,breed,content,filename1,filename2,filename3,distinction,disease from animalinfo where breed=#{param1}
+		
+	</select>
+	
 </mapper>

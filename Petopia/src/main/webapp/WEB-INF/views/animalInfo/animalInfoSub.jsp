@@ -14,20 +14,21 @@
 				
 			</ul>
 		</div>
+		
 		<div class="container" id="content">
 			<div id="imgDiv">
-				<img src="/img/Logo(main).png" class="img-fluid" alt="이미지가 없습니다." id="animalImg">
+				<img src="/img/animalInfo/${vo.filename1}" class="img-fluid" alt="이미지가 없습니다." id="animalImg">
 				
 			</div>
 			<div id="contentDiv">
-				<span id="breed">동물 이름</span><br>
-				<span id="explanation">동물설명동물설명동물설명동물설명동물설명동물설명동물설명</span>
+				<span id="breed">${vo.breed}</span><br>
+				<span id="explanation">${vo.content}</span>
 			</div>
 			<div id="distinctDiv">
-				특징
+				${vo.distinction}
 			</div>
 			<div id="diseaseDiv">
-				질병
+				${vo.disease}
 			</div>
 		</div>
 

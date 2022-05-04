@@ -49,10 +49,12 @@
 	color:#222;
 	position: relative;
 	
+	
 }
 #content div{
 	float:left;
-	margin:30px;
+	/*margin:30px;*/
+	
 	
 	
 }
@@ -66,16 +68,16 @@
 }
 #contentDiv{
 	background-color: blue;
-	width:50%;
+	width:60%;
 	
 }
 #distinctDiv{
 	background-color: green;
-	width:95%;
+	width:100%;
 	height:300px;
 }
 #diseaseDiv{
 	background-color: yellow;
-	width:95%;
+	width:100%;
 	height:300px;
 }

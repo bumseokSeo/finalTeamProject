@@ -6,4 +6,5 @@ import com.campus.myapp.vo.AnimalInfoVO;
 
 public interface AnimalInfoService {
 	public List<AnimalInfoVO> animalListDog(String searchword);
+	public AnimalInfoVO animalList(String breedkey);
 }

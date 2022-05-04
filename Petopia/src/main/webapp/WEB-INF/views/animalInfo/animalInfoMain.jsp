@@ -31,7 +31,7 @@
 				<c:forEach var="vo" items="${list}">
 					<div class="col">
 						<div class="card">
-							<a href="/animalInfo/animalInfoSub?${vo.breed}"><img src="/img/animalInfo/${vo.filename1}" class='animalimg' alt="이미지가 없습니다." title="${vo.breed}" style="height:275px; width:100%;"></a>
+							<a href="/animalInfo/animalInfoSub?breedkey=${vo.breed}"><img src="/img/animalInfo/${vo.filename1}" class='animalimg' alt="이미지가 없습니다." title="${vo.breed}" style="height:275px; width:100%;"></a>
 							<h4 class="card-title">${vo.breed}</h4>
 							<div class="card-body">
 								<p class="card-text">${vo.content}</p>

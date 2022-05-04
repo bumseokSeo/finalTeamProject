@@ -19,5 +19,11 @@ public class AnimalInfoServiceImpl implements AnimalInfoService{
 		// TODO Auto-generated method stub
 		return dao.animalListDog(searchword);
 	}
+
+	@Override
+	public AnimalInfoVO animalList(String breedkey) {
+		// TODO Auto-generated method stub
+		return dao.animalList(breedkey);
+	}
 	
 }
