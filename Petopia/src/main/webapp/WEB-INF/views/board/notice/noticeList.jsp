@@ -15,7 +15,7 @@
 		</ul><!-- 게시물 -->
 	</div>
 		
-		<div class="Share_btn"><a href="/board/share/shareWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
+		<div class="Share_btn"><a href="/board/notice/noticeWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 		<br/><br/><br/>
 		<div class="Share_search">
 			<select>

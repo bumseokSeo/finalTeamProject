@@ -16,4 +16,11 @@ public class boardMainController {
 		mav.setViewName("board/SubMenuSelect");
 		return mav;
 	}
+	
+	//글쓰기 폼 이동
+	@GetMapping("/board/notice/noticeWrite")
+	public String noticeWrite() {
+		return "/board/notice/noticeWrite";
+	}
 }
+
