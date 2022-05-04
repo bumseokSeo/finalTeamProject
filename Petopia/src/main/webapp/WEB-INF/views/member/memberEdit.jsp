@@ -64,7 +64,7 @@
 			
 			
 			// 이메일 유효성검사
-			reg = /^\w{6,12}[@]{1}[a-zA-Z]{2,8}[.]{1}[a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
+			reg = /^\w{5,20}[@]{1}[a-zA-Z]{2,8}[.]{1}[a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
 			if($("#useremail").val()==''){
 				error[3].innerHTML = "이메일을 입력하세요.";
 		        error[3].style.display = "block";
