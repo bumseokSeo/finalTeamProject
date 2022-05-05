@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/css//login.css" type="text/css"/>
+<link rel="stylesheet" href="/css/member/login.css" type="text/css"/>
 <script type="text/javascript">
 	$(function() {
 	    cookieCheck();
@@ -65,6 +65,8 @@
         }
         return "";
     }
+    
+   
 </script>
 <div class="container">
 	
@@ -78,11 +80,12 @@
 		<div class="bubble_box">
 			<span>3초안에 빠른 회원가입</span>
 		</div>
-		<div class="kakao_box">
-			<a href="#" class="btnKakao">
-				<span>카카오톡으로 계속하기</span>
-			</a>
-		</div>
+		<a href="https://kauth.kakao.com/oauth/authorize?client_id=68f59a6a1ea23ebf55a954fbe4f7b684&redirect_uri=http://localhost:8090/member/kakao&response_type=code" class="btnKakao">
+			<div class="kakao_box">
+				<span>카카오톡으로 계속하기</span>			
+			</div>
+		</a>
+
 		<div class="or_box">
 			<span>혹은</span>
 		</div>

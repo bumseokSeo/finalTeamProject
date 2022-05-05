@@ -22,7 +22,7 @@ dependencies {
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
-	//ºäÆäÀÌÁö¸¦ jsp·Î »ç¿ëÇÏ±âÀ§ÇÑ ÇÁ·¹ÀÓ¿öÅ©Ãß°¡
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ jspï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½Å©ï¿½ß°ï¿½
 	// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.60'
 	// https://mvnrepository.com/artifact/javax.servlet/jstl
@@ -30,11 +30,27 @@ dependencies {
 	// https://mvnrepository.com/artifact/javax.inject/javax.inject
 	implementation 'javax.inject:javax.inject:1'
 	
-	//ÆÄÀÏ ¾÷·Îµå
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½
 	// https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
 	implementation 'commons-fileupload:commons-fileupload:1.4'
 	// https://mvnrepository.com/artifact/commons-io/commons-io
 	implementation 'commons-io:commons-io:2.11.0'
+	
+	// ajax
+	// https://mvnrepository.com/artifact/com.google.code.gson/gson
+	implementation 'com.google.code.gson:gson:2.8.5'
+	
+	
+	// í•¸ë“œí°ë²ˆí˜¸ ì¸ì¦ ë¼ì´ë¸ŒëŸ¬ë¦¬
+	// https://mvnrepository.com/artifact/net.nurigo/javaSDK
+	implementation 'net.nurigo:javaSDK:2.2'
+	
+	// íœ´ëŒ€í°ì¸ì¦ ì™¸ë¶€ ë¼ì´ë¸ŒëŸ¬ë¦¬ ë¶ˆëŸ¬ì˜¤ê¸° ë°‘ì—ì¤„ ì£¼ì„í’€ê³  ë¦¬í”„ë ˆì‹œ ê·¸ë˜ë“¤í•˜ê³  ë‹¤ì‹œ ì£¼ì„ì²˜ë¦¬í•´ì•¼ë©ë‹ˆë‹¤.
+	//implementation fileTree(dir:'libs', include:'*jar')
+	
+	//ì´ë©”ì¼ ì¸ì¦ìš©
+	// https://mvnrepository.com/artifact/org.apache.commons/commons-email
+	implementation 'org.apache.commons:commons-email:1.2'
 }
 
 tasks.named('test') {

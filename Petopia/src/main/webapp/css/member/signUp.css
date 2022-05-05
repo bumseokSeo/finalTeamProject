@@ -72,7 +72,7 @@
 	padding: 3px;
 	font-size: 12px;
 	background-color: #EFEFEF;
-	
+	cursor: pointer;
 }
 .moreText{
 	float: left;
@@ -85,4 +85,15 @@
 }
 h3{
 	margin-top: 15px;
+}
+
+.smsCheck{
+	display: none;
+}
+#tel{
+	width: 45%;
+}
+.btn2{
+	float: right;
+	margin-left: 5px;
 }

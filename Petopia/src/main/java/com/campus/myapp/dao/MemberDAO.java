@@ -17,6 +17,8 @@ public interface MemberDAO {
 	public int memberNameOk(String name);
 	// 회원가입: 이메일 중복검사
 	public int memberEmailOk(String email);
+	// 회원가입: 휴대전화 인증
+	public int memberTelOk(String tel);
 	// 회원가입
 	public int memberInsert(MemberVO vo);
 	
@@ -25,6 +27,18 @@ public interface MemberDAO {
 	
 	//회원정보수정
 	public int memberUpdate(MemberVO vo);
+	
+	//아이디 찾기
+	public String findId(MemberVO vo);
+		
+	// 비밀번호 변경
+	public int updatePw(MemberVO vo) throws Exception;
+		
+	//해당 계정의 정보 조회
+	public MemberVO readMember(String userid);
+	
+	// 회원탈퇴
+	public int memberDelete(MemberVO vo);
 	
 }
 

@@ -1,0 +1,164 @@
+@charset "UTF-8";
+
+#review-wrapper{
+    width:1080px;
+	margin:0 auto;
+}
+
+#title{
+	width:100%;
+	height:60px;
+}
+
+.img1{
+	padding-top:30px;
+	width:100%;
+	text-align: center;
+	min-height : 150px;
+	border:1px solid red; /*임시경계선*/
+}
+
+.img1>div{
+	margin-top:30px;
+}
+
+.img2{
+	width:100%;
+	height:250px;
+}
+
+.img2_up{
+	float:left;
+	display:table;
+	position:relative;
+	height: 200px;
+	table-layout : fixed;
+	margin-left : 10px;
+	border:1px solid #d3d1d1; /*임시경계선*/
+}
+
+#content{
+	width:100%;
+	height:400px;
+	border:1px solid green; /*임시경계선*/
+}
+
+/* 글 보기 */
+#main_img{
+	text-align: center;
+	border:1px solid green; /*임시경계선*/
+	min-width:400px;
+}
+
+.Top_menu{
+	height:60px;
+	line-height: 60px;
+	padding: 0 20px;
+}
+
+#Top_name{
+	float:left;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	width:80%;
+}
+
+#content_img{
+	height:250px;
+	vertical-align: top;
+}
+
+#content_img > img{
+	display:table;
+	position:relative;
+	height: 200px;
+	table-layout : fixed;
+	margin-left : 10px;
+	border:1px solid #d3d1d1; /*임시경계선*/
+}
+
+.button01{
+	float:right;
+	cursor:pointer;
+	margin-left:15px; 
+	text-align:center;
+	width:90px;
+	height:50px;
+	line-height:50px;
+	font-size:18px;
+	color: #fff;
+	border-radius: 10px;
+	font-family:'Nanum pen script';
+	background-color: rgb( 244, 156, 21);
+	transition:all.15s linear;
+}
+
+.button02{
+	float:right;
+	cursor:pointer;
+	margin-left:15px; 
+	text-align:center;
+	width:90px;
+	height:50px;
+	line-height:50px;
+	font-size:18px;
+	color: #fff;
+	border-radius: 10px;
+	font-family:'Nanum pen script';
+	background-color: rgb( 227, 104, 83);
+	transition:all.15s linear;
+}
+
+#reviewReply{
+	width:100%;
+	height:200px;
+}
+
+.reply_area{
+	position:relative;
+	border: 1px solid red;
+	width:900px;
+	height:100px;
+}
+
+.profile_img{
+	border: 1px solid green;
+	float:left;
+	width:100px;
+	height:100px;
+}
+
+.reply_posting{
+	position:relative;
+	border: 1px solid blue;
+	width:700px;
+	height:100px;
+	float: left;
+	padding:5px;
+}
+
+.reply_img1{
+	position: absolute;
+	z-index: 1;
+	width:50px;
+	height:50px;
+	top: 20px;
+	left:25px;
+	border-radius:70%;
+	
+}
+
+.reply_img2{
+	position: absolute;
+	z-index: 2;
+	width:80px;
+	height:80px;
+	top:6px;
+	left:10px;
+}
+
+.reply_info{
+	position: absolute;
+	bottom:5px;
+	left:5px;
+}

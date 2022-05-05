@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
 *{
 	margin:0;
@@ -10,7 +10,29 @@
 .container{
 	min-height:717px;
 }
+
+a:link, a:visited {
+	text-decoration: none;
+	color: black;
+}
+.container a:hover{
+	text-decoration:underline;
+	color: black;
+}
+
+
 /* Top */
+#Top_Logo{
+	float:left;
+	position: absolute;
+	left:50px;
+	top:20px;
+	z-index: 20;
+}
+#Top_Logo>a>img{
+	width:100px;
+	height:100px;
+}
 #Top_menu{
 	width:100%;
 	height:123px;
@@ -19,38 +41,37 @@
 	padding-top:40px;
 	margin-bottom:40px;
 }
-#Top_Logo{
-	float:left;
-	position: absolute;
-	left:50px;
-	top:20px;
-}
 
 #Top_menu_select{
 	float:left;
-	text-align:center;
-	position:relative;
 	width:100%;
 
 }
 
 #se{
-	word-spacing: 62px;
+	display:flex;
+	justify-content:center;
+	position:relative;
 	height:80px;
 }
+
 .Top_menu_VA{
+	text-align:center;
 	font-size: 23pt;
 	cursor: pointer;
+	margin-left:35px;
 }
 .Top_menu_select_A>ul>li>a:hover,.Top_menu_select_A>ul>li>a:link,.Top_menu_select_A>ul>li>a:visited{
 	color:black;
+	text-decoration: none;
 }
 
 .Top_menu_select_A{
-	float:left;
-	margin-left:72px;
 	position: relative;
-	left:79.5vh;
+	display: inline-flex;
+	justify-content:center;
+	align-items: center;
+	margin-left:35px;
 }
 
 .Top_menu_select_A>ul>li{
@@ -60,7 +81,9 @@
 
 #Top_menu_select_S{
 	position:absolute;
-	width:100%;
+	text-align:center;
+	left:0;
+	right:0;
 	background-color: rgba(255, 133, 0 , 0.7);
 	height:150px;
 	display:none;
@@ -78,8 +101,12 @@
 	float:left;
 	margin-left:15px;
 }
+#Top_LGN_section a:hover{
+	color:black;
+	
+}
 
-/* Top ≥°*/
+/* Top ÎÅù*/
 /* Bottom*/
 .bottom{
 	width:100%;
@@ -88,4 +115,5 @@
 	background-color: rgba(132,144,22,0.5);
 	position: relative;
 }
-/* Bottom ≥°*/
+
+/* Bottom ÎÅù*/
