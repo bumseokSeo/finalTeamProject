@@ -46,7 +46,11 @@ dependencies {
 	implementation 'net.nurigo:javaSDK:2.2'
 	
 	// 휴대폰인증 외부 라이브러리 불러오기 밑에줄 주석풀고 리프레시 그래들하고 다시 주석처리해야됩니다.
-	// implementation fileTree(dir:'libs', include:'*jar')
+	//implementation fileTree(dir:'libs', include:'*jar')
+	
+	//이메일 인증용
+	// https://mvnrepository.com/artifact/org.apache.commons/commons-email
+	implementation 'org.apache.commons:commons-email:1.2'
 }
 
 tasks.named('test') {

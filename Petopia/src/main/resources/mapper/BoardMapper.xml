@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -12,3 +13,24 @@
 		from board where boardtype=#{boardtype} order by boardno desc
 	</select>
 </mapper>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.campus.myapp.dao.BoardDAO">
+  	<!-- 글등록 -->
+  	<insert id="BoardInsert">
+  	INSERT INTO board(userid, title, content,boardtype)
+  	VALUES(#{userid}, #{title}, #{content}, #{boardtype})
+  	</insert>
+  	<!--  글 1개 선택 -->
+  	<select id="boardSelect" resultType="com.campus.myapp.vo.BoardVO">
+  	SELECT boardno, title, userid, content, hit, writedate
+  	FROM board
+  	WHERE boardno = ${param1}
+  	</select>
+  	
+  </mapper>
+>>>>>>> main

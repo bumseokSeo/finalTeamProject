@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/css/member/signUp.css" type="text/css"/>
 
+
 <script>
 
 // 아이디 중복검사
@@ -30,13 +31,11 @@ function idCheck(){
 				error[0].style.display = "block";
 				error[0].style.color = "red";
 				$("#userid").focus();
-				return false;
 			}else if(!reg.test($("#userid").val())){
 				error[0].innerHTML = "5~20자의 영문 소문자, 숫자만 사용 가능합니다."
 			   	error[0].style.display = "block";
 				error[0].style.color = "red";
 			    $("#userid").focus();
-			    return false;
 			}else if(result>=1){
 				error[0].innerHTML = "아이디가 중복되었습니다.";
 				error[0].style.display = "block";
@@ -82,13 +81,11 @@ function nameCheck(){
 				error[1].style.display = "block";
 				error[1].style.color = "red";
 				$("#username").focus();
-				return false;
 			}else if(!reg.test($("#username").val())){
 				error[1].innerHTML = "2~16자 한글과 영문 대 소문자를 사용하세요.";
 				error[1].style.display = "block";
 				error[1].style.color = "red";
 				$("#username").focus();
-				return false;
 			}else if(result>=1){
 				error[1].innerHTML = "닉네임이 중복되었습니다.";
 				error[1].style.display = "block";
@@ -134,13 +131,11 @@ function emailCheck(){
 		        error[4].style.display = "block";
 		        error[4].style.color = "red";
 		        $("#useremail").focus();
-		        return false;
 			}else if(!reg.test($("#useremail").val())){
 				error[4].innerHTML = "이메일을 확인해주세요.";
 				error[4].style.display = "block";
 				error[4].style.color = "red";
 		        $("#useremail").focus();
-		        return false;
 			}else if(result>=1){
 				error[4].innerHTML = "이메일이 중복되었습니다.";
 				error[4].style.display = "block";
@@ -190,13 +185,11 @@ function telCheck() {
 		        error[5].style.display = "block";
 		        error[5].style.color = "red";
 		        $("#tel").focus();
-		        return false;
 			}else if(!reg.test($("#tel").val())){
 				error[5].innerHTML = "전화번호을 확인해주세요. '-'없이 숫자만 입력해주세요.";
 				error[5].style.display = "block";
 				error[5].style.color = "red";
 		        $("#tel").focus();
-		        return false;
 			}else if(result>=1){
 				error[5].innerHTML = "전화번호가 중복되었습니다.";
 				error[5].style.display = "block";
@@ -332,7 +325,7 @@ $(()=>{
 		}
 		
 		// 이메일 유효성검사
-		reg = /^\w{6,12}[@]{1}[a-zA-Z]{2,8}[.]{1}[a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
+		reg = /^\w{5,20}[@]{1}[a-zA-Z]{2,8}[.]{1}[a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
 		if($("#useremail").val()==''){
 			error[4].innerHTML = "이메일을 입력하세요.";
 	        error[4].style.display = "block";
@@ -428,7 +421,14 @@ $(document).ready(function(){
 			}
 		}
 	});
+	
+	$(".agree_box>div[class='moreText']").eq(0).load("/txt/TermsOfService.txt");
+	
+	$(".agree_box>div[class='moreText']").eq(1).load("/txt/PrivacyPolicy.txt");
+	
+	
 });
+
 </script>
 
 <div class="container">
@@ -482,8 +482,6 @@ $(document).ready(function(){
 			<span class="msgError"></span><br/>
 			<div class="more">자세히보기</div>
 			<div class="moreText">
-				네이버는 본 개인정보처리방침은 개인정보보호법을 기준으로 작성하되, 네이버 내에서의 이용자 개인정보 처리 현황을 최대한 알기 쉽고 상세하게 설명하기 위해 노력하였습니다.
-				이는 쉬운 용어를 사용한 개인정보처리방침 작성 원칙인 ‘Plain Language Privacy Policy(쉬운 용어를 사용한 개인정보처리방침)’를 도입한 것입니다.
 				
 			</div>
 			<p class="check">
@@ -494,16 +492,7 @@ $(document).ready(function(){
 			<span class="msgError"></span><br/>
 			<div class="more">자세히보기</div>
 			<div class="moreText">
-				네이버는 본 개인정보처리방침은 개인정보보호법을 기준으로 작성하되, 네이버 내에서의 이용자 개인정보 처리 현황을 최대한 알기 쉽고 상세하게 설명하기 위해 노력하였습니다.
-				이는 쉬운 용어를 사용한 개인정보처리방침 작성 원칙인 ‘Plain Language Privacy Policy(쉬운 용어를 사용한 개인정보처리방침)’를 도입한 것입니다.
-				
-				‘쉬운 용어를 사용한 개인정보처리방침 작성 체크리스트(영문)’ 바로가기
-				개인정보처리방침은 다음과 같은 중요한 의미를 가지고 있습니다.
-				
-				네이버가 어떤 정보를 수집하고, 수집한 정보를 어떻게 사용하며, 필요에 따라 누구와 이를 공유(‘위탁 또는 제공’)하며, 이용목적을 달성한 정보를 언제·어떻게 파기하는지 등 ‘개인정보의 한살이’와 관련한 정보를 투명하게 제공합니다.
-				정보주체로서 이용자는 자신의 개인정보에 대해 어떤 권리를 가지고 있으며, 이를 어떤 방법과 절차로 행사할 수 있는지를 알려드립니다. 또한, 법정대리인(부모 등)이 만14세 미만 아동의 개인정보 보호를 위해 어떤 권리를 행사할 수 있는지도 함께 안내합니다.
-				개인정보 침해사고가 발생하는 경우, 추가적인 피해를 예방하고 이미 발생한 피해를 복구하기 위해 누구에게 연락하여 어떤 도움을 받을 수 있는지 알려드립니다.
-				그 무엇보다도, 개인정보와 관련하여 네이버와 이용자간의 권리 및 의무 관계를 규정하여 이용자의 ‘개인정보자기결정권’을 보장하는 수단이 됩니다.
+			
 			</div>
 			<p class="check">
 				<span>개인정보 취급방침에 동의하십니까?</span>

@@ -2,11 +2,15 @@ package com.campus.myapp.controller;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpHeaders;
@@ -14,8 +18,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -68,7 +75,7 @@ public class MemberController {
 	}
 	
 	// 로그아웃
-	@GetMapping("logout")
+	@GetMapping("/logout")
 	public ModelAndView logout(HttpSession session) {
 		
 		session.invalidate();
@@ -218,8 +225,9 @@ public class MemberController {
 	@PostMapping("/signUpOk")
 	public ModelAndView signUpOk(MemberVO vo) {
 		ModelAndView mav = new ModelAndView();
-		service.memberInsert(vo);
-		mav.setViewName("redirect:/");
+		int cnt = service.memberInsert(vo);
+		mav.addObject("cnt", cnt);
+		mav.setViewName("member/sugnUpResult");
 		return mav;
 	}
 		
@@ -231,6 +239,12 @@ public class MemberController {
 		mav.setViewName("member/findId");
 		return mav;
 	}
+	@GetMapping("findIdOk")
+	public ModelAndView findIdOk() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/findIdOk");
+		return mav;
+	}
 	
 	//비밀번호 초기화 진입
 	@GetMapping("resetPwd")
@@ -239,4 +253,76 @@ public class MemberController {
 		mav.setViewName("member/resetPwd");
 		return mav;
 	}
+	@GetMapping("resetPwdOk")
+	public ModelAndView resetPwdOk() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/resetPwdOk");
+		return mav;
+	}
+	
+	//아이디 찾기
+	@PostMapping("findIdOk")
+	public ResponseEntity<String> findIdOk(MemberVO vo, HttpServletRequest request, HttpSession session ) {
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		
+		headers.add("Content-Type", "text/html; charset=UTF-8");
+		
+		String tempUserId = service.findId(vo);
+		String msg = "<script>";
+		if(tempUserId == null) {
+			
+			msg+="alert('해당하는 계정이 존재하지 않습니다.');";
+			msg += "history.back()";
+			msg+="</script>";
+		}else {
+			
+			msg += "location.href='/member/findIdOk'";
+			msg += "</script>";
+			session.setAttribute("tempUserId", tempUserId);
+		}
+		
+			
+		entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);//200
+
+		//entity = new ResponseEntity<String>(msg,headers,HttpStatus.BAD_REQUEST);//200
+		
+		return entity;
+	}
+	
+	
+	
+	@RequestMapping(value = "/findpw", method = RequestMethod.POST)
+	public void findPwPOST(@ModelAttribute MemberVO member, HttpServletResponse response) throws Exception{
+		service.findPw(response, member);
+		
+	}
+	
+	// 회원탈퇴
+	@GetMapping("memberDelete")
+	public ModelAndView memberDelete(MemberVO vo, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		service.memberDelete(vo);
+		session.invalidate();
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+	
+	// 카카오로그인
+	@GetMapping("kakao")
+	@ResponseBody
+	public void  kakaoCallback(@RequestParam String code, HttpSession session) {
+
+		String access_Token = service.getAccessToken(code);
+	    HashMap<String, Object> userInfo = service.getUserInfo(access_Token);
+	    System.out.println("login Controller : " + userInfo);
+	    System.out.println(userInfo.get("username"));
+	    
+	    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
+	    if (userInfo.get("email") != null) {
+	        session.setAttribute("userId", userInfo.get("email"));
+	        session.setAttribute("access_Token", access_Token);
+	    }
+	}
+	
 }
