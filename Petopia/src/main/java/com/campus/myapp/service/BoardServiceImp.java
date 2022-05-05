@@ -34,4 +34,16 @@ public class BoardServiceImp implements BoardService{
 	public void hitCount(int boardno){
 		dao.hitCount(boardno);
 	}
+	
+	
+	//Share Board
+	@Override
+	public List<BoardVO> selectList(BoardVO vo) {
+		return dao.selectList(vo);
+	}
+
+	@Override
+	public int shareInsert(BoardVO vo) {
+		return dao.shareInsert(vo);
+	}
 }

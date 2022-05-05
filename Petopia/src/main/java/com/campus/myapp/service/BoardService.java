@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-package com.campus.myapp.service;
-
-import java.util.List;
-
-import com.campus.myapp.vo.BoardVO;
-
-public interface BoardService {
-	public int shareInsert(BoardVO vo);
-	public List<BoardVO> selectList(BoardVO vo);
-}
-=======
 package com.campus.myapp.service;
 
 import java.util.List;
@@ -26,5 +14,9 @@ public interface BoardService {
 		public List<BoardVO> BoardSelectList(String boardtype, PagingVO pvo);
 		//조회수 증가
 		public void hitCount(int boardno);
+		
+		
+		//Share Board
+		public int shareInsert(BoardVO vo);
+		public List<BoardVO> selectList(BoardVO vo);
 }
->>>>>>> main
