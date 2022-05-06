@@ -28,6 +28,9 @@
 }
 
 /*게시글목록*/
+.List_menu_F{
+	padding-left:0px;
+}
 .List_menu_F>li{
 	width:10%;
 	height:40px;
