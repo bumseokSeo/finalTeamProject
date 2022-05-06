@@ -1,0 +1,43 @@
+@charset "UTF-8";
+.Adopt_group{
+	border:1px solid #ddd;
+	padding:10px;
+}
+.Adopt_logo{
+	text-align:center;
+	margin:20px;
+}
+.Adopt_img{
+	text-align:center;
+}
+.Adopt_img>img{
+	width:300px;
+}
+.Adopt_content{
+	border:1px solid #ddd;
+	border-radius:3%;
+}
+.Adopt_files{
+	text-align:center;
+}
+.Adopt_info{
+	margin:10px;
+}
+.Adopt_host{
+	border:1px solid #ddd;
+}
+#chatBtn{
+	width:100%;
+	height:100%;
+	border:none;
+}
+#replyContent{
+	width:80%;
+	height:80px;
+}
+#replyBtn{
+	float:right;
+	margin-top:50px;
+	width:18%;
+	border:none;
+}
