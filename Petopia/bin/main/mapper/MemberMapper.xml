@@ -5,8 +5,18 @@
   
 <mapper namespace="com.campus.myapp.dao.MemberDAO">
 	<select id="loginCheck" resultType="com.campus.myapp.vo.MemberVO">
-		select userid, username, profileimage, userlevel from member
+		select userid, username, profileimage, userlevel, useremail from member
 		where userid=#{userid} and userpwd=#{userpwd}
+	</select>
+	
+	<select id="memberByEmail" resultType="com.campus.myapp.vo.MemberVO">
+		select userid, username, profileimage, userlevel, useremail from member
+		where useremail=#{useremail}
+	</select>
+	
+	<select id="memberByKakaoId" resultType="com.campus.myapp.vo.MemberVO">
+		select userid, username, profileimage, userlevel, useremail from member
+		where kakaoid=#{kakaoid}
 	</select>
 	
 	<select id="memberSelect" resultType="com.campus.myapp.vo.MemberVO">

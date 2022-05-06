@@ -37,5 +37,7 @@ public interface MemberService {
 	public String getAccessToken (String authorize_code);
 	public HashMap<String, Object> getUserInfo (String access_Token);
 	
-	
+	public void kakaoLogout(String access_Token);
+	public MemberVO memberByEmail(String string);
+	public MemberVO memberByKakaoId(String string);
 }
