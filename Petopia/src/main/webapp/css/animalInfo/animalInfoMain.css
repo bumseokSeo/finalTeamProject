@@ -10,7 +10,7 @@
 	transform:translateX(-20px);
 }
 #animalInfo_lnb {
-	width:15vw; height:45vh;
+	width:15vw; 
 	float:left;
 	background-color:pink;
 	position: relative;
