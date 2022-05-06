@@ -41,11 +41,8 @@
 	display:flex;
 	justify-content:center;
 }
-.Share_paging>ul>a>li{
+.Share_paging>ul>li{
 	float:left;
 	margin-left:10px;
 	margin-right:10px;
-}
-.Share_paging>ul>a{
-	color:black;
 }

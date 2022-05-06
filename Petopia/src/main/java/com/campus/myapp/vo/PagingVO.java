@@ -29,7 +29,7 @@ public class PagingVO {
 		return endPage;
 	}
 	public void setEndPage(int endPage) {
-		this.endPage = endPage;
+		this.endPage = (int)Math.ceil(this.currentPage*0.1)*10;
 	}
 	public int getRecordPerPage() {
 		return recordPerPage;

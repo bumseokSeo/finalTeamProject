@@ -24,7 +24,8 @@ public interface BoardDAO {
 	//Share Board
 	//게시글 작성
 	public int shareInsert(BoardVO vo);
-	// 게시글리스트
-	public List<BoardVO> selectList(BoardVO vo);
-		
+	// 게시글 리스트
+	public List<BoardVO> shareSelectList(PagingVO pvo, BoardVO vo);
+	// 게시판 총 레코드 수 
+	public int shareTotalRecord(PagingVO pvo, BoardVO vo);
 }

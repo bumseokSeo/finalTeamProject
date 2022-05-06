@@ -38,12 +38,17 @@ public class BoardServiceImp implements BoardService{
 	
 	//Share Board
 	@Override
-	public List<BoardVO> selectList(BoardVO vo) {
-		return dao.selectList(vo);
+	public List<BoardVO> shareSelectList(PagingVO pvo, BoardVO vo) {
+		return dao.shareSelectList(pvo,vo);
 	}
 
 	@Override
 	public int shareInsert(BoardVO vo) {
 		return dao.shareInsert(vo);
+	}
+
+	@Override
+	public int shareTotalRecord(PagingVO pvo, BoardVO vo) {
+		return dao.shareTotalRecord(pvo,vo);
 	}
 }

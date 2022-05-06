@@ -12,20 +12,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.campus.myapp.service.BoardService;
 import com.campus.myapp.vo.BoardVO;
+import com.campus.myapp.vo.PagingVO;
 
 @RestController
 @RequestMapping("/board/share/")
 public class ShareController {
 	
+	ModelAndView mav = new ModelAndView();
 	@Inject
 	BoardService service;
 	
 	//share board list
 	@GetMapping("shareList")
-	public ModelAndView shareList(BoardVO vo, HttpSession session) {
-		vo.setTitle((String)session.getAttribute("title"));
+	public ModelAndView shareList(PagingVO pvo, BoardVO vo, HttpSession session) {
 		vo.setBoardtype("share");
-		ModelAndView mav = new ModelAndView();
+		
+		pvo.setTotalRecord(service.shareTotalRecord(pvo, vo));
+		mav.addObject("list", service.shareSelectList(pvo, vo));
+		mav.addObject("pvo", pvo);
+		
 		mav.setViewName("/board/share/shareList");
 		return mav;
 	}
@@ -33,7 +38,6 @@ public class ShareController {
 	//share board write 폼
 	@GetMapping("shareWrite")
 	public ModelAndView shareWrite() {
-		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/board/share/shareWrite");
 		return mav;
 	}
@@ -42,21 +46,23 @@ public class ShareController {
 	@PostMapping("shareWriteOk")
 	public ModelAndView shareWriteOk(BoardVO vo, HttpServletRequest request) {
 		vo.setUserid((String)request.getSession().getAttribute("logId"));
-		vo.setTitle((String)request.getSession().getAttribute("title"));
 		vo.setBoardtype("share");
 		
-		System.out.println(vo.getTitle());
-		ModelAndView mav = new ModelAndView();
 		try {
 			int cnt = service.shareInsert(vo);
-			System.out.println("cnt:" + cnt);
-			mav.addObject("cnt", cnt);
-		} catch(Exception e){
+			mav.addObject("cnt",cnt);
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		mav.addObject("vo",vo);
 		mav.setViewName("board/boardWriteSuccess");
-		
+		return mav;
+	}
+	
+	//게시글 보기
+	@GetMapping("shareView")
+	public ModelAndView shareView() {
+		mav.setViewName("board/share/shareView");
 		return mav;
 	}
 }

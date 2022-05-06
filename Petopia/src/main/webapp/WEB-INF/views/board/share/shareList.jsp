@@ -1,26 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/css/board/share/shareList.css" type="text/css"/>
+
 <div class="container">
 	<h1 class="Share_logo">나눔게시판</h1>
+	<div>총 페이지 수: ${pvo.totalPage }</div>
+	<div>총 게시글 수: ${pvo.totalRecord }</div>
 	<div class="row Share_top">
+		<c:forEach var="listVo" items="${list}">
 		<div class="col-sm-3 Share">
 			<div class="card Share_group">
-				<a href="#"><img src="/img/Logo(main).png"></a>
+				<a href="${url }/board/share/shareView"><img src="/img/Logo(main).png"></a>
 				<div class="card-body">
-					<div class="card-title Share_title">제목</div>
+					<div class="card-title Share_title">${listVo.title }</div>
 					<div class="card-text Share_content">
-						<label class="Share_text">글쓴이</label> 
-						<label class="Share_text">작성날짜</label>
+						<label class="Share_text">${listVo.userid }</label> 
+						<label class="Share_text">${listVo.writedate }</label>
 					</div>
 				</div>
 			</div>
 		</div>
+		</c:forEach>
 	</div>
 	<div class="Share_btn"><a href="/board/share/shareWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 	<br/><br/><br/>
 	<div class="Share_search">
-		<select>
+		<select name="searchWord">
 			<option value="" selected="selected">전체</option>
 			<option value="title">제목</option>
 			<option value="userid">글쓴이</option>
@@ -29,15 +35,35 @@
 		<input type="button" value="검색"/>
 	</div>
 	<br/><br/>
+	<!-- 페이징 -->
 	<div class="Share_paging">
 		<ul>
-			<a href="#"><li>이전</li></a>
-			<a href="#"><li>1</li></a>
-			<a href="#"><li>2</li></a>
-			<a href="#"><li>3</li></a>
-			<a href="#"><li>4</li></a>
-			<a href="#"><li>5</li></a>
-			<a href="#"><li>다음</li></a>
+			<c:if test="${pvo.currentPage==1}">
+				<li class="page-item disabled"><i class="fa fa-angle-left"></i></li>
+			</c:if>
+			<c:if test="${pvo.currentPage>1}">
+				<li><a href="${url }/board/share/shareList?currentPage=${pvo.currentPage-1 }"><i class="fa fa-angle-left"></i></a>
+			</c:if>
+			<!-- 페이지번호 -->
+			<c:forEach var="p" begin="${pvo.startPage }" end="${pvo.endPage }">
+				<c:if test="${p<=pvo.totalPage }">
+					<c:if test="${p==pvo.currentPage}">
+						<li>
+					</c:if>
+					<c:if test="${p!=pvo.currentPage }">
+						<li>
+					</c:if>
+					<a href="${url }/board/share/shareList?currentPage=${p}">${p }</a></li>
+				</c:if>
+			</c:forEach>	
+			<!-- 다음페이지 -->
+			<c:if test="${pvo.currentPage==pvo.totalPage }">
+				<li><i class="fa fa-angle-right"></i></li>
+			</c:if>
+			<c:if test="${pvo.currentPage<pvo.totalPage }">
+				<li><a href="${url }/board/share/shareList?currentPage=${pvo.currentPage+1}"><i class="fa fa-angle-right"></i></a>
+			</c:if>
+			
 		</ul>
 	</div>
 </div>
