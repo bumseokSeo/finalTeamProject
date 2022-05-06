@@ -276,7 +276,7 @@
 			</c:if>
 			<c:if test="${kakao!='Y'}">
 				<span class="menuName">아이디</span><br/>
-				<input class="inputStyle" type='text' name='userid' id='userid' disabled="disabled" value="${vo.userid}"/>
+				<input class="inputStyle" style="border:none;" type='text' name='userid' id='userid' disabled="disabled" value="${vo.userid}"/>
 			</c:if>
 				<br/>
 			
