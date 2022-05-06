@@ -164,8 +164,8 @@ function telCheckInit(){
 	if($("#telCheckResult").val()=="1") {
 		$("#telCheckResult").val("0");
 	}
-	if($("#smsCheckResult").val()=="1") {
-		$("#smsCheckResult").val("0");
+	if($("#smsCheckResult").val()=="0") {
+		$("#smsCheckResult").val("1");
 	}
 }
 function telCheck() {
@@ -246,9 +246,9 @@ function smsCheck() {
 
 // 유효성검사
 $(()=>{
+	
 	var error = document.querySelectorAll('.msgError');
 	$("#signUp_form").submit(function(){
-		
 		//아이디 유효성검사
 		var reg = /^[a-z0-9]{5,20}$/;
 		if($("#userid").val()==''){
@@ -407,16 +407,17 @@ $(document).ready(function(){
 		var idx = $(this).index();
 		if($(this).hasClass("on")){
 			$(this).removeClass("on");
-			if(idx == 3){
+			console.log(idx);
+			if(idx == 1){
 				$(".agree_box>div[class='moreText']").eq(0).hide();
-			}else if(idx == 9){
+			}else if(idx == 7){
 				$(".agree_box>div[class='moreText']").eq(1).hide();
 			}
 		}else{
 			$(this).addClass("on");
-			if(idx == 3){
+			if(idx == 1){
 				$(".agree_box>div[class='moreText']").eq(0).show();
-			}else if(idx == 9){
+			}else if(idx == 7){
 				$(".agree_box>div[class='moreText']").eq(1).show();
 			}
 		}
@@ -426,13 +427,13 @@ $(document).ready(function(){
 	
 	$(".agree_box>div[class='moreText']").eq(1).load("/txt/PrivacyPolicy.txt");
 	
-	
 });
+
 
 </script>
 <c:if test="${kakao=='Y' }">
 	<script>
-		sessionStorage.setItem('kakao', 'Y');
+		// sessionStorage.setItem('kakao', 'Y');
 	</script>
 </c:if>
 
@@ -443,11 +444,18 @@ $(document).ready(function(){
 			<br/>
 		</div>
 		<div class="form_box">
-			<span class="menuName">아이디</span><br/>
-			<input class="inputStyle" type='text' name='userid' id='userid' onkeyup="idCheckInit()" placeholder='아이디 입력'/>	
-			<input type="button" class="checkBtn" onclick="idCheck()" value="중복확인"><br/>
-			<input type="hidden" id="idCheckResult" value="0"/>
-			<span class="msgError"></span><br/>
+			<c:if test="${kakao=='Y'}">
+				<input class="inputStyle" type='hidden' name='userid' id='userid' value="${sessionScope.k_id}kakao" />	
+				<input type="hidden" id="idCheckResult" value="1"/>
+				<span class="msgError"></span><br/>
+			</c:if>
+			<c:if test = "${kakao!='Y'}">
+				<span class="menuName">아이디</span><br/>
+				<input class="inputStyle" type='text' name='userid' id='userid' onkeyup="idCheckInit()" placeholder='아이디 입력'/>	
+				<input type="button" class="checkBtn" onclick="idCheck()" value="중복확인"><br/>
+				<input type="hidden" id="idCheckResult" value="0"/>
+				<span class="msgError"></span><br/>
+			</c:if>
 			
 			<span class="menuName">닉네임</span><br/>
 			<input class="inputStyle" type='text' name='username' id='username' onkeyup="nameCheckInit()" placeholder='닉네임 입력'/>
@@ -455,19 +463,29 @@ $(document).ready(function(){
 			<input type="hidden" id="nameCheckResult" value="0"/>
 			<span class="msgError"></span><br/>
 			
-			<span class="menuName">비밀번호</span><br/>
-			<input class="inputStyle" type='password' name='userpwd' id='userpwd' placeholder='비밀번호 입력'/><br/>
-			<span class="msgError"></span><br/>
-			
-			<span class="menuName">비밀번호 확인</span><br/>
-			<input class="inputStyle" type='password' id='userpwd2' placeholder='비밀번호 확인'/><br/>
-			<span class="msgError"></span><br/>
+			<c:if test="${kakao=='Y'}">
+				<input class="inputStyle" type='hidden' name='userpwd' id='userpwd' value="${sessionScope.k_id}kakao" />
+				<input class="inputStyle" type='hidden' id='userpwd2' value="${sessionScope.k_id}kakao" />
+				<span class="msgError"></span>
+				<span class="msgError"></span>
+			</c:if>
+			<c:if test = "${kakao!='Y'}">
+				<span class="menuName">비밀번호</span><br/>
+				<input class="inputStyle" type='password' name='userpwd' id='userpwd' placeholder='비밀번호 입력'/><br/>
+				<span class="msgError"></span><br/>
+				
+				<span class="menuName">비밀번호 확인</span><br/>
+				<input class="inputStyle" type='password' id='userpwd2' placeholder='비밀번호 확인'/><br/>
+				<span class="msgError"></span><br/>
+			</c:if>
 			
 			<c:if test="${kakao=='Y'}">
 				<span class="menuName">이메일</span><br/>
-				<input class="inputStyle" type='text' style="border:none;" name='useremail' id='useremail' onkeyup="emailCheckInit()" placeholder='이메일 입력' value="${sessionScope.k_useremail}" readonly disabled="disabled" />
+				<input class="inputStyle" type='text' style="border:none;" name='useremail' id='useremail' value="${sessionScope.k_useremail}" readonly/>
 				<input type="hidden" id="emailCheckResult" value="1"/>
 				<span class="msgError"></span><br/>
+				<input class="inputStyle" type='hidden' name='kakaoid' id='kakaoid' value="${sessionScope.k_id}" readonly/>
+				<input class="inputStyle" type='hidden' name='profileimage' id='profileimage' value="${sessionScope.k_profileimage}" readonly/>
 			</c:if>
 			<c:if test = "${kakao!='Y'}">
 				<span class="menuName">이메일</span><br/>
@@ -493,7 +511,7 @@ $(document).ready(function(){
 		</div>
 		<div class="agree_box">
 			<h3>이용약관</h3>
-			<span class="msgError"></span><br/>
+			
 			<div class="more">자세히보기</div>
 			<div class="moreText">
 				
@@ -502,8 +520,9 @@ $(document).ready(function(){
 				<span>이용약관에 동의하십니까?</span>
 				<input type="checkbox"  id="check1">
 			</p>
-			<h3>개인정보 취급방침</h3>
 			<span class="msgError"></span><br/>
+			<h3>개인정보 취급방침</h3>
+			
 			<div class="more">자세히보기</div>
 			<div class="moreText">
 			
@@ -512,6 +531,7 @@ $(document).ready(function(){
 				<span>개인정보 취급방침에 동의하십니까?</span>
 				<input type="checkbox" id="check2">
 			</p>
+			<span class="msgError"></span><br/>
 		</div>
 		<div class="btn_box">
 			<button id="signUpBtn">회원가입</button>
