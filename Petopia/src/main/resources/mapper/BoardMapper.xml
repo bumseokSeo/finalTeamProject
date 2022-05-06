@@ -16,13 +16,11 @@
   	FROM   board A, member B
   	WHERE  A.userid=B.userid 
 	AND    A.boardtype=${param1}
-	<if test="searchWord != null">and ${searchKey} like '%${searchWord}%' </if>
 				order by no desclimit ${onePageRecord} offset ${offsetIndex} 
   	</select>
   	<select id="totalRecord" resultType="int">
     SELECT count(boardno) as cnt from board
     WHERE boardtype=${param1}
-  	  <if test="searchWord != null">and ${searchKey} like '%${searchWord}%' </if>
     </select>
   	<!--  글 1개 선택 -->
   	<select id="BoardSelect" resultType="com.campus.myapp.vo.BoardVO">
