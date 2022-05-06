@@ -34,8 +34,6 @@ public class BoardServiceImp implements BoardService{
 	public void hitCount(int boardno){
 		dao.hitCount(boardno);
 	}
-	
-	
 	//Share Board
 	@Override
 	public List<BoardVO> shareSelectList(PagingVO pvo, BoardVO vo) {

@@ -3,6 +3,7 @@ package com.campus.myapp.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.campus.myapp.vo.BoardVO;
@@ -20,7 +21,6 @@ public interface BoardDAO {
 	public List<BoardVO> BoardSelectList(String boardtype, PagingVO pvo);
 	//조회수 증가
 	public void hitCount(int boardno);
-	
 	//Share Board
 	//게시글 작성
 	public int shareInsert(BoardVO vo);
@@ -31,3 +31,4 @@ public interface BoardDAO {
 	// 조회수 증가
 	public void updateHit(int boardno);
 }
+

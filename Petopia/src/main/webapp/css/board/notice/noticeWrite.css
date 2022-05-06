@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-#review-wrapper{
+#notice-wrapper{
     width:1080px;
 	margin:0 auto;
 }
@@ -107,58 +107,4 @@
 	font-family:'Nanum pen script';
 	background-color: rgb( 227, 104, 83);
 	transition:all.15s linear;
-}
-
-#reviewReply{
-	width:100%;
-	height:200px;
-}
-
-.reply_area{
-	position:relative;
-	border: 1px solid red;
-	width:900px;
-	height:100px;
-}
-
-.profile_img{
-	border: 1px solid green;
-	float:left;
-	width:100px;
-	height:100px;
-}
-
-.reply_posting{
-	position:relative;
-	border: 1px solid blue;
-	width:700px;
-	height:100px;
-	float: left;
-	padding:5px;
-}
-
-.reply_img1{
-	position: absolute;
-	z-index: 1;
-	width:50px;
-	height:50px;
-	top: 20px;
-	left:25px;
-	border-radius:70%;
-	
-}
-
-.reply_img2{
-	position: absolute;
-	z-index: 2;
-	width:80px;
-	height:80px;
-	top:6px;
-	left:10px;
-}
-
-.reply_info{
-	position: absolute;
-	bottom:5px;
-	left:5px;
 }
