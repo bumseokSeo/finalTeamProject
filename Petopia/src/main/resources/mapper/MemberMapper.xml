@@ -49,8 +49,8 @@
   	</select>
   	
   	<insert id="memberInsert">
-  		insert into member(userid, username, userpwd, useremail, tel)
-  		values(#{userid}, #{username}, #{userpwd}, #{useremail}, #{tel})
+  		insert into member(userid, username, userpwd, useremail, tel, kakaoid)
+  		values(#{userid}, #{username}, #{userpwd}, #{useremail}, #{tel}, #{kakaoid})
   	</insert>
   	
   	<select id="findId" parameterType="String" resultType="String">
