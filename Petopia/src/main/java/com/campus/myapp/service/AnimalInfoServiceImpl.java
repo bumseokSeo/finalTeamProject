@@ -25,5 +25,29 @@ public class AnimalInfoServiceImpl implements AnimalInfoService{
 		// TODO Auto-generated method stub
 		return dao.animalList(breedkey);
 	}
+
+	@Override
+	public List<AnimalInfoVO> animalListCat(String searchword) {
+		// TODO Auto-generated method stub
+		return dao.animalListCat(searchword);
+	}
+
+	@Override
+	public List<AnimalInfoVO> animalListReptile(String searchword) {
+		// TODO Auto-generated method stub
+		return dao.animalListReptile(searchword);
+	}
+
+	@Override
+	public List<AnimalInfoVO> animalListBird(String searchword) {
+		// TODO Auto-generated method stub
+		return dao.animalListBird(searchword);
+	}
+
+	@Override
+	public List<AnimalInfoVO> animalListEtc(String searchword) {
+		// TODO Auto-generated method stub
+		return dao.animalListEtc(searchword);
+	}
 	
 }
