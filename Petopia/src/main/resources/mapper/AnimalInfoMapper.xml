@@ -13,6 +13,41 @@
 		</if>
 		 order by breed desc
 	</select>
+	<select id="animalListCat" resultType="com.campus.myapp.vo.AnimalInfoVO">
+		select category,breed,content,filename1,distinction,disease from animalinfo where category='고양이' 
+		<if	test='searchword != null'>
+			and breed like '%${searchword}%'
+		</if>
+		 order by breed desc
+	</select>
+	<select id="animalListReptile" resultType="com.campus.myapp.vo.AnimalInfoVO">
+		select category,breed,content,filename1,distinction,disease from animalinfo where category='파충류,양서류' 
+		<if	test='searchword != null'>
+			and breed like '%${searchword}%'
+		</if>
+		 order by breed desc
+	</select>
+	<select id="animalListBird" resultType="com.campus.myapp.vo.AnimalInfoVO">
+		select category,breed,content,filename1,distinction,disease from animalinfo where category='조류' 
+		<if	test='searchword != null'>
+			and breed like '%${searchword}%'
+		</if>
+		 order by breed desc
+	</select>
+	<select id="animalListEtc" resultType="com.campus.myapp.vo.AnimalInfoVO">
+		select category,breed,content,filename1,distinction,disease from animalinfo where category='기타' 
+		<if	test='searchword != null'>
+			and breed like '%${searchword}%'
+		</if>
+		 order by breed desc
+	</select>
+	
+	
+	
+	
+	
+	
+	
 	
 	<select id="animalList" resultType="com.campus.myapp.vo.AnimalInfoVO">
 		select category,breed,content,filename1,filename2,filename3,distinction,disease from animalinfo where breed=#{param1}

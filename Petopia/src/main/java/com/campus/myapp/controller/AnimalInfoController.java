@@ -26,32 +26,36 @@ public class AnimalInfoController {
 	
 	//고양이
 	@GetMapping("/animalInfoCat")
-	public ModelAndView animalInfoCat() {
+	public ModelAndView animalInfoCat(String searchword) {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",service.animalListCat(searchword));
 		mav.setViewName("animalInfo/animalInfoCat");
 		return mav;
 	}
 	
 	//파충류
 	@GetMapping("/animalInfoReptile")
-	public ModelAndView animalInfoReptile() {
+	public ModelAndView animalInfoReptile(String searchword) {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",service.animalListReptile(searchword));
 		mav.setViewName("animalInfo/animalInfoReptile");
 		return mav;
 	}
 	
 	//조류
 	@GetMapping("/animalInfoBird")
-	public ModelAndView animalInfoBird() {
+	public ModelAndView animalInfoBird(String searchword) {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",service.animalListBird(searchword));
 		mav.setViewName("animalInfo/animalInfoBird");
 		return mav;
 	}
 	
 	//기타동물
 	@GetMapping("/animalInfoEtc")
-	public ModelAndView animalInfoEtc() {
+	public ModelAndView animalInfoEtc(String searchword) {
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("list",service.animalListEtc(searchword));
 		mav.setViewName("animalInfo/animalInfoEtc");
 		return mav;
 	}
