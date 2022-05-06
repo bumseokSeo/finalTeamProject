@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/css/animalInfo/animalInfoMain.css" type="text/css"/>
 <style>
 </style>
-<div id="animalInfo_container">
+<div id="animalInfo_container" class="container">
 	<div id="animalInfo_wrap">
 		<div id="animalInfo_lnb">
 			<div style="float: center; margin:30px auto;">
@@ -18,7 +18,7 @@
 				
 			</ul>
 		</div>
-		<div id="resultArea" class="container">
+		<div id="resultArea" >
 			
 			
 			
