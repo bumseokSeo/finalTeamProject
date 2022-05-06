@@ -9,6 +9,7 @@ public class MemberVO {
     private String profileimage;
     private int userlevel;
     private String tel;
+    private String kakaoid;
     
     
 	public String getUserid() {
@@ -52,6 +53,12 @@ public class MemberVO {
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	public String getKakaoid() {
+		return kakaoid;
+	}
+	public void setKakaoid(String kakaoid) {
+		this.kakaoid = kakaoid;
 	}
     
     

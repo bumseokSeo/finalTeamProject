@@ -164,8 +164,8 @@ function telCheckInit(){
 	if($("#telCheckResult").val()=="1") {
 		$("#telCheckResult").val("0");
 	}
-	if($("#smsCheckResult").val()=="1") {
-		$("#smsCheckResult").val("0");
+	if($("#smsCheckResult").val()=="0") {
+		$("#smsCheckResult").val("1");
 	}
 }
 function telCheck() {
@@ -465,9 +465,10 @@ $(document).ready(function(){
 			
 			<c:if test="${kakao=='Y'}">
 				<span class="menuName">이메일</span><br/>
-				<input class="inputStyle" type='text' style="border:none;" name='useremail' id='useremail' onkeyup="emailCheckInit()" placeholder='이메일 입력' value="${sessionScope.k_useremail}" readonly disabled="disabled" />
+				<input class="inputStyle" type='text' style="border:none;" name='useremail' id='useremail' onkeyup="emailCheckInit()" placeholder='이메일 입력' value="${sessionScope.k_useremail}" readonly/>
 				<input type="hidden" id="emailCheckResult" value="1"/>
 				<span class="msgError"></span><br/>
+				<input class="inputStyle" type='hidden' name='kakaoid' id='kakaoid' value="${sessionScope.k_id}" readonly/>
 			</c:if>
 			<c:if test = "${kakao!='Y'}">
 				<span class="menuName">이메일</span><br/>

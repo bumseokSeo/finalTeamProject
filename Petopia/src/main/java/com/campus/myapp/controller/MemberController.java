@@ -228,7 +228,7 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView();
 		int cnt = service.memberInsert(vo);
 		mav.addObject("cnt", cnt);
-		mav.setViewName("member/sugnUpResult");
+		mav.setViewName("member/signUpResult");
 		return mav;
 	}
 		
@@ -326,6 +326,7 @@ public class MemberController {
 	    MemberVO kvo = service.memberByEmail((String) userInfo.get("useremail"));
 	    System.out.println("kvo : " + kvo);
 	    MemberVO kakaovo = service.memberByKakaoId((String) userInfo.get("k_id"));
+	    System.out.println("kakaovo : " + kakaovo);
 	    
 	    if(kvo != null && kakaovo != null) {
 	    	session.setAttribute("logId", kvo.getUserid());
