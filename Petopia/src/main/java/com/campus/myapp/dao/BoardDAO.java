@@ -28,4 +28,6 @@ public interface BoardDAO {
 	public List<BoardVO> shareSelectList(PagingVO pvo, BoardVO vo);
 	// 게시판 총 레코드 수 
 	public int shareTotalRecord(PagingVO pvo, BoardVO vo);
+	// 조회수 증가
+	public void updateHit(int boardno);
 }
