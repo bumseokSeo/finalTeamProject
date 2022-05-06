@@ -28,5 +28,6 @@
           el: ".swiper-pagination",
         },
       });
-    </script>
+</script>
 </div>
+

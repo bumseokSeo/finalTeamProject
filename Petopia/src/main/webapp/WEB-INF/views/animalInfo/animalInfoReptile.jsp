@@ -22,7 +22,7 @@
 			
 			<div class="row">
 				<div id="searchDiv">
-					<form method="get" action="${url}/animalInfo/animalInfoMain" class="d-flex" id="searchForm">
+					<form method="get" action="${url}/animalInfo/animalInfoReptile" class="d-flex" id="searchForm">
 						<img alt="" src="${url}/img/search.png" class="searchIcon" >
 			        	<input class="form-control me-2" type="search" placeholder="이름으로 검색하기" aria-label="Search" id="searchword" name="searchword">
 			        	<input type="submit" value="검색" class="btn btn-info" id="searchBtn2">
@@ -39,6 +39,7 @@
 						</div>
 					</div>
 				</c:forEach>
+				
 				
 				
 				

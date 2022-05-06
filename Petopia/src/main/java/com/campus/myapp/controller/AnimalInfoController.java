@@ -18,7 +18,6 @@ public class AnimalInfoController {
 	@GetMapping("/animalInfoMain")
 	public ModelAndView animalInfoMain(String searchword) {
 		ModelAndView mav = new ModelAndView();
-		
 		mav.addObject("list",service.animalListDog(searchword));
 		mav.setViewName("animalInfo/animalInfoMain");
 		return mav;
