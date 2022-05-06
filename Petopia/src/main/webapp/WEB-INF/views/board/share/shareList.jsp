@@ -39,26 +39,27 @@
 	<div class="Share_paging">
 		<ul>
 			<c:if test="${pvo.currentPage==1}">
-				<li class="page-item disabled"><i class="fa fa-angle-left"></i></li>
+				<li class="page-item" style="display:none"><i class="fa fa-angle-left"></i></li>
 			</c:if>
 			<c:if test="${pvo.currentPage>1}">
-				<li><a href="${url }/board/share/shareList?currentPage=${pvo.currentPage-1 }"><i class="fa fa-angle-left"></i></a>
+				<li class="page=item"><a href="${url }/board/share/shareList?currentPage=${pvo.currentPage-1 }"><i class="fa fa-angle-left"></i></a>
 			</c:if>
 			<!-- 페이지번호 -->
-			<c:forEach var="p" begin="${pvo.startPage }" end="${pvo.endPage }">
-				<c:if test="${p<=pvo.totalPage }">
-					<c:if test="${p==pvo.currentPage}">
-						<li>
-					</c:if>
-					<c:if test="${p!=pvo.currentPage }">
-						<li>
-					</c:if>
-					<a href="${url }/board/share/shareList?currentPage=${p}">${p }</a></li>
+			<c:forEach var="p" begin="${pvo.startPage }" end="${pvo.totalPage }">
+				<c:if test="${p<=pvo.totalPage}">
+					<c:choose>
+						<c:when test="${p==pvo.currentPage}">
+							<li class="page-item disabled"><a>${p}</a></li>
+						</c:when>
+						<c:when test="${p!=pvo.currentPage}">
+							<li class="page-item"><a href="${url }/board/share/shareList?currentPage=${p}">${p }</a></li>
+						</c:when>
+					</c:choose>
 				</c:if>
 			</c:forEach>	
 			<!-- 다음페이지 -->
 			<c:if test="${pvo.currentPage==pvo.totalPage }">
-				<li><i class="fa fa-angle-right"></i></li>
+				<li class="page-item" style="display:none"><i class="fa fa-angle-right"></i></li>
 			</c:if>
 			<c:if test="${pvo.currentPage<pvo.totalPage }">
 				<li><a href="${url }/board/share/shareList?currentPage=${pvo.currentPage+1}"><i class="fa fa-angle-right"></i></a>

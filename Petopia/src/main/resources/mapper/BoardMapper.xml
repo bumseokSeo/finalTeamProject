@@ -25,7 +25,8 @@
 	<select id="shareSelectList" resultType="BoardVO">
 		select boardno, title, userid, date_format(writedate,"%m/%d") writedate, boardtype
 		from board 
-		where boardtype=#{param2.boardtype} order by boardno desc
+		where boardtype=#{param2.boardtype}
+		order by boardno desc limit ${param1.recordPerPage} offset ${param1.offsetIndex}
 	</select>
 	<!-- share board 전체 레코드 수 -->
 	<select id="shareTotalRecord" resultType="int">
