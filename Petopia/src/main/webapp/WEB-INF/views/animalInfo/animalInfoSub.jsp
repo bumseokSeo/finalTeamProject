@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/animalInfo/animalInfoSub.css" type="text/css"/>
-<div id="animalInfo_container">
+<div id="animalInfo_container" class="container">
 	<div id="animalInfo_wrap">
 		<div id="animalInfo_lnb">
 			<div style="float: center; margin:30px auto;">
@@ -17,7 +17,7 @@
 			</ul>
 		</div>
 		
-		<div class="container" id="content">
+		<div id="content">
 			<div id="imgDiv1">
 				<img src="/img/animalInfo/${vo.filename1}" class="img-fluid" alt="이미지가 없습니다." id="animalImg">
 				
