@@ -1,5 +1,7 @@
 package com.campus.myapp.service;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletResponse;
 
 
@@ -28,4 +30,12 @@ public interface MemberService {
 	
 	//해당 계정의 정보 전부 조회
 	public MemberVO readMember(String userid);
+	
+	// 회원탈퇴
+	public int memberDelete(MemberVO vo);
+	
+	public String getAccessToken (String authorize_code);
+	public HashMap<String, Object> getUserInfo (String access_Token);
+	
+	
 }

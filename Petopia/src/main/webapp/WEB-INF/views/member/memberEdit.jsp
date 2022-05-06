@@ -215,6 +215,28 @@
 		});
 	}
 	
+	function delCheck(){
+		if(confirm("정말 탈퇴하시겠습니까?")){
+			$(".del_form_box>div[class='delCheck']").eq(0).show();
+		}else{
+			return false;
+		}
+	}
+	
+	function delCheckReal(){
+		if($('#userpwdDEL').val()==""){
+			alert("비밀번호 입력하세요.");
+			return false;
+		}else if($('#userpwdDEL').val()!="${vo.userpwd}"){
+			alert("비밀번호가 틀렸습니다.");
+			return false;
+		}else if(confirm("정말 진짜로 탈퇴하시겠습니까?")){
+			$("#signDel").submit();
+		}else{
+			return false;
+		}
+	}
+	
 </script>
 
 <div class="container">
@@ -263,7 +285,20 @@
 		<div class="btn_box">
 			<input type="reset" id="resetBtn" value="취소하기"></input>
 			<input type="submit" id="memberEditBtn" value="정보수정"></input>
-			
 		</div>
+		
 	</form>
+	<div class="del_form_box">
+		<input class="inputStyle" type='text' id='delConfirm' disabled="disabled" value="정말 탈퇴하시겠습니까? 진심이세요?"/>
+		<input type="button" class="checkBtn" onclick="delCheck()" value="회원탈퇴"><br/>
+		<div class="delCheck">
+			<span class="menuName">비밀번호</span><br/>
+			<input class="inputStyle" type='password' name='userpwd' id="userpwdDEL" placeholder='비밀번호 확인'/>
+			<input type="button" class="checkBtn" onclick="delCheckReal()" value="회원탈퇴"><br/>
+			<span class="msgError"></span><br/>
+		</div>
+		<form method="get" action="/member/memberDelete" id='signDel'>
+			<input type="text" name="userid" value="${vo.userid}" readonly style="display:none;">
+		</form>
+	</div>
 </div>
