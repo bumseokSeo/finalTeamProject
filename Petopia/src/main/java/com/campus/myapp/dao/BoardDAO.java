@@ -20,7 +20,15 @@ public interface BoardDAO {
 	public List<BoardVO> BoardSelectList(String boardtype, PagingVO pvo);
 	//조회수 증가
 	public void hitCount(int boardno);
+
+	public int BoardNum(String user_id);
 	
+	//글보기
+	public BoardVO BoardView(int boardno);
+	
+	//페이징
+	public int totalRecord(String boardtype, PagingVO pVO);
+
 	//Share Board
 	//게시글 작성
 	public int shareInsert(BoardVO vo);
