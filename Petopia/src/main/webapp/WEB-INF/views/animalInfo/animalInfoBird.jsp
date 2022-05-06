@@ -22,91 +22,24 @@
 			
 			<div class="row">
 				<div id="searchDiv">
-					<form class="d-flex" id="searchForm">
-			        	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search">
-			        	<button class="btn btn-outline-success" type="submit">Search</button>
+					<form method="get" action="${url}/animalInfo/animalInfoBird" class="d-flex" id="searchForm">
+						<img alt="" src="${url}/img/search.png" class="searchIcon" >
+			        	<input class="form-control me-2" type="search" placeholder="이름으로 검색하기" aria-label="Search" id="searchword" name="searchword">
+			        	<input type="submit" value="검색" class="btn btn-info" id="searchBtn2">
 			    	</form>
 				</div>
-				<div class="col">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub"><img src="/img/로고2.png" class="card-img-top" alt="..." title="말티즈"></a>
-						<div class="card-body">
-							<p class="card-text">조류 페이지 quick example text to build on the card title and make up the bulk of the card's content.</p>
+				<c:forEach var="vo" items="${list}">
+					<div class="col">
+						<div class="card">
+							<a href="/animalInfo/animalInfoSub?breedkey=${vo.breed}"><img src="/img/animalInfo/${vo.filename1}" class='animalimg' alt="이미지가 없습니다." title="${vo.breed}" style="height:275px; width:100%;"></a>
+							<h4 class="card-title">${vo.breed}</h4>
+							<div class="card-body">
+								<p class="card-text">${vo.content}</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub"><img src="/img/로고2.png" class="card-img-top" alt="..." title="말티즈"></a>
-						<div class="card-body">
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub"><img src="/img/로고2.png" class="card-img-top" alt="..." title="말티즈"></a>
-						<div class="card-body">
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub"><img src="/img/로고2.png" class="card-img-top" alt="..." title="말티즈"></a>
-						<div class="card-body">
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub"><img src="/img/로고2.png" class="card-img-top" alt="..." title="말티즈"></a>
-						<div class="card-body">
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub"><img src="/img/로고2.png" class="card-img-top" alt="..." title="말티즈"></a>
-						<div class="card-body">
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub"><img src="/img/로고2.png" class="card-img-top" alt="..." title="말티즈"></a>
-						<div class="card-body">
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub"><img src="/img/로고2.png" class="card-img-top" alt="..." title="말티즈"></a>
-						<div class="card-body">
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub"><img src="/img/로고2.png" class="card-img-top" alt="..." title="말티즈"></a>
-						<div class="card-body">
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub"><img src="/img/로고2.png" class="card-img-top" alt="..." title="말티즈"></a>
-						<div class="card-body">
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
+				
 				
 				
 

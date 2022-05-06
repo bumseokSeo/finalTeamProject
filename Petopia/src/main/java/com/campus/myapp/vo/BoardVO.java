@@ -65,5 +65,4 @@ public class BoardVO {
 	public void setFilename1(String filename1) {
 		this.filename1 = filename1;
 	}
-	
 }

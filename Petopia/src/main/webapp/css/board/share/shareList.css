@@ -6,7 +6,7 @@
 	border:1px solid gray;
 }
 .Share_group{
-	margin:10px 0;
+	margin:20px auto;
 	width:250px;
 	position:relative;
 	overflow:hidden;
@@ -37,15 +37,12 @@
 .Share_search{
 	float:right;
 }
-.Share_paging {
+.Share_paging{
 	display:flex;
 	justify-content:center;
 }
-.Share_paging>ul>a>li{
+.Share_paging>ul>li{
 	float:left;
 	margin-left:10px;
 	margin-right:10px;
-}
-.Share_paging>ul>a{
-	color:black;
 }
