@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.campus.myapp.service.MemberService;
 import com.campus.myapp.vo.MemberVO;
@@ -311,18 +312,51 @@ public class MemberController {
 	// 카카오로그인
 	@GetMapping("kakao")
 	@ResponseBody
-	public void  kakaoCallback(@RequestParam String code, HttpSession session) {
-
+	public ModelAndView kakaoCallback(@RequestParam String code, HttpSession session, RedirectAttributes attr) {
+		ModelAndView mav = new ModelAndView();
+		
 		String access_Token = service.getAccessToken(code);
 	    HashMap<String, Object> userInfo = service.getUserInfo(access_Token);
 	    System.out.println("login Controller : " + userInfo);
-	    System.out.println(userInfo.get("username"));
+	    System.out.println(userInfo.get("useremail"));
+	    System.out.println(userInfo.get("k_id"));
 	    
-	    //    클라이언트의 이메일이 존재할 때 세션에 해당 이메일과 토큰 등록
-	    if (userInfo.get("email") != null) {
-	        session.setAttribute("userId", userInfo.get("email"));
-	        session.setAttribute("access_Token", access_Token);
+	    MemberVO vo = new MemberVO();
+	    vo.setUseremail((String) userInfo.get("useremail"));
+	    MemberVO kvo = service.memberByEmail((String) userInfo.get("useremail"));
+	    System.out.println("kvo : " + kvo);
+	    MemberVO kakaovo = service.memberByKakaoId((String) userInfo.get("k_id"));
+	    
+	    if(kvo != null && kakaovo != null) {
+	    	session.setAttribute("logId", kvo.getUserid());
+			session.setAttribute("logLevel", kvo.getUserlevel());
+			session.setAttribute("logName", kvo.getUsername());
+			session.setAttribute("logImg", kvo.getProfileimage());
+			session.setAttribute("logStatus", "Y");
+			session.setAttribute("kakao", "Y");
+			mav.setViewName("redirect:/");// 홈으로 이동
+	    }else if(kvo != null){
+	    	// 기존에 등록된 회원이 카카오 로그인 누를때
+			mav.setViewName("redirect:/");// 홈으로 이동
+	    }else {
+	    	session.setAttribute("k_useremail", (String)userInfo.get("useremail"));
+	    	session.setAttribute("k_id", (String)userInfo.get("k_id"));
+	    	session.setAttribute("kakao", "Y");
+	    	mav.setViewName("member/signUp");
 	    }
+	    
+	    System.out.println(session.getAttribute("logStatus"));
+	    
+		return mav;
 	}
 	
+	@RequestMapping(value="logout")
+	public String kakaologout(HttpSession session) {
+		service.kakaoLogout((String)session.getAttribute("access_Token"));
+		session.removeAttribute("access_Token");
+		session.removeAttribute("logId");
+		session.removeAttribute("logStatus");
+
+		return "redirect:/";
+	}
 }

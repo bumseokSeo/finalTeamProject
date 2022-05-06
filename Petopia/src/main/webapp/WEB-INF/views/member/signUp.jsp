@@ -430,6 +430,11 @@ $(document).ready(function(){
 });
 
 </script>
+<c:if test="${kakao=='Y' }">
+	<script>
+		sessionStorage.setItem('kakao', 'Y');
+	</script>
+</c:if>
 
 <div class="container">
 	<form id="signUp_form" method="post" action="/member/signUpOk">
@@ -458,11 +463,20 @@ $(document).ready(function(){
 			<input class="inputStyle" type='password' id='userpwd2' placeholder='비밀번호 확인'/><br/>
 			<span class="msgError"></span><br/>
 			
-			<span class="menuName">이메일</span><br/>
-			<input class="inputStyle" type='text' name='useremail' id='useremail' onkeyup="emailCheckInit()" placeholder='이메일 입력'/>
-			<input type="button" class="checkBtn" onclick="emailCheck()" value="중복확인"><br/>
-			<input type="hidden" id="emailCheckResult" value="0"/>
-			<span class="msgError"></span><br/>
+			<c:if test="${kakao=='Y'}">
+				<span class="menuName">이메일</span><br/>
+				<input class="inputStyle" type='text' style="border:none;" name='useremail' id='useremail' onkeyup="emailCheckInit()" placeholder='이메일 입력' value="${sessionScope.k_useremail}" readonly disabled="disabled" />
+				<input type="hidden" id="emailCheckResult" value="1"/>
+				<span class="msgError"></span><br/>
+			</c:if>
+			<c:if test = "${kakao!='Y'}">
+				<span class="menuName">이메일</span><br/>
+				<input class="inputStyle" type='text' name='useremail' id='useremail' onkeyup="emailCheckInit()" placeholder='이메일 입력'/>
+				<input type="button" class="checkBtn" onclick="emailCheck()" value="중복확인"><br/>
+				<input type="hidden" id="emailCheckResult" value="0"/>
+				<span class="msgError"></span><br/>
+			</c:if>
+		
 			
 			<span class="menuName">휴대전화</span><br/>
 			<input class="inputStyle" type='text' name='tel' id='tel' onkeyup="telCheckInit()" placeholder='전화번호 입력'/>

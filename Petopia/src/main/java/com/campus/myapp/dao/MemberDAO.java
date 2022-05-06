@@ -40,5 +40,8 @@ public interface MemberDAO {
 	// 회원탈퇴
 	public int memberDelete(MemberVO vo);
 	
+	public MemberVO memberByEmail(String useremail);
+	public MemberVO memberByKakaoId(String k_id);
+	
 }
 

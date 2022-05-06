@@ -291,10 +291,12 @@ public class MemberServiceImpl implements MemberService {
 	        String nickname = properties.getAsJsonObject().get("nickname").getAsString();
 	        String email = kakao_account.getAsJsonObject().get("email").getAsString();
 	        String profile_image = properties.getAsJsonObject().get("profile_image").getAsString();
+	        String id = element.getAsJsonObject().get("id").getAsString();
 	        
 	        userInfo.put("username", nickname);
 	        userInfo.put("useremail", email);
 	        userInfo.put("profileimage", profile_image);
+	        userInfo.put("k_id", id);
 	        
 	    } catch (IOException e) {
 	        // TODO Auto-generated catch block
@@ -303,9 +305,48 @@ public class MemberServiceImpl implements MemberService {
 	    
 	    return userInfo;
 	}
-
+	
+	@Override
+	public void kakaoLogout(String access_Token) {
+	    String reqURL = "https://kapi.kakao.com/v1/user/logout";
+	    try {
+	        URL url = new URL(reqURL);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	        conn.setRequestMethod("POST");
+	        conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+	        
+	        int responseCode = conn.getResponseCode();
+	        System.out.println("responseCode : " + responseCode);
+	        
+	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	        
+	        String result = "";
+	        String line = "";
+	        
+	        while ((line = br.readLine()) != null) {
+	            result += line;
+	        }
+	        System.out.println(result);
+	    } catch (IOException e) {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+	    }
+	}
+	
 	@Override
 	public int memberDelete(MemberVO vo) {
 		return dao.memberDelete(vo);
+	}
+
+	@Override
+	public MemberVO memberByEmail(String useremail) {
+		// TODO Auto-generated method stub
+		return dao.memberByEmail(useremail);
+	}
+
+	@Override
+	public MemberVO memberByKakaoId(String k_id) {
+		// TODO Auto-generated method stub
+		return dao.memberByKakaoId(k_id);
 	}
 }
