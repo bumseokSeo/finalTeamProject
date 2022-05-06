@@ -14,4 +14,10 @@ public interface BoardService {
 		public List<BoardVO> BoardSelectList(String boardtype, PagingVO pvo);
 		//조회수 증가
 		public void hitCount(int boardno);
+		
+		public int BoardNum(String user_id);
+		
+		public BoardVO BoardView(int boardno);
+		
+		public int totalRecord(String boardtype, PagingVO pVO);
 }
