@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <link rel="stylesheet" href="/css/member/memberEdit.css" type="text/css"/>
 <script>
 	$(function(){
@@ -10,7 +12,6 @@
 		var error = document.querySelectorAll('.msgError');
 		
 		$("#form").submit(function(){
-			
 			// 닉네임 유효성검사
 			var reg = /^[가-힣a-zA-Z0-9]{2,16}$/;
 			if($("#username").val()==''){
@@ -217,6 +218,7 @@
 	
 	function delCheck(){
 		if(confirm("정말 탈퇴하시겠습니까?")){
+			$(".del_form_box>input[id='delcheckBtn']").hide();
 			$(".del_form_box>div[class='delCheck']").eq(0).show();
 		}else{
 			return false;
@@ -239,6 +241,12 @@
 	
 </script>
 
+<c:if test="${kakao=='Y' }">
+	<script>
+		// sessionStorage.setItem('kakao', 'Y');
+	</script>
+</c:if>
+
 <div class="container">
 	<form id="form" method="post" action="${url}/member/memberEditOk" enctype="multipart/form-data">
 		<div class="title_box">
@@ -246,39 +254,70 @@
 			<br/>
 		</div>
 		<div class="form_box">
-			<c:if test="${vo.profileimage == '' || vo.profileimage == null}">
-				<img src='${url}/img/sampleProfile.jpg' id="preview" style="display: block" class="rounded-circle"/>
-			</c:if>
-			<c:if test="${vo.profileimage != '' && vo.profileimage != null}">
-				<img src='${url}/img/memberimg/${vo.profileimage}' style="display: block" id="preview" class="rounded-circle"/>
-			</c:if>
+			<c:set var ="profileimage" value="${vo.profileimage}"/>
+			<c:choose>
+				<c:when test="${vo.profileimage == '' || vo.profileimage == null}">
+					<img src='${url}/img/sampleProfile.jpg' id="preview" style="display: block" class="rounded-circle"/>
+				</c:when>
+				<c:when test="${fn:startsWith(profileimage, 'http://')}">
+					<img src='${vo.profileimage}' style="display: block" id="preview" class="rounded-circle"/>
+				</c:when>
+				<c:when test="${vo.profileimage != '' && vo.profileimage != null}">
+					<img src='${url}/img/memberimg/${vo.profileimage}' style="display: block" id="preview" class="rounded-circle"/>
+				</c:when>
+			</c:choose>
+			
 			<img src='' id="preview2" style="display: none" class="rounded-circle"/>
 			<span class="menuName">프로필 사진 등록</span><br/>
 			<input type="file" class="form-control-file border" name="imgName" id="profileimage" accept="image/jpeg,image/png,image/bmp,image/tiff,image/gif"/>
 			
-			<span class="menuName">아이디</span><br/>
-			<input class="inputStyle" type='text' name='userid' id='userid' disabled="disabled" value="${vo.userid}"/>
-			<br/>
+			<c:if test="${kakao=='Y'}">
+				<input class="inputStyle" type='hidden' name='userid' id='userid' disabled="disabled" value="${vo.userid}"/>
+			</c:if>
+			<c:if test="${kakao!='Y'}">
+				<span class="menuName">아이디</span><br/>
+				<input class="inputStyle" type='text' name='userid' id='userid' disabled="disabled" value="${vo.userid}"/>
+			</c:if>
+				<br/>
 			
 			<span class="menuName">닉네임</span><br/>
 			<input class="inputStyle" type='text' name='username' id='username' onkeyup="nameCheckInit()" placeholder='닉네임 입력' value="${vo.username}"/>
 			<input type="button" class="checkBtn" onclick="nameCheck()" value="중복확인"><br/>
 			<input type="hidden" id="nameCheckResult" value="0"/>
 			<span class="msgError"></span><br/>
+			<c:if test="${kakao=='Y'}">
+				<input class="inputStyle" type='hidden' name='userpwd' id='userpwd' value="${vo.userpwd}"/>
+				<span class="msgError"></span>
+				
+				<input class="inputStyle" type='hidden' name='userpwd2' id='userpwd2' value="${vo.userpwd}"/>
+				<span class="msgError"></span>
+			</c:if>
+			<c:if test="${kakao!='Y'}">
+				<span class="menuName">비밀번호</span><br/>
+				<input class="inputStyle" type='password' name='userpwd' id='userpwd' placeholder='비밀번호 입력'/><br/>
+				<span class="msgError"></span><br/>
+				
+				<span class="menuName">비밀번호 확인</span><br/>
+				<input class="inputStyle" type='password' name='userpwd2' id='userpwd2' placeholder='비밀번호 확인'/><br/>
+				<span class="msgError"></span><br/>
+			</c:if>
 			
-			<span class="menuName">비밀번호</span><br/>
-			<input class="inputStyle" type='password' name='userpwd' id='userpwd' placeholder='비밀번호 입력'/><br/>
-			<span class="msgError"></span><br/>
+			<c:if test="${kakao=='Y'}">
+				<span class="menuName">이메일</span><br/>
+				<input class="inputStyle" type='text' style="border:none;" name='useremail' id='useremail' placeholder='이메일 입력' value="${vo.useremail }"/>
+				<br/>
+				<input type="hidden" id="emailCheckResult" value="1"/>
+				<span class="msgError"></span><br/>
+			</c:if>
 			
-			<span class="menuName">비밀번호 확인</span><br/>
-			<input class="inputStyle" type='password' name='userpwd2' id='userpwd2' placeholder='비밀번호 확인'/><br/>
-			<span class="msgError"></span><br/>
+			<c:if test="${kakao!='Y'}">
+				<span class="menuName">이메일</span><br/>
+				<input class="inputStyle" type='text' name='useremail' id='useremail' onkeyup="emailCheckInit()" placeholder='이메일 입력' value="${vo.useremail }"/>
+				<input type="button" class="checkBtn" onclick="emailCheck()" value="중복확인"><br/>
+				<input type="hidden" id="emailCheckResult" value="0"/>
+				<span class="msgError"></span><br/>
+			</c:if>
 			
-			<span class="menuName">이메일</span><br/>
-			<input class="inputStyle" type='text' name='useremail' id='useremail' onkeyup="emailCheckInit()" placeholder='이메일 입력' value="${vo.useremail }"/>
-			<input type="button" class="checkBtn" onclick="emailCheck()" value="중복확인"><br/>
-			<input type="hidden" id="emailCheckResult" value="0"/>
-			<span class="msgError"></span><br/>
 			
 		</div>
 		
@@ -290,12 +329,21 @@
 	</form>
 	<div class="del_form_box">
 		<input class="inputStyle" type='text' id='delConfirm' disabled="disabled" value="정말 탈퇴하시겠습니까? 진심이세요?"/>
-		<input type="button" class="checkBtn" onclick="delCheck()" value="회원탈퇴"><br/>
+		<input type="button" class="checkBtn" id="delcheckBtn" onclick="delCheck()" value="회원탈퇴"><br/>
 		<div class="delCheck">
-			<span class="menuName">비밀번호</span><br/>
-			<input class="inputStyle" type='password' name='userpwd' id="userpwdDEL" placeholder='비밀번호 확인'/>
-			<input type="button" class="checkBtn" onclick="delCheckReal()" value="회원탈퇴"><br/>
-			<span class="msgError"></span><br/>
+			<c:if test="${kakao=='Y'}">
+				<span class="menuName">비밀번호</span><br/>
+				<input class="inputStyle" style="border:none;" type='password' name='userpwd' id="userpwdDEL" value="${vo.userpwd}" disabled="disabled" />
+				<input type="button" class="checkBtn" id="memberDelBtn" onclick="delCheckReal()" value="회원탈퇴"><br/>
+				<span class="msgError"></span><br/>
+			</c:if>
+			<c:if test="${kakao!='Y'}">
+				<span class="menuName">비밀번호</span><br/>
+				<input class="inputStyle" style="border:none;"type='password' name='userpwd' id="userpwdDEL" placeholder='비밀번호 확인'/>
+				<input type="button" class="checkBtn" id="memberDelBtn" onclick="delCheckReal()" value="회원탈퇴"><br/>
+				<span class="msgError"></span><br/>
+			</c:if>
+			
 		</div>
 		<form method="get" action="/member/memberDelete" id='signDel'>
 			<input type="text" name="userid" value="${vo.userid}" readonly style="display:none;">
