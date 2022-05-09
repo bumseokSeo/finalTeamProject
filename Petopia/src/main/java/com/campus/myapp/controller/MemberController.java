@@ -351,14 +351,4 @@ public class MemberController {
 	    
 		return mav;
 	}
-	
-	@RequestMapping(value="logout")
-	public String kakaologout(HttpSession session) {
-		service.kakaoLogout((String)session.getAttribute("access_Token"));
-		session.removeAttribute("access_Token");
-		session.removeAttribute("logId");
-		session.removeAttribute("logStatus");
-
-		return "redirect:/";
-	}
 }
