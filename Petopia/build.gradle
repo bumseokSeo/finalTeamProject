@@ -51,6 +51,8 @@ dependencies {
 	//이메일 인증용
 	// https://mvnrepository.com/artifact/org.apache.commons/commons-email
 	implementation 'org.apache.commons:commons-email:1.2'
+	
+	
 }
 
 tasks.named('test') {

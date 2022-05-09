@@ -31,7 +31,7 @@
 			게시글 작성자 정보<br/>
 		</div>
 		<div class="col-2 Adopt_chatBtn">
-			<input type="button" id="chatBtn" value="대화신청버튼"/>
+			<input type="button" id="chatBtn" value="대화신청버튼" onclick="location.href='/chat'"/>
 		</div>
 	</div>
 	<br/>
@@ -39,7 +39,7 @@
 	<h3>댓글</h3>
 	<div>
 		<input type="text" name="content" id="replyContent"/>
-		<input type="button" id="replyBtn" value="등록"/>
+		<input type="button" id="replyBtn" value="등록" />
 	</div>
 </div>
 </div>
