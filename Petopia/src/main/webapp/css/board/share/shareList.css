@@ -32,6 +32,7 @@
 	font-size:1.2em;
 }
 .Share_btn a:hover{
+	text-decoration:none;
 	color:#FF7900;
 }
 .Share_search{

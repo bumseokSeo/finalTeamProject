@@ -1,16 +1,16 @@
 @charset "UTF-8";
-#shareTitle{
+#adoptTitle{
 	width:100%;
 }
-#shareFrm div{
+#adoptFrm div{
 	padding:10px 5px;
 }
-.shareBtn{
+.adoptBtn{
 	display:flex;
 	justify-content:center;
 	margin:auto;
 }
-#shareWrite, #shareCancle, #shareBack{
+#adoptWrite, #adoptCancle, #adoptBack{
 	margin:auto 10px;
 	width:15%;
 }

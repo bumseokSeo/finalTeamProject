@@ -84,7 +84,7 @@
 					</div>
 					<div class="Top_menu_select_A">
 						<ul>
-							<li><a href="#">입양게시판</a></li>
+							<li><a href="/board/adopt/adoptList">입양게시판</a></li>
 						</ul>
 					</div>
 				</div>
