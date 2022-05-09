@@ -339,7 +339,7 @@
 			</c:if>
 			<c:if test="${kakao!='Y'}">
 				<span class="menuName">비밀번호</span><br/>
-				<input class="inputStyle" type='password' name='userpwd' id="userpwdDEL" placeholder='비밀번호 확인'/>
+				<input class="inputStyle"type='password' name='userpwd' id="userpwdDEL" placeholder='비밀번호 확인'/>
 				<input type="button" class="checkBtn" id="memberDelBtn" onclick="delCheckReal()" value="회원탈퇴"><br/>
 				<span class="msgError"></span><br/>
 			</c:if>
