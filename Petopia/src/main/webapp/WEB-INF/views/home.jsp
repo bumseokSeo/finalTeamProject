@@ -21,6 +21,10 @@
       <div class="swiper-pagination"></div>
     </div>
 </section>
+<div>
+<a href="/message_list.do">메세지 바로가기</a>
+
+</div>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
       var swiper = new Swiper(".mySwiper", {
