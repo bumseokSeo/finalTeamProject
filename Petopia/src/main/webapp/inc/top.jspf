@@ -90,6 +90,9 @@
 				</div>
 		</div>
 	<div id="Top_LGN_section"><!-- 로그인, 회원가입 들어갈 박스 -->
+		<c:if test="${logLevel == '1' }">
+			<div id="admin_box"><a href="/admin/adminMain">관리자페이지</a></div>
+		</c:if>
 		<c:if test="${logStatus != 'Y' }">
 			<div id="Login_box"><a href="/member/login">로그인</a></div>
 			<div id="join_box"><a href="/member/signUp">회원가입</a></div>

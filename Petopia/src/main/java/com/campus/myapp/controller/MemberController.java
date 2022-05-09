@@ -2,10 +2,8 @@ package com.campus.myapp.controller;
 
 import java.io.File;
 import java.nio.charset.Charset;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import javax.inject.Inject;

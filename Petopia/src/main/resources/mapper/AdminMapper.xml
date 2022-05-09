@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.campus.myapp.dao.AdminDAO">
+
+ 	<select id="animalInfoList" resultType="com.campus.myapp.vo.AnimalInfoVO">
+		select category,breed,content,filename1,distinction,disease from animalinfo
+		<if	test='searchword != null'>
+			where breed like '%${searchword}%'
+		</if>
+		 order by breed desc
+	</select>
+	
+	<insert id="animalInfoInsert">
+		insert into animalinfo(category, breed, content, filename1, filename2, filename3, distinction, disease)
+		value(#{category}, #{breed}, #{content}, #{filename1}, #{filename2}, #{filename3}, #{distinction}, #{disease})
+	</insert>
+
+</mapper>

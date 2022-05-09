@@ -78,6 +78,9 @@
 	white-space: nowrap;
 	text-overflow : ellipsis;/* 넘친내용...*/
 }
+.card-text br{
+	display:none;
+}
 .searchIcon{
 	width:38px; height:38px;
 	margin-right: 10px;

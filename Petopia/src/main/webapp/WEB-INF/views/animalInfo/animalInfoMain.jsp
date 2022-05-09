@@ -2,6 +2,14 @@
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/animalInfo/animalInfoMain.css" type="text/css"/>
 <style>
+#animalInfo_lnb {
+	width:230px;
+	float:left;
+	background-color:pink;
+	position: relative;
+	margin-top: 100px;
+	
+}
 </style>
 <div id="animalInfo_container" class="container">
 	<div id="animalInfo_wrap">
