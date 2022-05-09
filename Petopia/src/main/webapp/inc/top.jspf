@@ -68,7 +68,7 @@
 				<div id="Top_menu_select_S">
 					<div class="Top_menu_select_A">
 						<ul>
-							<li><a href="#">내 근처 병원</a></li>
+							<li><a href="/map/mapMain">내 근처 병원</a></li>
 							<li><a href="/animalInfo/animalInfoMain">반려동물 정보</a></li>
 						</ul>
 					</div>
