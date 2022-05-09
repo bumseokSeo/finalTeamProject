@@ -1,5 +1,10 @@
 @charset "UTF-8";
-
+#Top_menu{
+	display:none;
+}
+.bottom{
+	display:none;
+}
 
 img{
 	/*글쓴이의 프로필 사진을 둥글게*/
