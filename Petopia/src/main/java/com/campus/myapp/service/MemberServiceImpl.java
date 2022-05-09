@@ -108,9 +108,9 @@ public class MemberServiceImpl implements MemberService {
 	public void sendEmail(MemberVO vo, String div) throws Exception {
 		// Mail Server 설정
 		String charSet = "utf-8";
-		String hostSMTP = "smtp.gmail.com"; //네이버 이용시 smtp.naver.com
+		String hostSMTP = "smtp.gmail.com";
 		String hostSMTPid = "titia914@gmail.com";
-		String hostSMTPpwd = "3436695g!!";
+		String hostSMTPpwd = "trgrw553213#@";
 
 		// 보내는 사람 EMail, 제목, 내용
 		String fromEmail = "titia914@gmail.com";
