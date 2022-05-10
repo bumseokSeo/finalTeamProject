@@ -21,6 +21,9 @@
       <div class="swiper-pagination"></div>
     </div>
 </section>
+<div>
+
+</div>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
       var swiper = new Swiper(".mySwiper", {
@@ -28,6 +31,7 @@
           el: ".swiper-pagination",
         },
       });
+      
 </script>
 </div>
 

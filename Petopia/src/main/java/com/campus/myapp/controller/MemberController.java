@@ -2,10 +2,8 @@ package com.campus.myapp.controller;
 
 import java.io.File;
 import java.nio.charset.Charset;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -350,15 +348,5 @@ public class MemberController {
 	    // System.out.println(session.getAttribute("logStatus"));
 	    
 		return mav;
-	}
-	
-	@RequestMapping(value="logout")
-	public String kakaologout(HttpSession session) {
-		service.kakaoLogout((String)session.getAttribute("access_Token"));
-		session.removeAttribute("access_Token");
-		session.removeAttribute("logId");
-		session.removeAttribute("logStatus");
-
-		return "redirect:/";
 	}
 }

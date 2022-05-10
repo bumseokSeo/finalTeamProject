@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/animalInfo/animalInfoMain.css" type="text/css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"/>
 <style>
+#animalInfo_lnb {
+	width:230px;
+	float:left;
+	background-color:pink;
+	position: relative;
+	margin-top: 100px;
+	
+}
 </style>
 <div id="animalInfo_container" class="container">
 	<div id="animalInfo_wrap">
@@ -41,87 +50,9 @@
 						</div>
 					</div>
 				</c:forEach>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				
-				
-				
+					
 
 			</div>
-			
-			
-			
-			
 			
 			
 			
