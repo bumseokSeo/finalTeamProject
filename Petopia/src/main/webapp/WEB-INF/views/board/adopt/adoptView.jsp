@@ -34,25 +34,41 @@
 	height: 20%;
 	text-align: center;
 }
+.modaltop{
+	
+	background-color: red;
+	height:40%;
+	overflow: hidden;
+}
+.modalbody{
+	padding-top:30px;
+	background-color: blue;
+	width:100%;
+	height:60%;
+	overflow: hidden;
+	float: left;
+}
+#messagecontent{
+	width:70%;
+	height:70%;
+	
+}
+
+#messageSubmit{
+	width:10%;
+	height: 70%;
+}
+
 
 
 
 </style>
 <script type="text/javascript">
+	
 	$(function(){
+		console.log(123)
 		$(document).on('click','#chatBtn',function(){
-			
-			
 			$(".modal").show();
-			
-			
-			
-			// 해당 이미지 텍스트 가져오기
-			//var imgTit =  $(this).children("p").text();
-			//$(".modalBox p").text(imgTit);
-			
-	   // 해당 이미지에 alt값을 가져와 제목으로
-			//$(".modalBox p").text(imgAlt);
 		});
 		
 		//.modal안에 button을 클릭하면 .modal닫기
@@ -62,13 +78,52 @@
 		
 		//.modal밖에 클릭시 닫힘
 		$(".modal").click(function (e) {
-	    if (e.target.className != "modal") {
-	      return false;
-	    } else {
-	      $(".modal").hide();
-	    }
-	  });
+		    if (e.target.className != "modal") {
+		      return false;
+		    } else {
+		      $(".modal").hide();
+		    }   
+	  	});
 		
+		$('#messagebtn').on('click',function(){
+	    	
+			//메세지 내용 공백 검사
+	    	var content=document.getElementById("messagecontent");
+			if(content.value==""){
+				alert("메세지를 입력해주세요.");
+				content.focus();
+				return false;
+			}
+			var username = document.getElementById("username");//메세지 받는 계정
+			
+			var content = document.getElementById("messagecontent");//내용
+			var logName = "${logName}";
+			
+			//로그인 상태일 경우 메세지 보내기 진행
+			if(logName!=null){
+				//메세지 보내기 절차
+				var url= "${url}/message/messagesend";
+				var params = "username="+username.value+"&content="+messagecontent.value;
+				$.ajax({
+					url:url,
+					data:params,
+					success:function(result){
+						var $result = $(result);
+						alert("쪽지를 보냈습니다.");
+						$(".modal").hide();
+					},
+					error:function(e){
+						console.log(e.resopnseText);
+					}
+				});
+			}
+			else{
+				alert("로그인후 이용해주세요.");
+				return false;
+			}
+
+	    	/*$('#messageForm').submit();*/
+		});
 	});
 
 </script>
@@ -109,7 +164,10 @@
 	<div class="Adopt_reply">
 	<h3>댓글</h3>
 	<div>
+		
 		<input type="text" name="content" id="replyContent"/>
+		
+		
 		<input type="button" id="replyBtn" value="등록" />
 	</div>
 	
@@ -119,11 +177,25 @@
 </div>
 </div>
 <br/><br/>
+
+				
 <!-- 팝업 될 곳 -->
 	<div class="modal">
 		<button>&times;</button>
 		<div class="modalBox">
-			<input type="text"></input>
-			<input type="submit" value="전송"/>
+			<div class="modaltop">
+				<br>
+				<h4>설명부분</h4>
+			</div>
+			<div class="modalbody">
+				<form method="get" id="messageForm" action="#">			
+					<input type="text" name="messagecontent" id="messagecontent" maxlength="100" />					
+					<input type="hidden" name ="username" id="username" value="서범석계정1" maxlength="100" />
+					<input type="button" value="전송" id="messagebtn"/>				
+					
+				</form>
+				
+			</div>
+			
 		</div>
 	</div>

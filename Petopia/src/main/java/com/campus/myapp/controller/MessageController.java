@@ -89,5 +89,23 @@ public class MessageController {
 
 		return flag;
 	}
+	
+	//최초 메세지 보내기
+	@ResponseBody
+	@RequestMapping(value = "/message/messagesend")
+	public int messagesend(@RequestParam String username, @RequestParam String content, HttpSession session) {
+		
+		
+		
+		MessageVO to = new MessageVO();
+		to.setRoom(0);
+		to.setSend_nick((String) session.getAttribute("logName"));
+		to.setRecv_nick(username);
+		to.setContent(content);
+
+		int flag = MessageDAO.messageSendInlist(to);
+
+		return flag;
+	}
 
 }
