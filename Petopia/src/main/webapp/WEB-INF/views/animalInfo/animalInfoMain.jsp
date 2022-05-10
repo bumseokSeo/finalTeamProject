@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/animalInfo/animalInfoMain.css" type="text/css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"/>
 <style>
+#animalInfo_lnb {
+	width:230px;
+	float:left;
+	background-color:pink;
+	position: relative;
+	margin-top: 100px;
+	
+}
 </style>
 <div id="animalInfo_container" class="container">
 	<div id="animalInfo_wrap">
@@ -18,7 +27,9 @@
 				
 			</ul>
 		</div>
+
 		<div id="resultArea">
+
 			
 			
 			

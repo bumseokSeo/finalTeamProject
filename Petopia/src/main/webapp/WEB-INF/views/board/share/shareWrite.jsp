@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/board/share/shareWrite.css" type="text/css"> 
-<script src="/js/board/share/shareWrite.js"></script>
+<script src="/js/board/boardWrite.js"></script>
 <div class="container">
 	<h1>나눔게시판 글 작성</h1>
 	<form method="post" action="/board/share/shareWriteOk" id="shareFrm">

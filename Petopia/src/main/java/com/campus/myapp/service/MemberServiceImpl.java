@@ -108,9 +108,9 @@ public class MemberServiceImpl implements MemberService {
 	public void sendEmail(MemberVO vo, String div) throws Exception {
 		// Mail Server 설정
 		String charSet = "utf-8";
-		String hostSMTP = "smtp.gmail.com"; //네이버 이용시 smtp.naver.com
+		String hostSMTP = "smtp.gmail.com";
 		String hostSMTPid = "titia914@gmail.com";
-		String hostSMTPpwd = "3436695g!!";
+		String hostSMTPpwd = "trgrw553213#@";
 
 		// 보내는 사람 EMail, 제목, 내용
 		String fromEmail = "titia914@gmail.com";
@@ -223,7 +223,7 @@ public class MemberServiceImpl implements MemberService {
             
             //    결과 코드가 200이라면 성공
             int responseCode = conn.getResponseCode();
-            System.out.println("responseCode : " + responseCode);
+            // System.out.println("responseCode : " + responseCode);
  
             //    요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -233,7 +233,7 @@ public class MemberServiceImpl implements MemberService {
             while ((line = br.readLine()) != null) {
                 result += line;
             }
-            System.out.println("response body : " + result);
+            // System.out.println("response body : " + result);
             
             //    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
             JsonParser parser = new JsonParser();
@@ -242,8 +242,8 @@ public class MemberServiceImpl implements MemberService {
             access_Token = element.getAsJsonObject().get("access_token").getAsString();
             refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
             
-            System.out.println("access_token : " + access_Token);
-            System.out.println("refresh_token : " + refresh_Token);
+            // System.out.println("access_token : " + access_Token);
+            // System.out.println("refresh_token : " + refresh_Token);
             
             br.close();
             bw.close();
@@ -270,7 +270,7 @@ public class MemberServiceImpl implements MemberService {
 	        conn.setRequestProperty("Authorization", "Bearer " + access_Token);
 	        
 	        int responseCode = conn.getResponseCode();
-	        System.out.println("responseCode : " + responseCode);
+	        // System.out.println("responseCode : " + responseCode);
 	        
 	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 	        
@@ -280,7 +280,7 @@ public class MemberServiceImpl implements MemberService {
 	        while ((line = br.readLine()) != null) {
 	            result += line;
 	        }
-	        System.out.println("response body : " + result);
+	        // System.out.println("response body : " + result);
 	        
 	        JsonParser parser = new JsonParser();
 	        JsonElement element = parser.parse(result);
@@ -316,7 +316,7 @@ public class MemberServiceImpl implements MemberService {
 	        conn.setRequestProperty("Authorization", "Bearer " + access_Token);
 	        
 	        int responseCode = conn.getResponseCode();
-	        System.out.println("responseCode : " + responseCode);
+	        // System.out.println("responseCode : " + responseCode);
 	        
 	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 	        
@@ -326,7 +326,7 @@ public class MemberServiceImpl implements MemberService {
 	        while ((line = br.readLine()) != null) {
 	            result += line;
 	        }
-	        System.out.println(result);
+	        // System.out.println(result);
 	    } catch (IOException e) {
 	        // TODO Auto-generated catch block
 	        e.printStackTrace();

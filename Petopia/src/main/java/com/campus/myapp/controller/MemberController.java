@@ -2,10 +2,8 @@ package com.campus.myapp.controller;
 
 import java.io.File;
 import java.nio.charset.Charset;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 import javax.inject.Inject;
@@ -317,16 +315,16 @@ public class MemberController {
 		
 		String access_Token = service.getAccessToken(code);
 	    HashMap<String, Object> userInfo = service.getUserInfo(access_Token);
-	    System.out.println("login Controller : " + userInfo);
-	    System.out.println(userInfo.get("useremail"));
-	    System.out.println(userInfo.get("k_id"));
+	    // System.out.println("login Controller : " + userInfo);
+	    // System.out.println(userInfo.get("useremail"));
+	    // System.out.println(userInfo.get("k_id"));
 	    
 	    MemberVO vo = new MemberVO();
 	    vo.setUseremail((String) userInfo.get("useremail"));
 	    MemberVO kvo = service.memberByEmail((String) userInfo.get("useremail"));
-	    System.out.println("kvo : " + kvo);
+	    // System.out.println("kvo : " + kvo);
 	    MemberVO kakaovo = service.memberByKakaoId((String) userInfo.get("k_id"));
-	    System.out.println("kakaovo : " + kakaovo);
+	    // System.out.println("kakaovo : " + kakaovo);
 	    
 	    if(kvo != null && kakaovo != null) {
 	    	session.setAttribute("logId", kvo.getUserid());
@@ -338,26 +336,17 @@ public class MemberController {
 			mav.setViewName("redirect:/");// 홈으로 이동
 	    }else if(kvo != null){
 	    	// 기존에 등록된 회원이 카카오 로그인 누를때
-			mav.setViewName("redirect:/");// 홈으로 이동
+			mav.setViewName("member/kakaologinfail");// 홈으로 이동
 	    }else {
 	    	session.setAttribute("k_useremail", (String)userInfo.get("useremail"));
 	    	session.setAttribute("k_id", (String)userInfo.get("k_id"));
-	    	session.setAttribute("kakao", "Y");
+	    	session.setAttribute("k_profileimage", (String)userInfo.get("profileimage"));
+	    	mav.addObject("kakao", "Y");
 	    	mav.setViewName("member/signUp");
 	    }
 	    
-	    System.out.println(session.getAttribute("logStatus"));
+	    // System.out.println(session.getAttribute("logStatus"));
 	    
 		return mav;
-	}
-	
-	@RequestMapping(value="logout")
-	public String kakaologout(HttpSession session) {
-		service.kakaoLogout((String)session.getAttribute("access_Token"));
-		session.removeAttribute("access_Token");
-		session.removeAttribute("logId");
-		session.removeAttribute("logStatus");
-
-		return "redirect:/";
 	}
 }

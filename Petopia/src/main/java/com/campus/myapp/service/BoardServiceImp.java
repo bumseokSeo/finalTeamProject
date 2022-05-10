@@ -49,6 +49,7 @@ public class BoardServiceImp implements BoardService{
 	public int totalRecord(String boardtype, PagingVO pVO) {
 		return dao.totalRecord(boardtype, pVO);
 	}
+
 	//Share Board
 	@Override
 	public List<BoardVO> shareSelectList(PagingVO pvo, BoardVO vo) {

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+#adoptTitle{
+	width:100%;
+}
+#adoptFrm div{
+	padding:10px 5px;
+}
+.adoptBtn{
+	display:flex;
+	justify-content:center;
+	margin:auto;
+}
+#adoptWrite, #adoptCancle, #adoptBack{
+	margin:auto 10px;
+	width:15%;
+}
