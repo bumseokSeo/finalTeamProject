@@ -40,4 +40,7 @@ public interface MemberService {
 	public void kakaoLogout(String access_Token);
 	public MemberVO memberByEmail(String string);
 	public MemberVO memberByKakaoId(String string);
+	
+	//홈으로 이동시 안읽은 메세지 체크
+	public int messagechk(String username);
 }

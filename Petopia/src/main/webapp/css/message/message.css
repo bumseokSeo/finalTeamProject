@@ -11,12 +11,11 @@ img{
 	width: 40px;
 	height: 40px;
 	border: 0px;
-	/*border: 1px solid #cecece;*/
 	border-radius: 50%;
 }
 
 p {
-	font-family: 'Noto Sans KR', sans-serif;
+	
 	font-size: 20px;
 }
 
@@ -57,9 +56,9 @@ img{ max-width:100%;}
   color: #5fcf80;
   font-size: 30px;
   margin: auto;
-  font-family: 'Nanum Pen Script', cursive;
+  
 }
-.srch_bar input{ border:1px solid #cdcdcd; border-width:0 0 1px 0; width:80%; padding:2px 0 4px 6px; background:none; font-family: 'Nanum Pen Script', cursive; font-size:25px;}
+.srch_bar input{ border:1px solid #cdcdcd; border-width:0 0 1px 0; width:80%; padding:2px 0 4px 6px; background:none;  font-size:25px;}
 .srch_bar .input-group-addon button {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   border: medium none;
@@ -69,7 +68,7 @@ img{ max-width:100%;}
 }
 .srch_bar .input-group-addon { margin: 0 0 0 -27px;}
 
-.chat_ib h5{ font-size:20px; color:#464646; margin:0 0 8px 0; font-family: 'Nanum Pen Script', cursive;}
+.chat_ib h5{ font-size:20px; color:#464646; margin:0 0 8px 0;}
 .chat_ib h5 span{ font-size:17px; float:right;}
 .chat_ib p{ font-size:14px; color:#989898; margin:auto}
 .chat_img {
@@ -116,7 +115,7 @@ img{ max-width:100%;}
   margin: 0;
   padding: 10px 10px 10px 12px;
   width: 100%;
-  font-family: 'Noto Sans KR', sans-serif;
+  
 }
 .time_date {
   color: #747474;
@@ -138,13 +137,13 @@ img{ max-width:100%;}
   margin: 0; color:#fff;
   padding: 10px 10px 10px 12px;
   width:100%;
-  font-family: 'Noto Sans KR', sans-serif;
+  
 }
 .outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
 .sent_msg {
   float: right;
   width: 46%;
-  font-family: 'Noto Sans KR', sans-serif;
+ 
 }
 .input_msg_write input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;

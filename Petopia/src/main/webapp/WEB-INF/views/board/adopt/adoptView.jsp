@@ -1,6 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/board/adopt/adoptView.css" type="text/css">
+<script type="text/javascript">
+	$(function(){
+		
+		$(document).on('click','#chatBtn',function(){
+			$(".modal").show();
+		});
+		
+		//.modal안에 button을 클릭하면 .modal닫기
+		$(".modal button").click(function(){
+			$(".modal").hide();
+		});
+		
+		//.modal밖에 클릭시 닫힘
+		$(".modal").click(function (e) {
+		    if (e.target.className != "modal") {
+		      return false;
+		    } else {
+		      $(".modal").hide();
+		    }   
+	  	});
+		
+		$('#messagebtn').on('click',function(){
+	    	
+			//메세지 내용 공백 검사
+	    	var content=document.getElementById("messagecontent");
+			if(content.value==""){
+				alert("메세지를 입력해주세요.");
+				content.focus();
+				return false;
+			}
+			var username = document.getElementById("username");//메세지 받는 계정
+			
+			var content = document.getElementById("messagecontent");//내용
+			var logName = "${logName}";
+			
+			//로그인 상태일 경우 메세지 보내기 진행
+			if(logName!=null){
+				//메세지 보내기 절차
+				var url= "${url}/message/messagesend";
+				var params = "username="+username.value+"&content="+messagecontent.value;
+				$.ajax({
+					url:url,
+					data:params,
+					success:function(result){
+						var $result = $(result);
+						alert("쪽지를 보냈습니다.");
+						$(".modal").hide();
+					},
+					error:function(e){
+						console.log(e.resopnseText);
+					}
+				});
+			}
+			else{
+				alert("로그인후 이용해주세요.");
+				return false;
+			}
+
+	    	/*$('#messageForm').submit();*/
+		});
+	});
+
+</script>
 
 <div class="Adopt_group container">
 	<div class="Adopt_logo"><h1><i class="fa-solid fa-paw"></i>입양 프로필<i class="fa-solid fa-paw"></i></h1></div>
@@ -31,16 +94,45 @@
 			게시글 작성자 정보<br/>
 		</div>
 		<div class="col-2 Adopt_chatBtn">
-			<input type="button" id="chatBtn" value="대화신청버튼" onclick="location.href='/chat'"/>
+			<input type="button" id="chatBtn" value="쪽지보내기"/>
 		</div>
 	</div>
 	<br/>
 	<div class="Adopt_reply">
 	<h3>댓글</h3>
 	<div>
+		
 		<input type="text" name="content" id="replyContent"/>
+		
+		
 		<input type="button" id="replyBtn" value="등록" />
 	</div>
+	
+
+
+
 </div>
 </div>
 <br/><br/>
+
+				
+<!-- 팝업 될 곳 -->
+	<div class="modal">
+		<button>&times;</button>
+		<div class="modalBox">
+			<div class="modaltop">
+				<br>
+				<h4>설명부분</h4>
+			</div>
+			<div class="modalbody">
+				<form method="get" id="messageForm" action="#">			
+					<input type="text" name="messagecontent" id="messagecontent" maxlength="100" />					
+					<input type="hidden" name ="username" id="username" value="서범석계정1" maxlength="100" />
+					<input type="button" value="전송" id="messagebtn"/>				
+					
+				</form>
+				
+			</div>
+			
+		</div>
+	</div>

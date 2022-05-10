@@ -23,7 +23,7 @@ public class MessageController {
 	// 메세지 목록
 	@RequestMapping(value = "/message_list.do")
 	public String message_list(HttpServletRequest request, HttpSession session) {
-		// System.out.println("현대 사용자 nick : " + session.getAttribute("nick"));
+		
 
 		String username = (String) session.getAttribute("logName");
 
@@ -83,6 +83,24 @@ public class MessageController {
 		to.setRoom(room);
 		to.setSend_nick((String) session.getAttribute("logName"));
 		to.setRecv_nick(other_nick);
+		to.setContent(content);
+
+		int flag = MessageDAO.messageSendInlist(to);
+
+		return flag;
+	}
+	
+	//최초 메세지 보내기
+	@ResponseBody
+	@RequestMapping(value = "/message/messagesend")
+	public int messagesend(@RequestParam String username, @RequestParam String content, HttpSession session) {
+		
+		
+		
+		MessageVO to = new MessageVO();
+		to.setRoom(0);
+		to.setSend_nick((String) session.getAttribute("logName"));
+		to.setRecv_nick(username);
 		to.setContent(content);
 
 		int flag = MessageDAO.messageSendInlist(to);

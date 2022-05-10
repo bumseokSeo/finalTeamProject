@@ -3,12 +3,18 @@
 <c:forEach var="tmp" items="${clist }">
 	
 	<c:choose>
-		<c:when test="${sessionScope.nick ne tmp.send_nick }">
+		<c:when test="${sessionScope.logName ne tmp.send_nick }">
 		<!-- 받은 메세지 -->
 		<div class="incoming_msg">
 			<div class="incoming_msg_img">
-				<a href="other_profile.do?other_nick=${tmp.send_nick }">
-					<img src="${url}/img/memberimg/${tmp.profile }" alt="보낸사람 프로필">
+				<a href="#">
+					<c:if test="${tmp.profile != null && tmp.profile != '' }">
+						<img src="${url}/img/memberimg/${tmp.profile}" alt="보낸사람 프로필">
+					</c:if>
+					<c:if test="${tmp.profile == null || tmp.profile == '' }">
+						<img src="${url}/img/sampleProfile.jpg" alt="보낸사람 프로필">
+					</c:if>
+					
 				</a>
 			</div>
 			<div class="received_msg">

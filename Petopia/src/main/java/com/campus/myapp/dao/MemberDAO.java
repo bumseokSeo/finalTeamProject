@@ -43,5 +43,8 @@ public interface MemberDAO {
 	public MemberVO memberByEmail(String useremail);
 	public MemberVO memberByKakaoId(String k_id);
 	
+	//홈으로 이동시 안읽은 메세지 체크
+	public int messagechk(String username);
+	
 }
 
