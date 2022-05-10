@@ -180,7 +180,7 @@ function getListItem(index, places){
 //클릭한 마커에 대한 장소 정보를 커스텀 오버레이로 표시하는 함수
 function displayPlaceInfo(place){
 	var content = '<div class="placeinfo">'+
-					'	<a class="title" target="_blank" title="'+ place.place_name+ '">' + place.place_name+'</a>';
+					'	<div class="title_close"><div class="close" onclick="closeOverlay()" title="닫기"></div><a class="title" href="'+place.place_url+'" target="_blank" title="'+ place.place_name+ '">' + place.place_name+ '</a></div>';
 					
 	if(place.road_address_name){
 		content += '	<span title="'+place.road_address_name+'">'+place.road_address_name+'</span>'+
@@ -202,6 +202,10 @@ function removeAllChildNods(el){
 	while(el.hasChildNodes()){
 		el.removeChild(el.lastChild);
 	}
+}
+//커스텀 오버레이를 닫기 위해 호출되는 함수
+function closeOverlay(){
+	placeOverlay.setMap(null);
 }
 /*
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성
