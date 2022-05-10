@@ -10,8 +10,8 @@ public class MemberVO {
     private int userlevel;
     private String tel;
     private String kakaoid;
-    
-    
+   
+
 	public String getUserid() {
 		return userid;
 	}

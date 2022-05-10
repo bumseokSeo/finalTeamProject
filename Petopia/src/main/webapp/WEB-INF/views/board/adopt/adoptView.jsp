@@ -1,72 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/board/adopt/adoptView.css" type="text/css">
-<style>
-/*모달css*/
-	.modal {
-	display: none;
-	z-index: 500;
-	width: 100%;
-	height: 100vh;
-	position: fixed;
-	top: 0;
-	left: 0;
-	background-color: rgba(0, 0, 0, 0.3);
-}
-
-.modal button {
-	position: absolute;
-	top: 3rem;
-	right: 3rem;
-	background: transparent;
-	border: 0;
-	color: #ffffff;
-	font-size: 3rem;
-}
-
-.modalBox {
-	position: relative;
-	top: 20%;
-	left: 50%;
-	transform: translate(-50%, -20%);
-	background-color: #ffffff;
-	width: 40%;
-	height: 20%;
-	text-align: center;
-}
-.modaltop{
-	
-	background-color: red;
-	height:40%;
-	overflow: hidden;
-}
-.modalbody{
-	padding-top:30px;
-	background-color: blue;
-	width:100%;
-	height:60%;
-	overflow: hidden;
-	float: left;
-}
-#messagecontent{
-	width:70%;
-	height:70%;
-	
-}
-
-#messageSubmit{
-	width:10%;
-	height: 70%;
-}
-
-
-
-
-</style>
 <script type="text/javascript">
-	
 	$(function(){
-		console.log(123)
+		
 		$(document).on('click','#chatBtn',function(){
 			$(".modal").show();
 		});

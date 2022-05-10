@@ -61,7 +61,6 @@
 				
 				// 메세지 리스트중 하나를 클릭했을 때
 				$('.chat_list').on('click', function(){
-					//alert('room : '+ $(this).attr('room'));
 					
 					let room = $(this).attr('room');
 					let other_nick = $(this).attr('other-nick');
@@ -156,14 +155,10 @@
 						// 이걸 해결하기 위해 메세지 전송버튼을 누르고 메세지 리스트가 리로드되면 메세지 리스트의 첫번째 메세지(현재 열린 메세지)가 선택됨 표시 되도록 한다.
 						//$('.chat_list_box:first').addClass('active_chat');
 					});
-					
-					// 메세지 내용을 불러오는 함수 호출
 					MessageContentList(room);
 					
 				});
 				
-				// 전송버튼을 누르면 메세지 리스트가 리로드 되면서 현재 열린 메세지의 선택됨 표시가 사라진다.
-				// 이걸 해결하기 위해 메세지 전송버튼을 누르고 메세지 리스트가 리로드되면 메세지 리스트의 첫번째 메세지(현재 열린 메세지)가 선택됨 표시 되도록 한다.
 				$('.chat_list_box:first').addClass('active_chat');
 			}
 		})
@@ -203,9 +198,7 @@
 	// 메세지를 전송하는 함수
 	const SendMessage = function(room, other_nick){
 		
-		let content = $('.write_msg').val();
-		//alert("content: " + content);
-		
+		let content = $('.write_msg').val();	
 		content = content.trim();
 		
 		if(content == ""){
