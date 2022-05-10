@@ -1,6 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/board/adopt/adoptView.css" type="text/css">
+<style>
+/*모달css*/
+	.modal {
+	display: none;
+	z-index: 500;
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal button {
+	position: absolute;
+	top: 3rem;
+	right: 3rem;
+	background: transparent;
+	border: 0;
+	color: #ffffff;
+	font-size: 3rem;
+}
+
+.modalBox {
+	position: relative;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, -20%);
+	background-color: #ffffff;
+	width: 40%;
+	height: 20%;
+	text-align: center;
+}
+
+
+
+</style>
+<script type="text/javascript">
+	$(function(){
+		$(document).on('click','#chatBtn',function(){
+			
+			
+			$(".modal").show();
+			
+			
+			
+			// 해당 이미지 텍스트 가져오기
+			//var imgTit =  $(this).children("p").text();
+			//$(".modalBox p").text(imgTit);
+			
+	   // 해당 이미지에 alt값을 가져와 제목으로
+			//$(".modalBox p").text(imgAlt);
+		});
+		
+		//.modal안에 button을 클릭하면 .modal닫기
+		$(".modal button").click(function(){
+			$(".modal").hide();
+		});
+		
+		//.modal밖에 클릭시 닫힘
+		$(".modal").click(function (e) {
+	    if (e.target.className != "modal") {
+	      return false;
+	    } else {
+	      $(".modal").hide();
+	    }
+	  });
+		
+	});
+
+</script>
 
 <div class="Adopt_group container">
 	<div class="Adopt_logo"><h1><i class="fa-solid fa-paw"></i>입양 프로필<i class="fa-solid fa-paw"></i></h1></div>
@@ -31,7 +102,7 @@
 			게시글 작성자 정보<br/>
 		</div>
 		<div class="col-2 Adopt_chatBtn">
-			<input type="button" id="chatBtn" value="대화신청버튼" onclick="location.href='/chat'"/>
+			<input type="button" id="chatBtn" value="쪽지보내기"/>
 		</div>
 	</div>
 	<br/>
@@ -41,6 +112,18 @@
 		<input type="text" name="content" id="replyContent"/>
 		<input type="button" id="replyBtn" value="등록" />
 	</div>
+	
+
+
+
 </div>
 </div>
 <br/><br/>
+<!-- 팝업 될 곳 -->
+	<div class="modal">
+		<button>&times;</button>
+		<div class="modalBox">
+			<input type="text"></input>
+			<input type="submit" value="전송"/>
+		</div>
+	</div>

@@ -23,7 +23,7 @@ public class MessageController {
 	// 메세지 목록
 	@RequestMapping(value = "/message_list.do")
 	public String message_list(HttpServletRequest request, HttpSession session) {
-		// System.out.println("현대 사용자 nick : " + session.getAttribute("nick"));
+		
 
 		String username = (String) session.getAttribute("logName");
 

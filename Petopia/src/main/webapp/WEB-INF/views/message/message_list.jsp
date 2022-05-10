@@ -11,7 +11,7 @@
 	        <div class="inbox_people">
 	          <div class="headind_srch">
 	            <div class="recent_heading">
-	              <h4>Recent</h4>
+	              <h4>쪽지기능</h4>
 	            </div>
 	            <!-- 메세지 검색 -->
 	            <div class="srch_bar">
@@ -94,7 +94,7 @@
 						
 						// 전송버튼을 누르면 메세지 리스트가 리로드 되면서 현재 열린 메세지의 선택됨 표시가 사라진다.
 						// 이걸 해결하기 위해 메세지 전송버튼을 누르고 메세지 리스트가 리로드되면 메세지 리스트의 첫번째 메세지(현재 열린 메세지)가 선택됨 표시 되도록 한다.
-						//$('.chat_list_box:first').addClass('active_chat');
+						$('.chat_list_box:first').addClass('active_chat');
 					});
 					
 					
