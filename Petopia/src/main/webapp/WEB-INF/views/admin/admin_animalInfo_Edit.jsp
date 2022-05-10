@@ -75,13 +75,20 @@ $(function(){
 			reader.readAsDataURL(input.files[0]);
 		}
 	};
-		
+	
+	
+	var fileCount = ${fileCount};
+	
+	$("#writeFrm b").click(function(){
+		$(this).parent().css("display", "none");
+		$(this).parent().next().attr("name", "delFile");
+		$(this).parent().next().next().attr("type", "file");
+		$(this).parent().prev().attr("src","${url}/img/Logo.png");
+		fileCount--;
+	});
+	
 	$("#writeFrm").submit(function(){
-		if($("#filename1").val()==''){
-			alert("사진을 등록하세요.");
-			$("#filename1").focus;
-			return false;
-		}
+		
 		if($("#category").val()==''){
 			alert("category를 선택하세요.");
 			$("#category").focus;
@@ -105,11 +112,6 @@ $(function(){
 			$("#distinction").focus();
 			return false;
 		}
-		if($("#filename2").val()==''){
-			alert("사진을 등록하세요.");
-			$("#filename2").focus;
-			return false;
-		}
 		
 		text_data = CKEDITOR.instances.disease.getData();
 		if(text_data===''){
@@ -117,12 +119,26 @@ $(function(){
 			$("#disease").focus();
 			return false;
 		}
-		if($("#filename3").val()==''){
+		
+		if($("#filename1").val()!=''){
+			fileCount++;
+		}
+		if($("#filename2").val()!=''){
+			fileCount++;
+		}
+		if($("#filename3").val()!=''){
+			fileCount++;
+		}
+		if(fileCount<3){
 			alert("사진을 등록하세요.");
-			$("#filename3").focus;
 			return false;
 		}
+		
 	});
+	
+	
+	
+	
 });
 
 </script>
@@ -207,29 +223,38 @@ $(function(){
 	</ul>
 	
 	<div class="tab_content">
-		<div style="float:right;">반려동물 정보 관리 - 글쓰기</div><br/><br/>
-		<form id="writeFrm" style="width:100%;" method="post" action="${url}/admin/animalInfoWriteOk" enctype="multipart/form-data">
+		<div style="float:right;">반려동물 정보 관리 - 수정</div><br/><br/>
+		<form id="writeFrm" style="width:100%;" method="post" action="${url}/admin/animalInfoEditOk" enctype="multipart/form-data">
 			<div>
 				
 			</div><br/>
-			
+			<input type="hidden" name="breed" value="${vo.breed}"/>
 			<div id="imgDiv1" style="width:35%; float:left; ">
-				<img src='${url}/img/Logo.png' id="preview1" class="img-thumbnail"/>
-				<input type="file" class="form-control-file border" name="imgName" id="filename1" accept="image/jpeg,image/png,image/bmp,image/tiff,image/gif"/>
+				<c:if test="${vo.filename1 == null || vo.filename1 == ''}">
+					<img src='${url}/img/Logo.png' id="preview1" class="img-thumbnail"/>
+					<input type="file" class="form-control-file border" name="imgName" id="filename1" accept="image/jpeg,image/png,image/bmp,image/tiff,image/gif"/>
+				</c:if>
+				<c:if test="${vo.filename1 != null && vo.filename1 != ''}">
+					<img src='${url}/img/animalInfo/${vo.filename1}' id="preview1" class="img-thumbnail"/>
+					<div>${vo.filename1} &nbsp; <b>X</b></div>
+					<input type="hidden" name="" value="${vo.filename1}"/>
+					<input type="hidden" class="form-control-file border" name="imgName" id="filename1" accept="image/jpeg,image/png,image/bmp,image/tiff,image/gif"/>
+				</c:if>	
+				
 			</div>
 			<div id="contentDiv" style="width:63%;float:right;">
 				<span>category</span>
 				<select name='category' id='category'>
 					<option value=''>선택</option>
-					<option>강아지</option>
-					<option>고양이</option>
-					<option>파충류,양서류</option>
-					<option>조류</option>
-					<option>기타</option>
+					<option <c:if test="${vo.category=='강아지'}">selected</c:if>>강아지</option>
+					<option <c:if test="${vo.category=='고양이'}">selected</c:if>>고양이</option>
+					<option <c:if test="${vo.category=='파충류,양서류'}">selected</c:if>>파충류,양서류</option>
+					<option <c:if test="${vo.category=='조류'}">selected</c:if>>조류</option>
+					<option <c:if test="${vo.category=='기타'}">selected</c:if>>기타</option>
 				</select>
 				<span>breed</span>
-				<input style="margin-bottom:10px;" type="text" name="breed" id="breed"/>
-				<textarea name="content" id="content"></textarea>
+				<input style="margin-bottom:10px;" type="text" name="breed" id="breed" value="${vo.breed}" disabled="disabled" />
+				<textarea name="content" id="content">${vo.content}</textarea>
 			</div>
 			
 			<div class="bar">
@@ -239,11 +264,21 @@ $(function(){
 			</div>
 			
 			<div id="contentDiv" style="width:63%;float:left;">
-				<textarea name="distinction" id="distinction"></textarea>
+				<textarea name="distinction" id="distinction">${vo.distinction}</textarea>
 			</div>
 			<div id="imgDiv1" style="width:35%; float:right;">
-				<img src='${url}/img/Logo.png' id="preview2" class="img-thumbnail"/>
-				<input type="file" class="form-control-file border" name="imgName" id="filename2" accept="image/jpeg,image/png,image/bmp,image/tiff,image/gif"/>
+			
+				<c:if test="${vo.filename2 == null || vo.filename2 == ''}">
+					<img src='${url}/img/Logo.png' id="preview2" class="img-thumbnail"/>
+					<input type="file" class="form-control-file border" name="imgName" id="filename2" accept="image/jpeg,image/png,image/bmp,image/tiff,image/gif"/>
+				</c:if>
+				<c:if test="${vo.filename2 != null && vo.filename2 != ''}">
+					<img src='${url}/img/animalInfo/${vo.filename2}' id="preview2" class="img-thumbnail"/>
+					<div>${vo.filename2} &nbsp; <b>X</b></div>
+					<input type="hidden" name="" value="${vo.filename2}"/>
+					<input type="hidden" class="form-control-file border" name="imgName" id="filename2" accept="image/jpeg,image/png,image/bmp,image/tiff,image/gif"/>
+				</c:if>	
+	
 			</div>
 			
 			<div class="bar">
@@ -253,16 +288,24 @@ $(function(){
 			</div>
 			
 			<div id="contentDiv" style="width:63%;float:left;">
-				<textarea name="disease" id="disease"></textarea>
+				<textarea name="disease" id="disease">${vo.disease}</textarea>
 			</div>
 			<div id="imgDiv1" style="width:35%; float:right;">
-				<img src='${url}/img/Logo.png' id="preview3" class="img-thumbnail"/>
-				<input type="file" class="form-control-file border" name="imgName" id="filename3" accept="image/jpeg,image/png,image/bmp,image/tiff,image/gif"/>
+				<c:if test="${vo.filename3 == null || vo.filename3 == ''}">
+					<img src='${url}/img/Logo.png' id="preview3" class="img-thumbnail"/>
+					<input type="file" class="form-control-file border" name="imgName" id="filename3" accept="image/jpeg,image/png,image/bmp,image/tiff,image/gif"/>
+				</c:if>
+				<c:if test="${vo.filename3 != null && vo.filename3 != ''}">
+					<img src='${url}/img/animalInfo/${vo.filename3}' id="preview3" class="img-thumbnail"/>
+					<div>${vo.filename3} &nbsp; <b>X</b></div>
+					<input type="hidden" name="" value="${vo.filename3}"/>
+					<input type="hidden" class="form-control-file border" name="imgName" id="filename3" accept="image/jpeg,image/png,image/bmp,image/tiff,image/gif"/>
+				</c:if>	
 			</div>
 			
 			<div class="bar_submit">
-				<input type="reset" id="resetBtn" value="취소"></input>
-				<input type="submit" id="submitBtn" value="등록"/>
+				<!-- <input type="reset" id="resetBtn" value="취소"/> -->
+				<input type="submit" id="submitBtn" value="수정"/>
 			</div>
 			
 		</form>
