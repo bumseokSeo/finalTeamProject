@@ -1,0 +1,174 @@
+@charset "EUC-KR";
+#notice-wrapper{
+    width:1180px;
+	margin:0 auto;
+}
+
+.View_topmenu{
+	width:100%;
+	height:100px;
+	border:2px dotted red;
+}
+
+#View_title{
+	height:60px;
+	line-height: 60px;
+}
+#View_subtitle{
+	position: relative;
+	height:40px;
+	line-height: 40px;
+}
+
+#View_author{
+	position: absolute;
+	left:10px;
+}
+
+#View_hit{
+	position: absolute;
+	right:250px;
+}
+
+#View_date{
+	position: absolute;
+	right:50px;
+}
+#View_title{
+	border:1px solid green;
+}
+
+#View_content{
+	width:100%;
+}
+
+.View_bottommenu{
+	position: relative;
+}
+
+#modi_AA{
+	position:absolute;
+	right:130px;
+	width:80px; 
+	height:40px; 
+	border:2px solid pink;  
+	font-size:18px; 
+	line-height:40px; 
+	text-align:center; 
+	margin-top:10px;
+}
+
+#Del_AA{
+	position:absolute;
+	right:0px;
+	width:80px; 
+	height:40px; 
+	border:2px solid pink; 
+	font-size:18px; 
+	line-height:40px; 
+	text-align:center; 
+	margin-right:40px; 
+	margin-top:10px;
+}
+
+/*¸®ÇÃ */
+#replyList>ul{
+	padding-left:0;
+}
+.reply{
+	width:100%;
+}
+
+#reply_area{
+	position:relative;
+	border-radius: 15px;
+	border:2px solid pink;
+}
+#reply_info{
+	height:30px;
+	line-height: 30px;
+	padding-left:10px;
+	border-bottom:1px solid pink;
+}
+#replybtn{
+	position:absolute;
+	width:70px;
+	height:40px;
+	right:15px;
+	bottom:10px;
+	border:2px solid pink;
+	background-color:rgba(0,0,0,0);
+	z-index:50;
+}
+
+.reply_area{
+position:relative;
+width:100%;
+border:1px solid pink;
+margin-top:10px;
+margin-bottom:10px;
+}
+
+.reply_u_info{
+position:relative;
+height:40px;
+line-height:40px;
+border:1px solid pink;
+}
+
+.reply_user{
+position:relative;
+float:left;
+margin-left:10px;
+margin-right:10px;
+}
+
+.reply_proima{
+position:relative;
+float:left;
+}
+
+.reply_date{
+position:absolute;
+right:110px;
+}
+
+.reply_modi{
+position:absolute;
+right:60px;
+height:40px;
+background-color:rgba(0,0,0,0);
+border:none;
+}
+
+.reply_del{
+position:absolute;
+right:10px;
+height:40px;
+background-color:rgba(0,0,0,0);
+border:none;
+}
+
+.reply_con{
+	padding:10px 10px;
+}
+
+.content_modi{
+	width:100%;
+	border:none;
+	padding:10px 10px;
+}
+
+.modi_button{
+	position:absolute;
+	font-size:10pt;
+	width:70px;
+	height:40px;
+	right:20px;
+	bottom:10px;
+	border:2px solid pink;
+	background-color:rgba(0,0,0,0);
+	z-index:50;
+}
+/*´ñ±Û ³¡*/
+

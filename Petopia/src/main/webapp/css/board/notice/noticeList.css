@@ -57,18 +57,28 @@
 }
 /*게시글목록 끝*/
 
+/*페이징*/
+.Share_btn{
+	float:right;
+	margin:10px;
+}
+.Share_btn a{
+	text-decoration:none;
+	color:black;
+	font-size:1.2em;
+}
+.Share_btn a:hover{
+	color:#FF7900;
+}
 .Share_search{
 	float:right;
 }
-.Share_paging {
+.Share_paging{
 	display:flex;
 	justify-content:center;
 }
-.Share_paging>ul>a>li{
+.Share_paging>ul>li{
 	float:left;
 	margin-left:10px;
 	margin-right:10px;
-}
-.Share_paging>ul>a{
-	color:black;
 }

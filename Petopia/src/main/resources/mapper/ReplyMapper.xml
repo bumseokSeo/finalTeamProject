@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.campus.myapp.dao.ReplyDAO">
+  	<insert id="replyWrite">
+		insert into reply(boardno, userid, content)
+		values(#{boardno}, #{userid}, #{content})
+	</insert>
+	<select id="replyList" resultType="com.campus.myapp.vo.ReplyVO">
+		SELECT A.replyno, A.userid, A.content, A.writedate, B.profileimage, B.userid, B.userlevel 
+		FROM   reply A join member B ON A.userid = B.userid 
+		WHERE  A.boardno=${param1}
+		ORDER BY A.replyno DESC;
+	</select>
+	<update id="replyEdit">
+		UPDATE reply SET content=#{content} WHERE replyno=${replyno} AND userid=#{userid}
+	</update>
+	<delete id="replyDel">
+		DELETE FROM reply where replyno=#{param1} AND userid=#{param2}
+	</delete>
+  
+  </mapper>
+  

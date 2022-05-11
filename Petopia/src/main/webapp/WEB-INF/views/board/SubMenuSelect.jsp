@@ -3,6 +3,29 @@
 <link rel="stylesheet" href="/css/SubMenuSelect.css" type="text/css"/>
 <script>
 $(document).ready(function(){
+	
+	switch('${type}'){
+	case 'notice' : 
+			  $("#UserNoticeShow").css('display','block');
+			  break;
+	case 'info' : 
+		  	  $("#MenuInfo_container").css('display','block');
+			  break;
+	case 'share' : 
+			  $("#UserShareShow").css('display','block');
+			  break;
+	case 'walk' : 
+			  $("#UserWalkShow").css('display','block');
+			  break;
+	case 'boast' : 
+			  $("#UserBoastShow").css('display','block');
+			  break;
+	case 'suggest' : 
+			  $("#UserSuggestShow").css('display','block');
+			  break;
+		
+	}
+		
 	$("#MenuNotice").click(function(){ 
 		$("#UserNoticeShow").css('display','block');
 		$("#MenuInfo_container").css('display','none');

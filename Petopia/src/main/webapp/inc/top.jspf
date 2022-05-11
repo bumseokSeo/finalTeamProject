@@ -74,12 +74,12 @@
 					</div>
 					<div class="Top_menu_select_A">
 						<ul>
-							<li><a href="/board/SubMenuSelect">공지사항</a></li>
-							<li><a href="#">정보공유</a></li>
-							<li><a href="/board/share/shareList">나눔할래요</a></li>
-							<li><a href="#">산책할래요</a></li>
-							<li><a href="#">자랑할래요</a></li>
-							<li><a href="#">건의할래요</a></li>
+							<li><a href="/board/SubMenuSelect?type=notice">공지사항</a></li>
+							<li><a href="/board/SubMenuSelect?type=info">정보공유</a></li>
+							<li><a href="/board/SubMenuSelect?type=share">나눔할래요</a></li>
+							<li><a href="/board/SubMenuSelect?type=walk">산책할래요</a></li>
+							<li><a href="/board/SubMenuSelect?type=boast">자랑할래요</a></li>
+							<li><a href="/board/SubMenuSelect?type=suggest">건의할래요</a></li>
 						</ul>
 					</div>
 					<div class="Top_menu_select_A">
