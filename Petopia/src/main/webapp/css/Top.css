@@ -41,6 +41,14 @@ a:link, a:visited {
 	padding-top:40px;
 	margin-bottom:40px;
 }
+#Top_menu2{
+	width:100%;
+	height:123px;
+	border:2px solid rgba(189,189,189,0.5);
+	position: relative;
+	padding-top:40px;
+	margin-bottom:40px;
+}
 
 #Top_menu_select{
 	float:left;
@@ -48,7 +56,7 @@ a:link, a:visited {
 
 }
 
-#se{
+.se{
 	display:flex;
 	justify-content:center;
 	position:relative;
@@ -86,7 +94,7 @@ a:link, a:visited {
 	text-align: center;
 }
 
-#Top_menu_select_S{
+.Top_menu_select_S{
 	z-index:50;
 	position:absolute;
 	text-align:center;
@@ -135,6 +143,13 @@ a:link, a:visited {
 /* Top 끝*/
 /* Bottom*/
 .bottom{
+	width:100%;
+	height:150px;
+	border:2px solid rgba(189,189,189,0.5);
+	background-color: rgba(132,144,22,0.5);
+	position: relative;
+}
+.bottom2{
 	width:100%;
 	height:150px;
 	border:2px solid rgba(189,189,189,0.5);

@@ -1,7 +1,61 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/css/message/message.css" type="text/css"/>
-
+<div id="Top_menu2"> <!-- 탑 메뉴 전체 영역 -->
+		<div id="Top_Logo"> <!--  로고 -->
+			<a href="/"><img src="/img/Logo(main).png"/></a>
+		</div>
+		<div id="Top_menu_select"><!-- 메뉴 -->
+			<div class="se"><b class="Top_menu_VA">정보</b> <b class="Top_menu_VA">커뮤니티</b> <b class="Top_menu_VA">입양</b></div>
+				<div class="Top_menu_select_S">
+					<div class="Top_menu_select_A">
+						<ul>
+							<li><a href="/map/mapMain">내 근처 병원</a></li>
+							<li><a href="/animalInfo/animalInfoMain">반려동물 정보</a></li>
+						</ul>
+					</div>
+					<div class="Top_menu_select_A">
+						<ul>
+							<li><a href="/board/SubMenuSelect?type=notice">공지사항</a></li>
+							<li><a href="/board/SubMenuSelect?type=info">정보공유</a></li>
+							<li><a href="/board/SubMenuSelect?type=share">나눔할래요</a></li>
+							<li><a href="/board/SubMenuSelect?type=walk">산책할래요</a></li>
+							<li><a href="/board/SubMenuSelect?type=boast">자랑할래요</a></li>
+							<li><a href="/board/SubMenuSelect?type=suggest">건의할래요</a></li>
+						</ul>
+					</div>
+					<div class="Top_menu_select_A">
+						<ul>
+							<li><a href="/board/adopt/adoptList">입양게시판</a></li>
+						</ul>
+					</div>
+				</div>
+		</div>
+	<div id="Top_LGN_section"><!-- 로그인, 회원가입 들어갈 박스 -->
+		<c:if test="${logLevel == '1' }">
+			<div id="admin_box"><a href="/admin/adminMain">관리자페이지</a></div>
+		</c:if>
+		<c:if test="${logStatus != 'Y' }">
+			<div id="Login_box"><a href="/member/login">로그인</a></div>
+			<div id="join_box"><a href="/member/signUp">회원가입</a></div>
+		</c:if>
+		<c:if test="${logStatus == 'Y' }">
+			<div id="Login_box"><a href="/member/logout">로그아웃</a></div>
+			<div id="join_box"><a href="/member/memberEdit">회원정보수정</a></div>
+			<button onclick="location.href='/message_list.do';" class="btn btn-warning" id="GOmessagebtn"><i class="bi bi-chat-left"></i></button>
+			<c:if test="${logMessage != null && logMessage > 0}">
+				<c:if test="${logMessage <= 99 }">
+					<div class="unreadMessage"><a href="/message_list.do">${logMessage}</a></div>
+				</c:if>
+				
+				<c:if test="${logMessage > 99 }">
+					<div class="unreadMessage"><a href="/message_list.do">99+</a></div>
+				</c:if>
+			</c:if>
+			
+		</c:if>
+	</div>
+</div>
 <div class="container">
 	<div class="msg-container">
 	
@@ -44,6 +98,11 @@
 	      
 	    </div>
 	</div>
+	
+	
+	
+	
+	
 	
 	<script>
 	
@@ -242,4 +301,7 @@
 	
 	</script>
 	
+</div>
+<div class="bottom2">
+	바텀
 </div>
