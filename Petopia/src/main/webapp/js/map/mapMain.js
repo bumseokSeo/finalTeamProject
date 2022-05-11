@@ -7,7 +7,7 @@ var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
 var mapContainer = document.getElementById("map"),
 	mapOptions = {
 	center: new kakao.maps.LatLng(37.566826, 126.9786567), //지도 중심 좌표
-	level: 7 //지도확대레벨
+	level: 3 //지도확대레벨
 }
 // 지도 생성
 var map = new kakao.maps.Map(mapContainer, mapOptions);
@@ -162,7 +162,7 @@ function getListItem(index, places){
 	var el = document.createElement('li');
 	var itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
 					'<div class="info">' + 
-					'	<h5>' + places.place_name + '</h5>';
+					'	<h5>'+ places.place_name + '</h5>';
 					
 	if(places.road_address_name){
 		itemStr += '	<span>' + places.road_address_name + '</span>' + 
@@ -189,7 +189,7 @@ function displayPlaceInfo(place){
 		content += '	<span title="'+place.address_name+'">'+place.address_name+'</span>';
 	}
 	content += '	<span class="tel">'+place.phone+'</span>' + 
-				'	<span class="map_review"><input type="text" name="shopreview" id="rev">'+
+				'	<span class="map_review"><textarea name="shopreview" id="rev"></textarea>'+
 				'<input type="button" class="rev_btn" value="글쓰기"></span>'+
 				'</div>'+
 				'<div class="after"></div>';

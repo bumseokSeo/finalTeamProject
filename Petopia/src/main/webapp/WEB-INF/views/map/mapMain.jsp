@@ -18,7 +18,13 @@
 		</div>
 		<hr>
 		<ul id="placesList"></ul>
-		<div id="pagination"></div>
+	</div>
+	<div id="menu_wrap_2" class='bg_white'>
+		<div class="option">
+			<div>
+				<div class="host_title">정보<div class="close" onclick="closeOverlay()" title="닫기"></div></div>
+			</div>
+		</div>
 	</div>
 </div>
 

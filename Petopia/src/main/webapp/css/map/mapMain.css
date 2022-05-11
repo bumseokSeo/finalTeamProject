@@ -46,6 +46,23 @@
 #menu_wrap .option button {
 	margin-left:5px;
 }
+#menu_wrap_2 {
+	position:absolute;
+	top:0;
+	left:260px;
+	bottom:0;
+	width:400px;
+	margin:10px 0 30px 10px;
+	padding:5px;
+	overflow-y:auto;
+	background:rgba(255, 255, 255,0.9);
+	z-index: 1;
+	font-size:12px;
+	border-radius: 10px;
+}
+#menu_wrap_2 .close{
+	background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png) no-repeat right 14px center;
+}
 .search_addr{
 	text-align:left;
 	font-size:1.5em;
