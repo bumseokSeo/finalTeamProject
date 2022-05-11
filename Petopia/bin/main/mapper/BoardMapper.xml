@@ -24,8 +24,8 @@
     </select>
   	<!--  글 1개 선택 -->
   	<select id="BoardSelect" resultType="com.campus.myapp.vo.BoardVO">
-  	SELECT boardno, title, userid, content, hit, writedate
-  	FROM board
+  	SELECT b.boardno, b.title, b.userid, b.content, b.hit, b.writedate, m.username
+  	FROM board b join member m on b.userid=m.userid
   	WHERE boardno = #{param1}
   	</select>
   	<select id="BoardNum" resultType="int"><!--  숫자 입력용  -->
@@ -37,7 +37,7 @@
     </update>
   	<select id="BoardView" resultType="com.campus.myapp.vo.BoardVO">
 	    SELECT A.boardno, A.title, A.hit, A.writedate, A.content, A.userid, A.filename1,
-	   		   B.profileimage, B.userlevel
+	   		   B.profileimage, B.userlevel, B.username
 	    FROM   board A, member B
 	    WHERE  A.userid=B.userid 
 	    AND    A.boardno=${param1}

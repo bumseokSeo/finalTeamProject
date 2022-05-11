@@ -24,9 +24,9 @@ public class HomeController {
 		int message=0;
 		if(username != null) {
 			message = service.messagechk(username);
-			if(message>0) {
-				session.setAttribute("logMessage", message);
-			}
+			
+			session.setAttribute("logMessage", message);
+			
 		}
 		mav.setViewName("home");
 		return mav;
@@ -41,9 +41,9 @@ public class HomeController {
 		int message=0;
 		if(username != null) {
 			message = service.messagechk(username);
-			if(message>0) {
-				session.setAttribute("logMessage", message);
-			}
+			
+			session.setAttribute("logMessage", message);
+			
 		}
 		mav.setViewName("homeCHK");
 		return mav;
