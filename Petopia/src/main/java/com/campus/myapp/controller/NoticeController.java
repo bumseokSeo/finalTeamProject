@@ -177,7 +177,11 @@ public class NoticeController {
 			user = ((String)request.getSession().getAttribute("logId"));
 			mav.addObject("user", user);
 			
-			mav.setViewName("/board/notice/noticeView");
+			String BF = service.getType(boardno);
+			System.out.println(BF);
+			
+
+			mav.setViewName("/board/"+BF+"/"+BF+"View");
 			return mav;
 		}
 		

@@ -11,7 +11,7 @@
 		<c:forEach var="listVo" items="${adoptList}">
 		<div class="col-sm-3 Share">
 			<div class="card Share_group">
-				<a href="${url }/board/notice/noticeView?boardno=${listVo.boardno}"><img src="/img/Logo(main).png"></a>
+				<a href="/board/notice/noticeView?boardno=${listVo.boardno}"><img src="/img/Logo(main).png"></a>
 				<div class="card-body">
 					<div class="card-title Share_title">${listVo.title }</div>
 					<div class="card-text Share_content">
