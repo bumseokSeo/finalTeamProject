@@ -4,14 +4,14 @@
 <link rel="stylesheet" href="/css/board/share/shareList.css" type="text/css"/>
 
 <div class="container">
-	<h1 class="Share_logo">나눔게시판</h1>
+	<h1 class="Share_logo">입양게시판</h1>
 	<div>총 페이지 수: ${pvo.totalPage }</div>
 	<div>총 게시글 수: ${pvo.totalRecord }</div>
 	<div class="row Share_top">
-		<c:forEach var="listVo" items="${shareList}">
+		<c:forEach var="listVo" items="${adoptList}">
 		<div class="col-sm-3 Share">
 			<div class="card Share_group">
-				<a href="${url }/board/share/shareView"><img src="/img/Logo(main).png"></a>
+				<a href="${url }/board/notice/noticeView?boardno=${listVo.boardno}"><img src="/img/Logo(main).png"></a>
 				<div class="card-body">
 					<div class="card-title Share_title">${listVo.title }</div>
 					<div class="card-text Share_content">
@@ -23,7 +23,7 @@
 		</div>
 		</c:forEach>
 	</div>
-	<div class="Share_btn"><a href="/board/share/shareWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
+	<div class="Share_btn"><a href="/board/adopt/adoptWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 	<br/><br/><br/>
 	<div class="Share_search">
 		<select name="searchWord">
