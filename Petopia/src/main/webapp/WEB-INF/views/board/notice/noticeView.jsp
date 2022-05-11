@@ -152,4 +152,3 @@ $(function(){
 				</c:if>
 	  </div>
 </div>
->>>>>>> refs/heads/CHK

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/css/board/notice/noticeList.css" type="text/css"/>
 <script>
 </script>
@@ -10,17 +11,18 @@
 	</div>
 	<div class="Menu_container">
 		<ul class="List_menu_F">
-			<li>번호</li>
+			<li>게시물 번호</li>
 			<li>제목</li>
 			<li>날짜</li>
 			<li>조회수</li>
 			
-			<c:foreach var="vo" items="${list}">
-				<li>${nlist.no}</li>
-				<li>${nlist.title}</li>
-				<li>${nlist.writedate}</li>
-				<li>${nlist.hit}</li>
-			</c:foreach>
+			<c:forEach var="listVo" items="${noticeList}">
+				<li>${listVo.boardno}</li>
+				<li><a href="/board/notice/noticeView?boardno=${listVo.boardno}">${listVo.title}</a></li>
+				<li>${listVo.writedate}</li>
+				<li>${listVo.hit}</li>
+			</c:forEach>
+			
 		</ul><!-- 게시물 -->
 	</div>
 		
@@ -36,26 +38,37 @@
 			<input type="button" value="검색"/>
 		</div>
 		<br/><br/>
-		<div class="Share_paging">
-			 <c:if test="${pVO.pageNum>1}">
-		        <li><a href="/board/notice/noticeList?pageNum=${pVO.pageNum-1}<c:if test='${pVO.searchWord != null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">prev</a></li>
-		        </c:if>
-		        <!--  페이지 번호                 1,5      6,10         11,15-->
-		        <c:forEach var="p" begin="${pVO.startPage}" end="${pVO.startPage+pVO.onePageCount-1}">
-		            <!--  총 페이지수보다 출력할 페이지번호가 작을때 -->
-		             <c:if test="${p<=pVO.totalPage}">
-		               <c:if test="${p==pVO.pageNum}">
-		               <li style="background-color:green">
-		               </c:if>
-		               <c:if test="${p!=pVO.pageNum}">
-		               <li>
-		               </c:if>
-		               <a href="/board/notice/noticeList?pageNum=${p}<c:if test='${pVO.searchWord != null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">${p}</a></li> 
-		             </c:if>
-		        </c:forEach>
-		        <c:if test="${pVO.pageNum<pVO.totalPage}">
-		        <li><a href="/board/notice/noticeList?pageNum=${pVO.pageNum+1}<c:if test='${pVO.searchWord != null}'>&searchKey=${pVO.searchKey}&searchWord=${pVO.searchWord}</c:if>">next</a></li>
-		        </c:if>
-		</div>
+		<!-- 페이징 -->
+	<div class="Share_paging">
+		<ul>
+			<c:if test="${pVO2.currentPage==1}">
+				<li class="page-item" style="display:none"><i class="fa fa-angle-left"></i></li>
+			</c:if>
+			<c:if test="${pVO2.currentPage>1}">
+				<li class="page=item"><a href="${url}/board/SubMenuSelect?type=notice&currentPage=${pVO2.currentPage-1 }"><i class="fa fa-angle-left"></i></a>
+			</c:if>
+			<!-- 페이지번호 -->
+			<c:forEach var="p" begin="${pVO2.startPage }" end="${pVO2.totalPage }">
+				<c:if test="${p<=pVO2.totalPage}">
+					<c:choose>
+						<c:when test="${p==pVO2.currentPage}">
+							<li class="page-item disabled"><a>${p}</a></li>
+						</c:when>
+						<c:when test="${p!=pVO2.currentPage}">
+							<li class="page-item"><a href="${url }/board/SubMenuSelect?type=notice&currentPage=${p}">${p }</a></li>
+						</c:when>
+					</c:choose>
+				</c:if>
+			</c:forEach>	
+			<!-- 다음페이지 -->
+			<c:if test="${pVO2.currentPage==pVO2.totalPage }">
+				<li class="page-item" style="display:none"><i class="fa fa-angle-right"></i></li>
+			</c:if>
+			<c:if test="${pVO2.currentPage<pVO2.totalPage }">
+				<li><a href="${url}/board/SubMenuSelect?type=notice&currentPage=${pVO2.currentPage+1}"><i class="fa fa-angle-right"></i></a>
+			</c:if>
+			
+		</ul>
+	</div>
 </div>
 <br/>

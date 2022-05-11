@@ -1,35 +1,39 @@
 package com.campus.myapp.controller;
 
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
-@RequestMapping("/board/adopt/")
+import com.campus.myapp.service.BoardService;
+import com.campus.myapp.vo.BoardVO;
+import com.campus.myapp.vo.PagingVO;
+
+@Controller
 public class AdoptController {
-	
 	ModelAndView mav = new ModelAndView();
 	
-	//입양 글 리스트
-	@GetMapping("adoptList")
-	public ModelAndView adoptList() {
-		mav.setViewName("/board/adopt/adoptList");
+	@Inject
+	BoardService service;
+	
+	@GetMapping("/board/adopt/adoptList")
+	public ModelAndView AdoptListView(PagingVO pvo, BoardVO bvo) {
+		mav.addObject("adoptList", service.BoardSelectList(bvo, "adopt",pvo));
 		
+		pvo.setTotalRecord(service.BoardtotalRecord(pvo, "adopt"));
+		mav.addObject("pvo",pvo);
+		
+		mav.setViewName("board/adopt/adoptList");
 		return mav;
 	}
 	
-	//입양 글 작성
-	@GetMapping("adoptWrite")
-	public ModelAndView adoptWrite() {
-		mav.setViewName("/board/adopt/adoptWrite");
-		return mav;
+	@GetMapping("/board/adopt/adoptWrite")
+	public String noticeWrite() {
+		return "/board/adopt/adoptWrite";
 	}
 	
-	//입양 게시글 보기
-	@GetMapping("adoptView")
-	public ModelAndView adoptView() {
-		mav.setViewName("/board/adopt/adoptView");
-		return mav;
-	}
+	
+
 }
+

@@ -24,14 +24,14 @@ public class ShareController {
 	
 	//share board list
 	@GetMapping("shareList")
-	public ModelAndView shareList(PagingVO pvo, BoardVO vo, HttpSession session) {
+	public ModelAndView shareList(PagingVO pvo, BoardVO vo) {
 		vo.setBoardtype("share");
 		
 		pvo.setTotalRecord(service.shareTotalRecord(pvo, vo));
 		mav.addObject("list", service.shareSelectList(pvo, vo));
 		mav.addObject("pvo", pvo);
 		
-		mav.setViewName("/board/share/shareList");
+		mav.setViewName("board/adopt/adoptList");
 		return mav;
 	}
 	
