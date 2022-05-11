@@ -41,6 +41,19 @@
 				<c:if test="${logStatus == 'Y' }">
 					<li id="Login_box"><a href="/member/logout">로그아웃</a></li>
 					<li id="join_box"><a href="/member/memberEdit">회원정보수정</a></li>
+					<li id="meg_box" style="position:relative;">
+						<a href="/message_list.do">쪽지</a>
+						<c:if test="${logMessage != null && logMessage > 0}">
+							<c:if test="${logMessage <= 99 }">
+								<a class="msgCnt" style="font-size:14px;" href="/message_list.do">${logMessage}</a>
+							</c:if>
+							
+							<c:if test="${logMessage > 99 }">
+								<a class="msgCnt" style="font-size:14px;" href="/message_list.do">99+</a>
+							</c:if>
+						</c:if>
+						
+					</li>
 				</c:if>
 				
 				<c:if test="${logLevel == '1' }">

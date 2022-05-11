@@ -27,6 +27,7 @@ a:hover{
 .home_nav>ul>li{
 	display: inline-block;
 	width: 250px;
+	min-width: 250px !important;
 	padding: 10px;
 	margin: 0 20px;
 	position: relative;	
@@ -36,24 +37,35 @@ a:hover{
 .sub_menu{
 	display:none;
 	position: absolute;
-	top: 55px;
-	left: 50%;
-	transform: translate(-55%, 0);
+	top: 62px;
+	left: -32px;
 }
-
+.home_nav>ul>li:hover{
+	background: rgba(255, 255, 255, 0.7);
+	border-radius: 5px;
+}
+.home_nav>ul>li:hover>a{
+	color: black !important;
+}	
 .home_nav>ul>li:hover .sub_menu {
-	display: block;
+	display: inline-block;
 }
 
 .sub_menu>li{
-	display:inline-block; 
-	width:250px; 
-	padding:10px; 
-	background:rgba(255, 255, 255, 0.3);
+	display: inline-block; 
+	width: 250px;
+	max-width: 100%;
+	padding: 10px; 
+	background: rgba(0, 0, 0, 0.6);
 }
 
-.sub_menu>li:hover { 
-	background:rgba(255, 255, 255, 0.6);  
+.sub_menu>li:hover{ 
+	background: rgba(255, 255, 255, 0.6);
+	color: black !important;
+}
+.sub_menu>li:hover a{ 
+	color: black !important;
+	font-weight: 600 !important;
 }
 
 .home_nav>ul a{
@@ -65,7 +77,7 @@ a:hover{
 .sub_menu>li>a{
 	color: rgba(255, 255, 255);  
 	font-size: 20px;
-	font-weight: 500 ;
+	font-weight: 500;
 }
 
 .section{
@@ -100,10 +112,30 @@ a:hover{
 }
 .intext{
 	position: absolute;
-	top: 400px;
+	top: 500px;
 	left: 100px;
 	z-index: 1;
 	color: #fff;
 	font-size: 72px;
 	font-weight: bold;
+}
+
+#fp-nav ul li a span{
+	background: #fff;
+}
+
+.fp-controlArrow.fp-next{
+	right: 5%;
+}
+.fp-controlArrow.fp-prev{
+	left: 5%;
+}
+
+.msgCnt{
+	position:absolute; 
+	right:15%; 
+	background:#ff6d00;
+	width:30px;
+	border-radius:100%;
+	line-height:30px;
 }
