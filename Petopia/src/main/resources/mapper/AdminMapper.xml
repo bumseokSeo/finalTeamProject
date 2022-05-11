@@ -11,7 +11,7 @@
 		<if	test='searchword != null'>
 			where breed like '%${searchword}%'
 		</if>
-		 order by breed desc
+		 order by category
 	</select>
 	
 	<insert id="animalInfoInsert">

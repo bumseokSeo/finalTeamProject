@@ -18,12 +18,12 @@
 		</li>
 		<li data-menuanchor="section1"><a href="#">커뮤니티</a>
 			<ul class="sub_menu menu_select2">
-				<li><a href="/board/SubMenuSelect">공지사항</a></li>
-				<li><a href="#">정보공유</a></li>
-				<li><a href="/board/share/shareList">나눔할래요</a></li>
-				<li><a href="#">산책할래요</a></li>
-				<li><a href="#">자랑할래요</a></li>
-				<li><a href="#">건의할래요</a></li>
+				<li><a href="/board/SubMenuSelect?type=notice">공지사항</a></li>
+				<li><a href="/board/SubMenuSelect?type=info">정보공유</a></li>
+				<li><a href="/board/SubMenuSelect?type=share">나눔할래요</a></li>
+				<li><a href="/board/SubMenuSelect?type=walk">산책할래요</a></li>
+				<li><a href="/board/SubMenuSelect?type=boast">자랑할래요</a></li>
+				<li><a href="/board/SubMenuSelect?type=suggest">건의할래요</a></li>
 			</ul>
 		</li>
 		<li data-menuanchor="section1"><a href="#">입양</a>
