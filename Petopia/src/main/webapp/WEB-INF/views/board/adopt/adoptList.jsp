@@ -1,97 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/css/board/adopt/adoptList.css" type="text/css">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link rel="stylesheet" href="/css/board/share/shareList.css" type="text/css"/>
+
 <div class="container">
-	<h1>입양게시판</h1>
-	<div class="Adopt_reg">
-		<ul>
-			<li>최신순</li>
-			<li>인기순</li>
-		</ul>
-	</div>
-	<br/>
-	<div>
-		<div class="row Adopt_top">
-			<div class="col-lg-4 col-md-6 Adopt">
-				<div class="card Adopt_group">
-					<a href="${url }/board/adopt/adoptView"><img src="${url }/img/board/adopt/cat.jpeg"></a>
-					<div class="card-body">
-						<div class="card-text Adopt_content">
-							<label class="Adopt_text">카테고리</label><br/>
-							<label class="Adopt_text">제목</label><br/>
-							<label class="Adopt_text"><i class="bi bi-emoji-heart-eyes" style="color:red"></i>&nbsp;0</label><br/>
-							<label class="Adopt_text">글쓴이</label><br/>
-							<label class="Adopt_text"><i class="bi bi-eye-fill"></i>&nbsp;0</label>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 Adopt">
-				<div class="card Adopt_group">
-					<a href="${url }/board/adopt/adoptView"><img src="${url }/img/board/adopt/cat.jpeg"></a>
-					<div class="card-body">
-						<div class="card-text Adopt_content">
-							<label class="Adopt_text">카테고리</label><br/>
-							<label class="Adopt_text">제목</label><br/>
-							<label class="Adopt_text"><i class="bi bi-emoji-heart-eyes" style="color:red"></i>&nbsp;0</label><br/>
-							<label class="Adopt_text">글쓴이</label><br/>
-							<label class="Adopt_text"><i class="bi bi-eye-fill"></i>&nbsp;0</label>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 Adopt">
-				<div class="card Adopt_group">
-					<a href="${url }/board/adopt/adoptView"><img src="${url }/img/board/adopt/dog.jpeg"></a>
-					<div class="card-body">
-						<div class="card-text Adopt_content">
-							<label class="Adopt_text">카테고리</label><br/>
-							<label class="Adopt_text">제목</label><br/>
-							<label class="Adopt_text"><i class="bi bi-emoji-heart-eyes" style="color:red"></i>&nbsp;0</label><br/>
-							<label class="Adopt_text">글쓴이</label><br/>
-							<label class="Adopt_text"><i class="bi bi-eye-fill"></i>&nbsp;0</label>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 Adopt">
-				<div class="card Adopt_group">
-					<a href="${url }/board/adopt/adoptView"><img src="${url }/img/board/adopt/dog.jpeg"></a>
-					<div class="card-body">
-						<div class="card-text Adopt_content">
-							<label class="Adopt_text">카테고리</label><br/>
-							<label class="Adopt_text">제목</label><br/>
-							<label class="Adopt_text"><i class="bi bi-emoji-heart-eyes" style="color:red"></i>&nbsp;0</label><br/>
-							<label class="Adopt_text">글쓴이</label><br/>
-							<label class="Adopt_text"><i class="bi bi-eye-fill"></i>&nbsp;0</label>
-						</div>
+	<h1 class="Share_logo">입양게시판</h1>
+	<div>총 페이지 수: ${pvo.totalPage }</div>
+	<div>총 게시글 수: ${pvo.totalRecord }</div>
+	<div class="row Share_top">
+		<c:forEach var="listVo" items="${adoptList}">
+		<div class="col-sm-3 Share">
+			<div class="card Share_group">
+				<a href="${url }/board/notice/noticeView?boardno=${listVo.boardno}"><img src="/img/Logo(main).png"></a>
+				<div class="card-body">
+					<div class="card-title Share_title">${listVo.title }</div>
+					<div class="card-text Share_content">
+						<label class="Share_text">${listVo.userid }</label> 
+						<label class="Share_text">${listVo.writedate }</label>
 					</div>
 				</div>
 			</div>
 		</div>
+		</c:forEach>
 	</div>
-	<div class="Adopt_btn"><a href="/board/adopt/adoptWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
-	<br/><br/>
-	<div class="Adopt_search">
+	<div class="Share_btn"><a href="/board/adopt/adoptWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
+	<br/><br/><br/>
+	<div class="Share_search">
 		<select name="searchWord">
 			<option value="" selected="selected">전체</option>
 			<option value="title">제목</option>
-			<option value="category">카테고리</option>
+			<option value="userid">글쓴이</option>
 		</select>
-		<input type="text" id="adopt_search"/>
+		<input type="text" id="share_search"/>
 		<input type="button" value="검색"/>
 	</div>
 	<br/><br/>
 	<!-- 페이징 -->
-	<div class="Adopt_paging">
+	<div class="Share_paging">
 		<ul>
-			<li><a href="#">prev</a></li>
-			<li><a href="#">1</a></li>
-			<li><a href="#">2</a></li>
-			<li><a href="#">3</a></li>
-			<li><a href="#">4</a></li>
-			<li><a href="#">5</a></li>
-			<li><a href="#">next</a></li>
+			<c:if test="${pvo.currentPage==1}">
+				<li class="page-item" style="display:none"><i class="fa fa-angle-left"></i></li>
+			</c:if>
+			<c:if test="${pvo.currentPage>1}">
+				<li class="page=item"><a href="${url }/board/share/shareList?currentPage=${pvo.currentPage-1 }"><i class="fa fa-angle-left"></i></a>
+			</c:if>
+			<!-- 페이지번호 -->
+			<c:forEach var="p" begin="${pvo.startPage }" end="${pvo.totalPage }">
+				<c:if test="${p<=pvo.totalPage}">
+					<c:choose>
+						<c:when test="${p==pvo.currentPage}">
+							<li class="page-item disabled"><a>${p}</a></li>
+						</c:when>
+						<c:when test="${p!=pvo.currentPage}">
+							<li class="page-item"><a href="${url }/board/share/shareList?currentPage=${p}">${p }</a></li>
+						</c:when>
+					</c:choose>
+				</c:if>
+			</c:forEach>	
+			<!-- 다음페이지 -->
+			<c:if test="${pvo.currentPage==pvo.totalPage }">
+				<li class="page-item" style="display:none"><i class="fa fa-angle-right"></i></li>
+			</c:if>
+			<c:if test="${pvo.currentPage<pvo.totalPage }">
+				<li><a href="${url }/board/share/shareList?currentPage=${pvo.currentPage+1}"><i class="fa fa-angle-right"></i></a>
+			</c:if>
+			
 		</ul>
 	</div>
 </div>
+<br/>
+

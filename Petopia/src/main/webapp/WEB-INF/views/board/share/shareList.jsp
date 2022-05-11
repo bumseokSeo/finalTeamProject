@@ -8,7 +8,7 @@
 	<div>총 페이지 수: ${pvo.totalPage }</div>
 	<div>총 게시글 수: ${pvo.totalRecord }</div>
 	<div class="row Share_top">
-		<c:forEach var="listVo" items="${list}">
+		<c:forEach var="listVo" items="${shareList}">
 		<div class="col-sm-3 Share">
 			<div class="card Share_group">
 				<a href="${url }/board/share/shareView"><img src="/img/Logo(main).png"></a>

@@ -30,7 +30,23 @@ public class HomeController {
 		}
 		mav.setViewName("home");
 		return mav;
+	}
+	
+	@GetMapping("/homeCHK")
+	public ModelAndView homeCHK(HttpSession session) {
 		
+		ModelAndView mav = new ModelAndView();
+		String username = (String) session.getAttribute("logName");
+		
+		int message=0;
+		if(username != null) {
+			message = service.messagechk(username);
+			
+			session.setAttribute("logMessage", message);
+			
+		}
+		mav.setViewName("homeCHK");
+		return mav;
 	}
 	
 	

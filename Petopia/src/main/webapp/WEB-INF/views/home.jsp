@@ -56,7 +56,7 @@
 		<div>
 			<h1>반려동물과 함께하는</h1>
 			<!-- 로고 글씨 흰색으로... -->
-			<div><img alt="logo" src="/img/로고2.png" width="400px"/></div>
+			<div><a href="/homeCHK"><img alt="logo" src="/img/home/logo_garo2.png" width="450px"/></a></div>
 			
 		</div>
 		
