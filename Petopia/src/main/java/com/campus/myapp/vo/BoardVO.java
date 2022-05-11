@@ -10,6 +10,8 @@ public class BoardVO {
 	private String like; //좋아요
 	private String boardtype;
 	private String filename1;
+	private String username;
+	
 	
 	public int getBoardno() {
 		return boardno;
@@ -65,4 +67,11 @@ public class BoardVO {
 	public void setFilename1(String filename1) {
 		this.filename1 = filename1;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
 }

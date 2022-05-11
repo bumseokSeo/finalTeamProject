@@ -2,10 +2,57 @@
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/css/board/notice/noticeView.css" type="text/css"/>
+<link rel="stylesheet" href="/css/board/adopt/adoptView.css" type="text/css">
 <script type="text/javascript">
-	$(function(){
-		
-		$(document).on('click','#chatBtn',function(){
+	
+
+
+function delCheck(){
+	if(confirm("삭제하시겠습니까?")){
+		location.href = "/board/boardDelete?boardno="+${vo.boardno};// 게시글 삭제 매핑
+	}
+}
+
+$(function(){
+	function replyListAll(){
+		var url = "/reply/replyList";
+		var params = "boardno=${vo.boardno}"; 
+		$.ajax({
+			url:url,
+			data:params,
+			success:function(result){
+				var $result = $(result);
+				console.log(result);
+				console.log(${vo.boardno});
+				var tag = "<ul>";
+				$result.each(function(idx, vo){		//vo에서 프로필사진 가져올 자리
+					tag +="<li><div class='reply_area'><div class='reply_u_info'><div class='reply_user'>"+vo.userid+"</div><div class='reply_proima'>프로필 이미지</div>";
+					tag +="<div class='reply_date'>"+vo.writedate+"</div>";
+
+					if(vo.userid == '${logId}'){
+					tag +="<input type='button' value='수정' class='reply_modi'/><input type='button' value='삭제' title='"+vo.replyno+"' class='reply_del'/></div>";
+					}
+					if(vo.userid == '${logId}'){   // user_id
+						tag += "<div class='content_modify' style='display:none'><form method='post'>";
+						tag += "<input type='hidden' name='replyno' value='"+vo.replyno+"'/>";
+						tag += "<textarea name='content' class='content_modi'>"+vo.content+"</textarea>";
+						tag += "<input type='submit' value='수정' class='modi_button'/></form></div>";
+					}	
+					tag +="<div class='reply_con'>"+vo.content+"</div></div></div></li>";
+				});
+				tag += "</ul>";
+				
+				$("#replyList").html(tag);
+				
+			},error:function(e){
+				console.log(e.responseText);
+			}
+			
+		});
+	}
+	
+	/*쪽지부분*/
+	$(document).on('click','#chatBtn',function(){
 			$(".modal").show();
 		});
 		
@@ -60,55 +107,18 @@
 				return false;
 			}
 
-	    	/*$('#messageForm').submit();*/
+	    	
 		});
-	});
-
-</script>
-<script>
-function delCheck(){
-	if(confirm("삭제하시겠습니까?")){
-		location.href = "/board/boardDelete?boardno="+${vo.boardno};// 게시글 삭제 매핑
-	}
-}
-
-$(function(){
-	function replyListAll(){
-		var url = "/reply/replyList";
-		var params = "boardno=${vo.boardno}"; 
-		$.ajax({
-			url:url,
-			data:params,
-			success:function(result){
-				var $result = $(result);
-				console.log(result);
-				console.log(${vo.boardno});
-				var tag = "<ul>";
-				$result.each(function(idx, vo){		//vo에서 프로필사진 가져올 자리
-					tag +="<li><div class='reply_area'><div class='reply_u_info'><div class='reply_user'>"+vo.userid+"</div><div class='reply_proima'>프로필 이미지</div>";
-					tag +="<div class='reply_date'>"+vo.writedate+"</div>";
-
-					if(vo.userid == '${logId}'){
-					tag +="<input type='button' value='수정' class='reply_modi'/><input type='button' value='삭제' title='"+vo.replyno+"' class='reply_del'/></div>";
-					}
-					if(vo.userid == '${logId}'){   // user_id
-						tag += "<div class='content_modify' style='display:none'><form method='post'>";
-						tag += "<input type='hidden' name='replyno' value='"+vo.replyno+"'/>";
-						tag += "<textarea name='content' class='content_modi'>"+vo.content+"</textarea>";
-						tag += "<input type='submit' value='수정' class='modi_button'/></form></div>";
-					}	
-					tag +="<div class='reply_con'>"+vo.content+"</div></div></div></li>";
-				});
-				tag += "</ul>";
-				
-				$("#replyList").html(tag);
-				
-			},error:function(e){
-				console.log(e.responseText);
-			}
-			
-		});
-	}
+	/*쪽지부분*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
     // 댓글등록------
 	$("#replyFrm").submit(function(){
 		event.preventDefault();
@@ -188,7 +198,7 @@ $(function(){
 	  	  	<div id="View_date">${vo.writedate}</div>
   	  	</div>
   	  </div>
-  	  <div class="Adopt_img"><img name="filename1" src="/img/board/adopt/cat.jpeg"></div>
+  	  <div class="Adopt_img"><img name="filename1" src="/img/board/adopt/cat.jpeg" style="width:500px"></div>
   	  <div class="Adopt_files">
 		<img src="img/board/adopt/cat.jpeg" alt="고양이이미지">
 		<img src="img/board/adopt/cat.jpeg" alt="고양이이미지">
@@ -236,6 +246,7 @@ $(function(){
 				</c:if>
 	  </div>
 </div>
+
 <!-- 팝업 될 곳 -->
 	<div class="modal">
 		<button>&times;</button>
@@ -247,7 +258,7 @@ $(function(){
 			<div class="modalbody">
 				<form method="get" id="messageForm" action="#">			
 					<input type="text" name="messagecontent" id="messagecontent" maxlength="100" />					
-					<input type="hidden" name ="username" id="username" value="서범석계정1" maxlength="100" />
+					<input type="hidden" name ="username" id="username" value="${vo.username}" maxlength="100" />
 					<input type="button" value="전송" id="messagebtn"/>				
 					
 				</form>
@@ -256,3 +267,4 @@ $(function(){
 			
 		</div>
 	</div>
+

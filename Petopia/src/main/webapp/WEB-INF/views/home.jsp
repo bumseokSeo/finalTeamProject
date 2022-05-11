@@ -18,12 +18,12 @@
 		</li>
 		<li data-menuanchor="section1"><a href="#">커뮤니티</a>
 			<ul class="sub_menu menu_select2">
-				<li><a href="/board/SubMenuSelect">공지사항</a></li>
-				<li><a href="#">정보공유</a></li>
-				<li><a href="/board/share/shareList">나눔할래요</a></li>
-				<li><a href="#">산책할래요</a></li>
-				<li><a href="#">자랑할래요</a></li>
-				<li><a href="#">건의할래요</a></li>
+				<li><a href="/board/SubMenuSelect?type=notice">공지사항</a></li>
+				<li><a href="/board/SubMenuSelect?type=info">정보공유</a></li>
+				<li><a href="/board/SubMenuSelect?type=share">나눔할래요</a></li>
+				<li><a href="/board/SubMenuSelect?type=walk">산책할래요</a></li>
+				<li><a href="/board/SubMenuSelect?type=boast">자랑할래요</a></li>
+				<li><a href="/board/SubMenuSelect?type=suggest">건의할래요</a></li>
 			</ul>
 		</li>
 		<li data-menuanchor="section1"><a href="#">입양</a>
@@ -41,6 +41,19 @@
 				<c:if test="${logStatus == 'Y' }">
 					<li id="Login_box"><a href="/member/logout">로그아웃</a></li>
 					<li id="join_box"><a href="/member/memberEdit">회원정보수정</a></li>
+					<li id="meg_box" style="position:relative;">
+						<a href="/message_list.do">쪽지</a>
+						<c:if test="${logMessage != null && logMessage > 0}">
+							<c:if test="${logMessage <= 99 }">
+								<a class="msgCnt" style="font-size:14px;" href="/message_list.do">${logMessage}</a>
+							</c:if>
+							
+							<c:if test="${logMessage > 99 }">
+								<a class="msgCnt" style="font-size:14px;" href="/message_list.do">99+</a>
+							</c:if>
+						</c:if>
+						
+					</li>
 				</c:if>
 				
 				<c:if test="${logLevel == '1' }">

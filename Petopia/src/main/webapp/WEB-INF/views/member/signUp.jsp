@@ -164,8 +164,8 @@ function telCheckInit(){
 	if($("#telCheckResult").val()=="1") {
 		$("#telCheckResult").val("0");
 	}
-	if($("#smsCheckResult").val()=="0") {
-		$("#smsCheckResult").val("1");
+	if($("#smsCheckResult").val()=="1") {
+		$("#smsCheckResult").val("0");
 	}
 }
 function telCheck() {

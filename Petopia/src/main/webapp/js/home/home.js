@@ -8,5 +8,6 @@ $(function(){
 		controlArrows: true,
 		slidesNavigation: false,
 		slidesNavPosition: 'bottom',
+	
 	});
 });

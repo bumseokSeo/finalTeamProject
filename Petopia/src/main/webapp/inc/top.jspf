@@ -44,12 +44,12 @@
 <script src="https://cdn.ckeditor.com/4.7.0/full-all/ckeditor.js"></script>
 <script>
 	$(document).ready(function(){
-		var $se = $('#se');
+		var $se = $('.se');
 		  $se.hover(function(){
 			$(this).next("div").slideDown(300);
 		  });
 		  
-		var $TopS = $('#Top_menu_select_S');
+		var $TopS = $('.Top_menu_select_S');
 		  $TopS.mouseleave(function(){
 			$(this).slideUp(300);
 		  });
@@ -64,8 +64,8 @@
 			<a href="/"><img src="/img/Logo(main).png"/></a>
 		</div>
 		<div id="Top_menu_select"><!-- 메뉴 -->
-			<div id="se"><b class="Top_menu_VA">정보</b> <b class="Top_menu_VA">커뮤니티</b> <b class="Top_menu_VA">입양</b></div>
-				<div id="Top_menu_select_S">
+			<div class="se"><b class="Top_menu_VA">정보</b> <b class="Top_menu_VA">커뮤니티</b> <b class="Top_menu_VA">입양</b></div>
+				<div class="Top_menu_select_S">
 					<div class="Top_menu_select_A">
 						<ul>
 							<li><a href="/map/mapMain">내 근처 병원</a></li>
@@ -101,7 +101,7 @@
 			<div id="Login_box"><a href="/member/logout">로그아웃</a></div>
 			<div id="join_box"><a href="/member/memberEdit">회원정보수정</a></div>
 			<button onclick="location.href='/message_list.do';" class="btn btn-warning" id="GOmessagebtn"><i class="bi bi-chat-left"></i></button>
-			<c:if test="${logMessage != null }">
+			<c:if test="${logMessage != null && logMessage > 0}">
 				<c:if test="${logMessage <= 99 }">
 					<div class="unreadMessage"><a href="/message_list.do">${logMessage}</a></div>
 				</c:if>

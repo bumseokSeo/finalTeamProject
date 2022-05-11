@@ -33,4 +33,3 @@
 <script>
      CKEDITOR.replace('ckeditor1');
 </script>
->>>>>>> refs/heads/CHK
