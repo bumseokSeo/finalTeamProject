@@ -10,6 +10,11 @@ public class AnimalInfoVO {
 	private String disease;
 	private String distinction;
 	private String searchword;
+	
+	// 삭제할 파일명 담을 변수
+	private String delFile[];
+	
+	
 	public String getCategory() {
 		return category;
 	}
@@ -64,6 +69,13 @@ public class AnimalInfoVO {
 	public void setSearchword(String searchword) {
 		this.searchword = searchword;
 	}
+	public String[] getDelFile() {
+		return delFile;
+	}
+	public void setDelFile(String[] delFile) {
+		this.delFile = delFile;
+	}
+	
 	
 	
 }

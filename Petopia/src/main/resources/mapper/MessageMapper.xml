@@ -32,7 +32,7 @@
 
 <!-- 메세지 내용 가져오기 -->
 <select id="room_content_list" parameterType="com.campus.myapp.vo.MessageVO" resultType="com.campus.myapp.vo.MessageVO">
-    select m.no, m.room, m.send_nick, m.recv_nick, date_format(m.send_time, '%Y-%m-%d %H:%i') send_time, m.read_time, m.content, m.read_chk, u.profileimage
+    select m.no, m.room, m.send_nick, m.recv_nick, date_format(m.send_time, '%Y-%m-%d %H:%i') send_time, m.read_time, m.content, m.read_chk, u.profileimage profile
     from message m left outer join member u
     on m.send_nick = u.username
     <choose>

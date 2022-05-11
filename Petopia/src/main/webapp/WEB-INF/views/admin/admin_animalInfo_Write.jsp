@@ -75,8 +75,54 @@ $(function(){
 			reader.readAsDataURL(input.files[0]);
 		}
 	};
-	
-	
+		
+	$("#writeFrm").submit(function(){
+		if($("#filename1").val()==''){
+			alert("사진을 등록하세요.");
+			$("#filename1").focus;
+			return false;
+		}
+		if($("#category").val()==''){
+			alert("category를 선택하세요.");
+			$("#category").focus;
+			return false;
+		}
+		if($("#breed").val()==''){
+			alert("breed를 입력하세요.");
+			$("#breed").focus;
+			return false;
+		}
+		var text_data = CKEDITOR.instances.content.getData();
+		if(text_data===''){
+			alert("내용을 입력하세요.");
+			$("#content").focus();
+			return false;
+		}
+		
+		text_data = CKEDITOR.instances.distinction.getData();
+		if(text_data===''){
+			alert("내용을 입력하세요.");
+			$("#distinction").focus();
+			return false;
+		}
+		if($("#filename2").val()==''){
+			alert("사진을 등록하세요.");
+			$("#filename2").focus;
+			return false;
+		}
+		
+		text_data = CKEDITOR.instances.disease.getData();
+		if(text_data===''){
+			alert("내용을 입력하세요.");
+			$("#disease").focus();
+			return false;
+		}
+		if($("#filename3").val()==''){
+			alert("사진을 등록하세요.");
+			$("#filename3").focus;
+			return false;
+		}
+	});
 });
 
 </script>
@@ -162,7 +208,7 @@ $(function(){
 	
 	<div class="tab_content">
 		<div style="float:right;">반려동물 정보 관리 - 글쓰기</div><br/><br/>
-		<form style="width:100%;" method="post" action="${url}/admin/animalInfoWriteOk" enctype="multipart/form-data">
+		<form id="writeFrm" style="width:100%;" method="post" action="${url}/admin/animalInfoWriteOk" enctype="multipart/form-data">
 			<div>
 				
 			</div><br/>

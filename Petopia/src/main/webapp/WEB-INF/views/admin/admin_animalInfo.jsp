@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
-function breedDelChk(){
-	if(confirm("삭제하시겠습니까?")) {
-		location.href="/admin/breedDel?breedkey=${vo.breed}";
+function breedDelChk(breed){
+	if(confirm("반려동물("+breed+") 정보를 삭제하시겠습니까?")) {
+		location.href="/admin/breedDel?breedkey="+breed;
 	}
 }
 </script>
@@ -36,7 +36,7 @@ function breedDelChk(){
 		text-overflow: ellipsis;
 	}
 	#animalInfoList>li:nth-child(4n+1){
-		padding-left: 30px;
+		padding-left: 15px;
 	}
 	#animalInfoList>li:nth-child(n+1):nth-child(-n+4) {
 		border-bottom: 3px solid #ddd;
@@ -87,8 +87,8 @@ function breedDelChk(){
 			<c:forEach var="vo" items="${list }">
 				<li>${vo.category }</li>
 				<li><a href="/animalInfo/animalInfoSub?breedkey=${vo.breed}">${vo.breed }</a></li>
-				<li><a class="editBtn" href="/myapp/data/dataEdit?breedkey=${vo.breed}">수정</a></li>
-				<li><a class="delBtn" href="javascript:breedDelChk()">삭제</a></li>
+				<li><a class="editBtn" href="/admin/admin_animalInfo_Edit?breedkey=${vo.breed}">수정</a></li>
+				<li><a class="delBtn" href="javascript:breedDelChk('${vo.breed}')">삭제</a></li>
 			</c:forEach>
 			
 		</ul>

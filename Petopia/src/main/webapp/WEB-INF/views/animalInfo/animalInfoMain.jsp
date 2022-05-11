@@ -52,87 +52,9 @@
 						</div>
 					</div>
 				</c:forEach>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<a href="/animalInfo/animalInfoSub?breedkey=시츄"><img src="/img/animalInfo/시츄.jpg" class='animalimg' alt="이미지가 없습니다." title="샘플" style="height:275px; width:100%;"></a>
-						<h4 class="card-title">샘플</h4>
-						<div class="card-body">
-							<p class="card-text">샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.샘플용으로 넣어둔거입니다.</p>
-						</div>
-					</div>
-				</div>
-				
-				
-				
+					
 
 			</div>
-			
-			
-			
-			
 			
 			
 			

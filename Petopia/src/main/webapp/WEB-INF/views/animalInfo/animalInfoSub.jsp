@@ -34,7 +34,7 @@
 				
 				<div class="d2">
 					
-					<img src="/img/animalInfo/특징아이콘.png" alt="" class="d-flex icon">
+					<img src="/img/특징아이콘.png" alt="" class="d-flex icon">
 				</div>
 				
 			</div>
@@ -50,7 +50,7 @@
 					<span class="barcontent">질병정보</span>
 				</div>
 				<div>
-					<img src="/img/animalInfo/질병아이콘.png" alt="" class="d-flex icon">
+					<img src="/img/질병아이콘.png" alt="" class="d-flex icon">
 				</div>
 			</div>
 			<div id="diseaseDiv">

@@ -18,5 +18,25 @@
 		insert into animalinfo(category, breed, content, filename1, filename2, filename3, distinction, disease)
 		value(#{category}, #{breed}, #{content}, #{filename1}, #{filename2}, #{filename3}, #{distinction}, #{disease})
 	</insert>
-
+	
+	<select id="animalInfoGetFileName" resultType="com.campus.myapp.vo.AnimalInfoVO">
+		select filename1, filename2, filename3 from animalinfo where breed=#{param1}
+	</select>
+	
+	<delete id="animalInfoDataDelete">
+		delete from animalinfo where breed=#{param1}
+	</delete>
+	
+	<select id="animalInfoEditView" resultType="com.campus.myapp.vo.AnimalInfoVO">
+		select category,breed,content,filename1,filename2,filename3,distinction,disease 
+		from animalinfo where breed=#{param1}
+	</select>
+	
+	<update id="animalInfoUpdate">
+		update animalinfo set category=#{category}, content=#{content}, 
+		distinction=#{distinction}, disease=#{disease}
+		, filename1=#{filename1}, filename2=#{filename2}, filename3=#{filename3}
+		where breed=#{breed}
+	</update>
+	
 </mapper>

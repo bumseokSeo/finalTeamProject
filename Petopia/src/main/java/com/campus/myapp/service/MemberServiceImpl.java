@@ -349,4 +349,11 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return dao.memberByKakaoId(k_id);
 	}
+
+	@Override
+	public int messagechk(String username) {
+		// TODO Auto-generated method stub
+		
+		return dao.messagechk(username);
+	}
 }

@@ -6,8 +6,13 @@
 			<!-- active-chat -->
 			<div class="chat_people">
 				<div class="chat_img" >
-					<a href="other_profile.do?other_nick=${tmp.other_nick }">
-						<img src="${url}/img/memberimg/${tmp.profile}" alt="sunil" >
+					<a href="#">
+						<c:if test="${tmp.profile != null && tmp.profile != '' }">
+							<img src="${url}/img/memberimg/${tmp.profile}" alt="보낸사람 프로필">
+						</c:if>
+						<c:if test="${tmp.profile == null || tmp.profile == '' }">
+							<img src="${url}/img/sampleProfile.jpg" alt="보낸사람 프로필">
+						</c:if>
 					</a>
 				</div>
 				<div class="chat_ib">
