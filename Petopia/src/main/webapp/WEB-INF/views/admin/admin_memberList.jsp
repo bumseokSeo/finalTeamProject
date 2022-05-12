@@ -26,6 +26,75 @@ function changeStop(userid){
 		location.href="/admin/memberChangeStop?userid="+userid;
 	}
 }
+
+
+function sendMessage(username){
+	console.log(username);
+	$(".modal").show();
+}
+$(function(){
+	/*쪽지부분*/	
+		$(document).on('click','#chatBtn',function(name){
+			console.log("${vo.username}")
+			$(".modal").show();
+		});
+	
+		//.modal안에 button을 클릭하면 .modal닫기
+		$(".modal button").click(function(){
+			$(".modal").hide();
+		});
+		
+		//.modal밖에 클릭시 닫힘
+		$(".modal").click(function (e) {
+		    if (e.target.className != "modal") {
+		      return false;
+		    } else {
+		      $(".modal").hide();
+		    }   
+	  	});
+		
+		$('#messagebtn').on('click',function(){
+	    	console.log("aaa : " + username);
+			//메세지 내용 공백 검사
+	    	var content=document.getElementById("messagecontent");
+			if(content.value==""){
+				alert("메세지를 입력해주세요.");
+				content.focus();
+				return false;
+			}
+			var username = document.getElementById("username");//메세지 받는 계정
+			
+			var content = document.getElementById("messagecontent");//내용
+			var logName = "${logName}";
+			
+			//로그인 상태일 경우 메세지 보내기 진행
+			if(logName!=null){
+				//메세지 보내기 절차
+				console.log("send : " + username);
+				var url= "${url}/message/messagesend";
+				var params = "username="+username.value+"&content="+messagecontent.value;
+				$.ajax({
+					url:url,
+					data:params,
+					success:function(result){
+						var $result = $(result);
+						alert("쪽지를 보냈습니다.");
+						$(".modal").hide();
+					},
+					error:function(e){
+						console.log(e.resopnseText);
+					}
+				});
+			}
+			else{
+				alert("로그인후 이용해주세요.");
+				return false;
+			}
+
+	    	
+		});
+	/*쪽지부분*/
+});
 </script>
 
 
@@ -107,8 +176,12 @@ function changeStop(userid){
 					정지</a>
 				</li>
 				<li>
-					<a class="chatBtn" href="#">쪽지보내기</a>
+					<input type="button" id="chatBtn" value="쪽지보내기"/>
+					<a class="chatBtn" href="javascript:sendMessage('${vo.username}')">쪽지보내기</a>
 					<a class="delBtn" href="javascript:memberDelChk('${vo.userid}')">탈퇴</a>
+					
+					
+					
 				</li>
 			</c:forEach>
 		</ul>
@@ -145,4 +218,21 @@ function changeStop(userid){
 		
 	</div>
 
+</div>
+
+<div class="modal">
+	<button>&times;</button>
+	<div class="modalBox">
+		<div class="modaltop">
+			<br>
+			<h4>설명부분</h4>
+		</div>
+		<div class="modalbody">
+			<form method="get" id="messageForm" action="#">			
+				<input type="text" name="messagecontent" id="messagecontent" maxlength="100" />					
+				<input type="hidden" name ="username" id="username" value="${vo.username}" maxlength="100" />
+				<input type="button" value="전송" id="messagebtn"/>
+			</form>
+		</div>
+	</div>
 </div>
