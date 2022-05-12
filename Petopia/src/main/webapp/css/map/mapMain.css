@@ -30,6 +30,19 @@
 .bg_white {
 	background:#fff;
 }
+#getMyPositionBtn{
+	position:absolute;
+	float:right;
+ 	bottom:0;
+ 	right:0;
+ 	padding:5px;
+ 	z-index:100;
+	width:150px;
+	font-size:1.4em;
+	border:none;
+	border-radius:15px;
+	background:#F9F9F9;
+}
 #menu_wrap hr {
 	display: block; 
 	height: 1px;
@@ -59,9 +72,20 @@
 	z-index: 1;
 	font-size:12px;
 	border-radius: 10px;
+	/* display:none; */
 }
-#menu_wrap_2 .close{
-	background: url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png) no-repeat right 14px center;
+.host_title {
+	text-align:center;
+}
+#map_src {
+	width:50%;
+	height:auto;
+}
+.show{
+	display:block;
+}
+.hide{
+	display:none;
 }
 .search_addr{
 	text-align:left;
@@ -123,7 +147,7 @@
 	position:absolute;
 	width:36px;
 	height:37px;
-	margin:10px 0 0 10px;
+	margin:15px 0 0 10px;
 	background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;
 }
 #placesList .item .marker_1 {
@@ -211,7 +235,7 @@
 	font-size:13px;
 }
 .placeinfo .title_close{
-	background: #FF7900;
+	background: #FF9E00;
 	border-radius: 6px 6px 0 0;
 }
 .placeinfo .title {
@@ -225,7 +249,7 @@
 	border-radius: 6px 6px 0 0;
 	float:right;
 	padding:20px;
-	background:#FF7900 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png) no-repeat right 14px center;
+	background:#FF9E00 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png) no-repeat right 14px center;
 }
 .placeinfo .tel {
 	color:#0f7833;
