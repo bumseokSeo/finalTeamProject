@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="//cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+<link rel="stylesheet" href="/css/admin/admin_animalInfo_Edit.css" type="text/css"/>
 
 <script>
 $(function(){
@@ -142,74 +143,7 @@ $(function(){
 });
 
 </script>
-<style>
-	.container{
-		height: auto;
-		overflow:hidden;
-	}
-	.tab_title{
-		float: left;
-		width: 19%; 
-	}
-	.tab_content{
-	 	float: right;
-		width: 79%;
-	}
-	.bar{
-		float:left;
-		width:100%;
-		height:60px;
-		border:1px solid;
-		margin-top: 30px;
-		background-color: rgba(0,0,0,0.1);
-		margin-bottom: 30px;
-	}
-	.icon{
-		float:left;
-		width:50px;
-		height:50px;
-		
-		position: absolute;
-		right:100px;
-		padding-top: 4px;
-	}
-	.barcontent{
-		position:relative;
-		top:10px;
-		margin-left:20px;
-		font-size: 1.5em;
-	}
-	.bar_submit{
-		float:left;
-		width:100%;
-		height:60px;
-		margin-top: 30px;
-		margin-bottom: 30px;
-		text-align: center;
-	}
-	#submitBtn{
-		width: 240px;
-		background: #FF7900;
-		border: #FF7900;
-		height: 46px;
-		line-height: 44px;
-		font-size: 16px;
-		font-weight: 700;
-		color: #fff;
-		margin-left: 5px;
-	}
-	#resetBtn{
-		width: 240px;
-		background: gray;
-		border: #FF7900;
-		height: 46px;
-		line-height: 44px;
-		font-size: 16px;
-		font-weight: 700;
-		color: #fff;
-		margin-right: 5px;
-	}
-</style>
+
 <div class="container">
 	<ul class="tab_title">
 		<li>공지사항관리</li>

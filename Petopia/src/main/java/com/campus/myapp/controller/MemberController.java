@@ -268,10 +268,15 @@ public class MemberController {
 		headers.add("Content-Type", "text/html; charset=UTF-8");
 		
 		String tempUserId = service.findId(vo);
+		String KakaoId = service.findKakaoId(vo);
 		String msg = "<script>";
+		
 		if(tempUserId == null) {
-			
 			msg+="alert('해당하는 계정이 존재하지 않습니다.');";
+			msg += "history.back()";
+			msg+="</script>";
+		}else if(KakaoId != null){
+			msg+="alert('카카오계정으로 가입한 아이디가 있어 바로 로그인할 수 있습니다.');";
 			msg += "history.back()";
 			msg+="</script>";
 		}else {

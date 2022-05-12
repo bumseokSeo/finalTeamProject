@@ -3,15 +3,11 @@
 <link rel="stylesheet" href="/css/animalInfo/animalInfoMain.css" type="text/css"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"/>
 <style>
-#animalInfo_lnb {
-	width:230px;
-	float:left;
-	background-color:pink;
-	position: relative;
-	margin-top: 100px;
-	
-}
+
 </style>
+<script type="text/javascript">
+
+</script>
 <div id="animalInfo_container" class="container">
 	<div id="animalInfo_wrap">
 		<div id="animalInfo_lnb">
@@ -42,7 +38,7 @@
 			    	</form>
 				</div>
 				<c:forEach var="vo" items="${list}">
-					<div class="col-lg-4 col-md-6">
+					<div class="col col-xl-4 col-lg-6">
 						<div class="card">
 							<a href="/animalInfo/animalInfoSub?breedkey=${vo.breed}"><img src="/img/animalInfo/${vo.filename1}" class='animalimg' alt="이미지가 없습니다." title="${vo.breed}" style="height:275px; width:100%;"></a>
 							<h4 class="card-title">${vo.breed}</h4>

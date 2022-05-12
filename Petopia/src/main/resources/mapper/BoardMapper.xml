@@ -10,26 +10,26 @@
   	VALUES(#{userid}, #{title}, #{content}, #{boardtype}, #{filename1})
   	</insert>
   	<!--  글목록 불러오기 -->
-  	<select id="BoardList" resultType="com.campus.myapp.vo.BoardVO">
+  	<select id="BoardSelectList" resultType="com.campus.myapp.vo.BoardVO">
   	SELECT A.boardno, A.title, A.userid, A.content, A.hit, A.writedate, A.filename1,
   		   B.profileimage, B.userlevel
   	FROM   board A, member B
   	WHERE  A.userid=B.userid 
-	AND    A.boardtype=${param1}
-				order by no desclimit ${onePageRecord} offset ${offsetIndex} 
+	AND    A.boardtype=#{param2}
+	order by boardno desc limit ${param3.recordPerPage} offset ${param3.offsetIndex}
   	</select>
   	<select id="totalRecord" resultType="int">
     SELECT count(boardno) as cnt from board
-    WHERE boardtype=${param1}
+    WHERE boardtype=#{param1}
     </select>
   	<!--  글 1개 선택 -->
   	<select id="BoardSelect" resultType="com.campus.myapp.vo.BoardVO">
-  	SELECT boardno, title, userid, content, hit, writedate
-  	FROM board
-  	WHERE boardno = ${param1}
+  	SELECT b.boardno, b.title, b.userid, b.content, b.hit, b.writedate, m.username
+  	FROM board b join member m on b.userid=m.userid
+  	WHERE boardno = #{param1}
   	</select>
   	<select id="BoardNum" resultType="int"><!--  숫자 입력용  -->
-  	SELECT boardno FROM board WHERE userid=#{param1} ORDER BY board_num DESC LIMIT 1;
+  	SELECT boardno FROM board WHERE userid=#{param1} ORDER BY boardno DESC LIMIT 1;
   	</select>
   	<!--  조회수 증가 -->
   	<update id="hitCount">
@@ -37,11 +37,38 @@
     </update>
   	<select id="BoardView" resultType="com.campus.myapp.vo.BoardVO">
 	    SELECT A.boardno, A.title, A.hit, A.writedate, A.content, A.userid, A.filename1,
-	   		   B.profileimage, B.userlevel
+	   		   B.profileimage, B.userlevel, B.username
 	    FROM   board A, member B
 	    WHERE  A.userid=B.userid 
 	    AND    A.boardno=${param1}
     </select>
+    <!-- 글 수정 -->
+    <update id="BoardUpdate">
+  		UPDATE  board SET title=#{title}, content=#{content}
+		WHERE boardno=#{boardno}
+  	</update>
+  	<select id="getFileName" resultType="com.campus.myapp.vo.BoardVO">
+    	SELECT filename1 FROM board 
+    	WHERE boardno=#{boardno}
+    </select>
+    <update id="BoardFileUpdate">
+  		UPDATE board SET filename1=#{filename1}
+		WHERE boardno=#{boardno}
+  	</update>
+  	<delete id="boardDelete">
+ 		DELETE FROM board WHERE boardno=#{param1} AND userid=#{param2}
+ 	</delete>
+ 	<select id="getType" resultType="String">
+ 		select boardtype from board where boardno=${param1}
+ 	</select>
+ 	
+ 	<!--  페이징 -->
+	<select id="BoardtotalRecord" resultType="int">
+		select count(boardno) count 
+		from board
+		where boardtype=#{param2}
+	</select>
+    
   	
   	<!-- share board 글 등록 -->
   	<insert id="shareInsert">

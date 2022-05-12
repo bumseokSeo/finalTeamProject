@@ -44,16 +44,52 @@
 <script src="https://cdn.ckeditor.com/4.7.0/full-all/ckeditor.js"></script>
 <script>
 	$(document).ready(function(){
-		var $se = $('#se');
+		var $se = $('.se');
 		  $se.hover(function(){
 			$(this).next("div").slideDown(300);
 		  });
 		  
-		var $TopS = $('#Top_menu_select_S');
+		var $TopS = $('.Top_menu_select_S');
 		  $TopS.mouseleave(function(){
 			$(this).slideUp(300);
 		  });
+		 
+		  
+		  MessageReload();
 	});
+	
+	var MessageReload = function(){
+		$.ajax({
+			url:"/messageReload",
+			method:"get",
+			data:{
+				
+			},
+			success:function(result){
+				
+				var msg = "";
+				if(result>99){
+					msg += "<div class='unreadMessage'><a href='/message_list.do'>"
+					msg += "99+";
+					msg += "</a></div>";
+					
+					$('.unreadMessageDiv').html(msg);
+					
+				}
+				if(result<=99 && result>0){
+					msg += "<div class='unreadMessage'><a href='/message_list.do'>"
+					msg += result;
+					msg += "</a></div>";
+						
+					$('.unreadMessageDiv').html(msg);
+				}
+				
+			},
+			error: function(e){
+				console.log(e.responseText);
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -64,8 +100,8 @@
 			<a href="/"><img src="/img/Logo(main).png"/></a>
 		</div>
 		<div id="Top_menu_select"><!-- 메뉴 -->
-			<div id="se"><b class="Top_menu_VA">정보</b> <b class="Top_menu_VA">커뮤니티</b> <b class="Top_menu_VA">입양</b></div>
-				<div id="Top_menu_select_S">
+			<div class="se"><b class="Top_menu_VA">정보</b> <b class="Top_menu_VA">커뮤니티</b> <b class="Top_menu_VA">입양</b></div>
+				<div class="Top_menu_select_S">
 					<div class="Top_menu_select_A">
 						<ul>
 							<li><a href="/map/mapMain">내 근처 병원</a></li>
@@ -74,12 +110,12 @@
 					</div>
 					<div class="Top_menu_select_A">
 						<ul>
-							<li><a href="/board/SubMenuSelect">공지사항</a></li>
-							<li><a href="#">정보공유</a></li>
-							<li><a href="/board/share/shareList">나눔할래요</a></li>
-							<li><a href="#">산책할래요</a></li>
-							<li><a href="#">자랑할래요</a></li>
-							<li><a href="#">건의할래요</a></li>
+							<li><a href="/board/SubMenuSelect?type=notice">공지사항</a></li>
+							<li><a href="/board/SubMenuSelect?type=info">정보공유</a></li>
+							<li><a href="/board/SubMenuSelect?type=share">나눔할래요</a></li>
+							<li><a href="/board/SubMenuSelect?type=walk">산책할래요</a></li>
+							<li><a href="/board/SubMenuSelect?type=boast">자랑할래요</a></li>
+							<li><a href="/board/SubMenuSelect?type=suggest">건의할래요</a></li>
 						</ul>
 					</div>
 					<div class="Top_menu_select_A">
@@ -101,15 +137,8 @@
 			<div id="Login_box"><a href="/member/logout">로그아웃</a></div>
 			<div id="join_box"><a href="/member/memberEdit">회원정보수정</a></div>
 			<button onclick="location.href='/message_list.do';" class="btn btn-warning" id="GOmessagebtn"><i class="bi bi-chat-left"></i></button>
-			<c:if test="${logMessage != null && logMessage > 0}">
-				<c:if test="${logMessage <= 99 }">
-					<div class="unreadMessage"><a href="/message_list.do">${logMessage}</a></div>
-				</c:if>
-				
-				<c:if test="${logMessage > 99 }">
-					<div class="unreadMessage"><a href="/message_list.do">99+</a></div>
-				</c:if>
-			</c:if>
+			<div class="unreadMessageDiv"></div>
+			
 			
 		</c:if>
 	</div>

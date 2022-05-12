@@ -57,6 +57,10 @@
 		select rpad(substring(userid,1,char_length(userid)*0.5),char_length(userid),"*"), username from member where useremail=#{useremail} 
 	</select>
 	
+	<select id="findKakaoId" parameterType="String" resultType="String">
+		select kakaoid from member where useremail=#{useremail} 
+	</select>
+	
 	<update id="updatePw" >
 		update member set userpwd = #{userpwd} where userid = #{userid}
 	</update>

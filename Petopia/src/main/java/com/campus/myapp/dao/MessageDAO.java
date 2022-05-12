@@ -19,7 +19,7 @@ public class MessageDAO {
 
 		String username = to.getUsername();
 		
-		// 메세지 리스트에 나타낼 것들 가져오기 - 가장 최근 메세지, 보낸사람 profile 사진, 보낸사람 nick
+		// 메세지 리스트에 나타낼 것들 가져오기 - 가장 최근 메세지, 보낸사람 profile 사진, 보낸사람 닉네임
 		ArrayList<MessageVO> list = (ArrayList) sqlSession.selectList("message_list", to);
 
 		for (MessageVO mto : list) {
@@ -47,9 +47,11 @@ public class MessageDAO {
 	// room 별 메세지 내용을 가져온다.
 	public ArrayList<MessageVO> roomContentList(MessageVO to) {
 		
+		/*
 		System.out.println("room : " + to.getRoom());
 		System.out.println("recv_nick : " + to.getRecv_nick());
 		System.out.println("username : " + to.getUsername());
+		*/
 		// 메세지 내역을 가져온다
 		ArrayList<MessageVO> clist = (ArrayList) sqlSession.selectList("room_content_list", to);
 
@@ -61,10 +63,12 @@ public class MessageDAO {
 	
 	// 메세지 list에서 메세지를 보낸다.
 	public int messageSendInlist(MessageVO to) {
+		/*
 		System.out.println("받는사람이름: "+to.getRecv_nick());
 		System.out.println("보낸이름: "+to.getSend_nick());
 		System.out.println("내용: "+to.getContent());
-		// 메세지리스트에서 보낸건지 프로필에서 보낸건지 구분하기 위함
+		*/
+		
 		if(to.getRoom() == 0) {	// room이 0이라면 최초전송
 			int exist_chat = sqlSession.selectOne("exist_chat", to);
 			

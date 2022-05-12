@@ -41,6 +41,14 @@ a:link, a:visited {
 	padding-top:40px;
 	margin-bottom:40px;
 }
+#Top_menu2{
+	width:100%;
+	height:123px;
+	border:2px solid rgba(189,189,189,0.5);
+	position: relative;
+	padding-top:40px;
+	margin-bottom:40px;
+}
 
 #Top_menu_select{
 	float:left;
@@ -48,7 +56,7 @@ a:link, a:visited {
 
 }
 
-#se{
+.se{
 	display:flex;
 	justify-content:center;
 	position:relative;
@@ -59,11 +67,16 @@ a:link, a:visited {
 	text-align:center;
 	font-size: 23pt;
 	cursor: pointer;
-	margin-left:35px;
+	margin-left:30px;
+	margin-right:20px;
 }
 .Top_menu_select_A>ul>li>a:hover,.Top_menu_select_A>ul>li>a:link,.Top_menu_select_A>ul>li>a:visited{
-	color:black;
+	color:white;
 	text-decoration: none;
+	font-weight : bold;
+	font-size:1.2em;
+	text-shadow: 2px 2px 2px black;
+	
 }
 
 .Top_menu_select_A{
@@ -71,21 +84,24 @@ a:link, a:visited {
 	display: inline-flex;
 	justify-content:center;
 	align-items: center;
-	margin-left:35px;
+	margin-left:-21px;
+	margin-right:24px;
+	padding-top:10px;
+	
 }
 
 .Top_menu_select_A>ul>li{
 	text-align: center;
-
 }
 
-#Top_menu_select_S{
+.Top_menu_select_S{
+	z-index:50;
 	position:absolute;
 	text-align:center;
 	left:0;
 	right:0;
-	background-color: rgba(255, 133, 0 , 0.7);
-	height:150px;
+	background-color: rgb(255, 133, 0);
+	height:200px;
 	display:none;
 }
 
@@ -127,6 +143,13 @@ a:link, a:visited {
 /* Top 끝*/
 /* Bottom*/
 .bottom{
+	width:100%;
+	height:150px;
+	border:2px solid rgba(189,189,189,0.5);
+	background-color: rgba(132,144,22,0.5);
+	position: relative;
+}
+.bottom2{
 	width:100%;
 	height:150px;
 	border:2px solid rgba(189,189,189,0.5);
