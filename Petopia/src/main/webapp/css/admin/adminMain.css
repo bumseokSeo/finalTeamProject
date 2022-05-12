@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+a{ 
+	text-decoration:none !important;
+}
+a:hover{ 
+	text-decoration:none !important;
+}
+.container{
+	height: auto;
+	overflow:hidden;
+}
+.tab_title{
+	float: left;
+	width: 19%; 
+}
+.tab_content{
+ 	float: right;
+	width: 79%;
+}
+
+.tab_title>li{
+	width: 200px;
+	min-width: 200px !important;
+	padding: 10px;
+	background: rgba(255, 121, 0, 0.6);
+}
+.tab_title>li>a{
+	color: rgba(255, 255, 255);  
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.tab_title>li:hover{ 
+	background: rgba(255, 146, 0, 1);
+	color: black !important;
+}
+.tab_title>li:hover a{
+	color: black !important;
+	font-size: 18px;
+}
