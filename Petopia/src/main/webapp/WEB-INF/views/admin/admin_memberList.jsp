@@ -9,7 +9,6 @@ function memberDelChk(userid){
 		location.href="/admin/memberDel?userid="+userid;
 	}
 }
-
 // 회원등급 변경
 function changeAdmin(userid){
 	if(confirm("회원("+userid+") 등급을 '관리자'로 변경하시겠습니까?")){
@@ -26,8 +25,6 @@ function changeStop(userid){
 		location.href="/admin/memberChangeStop?userid="+userid;
 	}
 }
-
-
 function sendMessage(username){
 	console.log(username);
 	$(".modal").show();
@@ -90,7 +87,6 @@ $(function(){
 				alert("로그인후 이용해주세요.");
 				return false;
 			}
-
 	    	
 		});
 	/*쪽지부분*/
