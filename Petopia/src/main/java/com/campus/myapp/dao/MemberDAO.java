@@ -30,7 +30,8 @@ public interface MemberDAO {
 	
 	//아이디 찾기
 	public String findId(MemberVO vo);
-		
+	public String findKakaoId(MemberVO vo);
+	
 	// 비밀번호 변경
 	public int updatePw(MemberVO vo) throws Exception;
 		
@@ -45,6 +46,7 @@ public interface MemberDAO {
 	
 	//홈으로 이동시 안읽은 메세지 체크
 	public int messagechk(String username);
+	
 	
 }
 

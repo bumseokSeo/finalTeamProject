@@ -102,6 +102,11 @@ public class MemberServiceImpl implements MemberService {
 		return dao.findId(vo);
 	}
 	
+	public String findKakaoId(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return dao.findKakaoId(vo);
+	}
+	
 	
 	
 	@Override
@@ -356,4 +361,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		return dao.messagechk(username);
 	}
+
+	
 }

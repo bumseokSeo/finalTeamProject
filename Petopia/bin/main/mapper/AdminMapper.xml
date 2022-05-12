@@ -7,13 +7,35 @@
 <mapper namespace="com.campus.myapp.dao.AdminDAO">
 
  	<select id="animalInfoList" resultType="com.campus.myapp.vo.AnimalInfoVO">
-		select category,breed,content,filename1,distinction,disease from animalinfo
-		<if	test='searchword != null'>
-			where breed like '%${searchword}%'
+		select category,breed from animalinfo
+		<if test='searchKey == "all" and searchWord == null'>
+		</if>
+		<if test='searchKey != "all" and searchWord == null'>
+			where category like '${searchKey}'
+		</if>
+		<if test='searchKey != "all" and searchWord != null'>
+			where category like '${searchKey}' and breed like '%${searchWord}%'
+		</if>
+		<if test='searchKey == "all" and searchWord != null'>
+			where breed like '%${searchWord}%'
 		</if>
 		 order by category
+		 limit ${onePageRecord} offset ${offsetIndex}
 	</select>
-	
+	<select id="animalInfoTotalRecord" resultType="int">
+		select count(breed) cnt from animalinfo
+		<if test='searchKey == "all" and searchWord == null'>
+		</if>
+		<if test='searchKey != "all" and searchWord == null'>
+			where category like '${searchKey}'
+		</if>
+		<if test='searchKey != "all" and searchWord != null'>
+			where category like '${searchKey}' and breed like '%${searchWord}%'
+		</if>
+		<if test='searchKey == "all" and searchWord != null'>
+			where breed like '%${searchWord}%'
+		</if>
+	</select>
 	<insert id="animalInfoInsert">
 		insert into animalinfo(category, breed, content, filename1, filename2, filename3, distinction, disease)
 		value(#{category}, #{breed}, #{content}, #{filename1}, #{filename2}, #{filename3}, #{distinction}, #{disease})
@@ -37,6 +59,36 @@
 		distinction=#{distinction}, disease=#{disease}
 		, filename1=#{filename1}, filename2=#{filename2}, filename3=#{filename3}
 		where breed=#{breed}
+	</update>
+	
+	
+	<select id="memberList" resultType="com.campus.myapp.vo.MemberVO">
+		select userid, username, useremail, userlevel, kakaoid from member
+		<if test='searchWord != null'>
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+		order by userlevel
+		limit ${onePageRecord} offset ${offsetIndex}
+	</select>
+	
+	<select id="memberTotalRecord" resultType="int">
+		select count(userid) cnt from member
+		<if test='searchWord != null'>
+			where ${searchKey} like '%${ searchWord}%'
+		</if>
+	</select>
+	
+	<delete id="memberDelete">
+		delete from member where userid=#{userid}
+	</delete>
+	<update id="memberChangeAdmin">
+		update member set userlevel='1' where userid=#{userid}
+	</update>
+	<update id="memberChangeNormal">
+		update member set userlevel='2' where userid=#{userid}
+	</update>
+	<update id="memberChangeStop">
+		update member set userlevel='3' where userid=#{userid}
 	</update>
 	
 </mapper>

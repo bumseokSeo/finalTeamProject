@@ -14,11 +14,10 @@
 			<br/>
 		</div>
 		<img alt="" src="${url}/img/check.png" id="check">
-		<div class="box">
-		
-			<span class="content">찾은 아이디는</span><br/>
-			<span class="content"><b>${tempUserId}</b> 입니다.</span><br/>
-		<div class="info">
+			<div class="box">
+				<span class="content">찾은 아이디는</span><br/>
+				<span class="content"><b>${tempUserId}</b> 입니다.</span><br/>
+			<div class="info">
 			개인정보 보호를 위해 아이디의 일부만 보여집니다.<br>
 			아이디 찾기에 어려움이 있다면 관리자에게 문의해주세요.
 		</div>
