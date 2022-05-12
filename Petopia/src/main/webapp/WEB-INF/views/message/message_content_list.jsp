@@ -16,11 +16,13 @@
 					</c:if>
 					
 				</a>
+				
 			</div>
 			<div class="received_msg">
 				<div class="received_withd_msg">
+					<span class="user_name">${tmp.send_nick}</span>
 					<p>${tmp.content }</p>
-					<span class="time_date"> ${tmp.send_time }</span>
+					<span class="time_date"> ${tmp.send_time}</span>
 				</div>
 			</div>
 		</div>
