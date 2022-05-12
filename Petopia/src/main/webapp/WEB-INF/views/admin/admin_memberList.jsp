@@ -27,7 +27,7 @@ function changeStop(userid){
 }
 
 
-/*쪽지부분*/	
+/*쪽지부분*/	 
 function sendMessage(username){
 	var msgInfo = document.querySelectorAll('.msgInfo');
 	msgInfo[0].innerHTML = "'"+username+"'님에게 메시지를 보냅니다.";
