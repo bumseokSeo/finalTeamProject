@@ -117,6 +117,12 @@ img{ max-width:100%;}
   width: 100%;
   
 }
+.user_name{
+  color: #747474;
+  display: block;
+  font-size: 12px;
+  margin: 5px 0 8px;
+}
 .time_date {
   color: #747474;
   display: block;

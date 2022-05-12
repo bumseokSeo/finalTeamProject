@@ -5,6 +5,9 @@
 <style>
 
 </style>
+<script type="text/javascript">
+
+</script>
 <div id="animalInfo_container" class="container">
 	<div id="animalInfo_wrap">
 		<div id="animalInfo_lnb">

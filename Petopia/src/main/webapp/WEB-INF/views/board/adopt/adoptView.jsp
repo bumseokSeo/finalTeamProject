@@ -253,7 +253,7 @@ $(function(){
 		<div class="modalBox">
 			<div class="modaltop">
 				<br>
-				<h4>설명부분</h4>
+				<h4>${vo.username}님에게 쪽지가 보내집니다.</h4>
 			</div>
 			<div class="modalbody">
 				<form method="get" id="messageForm" action="#">			

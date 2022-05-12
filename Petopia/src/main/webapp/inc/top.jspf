@@ -53,7 +53,43 @@
 		  $TopS.mouseleave(function(){
 			$(this).slideUp(300);
 		  });
+		 
+		  
+		  MessageReload();
 	});
+	
+	var MessageReload = function(){
+		$.ajax({
+			url:"/messageReload",
+			method:"get",
+			data:{
+				
+			},
+			success:function(result){
+				
+				var msg = "";
+				if(result>99){
+					msg += "<div class='unreadMessage'><a href='/message_list.do'>"
+					msg += "99+";
+					msg += "</a></div>";
+					
+					$('.unreadMessageDiv').html(msg);
+					
+				}
+				if(result<=99 && result>0){
+					msg += "<div class='unreadMessage'><a href='/message_list.do'>"
+					msg += result;
+					msg += "</a></div>";
+						
+					$('.unreadMessageDiv').html(msg);
+				}
+				
+			},
+			error: function(e){
+				console.log(e.responseText);
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -101,15 +137,8 @@
 			<div id="Login_box"><a href="/member/logout">로그아웃</a></div>
 			<div id="join_box"><a href="/member/memberEdit">회원정보수정</a></div>
 			<button onclick="location.href='/message_list.do';" class="btn btn-warning" id="GOmessagebtn"><i class="bi bi-chat-left"></i></button>
-			<c:if test="${logMessage != null && logMessage > 0}">
-				<c:if test="${logMessage <= 99 }">
-					<div class="unreadMessage"><a href="/message_list.do">${logMessage}</a></div>
-				</c:if>
-				
-				<c:if test="${logMessage > 99 }">
-					<div class="unreadMessage"><a href="/message_list.do">99+</a></div>
-				</c:if>
-			</c:if>
+			<div class="unreadMessageDiv"></div>
+			
 			
 		</c:if>
 	</div>

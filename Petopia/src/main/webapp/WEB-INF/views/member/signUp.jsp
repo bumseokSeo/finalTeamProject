@@ -458,7 +458,7 @@ $(document).ready(function(){
 			</c:if>
 			
 			<span class="menuName">닉네임</span><br/>
-			<input class="inputStyle" type='text' name='username' id='username' onkeyup="nameCheckInit()" placeholder='닉네임 입력'/>
+			<input class="inputStyle" type='text' name='username' id='username' onkeyup="nameCheckInit()" placeholder='닉네임 입력' maxlength="8"/>
 			<input type="button" class="checkBtn" onclick="nameCheck()" value="중복확인"><br/>
 			<input type="hidden" id="nameCheckResult" value="0"/>
 			<span class="msgError"></span><br/>
