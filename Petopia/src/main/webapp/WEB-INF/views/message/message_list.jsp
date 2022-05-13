@@ -131,8 +131,9 @@
 					let send_msg = "";
 					send_msg += "<form class='send_message_form'><div class='type_msg'>";
 					send_msg += "	<div class='input_msg_write row'>";
-					send_msg += "		<div class='col-11'>";
-					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력...' />";
+					send_msg += "		<div class='col-1'><button class='tel_send_btn' type='button'><i class='bi bi-telephone-plus' aria-hidden='true'></i></button></div>";
+					send_msg += "		<div class='col-10'>";
+					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력해주세요.' />";
 					send_msg += "		</div>";
 					send_msg += "		<div class='col-1'>";
 					send_msg += "			<button class='msg_send_btn' type='button'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></button>";
@@ -145,7 +146,7 @@
 					
 					// 메세지 전송버튼을 눌렀을 때
 					$('.msg_send_btn').on('click',function(){
-						
+						console.log("전송버튼 인식");
 						// 메세지 전송 함수 호출
 						SendMessage(room, other_nick);
 						
@@ -155,13 +156,27 @@
 					});
 					
 					$('.send_message_form').on('submit',function(){
-						
+						console.log("서브밋 발생");
 						// 메세지 전송 함수 호출
 						SendMessage(room, other_nick);
 						
 						// 전송버튼을 누르면 메세지 리스트가 리로드 되면서 현재 열린 메세지의 선택됨 표시가 사라진다.
 						
 						$('.chat_list_box:first').addClass('active_chat');
+					});
+					
+					//전화번호 보내기 버튼 눌렀을 때
+					$('.tel_send_btn').on('click',function(){
+						console.log("전화번호 보내기 인식");
+						if (window.confirm("상대방에게 자신의 전화번호를 보내겠습니까?")) {
+					        //전화번호 보내기
+							SendTel(room, other_nick);
+					          
+					        $('.chat_list_box:first').addClass('active_chat');
+					    }
+						
+						
+						
 					});
 
 					
@@ -203,8 +218,9 @@
 					let send_msg = "";
 					send_msg += "<form class='send_message_form'><div class='type_msg'>";
 					send_msg += "	<div class='input_msg_write row'>";
-					send_msg += "		<div class='col-11'>";
-					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력...' />";
+					send_msg += "		<div class='col-1'><button class='tel_send_btn' type='button'><i class='bi bi-telephone-plus' aria-hidden='true'></i></button></div>";
+					send_msg += "		<div class='col-10'>";
+					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력해주세요.' />";
 					send_msg += "		</div>";
 					send_msg += "		<div class='col-1'>";
 					send_msg += "			<button class='msg_send_btn' type='button'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></button>";
@@ -234,6 +250,19 @@
 						// 전송버튼을 누르면 메세지 리스트가 리로드 되면서 현재 열린 메세지의 선택됨 표시가 사라진다.
 						
 						$('.chat_list_box:first').addClass('active_chat');
+					});
+					//전화번호 보내기 버튼 눌렀을 때
+					$('.tel_send_btn').on('click',function(){
+						if (window.confirm("상대방에게 자신의 전화번호를 보내겠습니까?")) {
+							//전화번호 보내기
+							SendTel(room, other_nick);
+					          
+					          
+					        $('.chat_list_box:first').addClass('active_chat');
+					    }
+						
+						
+						
 					});
 					MessageContentList(room);
 					
@@ -282,6 +311,9 @@
 		let content = $('.write_msg').val();	
 		content = content.trim();
 		
+		console.log(room);
+		console.log(other_nick);
+		console.log(content);
 		if(content == ""){
 			alert("메세지를 입력하세요!");
 		}else{
@@ -291,7 +323,8 @@
 				data:{
 					room : room,
 					other_nick: other_nick,
-					content: content
+					content: content,
+					messagetype: "message"
 				},
 				success:function(data){
 					// 메세지 입력칸 비우기
@@ -309,6 +342,44 @@
 				}
 			});
 		}
+		
+	};
+	
+	//전화번호를 전송하는 메소드
+	const SendTel = function(room, other_nick){
+		
+		let content = "${logTel}";
+		
+		console.log(room);
+		console.log(other_nick);
+		console.log(content);
+		
+		$.ajax({
+			url:"tel_send_inlist.do",
+			method:"GET",
+			data:{
+				room : room,
+				other_nick: other_nick,
+				content: content,
+				messagetype: "tel"
+			},
+			success:function(data){
+				// 메세지 입력칸 비우기
+				$('.write_msg').val("");
+					
+				// 메세지 내용  리로드
+				MessageContentList(room);
+					
+				// 메세지 리스트 리로드
+				MessageList();
+					
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+		
+		
 		
 	};
 	

@@ -5,7 +5,7 @@
   
 <mapper namespace="com.campus.myapp.dao.MemberDAO">
 	<select id="loginCheck" resultType="com.campus.myapp.vo.MemberVO">
-		select userid, username, profileimage, userlevel, useremail from member
+		select userid, username, profileimage, userlevel, useremail, tel from member
 		where userid=#{userid} and userpwd=#{userpwd}
 	</select>
 	

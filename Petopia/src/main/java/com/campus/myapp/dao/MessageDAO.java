@@ -46,15 +46,13 @@ public class MessageDAO {
 
 	// room 별 메세지 내용을 가져온다.
 	public ArrayList<MessageVO> roomContentList(MessageVO to) {
-		
-		/*
+
+		// 메세지 내역을 가져온다
+		ArrayList<MessageVO> clist = (ArrayList) sqlSession.selectList("room_content_list", to);
 		System.out.println("room : " + to.getRoom());
 		System.out.println("recv_nick : " + to.getRecv_nick());
 		System.out.println("username : " + to.getUsername());
-		*/
-		// 메세지 내역을 가져온다
-		ArrayList<MessageVO> clist = (ArrayList) sqlSession.selectList("room_content_list", to);
-
+		
 		// 해당 방의 메세지들 중 받는 사람이 현재사용자의 nick인 메세지를 모두 읽음 처리한다
 		sqlSession.update("message_read_chk", to);
 
@@ -67,8 +65,9 @@ public class MessageDAO {
 		System.out.println("받는사람이름: "+to.getRecv_nick());
 		System.out.println("보낸이름: "+to.getSend_nick());
 		System.out.println("내용: "+to.getContent());
+		System.out.println("타입: "+to.getMessagetype());
+		System.out.println("방번호: "+to.getRoom());
 		*/
-		
 		if(to.getRoom() == 0) {	// room이 0이라면 최초전송
 			int exist_chat = sqlSession.selectOne("exist_chat", to);
 			

@@ -64,10 +64,10 @@
 <insert id="messageSendInlist" parameterType="com.campus.myapp.vo.MessageVO">
     <choose>
         <when test="room != 0">
-            insert into message(no,room,send_nick,recv_nick,send_time,read_time,content,read_chk) values(0, #{room}, #{send_nick}, #{recv_nick}, now(), now(), #{content}, 0);
+            insert into message(no,room,send_nick,recv_nick,send_time,read_time,content,read_chk,messagetype) values(0, #{room}, #{send_nick}, #{recv_nick}, now(), now(), #{content}, 0,#{messagetype});
         </when>
         <otherwise>
-            insert into message(no,room,send_nick,recv_nick,send_time,read_time,content,read_chk) values(0, #{room}, #{send_nick}, #{recv_nick}, now(), now(), #{content}, 0);
+            insert into message(no,room,send_nick,recv_nick,send_time,read_time,content,read_chk,messagetype) values(0, #{room}, #{send_nick}, #{recv_nick}, now(), now(), #{content}, 0,#{messagetype});
         </otherwise>
     </choose>
 </insert>
