@@ -12,9 +12,9 @@ public interface BoardService {
 	//글 한개 선택하기(글보기)
 	public BoardVO BoardSelect(int boardno);
 	//글 선택(리스트)
-	public List<BoardVO> BoardSelectList(BoardVO vo, String boardtype,PagingVO pVO);
-	//글 선택(리스트)2
-		public List<BoardVO> BoardSelectList(BoardVO vo, String boardtype, PagingVO2 pVO2);
+	public List<BoardVO> BoardSelectList(String boardtype, PagingVO pVO);
+	//검색
+	public List<BoardVO> boardSearch(String searchKey, String string, int start, int end, String boardtype);
 	//조회수 증가
 	public void hitCount(int boardno);
 	

@@ -74,6 +74,7 @@ $(document).ready(function(){
 		$("#MenuWalk_container").css('display','none');
 		$("#MenuBoast_container").css('display','none');
 		$("#MenuSuggest_container").css('display','block');
+		console.log(${type});
 	 });
 });
 </script>

@@ -19,7 +19,7 @@ public class AdoptController {
 	
 	@GetMapping("/board/adopt/adoptList")
 	public ModelAndView AdoptListView(PagingVO pvo, BoardVO bvo) {
-		mav.addObject("adoptList", service.BoardSelectList(bvo, "adopt",pvo));
+		//mav.addObject("adoptList", service.BoardSelectList(bvo, "adopt",pvo));
 		
 		pvo.setTotalRecord(service.BoardtotalRecord(pvo, "adopt"));
 		mav.addObject("pvo",pvo);
