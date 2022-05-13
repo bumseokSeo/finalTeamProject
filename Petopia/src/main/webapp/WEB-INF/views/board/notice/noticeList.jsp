@@ -18,7 +18,7 @@
 		</div>
 		 <div class="paging" style="width:100%; text-align: center; font-size: 35px;">
            <b id="prevView" > < </b>
-           <b id="pView" > 1 </b>
+           <b id="pView" ></b>
            <b id="nextView" > > </b>
             
         </div>
@@ -92,6 +92,7 @@ window.onload=function(){
 					$("#nextView").remove();
 				} 
 				$("#List_menu_F").append(addListHtml);
+				$("#pView").append(startNum);
 			}
 		});
 }
@@ -153,7 +154,7 @@ $('#nextView').click(function(){
 	});
 	
 $('#prevView').click(function(){
-	var startNum = $("#List_menu_F li").length/4 -1; // oldlist안에 li태그의 길이
+	var startNum = $("#pView")*19; // 시작지점
 	var addListHtml = "";
 	var addListHtmlpo = "";
 				addListHtmlpo += "<li>게시물 번호</li>";
@@ -201,6 +202,8 @@ $('#prevView').click(function(){
 			$("#List_menu_F").empty();
 			$("#List_menu_F").append(addListHtmlpo);
 			$("#List_menu_F").append(addListHtml);
+			$("#pView").empty();
+			$("#pView").append(startNum)
 			/* console.log(addListHtml); */
 		}
 	});
