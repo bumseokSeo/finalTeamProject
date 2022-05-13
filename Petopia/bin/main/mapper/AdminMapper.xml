@@ -91,4 +91,35 @@
 		update member set userlevel='3', stopend=date_add(now(), interval 1 week) where userid=#{userid}
 	</update>
 	
+	<select id="totalMemberCnt" resultType="int">
+		select count(userid) cnt from member
+	</select>
+	<select id="level1MemberCnt" resultType="int">
+		select count(userid) cnt from member where userlevel="1"
+	</select>
+	<select id="level2MemberCnt" resultType="int">
+		select count(userid) cnt from member where userlevel="2"
+	</select>
+	<select id="level3MemberCnt" resultType="int">
+		select count(userid) cnt from member where userlevel="3"
+	</select>
+	
+	<select id="totalAnimalInfoCnt" resultType="int">
+		select count(breed) cnt from animalinfo
+	</select>
+	<select id="dogInfoCnt" resultType="int">
+		select count(breed) cnt from animalinfo where category="강아지"
+	</select>
+	<select id="catInfoCnt" resultType="int">
+		select count(breed) cnt from animalinfo where category="고양이"
+	</select>
+	<select id="reptileInfoCnt" resultType="int">
+		select count(breed) cnt from animalinfo where category="파충류,양서류"
+	</select>
+	<select id="birdInfoCnt" resultType="int">
+		select count(breed) cnt from animalinfo where category="조류"
+	</select>
+	<select id="etcInfoCnt" resultType="int">
+		select count(breed) cnt from animalinfo where category="기타"
+	</select>
 </mapper>

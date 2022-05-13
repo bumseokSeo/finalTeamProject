@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.campus.myapp.dao.AdminDAO;
 import com.campus.myapp.vo.AdminPagingVO;
+import com.campus.myapp.vo.AdminVO;
 import com.campus.myapp.vo.AnimalInfoVO;
 import com.campus.myapp.vo.MemberVO;
 
@@ -79,6 +80,56 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int memberChangeStop(String userid) {
 		return dao.memberChangeStop(userid);
+	}
+
+	@Override
+	public int totalMemberCnt(AdminVO vo) {
+		return dao.totalMemberCnt(vo);
+	}
+
+	@Override
+	public int level1MemberCnt(AdminVO vo) {
+		return dao.level1MemberCnt(vo);
+	}
+
+	@Override
+	public int level2MemberCnt(AdminVO vo) {
+		return dao.level2MemberCnt(vo);
+	}
+
+	@Override
+	public int level3MemberCnt(AdminVO vo) {
+		return dao.level3MemberCnt(vo);
+	}
+
+	@Override
+	public int totalAnimalInfoCnt(AdminVO vo) {
+		return dao.totalAnimalInfoCnt(vo);
+	}
+
+	@Override
+	public int dogInfoCnt(AdminVO vo) {
+		return dao.dogInfoCnt(vo);
+	}
+
+	@Override
+	public int catInfoCnt(AdminVO vo) {
+		return dao.catInfoCnt(vo);
+	}
+
+	@Override
+	public int reptileInfoCnt(AdminVO vo) {
+		return dao.reptileInfoCnt(vo);
+	}
+
+	@Override
+	public int birdInfoCnt(AdminVO vo) {
+		return dao.birdInfoCnt(vo);
+	}
+
+	@Override
+	public int etcInfoCnt(AdminVO vo) {
+		return dao.etcInfoCnt(vo);
 	}
 
 	

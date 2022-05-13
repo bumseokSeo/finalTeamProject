@@ -88,6 +88,24 @@ function sendMessage(username){
 		});
 	/*쪽지부분*/
 }
+
+$(document).ready(function() {
+	$(".searchKey").change(function() {
+		var result = $(".searchKey option:selected").val();
+		
+		if(result == 'userlevel'){
+			$(".searchWordSelect").show();
+			$(".searchWordSelect").attr('name', 'searchWord');
+			$(".searchWord").hide();
+			$(".searchWord").removeAttr('name', 'searchWord');
+		}else{
+			$(".searchWordSelect").hide();
+			$(".searchWordSelect").removeAttr('name', 'searchWord');
+			$(".searchWord").show();
+			$(".searchWord").attr('name', 'searchWord');
+		}
+	});
+});
 </script>
 
 
@@ -104,6 +122,10 @@ function sendMessage(username){
 	</ul>
 	
 	<div class="tab_content" >
+		<div style="float:right;">
+			<a href="/admin/adminMain">관리자페이지</a> > <a href="/admin/admin_memberList">회원 관리</a>
+		</div><br/><br/>
+		
 		<h3>회원 관리</h3>
 		
 		<div style="margin-bottom: 80px;">
@@ -116,6 +138,11 @@ function sendMessage(username){
 						<option value="userlevel">등급</option>
 					</select>
 		        	<input class="searchWord" type="search" placeholder="검색하기" aria-label="Search" id="searchWord" name="searchWord">
+		        	<select style="display: none;" class="searchWordSelect">
+		        		<option value="1">관리자</option>
+		        		<option value="2">일반회원</option>
+		        		<option value="3">정지</option>		        		
+		        	</select>
 		        	<input type="submit" value="검색" class="searchBtn" id="searchBtn">
 		    	</form>
 			</div>
