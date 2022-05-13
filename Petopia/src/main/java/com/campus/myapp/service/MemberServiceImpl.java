@@ -362,5 +362,10 @@ public class MemberServiceImpl implements MemberService {
 		return dao.messagechk(username);
 	}
 
+	@Override
+	public int backtoNormal(String userid) {
+		return dao.backtoNormal(userid);
+	}
+
 	
 }

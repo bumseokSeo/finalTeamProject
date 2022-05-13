@@ -82,13 +82,13 @@
 		delete from member where userid=#{userid}
 	</delete>
 	<update id="memberChangeAdmin">
-		update member set userlevel='1' where userid=#{userid}
+		update member set userlevel='1', stopend=null  where userid=#{userid}
 	</update>
 	<update id="memberChangeNormal">
-		update member set userlevel='2' where userid=#{userid}
+		update member set userlevel='2', stopend=null  where userid=#{userid}
 	</update>
 	<update id="memberChangeStop">
-		update member set userlevel='3' where userid=#{userid}
+		update member set userlevel='3', stopend=date_add(now(), interval 1 week) where userid=#{userid}
 	</update>
 	
 </mapper>

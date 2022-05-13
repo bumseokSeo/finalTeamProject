@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.campus.myapp.service.AdminService;
 import com.campus.myapp.vo.AdminPagingVO;
 import com.campus.myapp.vo.AnimalInfoVO;
+import com.campus.myapp.vo.MemberVO;
 
 @RestController
 @RequestMapping("/admin/")
