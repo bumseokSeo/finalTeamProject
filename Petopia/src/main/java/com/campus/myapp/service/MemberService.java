@@ -45,4 +45,7 @@ public interface MemberService {
 	//홈으로 이동시 안읽은 메세지 체크
 	public int messagechk(String username);
 	
+	// 정지 해제
+	public int backtoNormal(String userid);
+	
 }

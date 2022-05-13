@@ -2,6 +2,9 @@ package com.campus.myapp.controller;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
@@ -57,10 +60,23 @@ public class MemberController {
 	@PostMapping("/loginOk")
 	public ModelAndView loginOk(MemberVO vo, HttpSession session) {
 		MemberVO vo2 = service.loginCheck(vo);
-
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date now = new Date();
+				
 		ModelAndView mav = new ModelAndView();
-		
-		if (vo2 != null) {// 로그인 성공
+		if (vo2 != null && vo2.getUserlevel() != 3) {// 로그인 성공
+			session.setAttribute("logId", vo2.getUserid());
+			session.setAttribute("logLevel", vo2.getUserlevel());
+			session.setAttribute("logName", vo2.getUsername());
+			session.setAttribute("logImg", vo2.getProfileimage());
+			session.setAttribute("logStatus", "Y");
+			mav.setViewName("redirect:/");// 홈으로 이동
+		} else if (vo2 != null && vo2.getUserlevel() == 3 
+				&& format.format(now).compareTo(vo2.getStopend()) <= 0){ // 정지기간
+			mav.setViewName("member/loginStop");
+		} else if (vo2 != null && vo2.getUserlevel() == 3 
+				&& format.format(now).compareTo(vo2.getStopend()) > 0) { // 정지기간 끝
+			service.backtoNormal(vo2.getUserid());
 			session.setAttribute("logId", vo2.getUserid());
 			session.setAttribute("logLevel", vo2.getUserlevel());
 			session.setAttribute("logName", vo2.getUsername());
@@ -68,7 +84,7 @@ public class MemberController {
 			session.setAttribute("logStatus", "Y");
 			mav.setViewName("redirect:/");// 홈으로 이동
 		} else {// 로그인 실패
-			mav.setViewName("redirect:login");
+			mav.setViewName("member/loginFail");
 		}
 		return mav;
 	}
@@ -317,6 +333,8 @@ public class MemberController {
 	@ResponseBody
 	public ModelAndView kakaoCallback(@RequestParam String code, HttpSession session, RedirectAttributes attr) {
 		ModelAndView mav = new ModelAndView();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date now = new Date();
 		
 		String access_Token = service.getAccessToken(code);
 	    HashMap<String, Object> userInfo = service.getUserInfo(access_Token);
@@ -331,7 +349,20 @@ public class MemberController {
 	    MemberVO kakaovo = service.memberByKakaoId((String) userInfo.get("k_id"));
 	    // System.out.println("kakaovo : " + kakaovo);
 	    
-	    if(kvo != null && kakaovo != null) {
+	    if(kvo != null && kakaovo != null && kakaovo.getUserlevel() != 3) { // 로그인 성공
+	    	session.setAttribute("logId", kvo.getUserid());
+			session.setAttribute("logLevel", kvo.getUserlevel());
+			session.setAttribute("logName", kvo.getUsername());
+			session.setAttribute("logImg", kvo.getProfileimage());
+			session.setAttribute("logStatus", "Y");
+			session.setAttribute("kakao", "Y");
+			mav.setViewName("redirect:/");// 홈으로 이동
+	    }else if(kvo != null && kakaovo != null && kakaovo.getUserlevel() == 3 
+	    		&& format.format(now).compareTo(kakaovo.getStopend()) <= 0) { // 정지기간
+	    	mav.setViewName("member/loginStop");
+	    }else if(kvo != null && kakaovo != null && kakaovo.getUserlevel() == 3 
+	    		&& format.format(now).compareTo(kakaovo.getStopend()) > 0) { // 정지기간 끝
+	    	service.backtoNormal(kakaovo.getUserid());
 	    	session.setAttribute("logId", kvo.getUserid());
 			session.setAttribute("logLevel", kvo.getUserlevel());
 			session.setAttribute("logName", kvo.getUsername());

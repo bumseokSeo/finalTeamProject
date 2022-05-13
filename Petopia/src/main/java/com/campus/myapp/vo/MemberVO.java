@@ -10,6 +10,7 @@ public class MemberVO {
     private int userlevel;
     private String tel;
     private String kakaoid;
+    private String stopend;
    
 
 	public String getUserid() {
@@ -59,6 +60,12 @@ public class MemberVO {
 	}
 	public void setKakaoid(String kakaoid) {
 		this.kakaoid = kakaoid;
+	}
+	public String getStopend() {
+		return stopend;
+	}
+	public void setStopend(String stopend) {
+		this.stopend = stopend;
 	}
     
     
