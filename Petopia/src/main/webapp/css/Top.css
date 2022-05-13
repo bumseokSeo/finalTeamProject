@@ -149,12 +149,53 @@ a:link, a:visited {
 	background-color: rgba(132,144,22,0.5);
 	position: relative;
 }
+.bottomlogo{
+	width:20%;
+	height:100%;
+	float: left;
+}
+.bottomimg{
+	width:100px;
+	margin-left: 50%;
+	margin-top: 17px;	
+}
+.bottominfo{
+	width:50%;
+	height:100%;
+	float: left;
+}
+.bottominfo>ul{
+	margin-top: 27px;
+}
+.bottometc{
+	width:30%;
+	height:100%;
+	float: left;
+}
+.bottometc>ul{
+	margin-top: 70px;
+	margin-left: 20%;
+}
+.bottometc>ul>li{
+	font-size: 0.8em;
+}
+
+
+
 .bottom2{
 	width:100%;
 	height:150px;
 	border:2px solid rgba(189,189,189,0.5);
 	background-color: rgba(132,144,22,0.5);
-	position: relative;
+	position: absolute;
+	bottom: 0px;
+	z-index:-10;
+}
+#bottomimg{
+	width:100px;
+	height:115px;
+	margin-left: 50%;
+	margin-top: 17px;
 }
 
 /* Bottom 끝*/

@@ -22,7 +22,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import com.campus.myapp.service.AdminService;
 import com.campus.myapp.vo.AdminPagingVO;
+import com.campus.myapp.vo.AdminVO;
 import com.campus.myapp.vo.AnimalInfoVO;
+import com.campus.myapp.vo.MemberVO;
 
 @RestController
 @RequestMapping("/admin/")
@@ -32,8 +34,34 @@ public class AdminController {
 	
 	// 관리자페이지 메인 이동
 	@GetMapping("/adminMain")
-	public ModelAndView adminMain() {
+	public ModelAndView adminMain(AdminVO vo) {
 		ModelAndView mav = new ModelAndView();
+		
+		vo.setTotalMemberCnt(service.totalMemberCnt(vo));
+		vo.setLevel1MemberCnt(service.level1MemberCnt(vo));
+		vo.setLevel2MemberCnt(service.level2MemberCnt(vo));
+		vo.setLevel3MemberCnt(service.level3MemberCnt(vo));
+		
+		vo.setTotalAnimalInfoCnt(service.totalAnimalInfoCnt(vo));
+		vo.setDogInfoCnt(service.dogInfoCnt(vo));
+		vo.setCatInfoCnt(service.catInfoCnt(vo));
+		vo.setReptileInfoCnt(service.reptileInfoCnt(vo));
+		vo.setBirdInfoCnt(service.birdInfoCnt(vo));
+		vo.setEtcInfoCnt(service.etcInfoCnt(vo));
+		
+		vo.setTotalBoardCnt(service.totalBoardCnt(vo));
+		vo.setInfoCnt(service.infoCnt(vo));
+		vo.setShareCnt(service.shareCnt(vo));
+		vo.setWalkCnt(service.walkCnt(vo));
+		vo.setBoastCnt(service.boastCnt(vo));
+		vo.setSuggestCnt(service.suggestCnt(vo));
+		
+		vo.setTotalNoticeCnt(service.totalNoticeCnt(vo));
+		
+		vo.setTotalAdoptCnt(service.totalAdoptCnt(vo));
+		
+		mav.addObject("vo", vo);
+		
 		mav.setViewName("admin/adminMain");
 		return mav;
 	}

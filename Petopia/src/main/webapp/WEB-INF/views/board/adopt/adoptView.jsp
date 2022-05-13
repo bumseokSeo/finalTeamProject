@@ -53,62 +53,106 @@ $(function(){
 	
 	/*쪽지부분*/
 	$(document).on('click','#chatBtn',function(){
-			$(".modal").show();
-		});
+		$(".modal").show();
+	});
 		
 		//.modal안에 button을 클릭하면 .modal닫기
-		$(".modal button").click(function(){
-			$(".modal").hide();
-		});
+	$(".modal button").click(function(){
+		$(".modal").hide();
+	});
 		
 		//.modal밖에 클릭시 닫힘
-		$(".modal").click(function (e) {
-		    if (e.target.className != "modal") {
-		      return false;
-		    } else {
-		      $(".modal").hide();
-		    }   
-	  	});
+	$(".modal").click(function (e) {
+		if (e.target.className != "modal") {
+			return false;
+		} else {
+		    $(".modal").hide();
+		}   
+	});
 		
-		$('#messagebtn').on('click',function(){
+	//쪽지보내기 전송버튼 처리
+	$('#messagebtn').on('click',function(){
+		    	
+		//메세지 내용 공백 검사
+		var content=document.getElementById("messagecontent");
+		if(content.value==""){
+			alert("메세지를 입력해주세요.");
+			content.focus();
+			return false;
+		}
+		var username = document.getElementById("username");//메세지 받는 계정
+				
+		var content = document.getElementById("messagecontent");//내용
+		var logName = "${logName}";
+		
+		if("${logName}"==""){
+			alert("로그인후 이용해주세요.");
+			return false;
+		}else{
+			//메세지 보내기 절차
+			var url= "${url}/message/messagesend";
+			var params = "username="+username.value+"&content="+messagecontent.value;
+			$.ajax({
+				url:url,
+				data:params,
+				success:function(result){
+					var $result = $(result);
+					alert("쪽지를 보냈습니다.");
+					$(".modal").hide();
+				},
+				error:function(e){
+					console.log(e.resopnseText);
+				}
+			});
+		}
+		
+	
+		    	
+	});
+	
+	
+	//쪽지보내기 서브밋 처리
+	$('#messageForm').on('submit',function(){
+		event.preventDefault();//기본이벤트 제거
+		
+		var content=document.getElementById("messagecontent");
+		if(content.value==""){
+			alert("메세지를 입력해주세요.");
+			content.focus();
+			return false;
+		}
+		var username = document.getElementById("username");//메세지 받는 계정
+				
+		var content = document.getElementById("messagecontent");//내용
+		var logName = "${logName}";
+				
+		//로그인 상태일 경우 메세지 보내기 진행
+		if("${logName}"==""){
+			alert("로그인후 이용해주세요.");
+			return false;
+		}else{
+			//메세지 보내기 절차
+			var url= "${url}/message/messagesend";
+			var params = "username="+username.value+"&content="+messagecontent.value;
+			$.ajax({
+				url:url,
+				data:params,
+				success:function(result){
+					var $result = $(result);
+					alert("쪽지를 보냈습니다.");
+					$(".modal").hide();
+				},
+				error:function(e){
+					console.log(e.resopnseText);
+				}
+			});
+		}
+		
+	
 	    	
-			//메세지 내용 공백 검사
-	    	var content=document.getElementById("messagecontent");
-			if(content.value==""){
-				alert("메세지를 입력해주세요.");
-				content.focus();
-				return false;
-			}
-			var username = document.getElementById("username");//메세지 받는 계정
-			
-			var content = document.getElementById("messagecontent");//내용
-			var logName = "${logName}";
-			
-			//로그인 상태일 경우 메세지 보내기 진행
-			if(logName!=null){
-				//메세지 보내기 절차
-				var url= "${url}/message/messagesend";
-				var params = "username="+username.value+"&content="+messagecontent.value;
-				$.ajax({
-					url:url,
-					data:params,
-					success:function(result){
-						var $result = $(result);
-						alert("쪽지를 보냈습니다.");
-						$(".modal").hide();
-					},
-					error:function(e){
-						console.log(e.resopnseText);
-					}
-				});
-			}
-			else{
-				alert("로그인후 이용해주세요.");
-				return false;
-			}
-
-	    	
-		});
+	});
+	
+	
 	/*쪽지부분*/
 	
 	
@@ -256,7 +300,7 @@ $(function(){
 				<h4>${vo.username}님에게 쪽지가 보내집니다.</h4>
 			</div>
 			<div class="modalbody">
-				<form method="get" id="messageForm" action="#">			
+				<form method="get" id="messageForm">			
 					<input type="text" name="messagecontent" id="messagecontent" maxlength="100" />					
 					<input type="hidden" name ="username" id="username" value="${vo.username}" maxlength="100" />
 					<input type="button" value="전송" id="messagebtn"/>				

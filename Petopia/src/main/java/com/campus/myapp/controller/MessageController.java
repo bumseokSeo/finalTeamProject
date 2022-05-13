@@ -77,14 +77,32 @@ public class MessageController {
 	@ResponseBody
 	@RequestMapping(value = "/message_send_inlist.do")
 	public int message_send_inlist(@RequestParam int room, @RequestParam String other_nick,
-			@RequestParam String content, HttpSession session) {
+		@RequestParam String content, @RequestParam String messagetype, HttpSession session) {
 
 		MessageVO to = new MessageVO();
 		to.setRoom(room);
 		to.setSend_nick((String) session.getAttribute("logName"));
 		to.setRecv_nick(other_nick);
 		to.setContent(content);
+		to.setMessagetype(messagetype);
+		
+		int flag = MessageDAO.messageSendInlist(to);
 
+		return flag;
+	}
+	
+	// 메세지 리스트에서 전화번호 보내기
+	@ResponseBody
+	@RequestMapping(value = "/tel_send_inlist.do")
+	public int tel_send_inlist(@RequestParam int room, @RequestParam String other_nick,
+		@RequestParam String content,@RequestParam String messagetype, HttpSession session) {
+
+		MessageVO to = new MessageVO();
+		to.setRoom(room);
+		to.setSend_nick((String) session.getAttribute("logName"));
+		to.setRecv_nick(other_nick);
+		to.setContent(content);
+		to.setMessagetype(messagetype);
 		int flag = MessageDAO.messageSendInlist(to);
 
 		return flag;
@@ -102,7 +120,7 @@ public class MessageController {
 		to.setSend_nick((String) session.getAttribute("logName"));
 		to.setRecv_nick(username);
 		to.setContent(content);
-
+		to.setMessagetype("message");
 		int flag = MessageDAO.messageSendInlist(to);
 
 		return flag;

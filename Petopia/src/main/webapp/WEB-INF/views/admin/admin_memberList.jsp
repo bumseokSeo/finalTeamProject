@@ -25,16 +25,18 @@ function changeStop(userid){
 		location.href="/admin/memberChangeStop?userid="+userid;
 	}
 }
+
+
+/*쪽지부분*/	 
 function sendMessage(username){
-	console.log(username);
+	if(username == "${logName}"){
+		alert("본인에게는 메시지를 보낼 수 없습니다.");
+		return false;
+	}
+	var msgInfo = document.querySelectorAll('.msgInfo');
+	msgInfo[0].innerHTML = "'"+username+"'님에게 메시지를 보냅니다.";
 	$(".modal").show();
-}
-$(function(){
-	/*쪽지부분*/	
-		$(document).on('click','#chatBtn',function(name){
-			console.log("${vo.username}")
-			$(".modal").show();
-		});
+	var Name = username;
 	
 		//.modal안에 button을 클릭하면 .modal닫기
 		$(".modal button").click(function(){
@@ -51,7 +53,7 @@ $(function(){
 	  	});
 		
 		$('#messagebtn').on('click',function(){
-	    	console.log("aaa : " + username);
+	    	console.log(Name);
 			//메세지 내용 공백 검사
 	    	var content=document.getElementById("messagecontent");
 			if(content.value==""){
@@ -67,9 +69,8 @@ $(function(){
 			//로그인 상태일 경우 메세지 보내기 진행
 			if(logName!=null){
 				//메세지 보내기 절차
-				console.log("send : " + username);
 				var url= "${url}/message/messagesend";
-				var params = "username="+username.value+"&content="+messagecontent.value;
+				var params = "username="+Name+"&content="+messagecontent.value;
 				$.ajax({
 					url:url,
 					data:params,
@@ -90,6 +91,24 @@ $(function(){
 	    	
 		});
 	/*쪽지부분*/
+}
+
+$(document).ready(function() {
+	$(".searchKey").change(function() {
+		var result = $(".searchKey option:selected").val();
+		
+		if(result == 'userlevel'){
+			$(".searchWordSelect").show();
+			$(".searchWordSelect").attr('name', 'searchWord');
+			$(".searchWord").hide();
+			$(".searchWord").removeAttr('name', 'searchWord');
+		}else{
+			$(".searchWordSelect").hide();
+			$(".searchWordSelect").removeAttr('name', 'searchWord');
+			$(".searchWord").show();
+			$(".searchWord").attr('name', 'searchWord');
+		}
+	});
 });
 </script>
 
@@ -98,15 +117,16 @@ $(function(){
 	<ul class="tab_title">
 		<li><a href="#">공지사항 관리</a></li>
 		<li><a href="/admin/admin_memberList">회원 관리</a></li>
-		<li><a href="#">정보공유 게시판 관리</a></li>
-		<li><a href="#">나눔 게시판 관리</a></li>
-		<li><a href="#">자랑 게시판 관리</a></li>
+		<li><a href="#">게시판 관리</a></li>
 		<li><a href="#">입양 게시판 관리</a></li>
-		<li><a href="#">산책 게시판 관리</a></li>
 		<li><a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보 관리</a></li>
 	</ul>
 	
 	<div class="tab_content" >
+		<div style="float:right;">
+			<a href="/admin/adminMain">관리자페이지</a> > <a href="/admin/admin_memberList">회원 관리</a>
+		</div><br/><br/>
+		
 		<h3>회원 관리</h3>
 		
 		<div style="margin-bottom: 80px;">
@@ -119,6 +139,11 @@ $(function(){
 						<option value="userlevel">등급</option>
 					</select>
 		        	<input class="searchWord" type="search" placeholder="검색하기" aria-label="Search" id="searchWord" name="searchWord">
+		        	<select style="display: none;" class="searchWordSelect">
+		        		<option value="1">관리자</option>
+		        		<option value="2">일반회원</option>
+		        		<option value="3">정지</option>		        		
+		        	</select>
 		        	<input type="submit" value="검색" class="searchBtn" id="searchBtn">
 		    	</form>
 			</div>
@@ -172,7 +197,6 @@ $(function(){
 					정지</a>
 				</li>
 				<li>
-					<input type="button" id="chatBtn" value="쪽지보내기"/>
 					<a class="chatBtn" href="javascript:sendMessage('${vo.username}')">쪽지보내기</a>
 					<a class="delBtn" href="javascript:memberDelChk('${vo.userid}')">탈퇴</a>
 					
@@ -221,12 +245,11 @@ $(function(){
 	<div class="modalBox">
 		<div class="modaltop">
 			<br>
-			<h4>설명부분</h4>
+			<h4><span class="msgInfo"></span></h4>
 		</div>
 		<div class="modalbody">
 			<form method="get" id="messageForm" action="#">			
-				<input type="text" name="messagecontent" id="messagecontent" maxlength="100" />					
-				<input type="hidden" name ="username" id="username" value="${vo.username}" maxlength="100" />
+				<input type="text" name="messagecontent" id="messagecontent" maxlength="100" />
 				<input type="button" value="전송" id="messagebtn"/>
 			</form>
 		</div>

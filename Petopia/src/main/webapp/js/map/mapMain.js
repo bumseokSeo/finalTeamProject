@@ -7,43 +7,79 @@ var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
 var mapContainer = document.getElementById("map"),
 	mapOptions = {
 	center: new kakao.maps.LatLng(37.566826, 126.9786567), //지도 중심 좌표
-	level: 7 //지도확대레벨
+	level: 3 //지도확대레벨
 }
 // 지도 생성
 var map = new kakao.maps.Map(mapContainer, mapOptions);
 
+var lat = 37.566826;
+var lng = 126.9786567;
+var m = 1000;
+var locPosition;
 //현재 나의 위치로 이동
-var lat;
-var lon;
-if(navigator.geolocation){
-	navigator.geolocation.getCurrentPosition(function(position){
-		lat = position.coords.latitude; //위도
-		lon = position.coords.longitude; //경도
-		
-		var locPosition = new kakao.maps.LatLng(lat,lon);
-		
-		map.setCenter(locPosition);
-	});
-} else{
-	var locPosition = new kakao.maps.LatLng(37.566826, 126.9786567);
+function locationLoadSuccess(position){
+	lat = position.coords.latitude; //위도
+	lon = position.coords.longitude; //경도
+
+	locPosition = new kakao.maps.LatLng(lat, lon);
+
 	map.setCenter(locPosition);
-}
+	map.setLevel(4);
+	ps.keywordSearch('동물병원', placesSearchOk, {
+    	location: new kakao.maps.LatLng(lat, lon)
+	});
+};
+function locationLoadError(pos){
+    alert('위치 정보를 가져오는데 실패했습니다.');
+    locPosition = new kakao.maps.LatLng(37.566826, 126.9786567);
+	map.setCenter(locPosition);
+};
+// 위치 가져오기 버튼 클릭시
+function getCurrentPosBtn(){
+    navigator.geolocation.getCurrentPosition(locationLoadSuccess,locationLoadError);
+};
 
 //장소 검색 객체를 생성
 var ps = new kakao.maps.services.Places();
-
+ps.keywordSearch('동물병원', placesSearchOk, {
+    location: new kakao.maps.LatLng(37.566826, 126.9786567),
+    level: 3
+});
+var searchOption = {
+        location: locPosition,
+        radius: 1000,
+        size: 5
+    };
 //커스텀 오버레이의 컨텐츠 노드에 css class를 추가
 contentNode.className = 'placeinfo_wrap';
 
-/*
-//지도에 idle 이벤트를 등록
-kakao.maps.event.addListener(map, 'idle', searchPlaces);
-*/
 //지도 객체에 이벤트 전달되는거 막기
 addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
 addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
 //커스텀 오버레이 컨텐츠 설정하기
 placeOverlay.setContent(contentNode);
+let boundsChange = [];
+
+
+/*
+kakao.maps.event.addListener(map, 'idle', searchPlaces);
+//idle이벤트로 지도 드래그해서 범위 바꿀 때 마다 마커 새로 고침
+kakao.maps.event.addListener(map, 'idle', function() {
+	var level = map.getLevel();
+	var latlng = map.getCenter();
+	
+	if(level>3){
+		m = 5000;
+	} else if(level == 3){
+		m = 2500;
+	} else if(level == 2){
+		m = 1000;
+	} else if(level == 1){
+		m = 500;
+	}
+});
+*/
+
 //엘리먼트에 이벤트 핸들러를 등록하는 함수
 function addEventHandle(target, type, callback){
 	if(target.addEventListener){
@@ -60,12 +96,11 @@ function searchPlaces(){
 		alert("지역을 입력해주세요.");
 		return false;
 	}
-	//커스텀 오버레이 숨기기
-	//placeOverlay.setMap(null);
-	//removeMarker();
 	// 장소검색 객체를 통해 키워드로 장소검색을 요청
-	ps.keywordSearch(keyword, placesSearchOk);
+	ps.keywordSearch(keyword+' 동물병원', placesSearchOk);
+	$("#keyword").val('');
 }
+
 // 장소 검색이 완료됐을 때 호출되는 함수
 function placesSearchOk(data, status){
 	if(status === kakao.maps.services.Status.OK){
@@ -79,17 +114,47 @@ function placesSearchOk(data, status){
 		return;
 	}
 }
+
+function addPlace(places){
+	//id, 
+	arr=[]
+	for(var i=0; i<places.length; i++){
+		var p = places[i];
+		var a={
+			'shopid':p.id,
+			'shopname':p.place_name,
+			'shopaddr':p.road_address_name,
+			'shopnumber':p.phone
+			}
+		arr.push(a);  
+	}
+	var obj ={
+		places:arr
+	}
+	var str=JSON.stringify(obj);
+	//alert(str)
+	$.ajax({
+		type:"POST",
+		url:"/map/insertshop",
+		contentType:"application/json",
+		data:str,
+		success:function(res){
+			//alert(res);
+		}
+	})
+}
 //검색 결과 목록과 마커를 표출하는 함수
 function displayPlaces(places){
 	var listEl = document.getElementById('placesList'),
 		menuEl = document.getElementById('menu_wrap'),
 		fragment = document.createDocumentFragment(),
-		bounds = new kakao.maps.LatLngBounds();
-	
+		bounds = new kakao.maps.LatLngBounds(),
+		listStr = "";
 	//검색 결과 목록에 추가된 항목들을 제거
 	removeAllChildNods(listEl);
 	// 지도에 표시되고 있는 마커 제거
 	removeMarker();
+	addPlace(places);
 	for(var i=0; i<places.length; i++){
 		//마커 생성하고 지도에 표시
 		var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
@@ -99,22 +164,6 @@ function displayPlaces(places){
 		//LatLngBounds객체에 좌표 추가
 		bounds.extend(placePosition);
 		
-		//마커와 검색 결과 항목에 mouseover 했을 때
-		//해당 장소에 인포윈도우에 장소명을 표시.
-		//mouseout했을 때 인포윈도우를 닫음
-		/*(function(marker, title){
-			kakao.maps.event.addListener(marker, 'mouseover', function(){
-				displayInfowindow(marker, title);
-			});
-			
-			kakao.maps.event.addListener(marker, 'mouseout', function(){
-				infoWindow.close();
-			});
-		
-			itemEl.onmouseout = function(){
-				infoWindow.close();
-			};
-		})(marker, places[i].place_name);*/
 		//마커 클릭시, 커스텀 오버레이창 띄우기
 		(function(marker, place){
 			kakao.maps.event.addListener(marker, 'click', function(){
@@ -133,14 +182,10 @@ function displayPlaces(places){
 
 //마커를 생성하고 지도 위에 마커를 표시하는 함수
 function addMarker(position, idx){
-	var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png'; //마커 이미지 url, 스프라이트 이미지사용
-	var imageSize = new kakao.maps.Size(36,37); //마커 이미지 크기
-	var imgOptions = {
-			spriteSize : new kakao.maps.Size(36, 691), //스프라이트 이미지의 크기
-			spriteOrigin: new kakao.maps.Point(0,(idx*46)+10), //스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-			offset: new kakao.maps.Point(13,37) //마커 좌표에 일치시킬 이미지 내에서의 좌표
-		},	
-		markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions),
+	var imageSrc = '/img/map/veterinarian-3.png'; //마커 이미지 url, 스프라이트 이미지사용
+	var imageSize = new kakao.maps.Size(64, 64), // 마커이미지의 크기입니다
+    	imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 			marker = new kakao.maps.Marker({
 				position:position, //마커위치
 				image:markerImage
@@ -161,21 +206,27 @@ function removeMarker(){
 function getListItem(index, places){
 	var el = document.createElement('li');
 	var itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
-					'<div class="info">' + 
-					'	<h5>' + places.place_name + '</h5>';
+					'<div class="info" onclick="openInfo()">' + 
+					'	<h5 name="shopid">'+ places.place_name + '</h5><span style="display:none" name="shopid">'+places.id+'</span>';
 					
 	if(places.road_address_name){
-		itemStr += '	<span>' + places.road_address_name + '</span>' + 
-					'	<span class="jibun gray">' + places.address_name + '</span';		
+		itemStr += '	<span name="shopaddr">' + places.road_address_name + '</span>' + 
+					'	<span class="jibun gray"">' + places.address_name + '</span';		
 	} else{
 		itemStr += '	<span>' + places.address_name + '</span>';
 	}
-	itemStr += '	<span class="tel">' + places.phone + '</span>' +
+	itemStr += '	<span class="tel" name="shopnumber">' + places.phone + '</span>' +
 				'</div>';
 	el.innerHTML = itemStr;
 	el.className = 'item';
 	
 	return el;
+}
+function openInfo(){
+	$("#menu_wrap_2").toggle(
+		function(){$("#menu_wrap_2").addClass('show')}, //클릭하면 show클래스 적용되서 보이기
+        function(){$("#menu_wrap_2").addClass('hide')} //한 번 더 클릭하면 hide클래스가 숨기기
+	)
 }
 //클릭한 마커에 대한 장소 정보를 커스텀 오버레이로 표시하는 함수
 function displayPlaceInfo(place){
@@ -189,7 +240,7 @@ function displayPlaceInfo(place){
 		content += '	<span title="'+place.address_name+'">'+place.address_name+'</span>';
 	}
 	content += '	<span class="tel">'+place.phone+'</span>' + 
-				'	<span class="map_review"><input type="text" name="shopreview" id="rev">'+
+				'	<span class="map_review"><textarea name="shopreview" id="rev"></textarea>'+
 				'<input type="button" class="rev_btn" value="글쓰기"></span>'+
 				'</div>'+
 				'<div class="after"></div>';
@@ -220,5 +271,4 @@ function displayInfowindow(marker, title){
 	infoWindow.setContent(content);
 	infoWindow.open(map, marker);
 }
-
  */

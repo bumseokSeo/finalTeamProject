@@ -14,15 +14,15 @@ function breedDelChk(breed){
 	<ul class="tab_title">
 		<li><a href="#">공지사항 관리</a></li>
 		<li><a href="/admin/admin_memberList">회원 관리</a></li>
-		<li><a href="#">정보공유 게시판 관리</a></li>
-		<li><a href="#">나눔 게시판 관리</a></li>
-		<li><a href="#">자랑 게시판 관리</a></li>
+		<li><a href="#">게시판 관리</a></li>
 		<li><a href="#">입양 게시판 관리</a></li>
-		<li><a href="#">산책 게시판 관리</a></li>
 		<li><a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보 관리</a></li>
 	</ul>
 	
 	<div class="tab_content">
+		<div style="float:right;">
+			<a href="/admin/adminMain">관리자페이지</a> > <a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보 관리</a>
+		</div><br/><br/>
 		<h3>반려동물 정보 관리</h3>
 		<div style="margin-bottom: 80px;">
 			<div class="writeBtn">

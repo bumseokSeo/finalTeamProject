@@ -32,7 +32,7 @@
 
 <!-- 메세지 내용 가져오기 -->
 <select id="room_content_list" parameterType="com.campus.myapp.vo.MessageVO" resultType="com.campus.myapp.vo.MessageVO">
-    select m.no, m.room, m.send_nick, m.recv_nick, date_format(m.send_time, '%Y-%m-%d %H:%i') send_time, m.read_time, m.content, m.read_chk, u.profileimage profile
+    select m.no, m.room, m.send_nick, m.recv_nick, date_format(m.send_time, '%Y-%m-%d %H:%i') send_time, m.read_time, m.content, m.read_chk, u.profileimage profile, m.messagetype 
     from message m left outer join member u
     on m.send_nick = u.username
     <choose>
@@ -64,10 +64,10 @@
 <insert id="messageSendInlist" parameterType="com.campus.myapp.vo.MessageVO">
     <choose>
         <when test="room != 0">
-            insert into message(no,room,send_nick,recv_nick,send_time,read_time,content,read_chk) values(0, #{room}, #{send_nick}, #{recv_nick}, now(), now(), #{content}, 0);
+            insert into message(no,room,send_nick,recv_nick,send_time,read_time,content,read_chk,messagetype) values(0, #{room}, #{send_nick}, #{recv_nick}, now(), now(), #{content}, 0,#{messagetype});
         </when>
         <otherwise>
-            insert into message(no,room,send_nick,recv_nick,send_time,read_time,content,read_chk) values(0, #{room}, #{send_nick}, #{recv_nick}, now(), now(), #{content}, 0);
+            insert into message(no,room,send_nick,recv_nick,send_time,read_time,content,read_chk,messagetype) values(0, #{room}, #{send_nick}, #{recv_nick}, now(), now(), #{content}, 0,#{messagetype});
         </otherwise>
     </choose>
 </insert>

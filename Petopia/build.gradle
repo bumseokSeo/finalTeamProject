@@ -52,7 +52,7 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.apache.commons/commons-email
 	implementation 'org.apache.commons:commons-email:1.2'
 	
-	
+	implementation 'org.json:json:20211205'
 }
 
 tasks.named('test') {
