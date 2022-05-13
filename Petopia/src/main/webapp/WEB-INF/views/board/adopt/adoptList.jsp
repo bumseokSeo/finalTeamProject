@@ -1,72 +1,99 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/css/board/share/shareList.css" type="text/css"/>
-
+<link rel="stylesheet" href="/css/board/notice/noticeList.css" type="text/css"/>
 <div class="container">
-	<h1 class="Share_logo">입양게시판</h1>
-	<div>총 페이지 수: ${pvo.totalPage }</div>
-	<div>총 게시글 수: ${pvo.totalRecord }</div>
-	<div class="row Share_top">
-		<c:forEach var="listVo" items="${adoptList}">
-		<div class="col-sm-3 Share">
-			<div class="card Share_group">
-				<a href="/board/notice/noticeView?boardno=${listVo.boardno}"><img src="/img/Logo(main).png"></a>
-				<div class="card-body">
-					<div class="card-title Share_title">${listVo.title }</div>
-					<div class="card-text Share_content">
-						<label class="Share_text">${listVo.userid }</label> 
-						<label class="Share_text">${listVo.writedate }</label>
-					</div>
-				</div>
-			</div>
-		</div>
-		</c:forEach>
+	<div class="Menu_Bar_A">
+		<h1 class="Menu_title">공지 사항</h1>
+		<div class="Menu_img">이미지 들어갈것</div>
 	</div>
-	<div class="Share_btn"><a href="/board/adopt/adoptWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
+	<div class="Menu_container">
+		<ul class="List_menu_F" id="List_menu_F">
+			<li>게시물 번호</li>
+			<li>제목</li>
+			<li>날짜</li>
+			<li>조회수</li>
+
+		</ul><!-- 게시물 -->
+		</div>
+		 <div class="paging" style="width:100%; text-align: center; font-size: 35px;">
+           <b id="prevView" > < </b>
+           <b id="pView" ></b>
+           <b id="nextView" > > </b>
+            
+        </div>
+    
+       <div class="Share_btn"><a href="/board/notice/noticeWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 	<br/><br/><br/>
 	<div class="Share_search">
-		<select name="searchWord">
-			<option value="" selected="selected">전체</option>
-			<option value="title">제목</option>
-			<option value="userid">글쓴이</option>
-		</select>
-		<input type="text" id="share_search"/>
-		<input type="button" value="검색"/>
+		 <form action="/board/notice/noticeSearch" id="searchFrm">
+			<select name="searchKey">
+				<option value="" selected="selected">전체</option>
+				<option value="title">제목</option>
+				<option value="userid">글쓴이</option>
+				<option value="content">내용</option>
+			</select>
+			<input type="text" name="searchWord" id="searchWord"/>
+			<input type="submit" value="검색"/>
+		</form>
 	</div>
-	<br/><br/>
-	<!-- 페이징 -->
-	<div class="Share_paging">
-		<ul>
-			<c:if test="${pvo.currentPage==1}">
-				<li class="page-item" style="display:none"><i class="fa fa-angle-left"></i></li>
-			</c:if>
-			<c:if test="${pvo.currentPage>1}">
-				<li class="page=item"><a href="${url }/board/share/shareList?currentPage=${pvo.currentPage-1 }"><i class="fa fa-angle-left"></i></a>
-			</c:if>
-			<!-- 페이지번호 -->
-			<c:forEach var="p" begin="${pvo.startPage }" end="${pvo.totalPage }">
-				<c:if test="${p<=pvo.totalPage}">
-					<c:choose>
-						<c:when test="${p==pvo.currentPage}">
-							<li class="page-item disabled"><a>${p}</a></li>
-						</c:when>
-						<c:when test="${p!=pvo.currentPage}">
-							<li class="page-item"><a href="${url }/board/share/shareList?currentPage=${p}">${p }</a></li>
-						</c:when>
-					</c:choose>
-				</c:if>
-			</c:forEach>	
-			<!-- 다음페이지 -->
-			<c:if test="${pvo.currentPage==pvo.totalPage }">
-				<li class="page-item" style="display:none"><i class="fa fa-angle-right"></i></li>
-			</c:if>
-			<c:if test="${pvo.currentPage<pvo.totalPage }">
-				<li><a href="${url }/board/share/shareList?currentPage=${pvo.currentPage+1}"><i class="fa fa-angle-right"></i></a>
-			</c:if>
-			
-		</ul>
-	</div>
+	
 </div>
 <br/>
->>>>>>> refs/heads/CHK
+
+<script>
+$("#searchFrm").submit(function() {
+   if ($("#searchWord").val() == "") {
+      alert("검색어를 입력하세요");
+      return false;
+   }
+   
+});
+	
+window.onload=function(){
+		var startNum = 1; // oldlist안에 li태그의 길이
+		var addListHtml = "";
+		 console.log(startNum); 
+		var url;
+		var param;
+		const params = new URL(window.location.href).searchParams;
+		var key = params.get('searchKey');
+		var word = params.get('searchWord');
+		var pathname = window.location.pathname;
+		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
+		console.log(pn);
+		if(pn="adoptList"){
+			url = '/board/adopt/adoptLists';
+			param = {
+				"startNum" : startNum 
+			};
+		}else if(pn='adoptSearch'){
+			url = '/board/adopt/searchLists';
+			param = {
+				"startNum" : startNum ,
+				"searchKey" : key,
+				"searchWord" : word
+			};
+			console.log(startNum);
+		}
+		$.ajax({
+			url : url,
+			type : 'POST',
+			dataType : 'json',
+			data :param,
+			success : function(data){
+				for (var i = 0; i < data.length; i++) {
+					addListHtml += "<li>"+data[i].boardno+"</li>";
+					addListHtml += "<li><a href='/board/notice/noticeView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+					addListHtml += "<li>"+data[i].writedate+"</li>";
+					addListHtml += "<li>"+data[i].hit+"</li>";
+				}
+				if(data.length<19){
+					$("#nextView").remove();
+				} 
+				$("#List_menu_F").append(addListHtml);
+				$("#pView").append(startNum);
+			}
+		});
+};
+</script>
