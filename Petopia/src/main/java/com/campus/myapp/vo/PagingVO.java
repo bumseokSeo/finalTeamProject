@@ -11,6 +11,23 @@ public class PagingVO {
 	private int offsetIndex = 0;	//몇번째 행부터 12개씩 가져올 것인지 구간정하기
 	
 	
+	private int start;
+	private int end;
+	
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
+	}
+	
+	
 	public int getCurrentPage() {
 		return currentPage;
 	}

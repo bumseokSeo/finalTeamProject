@@ -27,12 +27,13 @@ public class BoardServiceImp implements BoardService{
 	}
 	
 	@Override
-	public List<BoardVO> BoardSelectList(BoardVO vo, String boardtype,PagingVO pVO){
-		return dao.BoardSelectList(vo, boardtype, pVO);
+	public List<BoardVO> BoardSelectList(String boardtype, PagingVO pVO){
+		return dao.BoardSelectList(boardtype, pVO);
 	}
+	
 	@Override
-	public List<BoardVO> BoardSelectList(BoardVO vo, String boardtype, PagingVO2 pVO2){
-		return dao.BoardSelectList(vo, boardtype, pVO2);
+	public List<BoardVO> boardSearch(String searchKey, String string, int start, int end, String boardtype){
+		return dao.boardSearch(searchKey, string, start, end, boardtype);
 	}
 	
 	@Override

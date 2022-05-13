@@ -14,8 +14,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,31 +42,50 @@ public class NoticeController {
 		ModelAndView mav = new ModelAndView();
 		System.out.println("게시판 컨트롤러 ");
 		
-		
-		//게시판 목록
-		mav.addObject("noticeList", service.BoardSelectList(bvo, "notice",pVO2)); //공지사항
-		mav.addObject("shareList", service.BoardSelectList(bvo, "share",pVO)); //나눔게시판
-		mav.addObject("boastList", service.BoardSelectList(bvo, "boast",pVO)); //자랑게시판
-		mav.addObject("suggestList", service.BoardSelectList(bvo, "suggest",pVO)); // 건의게시판
-		mav.addObject("walkList", service.BoardSelectList(bvo, "walk",pVO2)); // 산책게시판
-		mav.addObject("infoList", service.BoardSelectList(bvo, "info",pVO2)); // 정보게시판
-		
+		//게시판 타입
 		mav.addObject("type", type);
-		
 
-		pVO.setTotalRecord(service.BoardtotalRecord(pVO, type));
-		pVO2.setTotalRecord(service.BoardtotalRecord(pVO, type));
-		mav.addObject("pvo",pVO);
-		mav.addObject("pVO2",pVO2);
-		
 		mav.setViewName("board/SubMenuSelect");
 		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/board/notice/noticeLists")
+	public List<BoardVO> NoticePaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
+		System.out.println("공지 페이징 작동");
+		
+		pvo.setStart(Integer.parseInt(startNum));
+		pvo.setEnd(19);
+		return service.BoardSelectList("notice", pvo);
+	}
+	
+	// 검색 기능
+	@GetMapping("/board/notice/noticeSearch")
+	public ModelAndView search(String searchKey, String searchWord, String type) {
+		System.out.println("검색시작");
+		ModelAndView mav = new ModelAndView();
+		//게시판 타입
+		mav.addObject("type", type);
+		mav.setViewName("/board/SubMenuSelect");
+		return mav;
+	}
+		
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/board/notice/searchLists")
+	public List<BoardVO> searchMoreView(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
+		System.out.println("searchMoreView START!!!");
+		int start = Integer.parseInt(startNum);
+		int end = 19;
+		System.out.println("searchKey -> " + searchKey);
+		System.out.println("searchWord -> " + searchWord);
+		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "notice");
 	}
 	
 	//글쓰기 폼 이동
 	@GetMapping("/board/notice/noticeWrite")
 	public String noticeWrite() {
 		return "/board/notice/noticeWrite";
+		
 	}
 	
 	//글 쓰기(공통)

@@ -5,7 +5,8 @@
   
 <mapper namespace="com.campus.myapp.dao.MemberDAO">
 	<select id="loginCheck" resultType="com.campus.myapp.vo.MemberVO">
-		select userid, username, profileimage, userlevel, useremail from member
+		select userid, username, profileimage, userlevel, useremail, tel, stopend from member
+
 		where userid=#{userid} and userpwd=#{userpwd}
 	</select>
 	
@@ -15,7 +16,7 @@
 	</select>
 	
 	<select id="memberByKakaoId" resultType="com.campus.myapp.vo.MemberVO">
-		select userid, username, profileimage, userlevel, useremail from member
+		select userid, username, profileimage, userlevel, useremail, stopend from member
 		where kakaoid=#{kakaoid}
 	</select>
 	
@@ -57,6 +58,10 @@
 		select rpad(substring(userid,1,char_length(userid)*0.5),char_length(userid),"*"), username from member where useremail=#{useremail} 
 	</select>
 	
+	<select id="findKakaoId" parameterType="String" resultType="String">
+		select kakaoid from member where useremail=#{useremail} 
+	</select>
+	
 	<update id="updatePw" >
 		update member set userpwd = #{userpwd} where userid = #{userid}
 	</update>
@@ -74,4 +79,7 @@
 		select count(read_chk) message from message where recv_nick=#{param1} and read_chk=0;
 	</select>
 
+	<update id="backtoNormal">
+		update member set userlevel='2', stopend=null  where userid=#{userid}
+	</update>
 </mapper>

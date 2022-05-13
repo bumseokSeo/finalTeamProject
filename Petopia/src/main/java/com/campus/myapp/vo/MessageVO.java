@@ -10,6 +10,9 @@ public class MessageVO {
 	private String read_time;
 	private String content;
 	private int read_chk;
+	private String messagetype;
+	
+	
 	
 	//상대방 닉네임
 	private String other_nick;
@@ -130,6 +133,15 @@ public class MessageVO {
 	public void setUnread(int unread) {
 		this.unread = unread;
 	}
+
+	public String getMessagetype() {
+		return messagetype;
+	}
+
+	public void setMessagetype(String messagetype) {
+		this.messagetype = messagetype;
+	}
+	
 	
 	
 	

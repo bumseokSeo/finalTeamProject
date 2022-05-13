@@ -164,8 +164,10 @@ function telCheckInit(){
 	if($("#telCheckResult").val()=="1") {
 		$("#telCheckResult").val("0");
 	}
-	if($("#smsCheckResult").val()=="1") {
-		$("#smsCheckResult").val("0");
+	// "#smsCheckResult" 위에꺼 1, 아래꺼 0으로 되있으면 휴대전화 인증 해야함.
+	// 하고싶지 않으면 위에꺼 0, 아래꺼 1로 바꾸면 안해도 회원가입 가능.
+	if($("#smsCheckResult").val()=="0") {
+		$("#smsCheckResult").val("1");
 	}
 }
 function telCheck() {
@@ -458,7 +460,7 @@ $(document).ready(function(){
 			</c:if>
 			
 			<span class="menuName">닉네임</span><br/>
-			<input class="inputStyle" type='text' name='username' id='username' onkeyup="nameCheckInit()" placeholder='닉네임 입력'/>
+			<input class="inputStyle" type='text' name='username' id='username' onkeyup="nameCheckInit()" placeholder='닉네임 입력' maxlength="8"/>
 			<input type="button" class="checkBtn" onclick="nameCheck()" value="중복확인"><br/>
 			<input type="hidden" id="nameCheckResult" value="0"/>
 			<span class="msgError"></span><br/>

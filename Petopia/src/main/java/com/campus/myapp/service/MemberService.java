@@ -18,6 +18,7 @@ public interface MemberService {
 	public void smsCheckOk(String tel, String numStr);
 	public int memberInsert(MemberVO vo);
 	public String findId(MemberVO vo);
+	public String findKakaoId(MemberVO vo);
 	
 	//이메일발송
 	public void sendEmail(MemberVO vo, String div) throws Exception;
@@ -43,4 +44,8 @@ public interface MemberService {
 	
 	//홈으로 이동시 안읽은 메세지 체크
 	public int messagechk(String username);
+	
+	// 정지 해제
+	public int backtoNormal(String userid);
+	
 }

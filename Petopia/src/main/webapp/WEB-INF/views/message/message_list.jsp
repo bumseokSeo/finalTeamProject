@@ -67,7 +67,7 @@
 	            <div class="recent_heading">
 	              <h4>쪽지기능</h4>
 	            </div>
-	            <!-- 메세지 검색 -->
+	            <!-- 
 	            <div class="srch_bar">
 	              <div class="stylish-input-group">
 	                <input type="text" class="search-bar"  placeholder="Search" >
@@ -76,6 +76,7 @@
 	                </span> 
 	              </div>
 	            </div>
+	             -->
 	          </div>
 	          
 	          <!-- 메세지 리스트 -->
@@ -105,7 +106,7 @@
 	
 	
 	<script>
-	
+	var timer = null;
 	// 가장 처음 메세지 리스트를 가져온다.
 	const FirstMessageList = function(){
 		$.ajax({
@@ -114,8 +115,6 @@
 			data:{
 			},
 			success:function(data){
-				console.log("메세지 리스트 리로드 성공");
-				
 				$('.inbox_chat').html(data);
 				
 				// 메세지 리스트중 하나를 클릭했을 때
@@ -130,16 +129,17 @@
 					$('.chat_list_box'+room).addClass('active_chat');
 					
 					let send_msg = "";
-					send_msg += "<div class='type_msg'>";
+					send_msg += "<form class='send_message_form'><div class='type_msg'>";
 					send_msg += "	<div class='input_msg_write row'>";
-					send_msg += "		<div class='col-11'>";
-					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력...' />";
+					send_msg += "		<div class='col-1'><button class='tel_send_btn' type='button' title='전화번호 전송하기'><i class='bi bi-telephone-plus' aria-hidden='true'></i></button></div>";
+					send_msg += "		<div class='col-10'>";
+					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력해주세요.' />";
 					send_msg += "		</div>";
 					send_msg += "		<div class='col-1'>";
 					send_msg += "			<button class='msg_send_btn' type='button'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></button>";
 					send_msg += "		</div>";
 					send_msg += "	</div>";
-					send_msg += "</div>";
+					send_msg += "</div></form>";
 			          
 					// 메세지 입력, 전송 칸을 보인다.
 					$('.send_message').html(send_msg);
@@ -151,10 +151,35 @@
 						SendMessage(room, other_nick);
 						
 						// 전송버튼을 누르면 메세지 리스트가 리로드 되면서 현재 열린 메세지의 선택됨 표시가 사라진다.
-						// 이걸 해결하기 위해 메세지 전송버튼을 누르고 메세지 리스트가 리로드되면 메세지 리스트의 첫번째 메세지(현재 열린 메세지)가 선택됨 표시 되도록 한다.
 						$('.chat_list_box:first').addClass('active_chat');
 					});
 					
+					$('.send_message_form').on('submit',function(){
+						event.preventDefault();//기본이벤트 제거
+						
+						// 메세지 전송 함수 호출
+						SendMessage(room, other_nick);
+						
+						// 전송버튼을 누르면 메세지 리스트가 리로드 되면서 현재 열린 메세지의 선택됨 표시가 사라진다.
+						$('.chat_list_box:first').addClass('active_chat');
+					});
+					
+					//전화번호 보내기 버튼 눌렀을 때
+					$('.tel_send_btn').on('click',function(){
+						
+						if (window.confirm("상대방에게 자신의 전화번호를 보내겠습니까?")) {
+					        //전화번호 보내기
+							SendTel(room, other_nick);
+					          
+					        $('.chat_list_box:first').addClass('active_chat');
+					    }else{
+					    	
+					    }
+						
+						
+						
+					});
+
 					
 					// 메세지 내용을 불러오는 함수 호출
 					MessageContentList(room);
@@ -163,18 +188,20 @@
 				
 			}
 		})
+		//15초마다 쪽지 리스트 초기화
+		timer=setInterval(MessageList,15000);
 	};
 	
 	// 메세지 리스트를 다시 가져온다.
 	const MessageList = function(){
+		
 		$.ajax({
 			url:"message_ajax_list.do",
 			method:"get",
 			data:{
 			},
 			success:function(data){
-				console.log("메세지 리스트 리로드 성공");
-				
+
 				$('.inbox_chat').html(data);
 				
 				// 메세지 리스트중 하나를 클릭했을 때
@@ -190,16 +217,17 @@
 					$('.chat_list_box'+room).addClass('active_chat');
 					
 					let send_msg = "";
-					send_msg += "<div class='type_msg'>";
+					send_msg += "<form class='send_message_form'><div class='type_msg'>";
 					send_msg += "	<div class='input_msg_write row'>";
-					send_msg += "		<div class='col-11'>";
-					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력...' />";
+					send_msg += "		<div class='col-1'><button class='tel_send_btn' type='button' title='전화번호 전송하기'><i class='bi bi-telephone-plus' aria-hidden='true'></i></button></div>";
+					send_msg += "		<div class='col-10'>";
+					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력해주세요.' />";
 					send_msg += "		</div>";
 					send_msg += "		<div class='col-1'>";
 					send_msg += "			<button class='msg_send_btn' type='button'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></button>";
 					send_msg += "		</div>";
 					send_msg += "	</div>";
-					send_msg += "</div>";
+					send_msg += "</div></form>";
 			          
 					// 메세지 입력, 전송 칸을 보인다.
 					$('.send_message').html(send_msg);
@@ -211,8 +239,31 @@
 						SendMessage(room, other_nick);
 						
 						// 전송버튼을 누르면 메세지 리스트가 리로드 되면서 현재 열린 메세지의 선택됨 표시가 사라진다.
-						// 이걸 해결하기 위해 메세지 전송버튼을 누르고 메세지 리스트가 리로드되면 메세지 리스트의 첫번째 메세지(현재 열린 메세지)가 선택됨 표시 되도록 한다.
-						//$('.chat_list_box:first').addClass('active_chat');
+						
+						$('.chat_list_box:first').addClass('active_chat');
+					});
+					
+					$('.send_message_form').on('submit',function(){
+						event.preventDefault();//기본이벤트 제거
+						// 메세지 전송 함수 호출
+						SendMessage(room, other_nick);
+						
+						// 전송버튼을 누르면 메세지 리스트가 리로드 되면서 현재 열린 메세지의 선택됨 표시가 사라진다.
+						
+						$('.chat_list_box:first').addClass('active_chat');
+					});
+					//전화번호 보내기 버튼 눌렀을 때
+					$('.tel_send_btn').on('click',function(){
+						if (window.confirm("상대방에게 자신의 전화번호를 보내겠습니까?")) {
+							//전화번호 보내기
+							SendTel(room, other_nick);
+					          
+					          
+					        $('.chat_list_box:first').addClass('active_chat');
+					    }
+						
+						
+						
 					});
 					MessageContentList(room);
 					
@@ -221,6 +272,7 @@
 				$('.chat_list_box:first').addClass('active_chat');
 			}
 		})
+		
 	};
     
 	
@@ -235,7 +287,7 @@
 				room : room,
 			},
 			success:function(data){
-				console.log("메세지 내용 가져오기 성공");
+				
 				
 				// 메세지 내용을 html에 넣는다
 				$('.msg_history').html(data);
@@ -259,7 +311,7 @@
 		
 		let content = $('.write_msg').val();	
 		content = content.trim();
-		
+
 		if(content == ""){
 			alert("메세지를 입력하세요!");
 		}else{
@@ -269,11 +321,10 @@
 				data:{
 					room : room,
 					other_nick: other_nick,
-					content: content
+					content: content,
+					messagetype: "message"
 				},
 				success:function(data){
-					console.log("메세지 전송 성공");
-					
 					// 메세지 입력칸 비우기
 					$('.write_msg').val("");
 					
@@ -289,6 +340,40 @@
 				}
 			});
 		}
+		
+	};
+	
+	//전화번호를 전송하는 메소드
+	const SendTel = function(room, other_nick){
+		
+		let content = "${logTel}";
+		
+		$.ajax({
+			url:"tel_send_inlist.do",
+			method:"GET",
+			data:{
+				room : room,
+				other_nick: other_nick,
+				content: content,
+				messagetype: "tel"
+			},
+			success:function(data){
+				// 메세지 입력칸 비우기
+				$('.write_msg').val("");
+					
+				// 메세지 내용  리로드
+				MessageContentList(room);
+					
+				// 메세지 리스트 리로드
+				MessageList();
+					
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
+		
+		
 		
 	};
 	

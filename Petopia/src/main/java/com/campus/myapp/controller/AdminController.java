@@ -21,7 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import com.campus.myapp.service.AdminService;
+import com.campus.myapp.vo.AdminPagingVO;
+import com.campus.myapp.vo.AdminVO;
 import com.campus.myapp.vo.AnimalInfoVO;
+import com.campus.myapp.vo.MemberVO;
 
 @RestController
 @RequestMapping("/admin/")
@@ -31,17 +34,38 @@ public class AdminController {
 	
 	// 관리자페이지 메인 이동
 	@GetMapping("/adminMain")
-	public ModelAndView adminMain() {
+	public ModelAndView adminMain(AdminVO vo) {
 		ModelAndView mav = new ModelAndView();
+		
+		vo.setTotalMemberCnt(service.totalMemberCnt(vo));
+		vo.setLevel1MemberCnt(service.level1MemberCnt(vo));
+		vo.setLevel2MemberCnt(service.level2MemberCnt(vo));
+		vo.setLevel3MemberCnt(service.level3MemberCnt(vo));
+		
+		vo.setTotalAnimalInfoCnt(service.totalAnimalInfoCnt(vo));
+		vo.setDogInfoCnt(service.dogInfoCnt(vo));
+		vo.setCatInfoCnt(service.catInfoCnt(vo));
+		vo.setReptileInfoCnt(service.reptileInfoCnt(vo));
+		vo.setBirdInfoCnt(service.birdInfoCnt(vo));
+		vo.setEtcInfoCnt(service.etcInfoCnt(vo));
+		
+		mav.addObject("vo", vo);
+		
+		
 		mav.setViewName("admin/adminMain");
 		return mav;
 	}
 	
 	// 반려동물정보관리 이동
 	@GetMapping("/admin_animalInfo")
-	public ModelAndView admin_animalInfo(String searchword) {
+	public ModelAndView admin_animalInfo(AdminPagingVO apVO) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", service.animalInfoList(searchword));
+		
+		apVO.setTotalRecord(service.animalInfoTotalRecord(apVO));
+		
+		mav.addObject("list", service.animalInfoList(apVO));
+		mav.addObject("apVO", apVO);
+		
 		mav.setViewName("admin/admin_animalInfo");
 		return mav;
 	}
@@ -334,7 +358,100 @@ public class AdminController {
 	}
 		
 		
+	// 회원 관리 이동
+	@GetMapping("/admin_memberList")
+	public ModelAndView admin_memberList(AdminPagingVO apVO) {
+		ModelAndView mav = new ModelAndView();
+		
+		apVO.setTotalRecord(service.memberTotalRecord(apVO));
+		
+		mav.addObject("list", service.memberList(apVO));
+		mav.addObject("apVO", apVO);
+		
+		mav.setViewName("admin/admin_memberList");
+		return mav;
+	}
+		
+		
+	// 회원정보 삭제
+	@GetMapping("/memberDel")
+	public ResponseEntity<String> memberDel(String userid, HttpSession session){
+		
+		ResponseEntity<String> entity = null;
+		
+		try {			
+			service.memberDelete(userid);
+			
+			String msg = "<script>alert('회원정보가 삭제되었습니다.'); location.href='/admin/admin_memberList';</script>";
+			
+			entity = new ResponseEntity<String>(msg, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			String msg = "<script>alert('삭제실패하였습니다.');history.back();</script>";
+			entity = new ResponseEntity<String>(msg, HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 	
+	// 회원등급 변경
+	@GetMapping("/memberChangeAdmin")
+	public ResponseEntity<String> memberChangeAdmin(String userid, HttpSession session){
+		
+		ResponseEntity<String> entity = null;
+		
+		try {			
+			service.memberChangeAdmin(userid);
+			
+			String msg = "<script>alert('회원 등급이 변경되었습니다.'); location.href='/admin/admin_memberList';</script>";
+			
+			entity = new ResponseEntity<String>(msg, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			String msg = "<script>alert('회원 등급 변경 실패하였습니다.');history.back();</script>";
+			entity = new ResponseEntity<String>(msg, HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 	
+	@GetMapping("/memberChangeNormal")
+	public ResponseEntity<String> memberChangeNormal(String userid, HttpSession session){
+		
+		ResponseEntity<String> entity = null;
+		
+		try {			
+			service.memberChangeNormal(userid);
+			
+			String msg = "<script>alert('회원 등급이 변경되었습니다.'); location.href='/admin/admin_memberList';</script>";
+			
+			entity = new ResponseEntity<String>(msg, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			String msg = "<script>alert('회원 등급 변경 실패하였습니다.');history.back();</script>";
+			entity = new ResponseEntity<String>(msg, HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 	
+	@GetMapping("/memberChangeStop")
+	public ResponseEntity<String> memberChangeStop(String userid, HttpSession session){
+	
+	ResponseEntity<String> entity = null;
+	
+	try {			
+		service.memberChangeStop(userid);
+		
+		String msg = "<script>alert('회원 등급이 변경되었습니다.'); location.href='/admin/admin_memberList';</script>";
+		
+		entity = new ResponseEntity<String>(msg, HttpStatus.OK);
+	}catch(Exception e) {
+		e.printStackTrace();
+		
+		String msg = "<script>alert('회원 등급 변경 실패하였습니다.');history.back();</script>";
+		entity = new ResponseEntity<String>(msg, HttpStatus.BAD_REQUEST);
+	}
+	return entity;
+}
 }
