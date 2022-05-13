@@ -53,6 +53,11 @@ a:hover{
 	height: 34px;
 	padding: 5px;
 }
+.searchWordSelect{
+	width: 191px;
+	height: 34px;
+	padding: 5px;
+}
 .searchBtn{
 	width: 80px;
 	height: 34px;

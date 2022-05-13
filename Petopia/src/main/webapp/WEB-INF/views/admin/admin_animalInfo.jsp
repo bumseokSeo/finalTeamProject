@@ -23,6 +23,9 @@ function breedDelChk(breed){
 	</ul>
 	
 	<div class="tab_content">
+		<div style="float:right;">
+			<a href="/admin/adminMain">관리자페이지</a> > <a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보 관리</a>
+		</div><br/><br/>
 		<h3>반려동물 정보 관리</h3>
 		<div style="margin-bottom: 80px;">
 			<div class="writeBtn">

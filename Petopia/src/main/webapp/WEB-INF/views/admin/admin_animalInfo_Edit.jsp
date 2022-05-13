@@ -146,18 +146,20 @@ $(function(){
 
 <div class="container">
 	<ul class="tab_title">
-		<li>공지사항관리</li>
-		<li>회원관리</li>
-		<li>정보공유 게시판 관리</li>
-		<li>나눔 게시판 관리</li>
-		<li>자랑 게시판 관리</li>
-		<li>입양 게시판 관리</li>
-		<li>산책 게시판 관리</li>
-		<li><a href="/admin/admin_animalInfo">반려동물 정보 관리</a></li>
+		<li><a href="#">공지사항 관리</a></li>
+		<li><a href="/admin/admin_memberList">회원 관리</a></li>
+		<li><a href="#">정보공유 게시판 관리</a></li>
+		<li><a href="#">나눔 게시판 관리</a></li>
+		<li><a href="#">자랑 게시판 관리</a></li>
+		<li><a href="#">입양 게시판 관리</a></li>
+		<li><a href="#">산책 게시판 관리</a></li>
+		<li><a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보 관리</a></li>
 	</ul>
 	
 	<div class="tab_content">
-		<div style="float:right;">반려동물 정보 관리 - 수정</div><br/><br/>
+		<div style="float:right;">
+			<a href="/admin/adminMain">관리자페이지</a> > <a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보 관리</a> > <a href="/admin/admin_animalInfo_Edit?breedkey=${vo.breed}">수정</a>
+		</div><br/><br/>
 		<form id="writeFrm" style="width:100%;" method="post" action="${url}/admin/animalInfoEditOk" enctype="multipart/form-data">
 			<div>
 				
