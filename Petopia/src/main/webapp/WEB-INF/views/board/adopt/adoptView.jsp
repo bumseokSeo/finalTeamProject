@@ -70,9 +70,10 @@ $(function(){
 		}   
 	});
 		
+	//쪽지보내기 전송버튼 처리
 	$('#messagebtn').on('click',function(){
 		    	
-				//메세지 내용 공백 검사
+		//메세지 내용 공백 검사
 		var content=document.getElementById("messagecontent");
 		if(content.value==""){
 			alert("메세지를 입력해주세요.");
@@ -83,9 +84,11 @@ $(function(){
 				
 		var content = document.getElementById("messagecontent");//내용
 		var logName = "${logName}";
-				
-		//로그인 상태일 경우 메세지 보내기 진행
-		if(logName!=null){
+		
+		if("${logName}"==""){
+			alert("로그인후 이용해주세요.");
+			return false;
+		}else{
 			//메세지 보내기 절차
 			var url= "${url}/message/messagesend";
 			var params = "username="+username.value+"&content="+messagecontent.value;
@@ -102,27 +105,52 @@ $(function(){
 				}
 			});
 		}
-		else{
-			alert("로그인후 이용해주세요.");
-			return false;
-		}
+		
 	
 		    	
 	});
 	
+	
+	//쪽지보내기 서브밋 처리
 	$('#messageForm').on('submit',function(){
-		var messagebtn=document.getElementById("messagebtn");
-		alert("전송버튼을 눌러주세요");
-		messagebtn.focus();
-		return false;
+		event.preventDefault();//기본이벤트 제거
+		
+		var content=document.getElementById("messagecontent");
+		if(content.value==""){
+			alert("메세지를 입력해주세요.");
+			content.focus();
+			return false;
+		}
+		var username = document.getElementById("username");//메세지 받는 계정
+				
+		var content = document.getElementById("messagecontent");//내용
+		var logName = "${logName}";
+				
+		//로그인 상태일 경우 메세지 보내기 진행
+		if("${logName}"==""){
+			alert("로그인후 이용해주세요.");
+			return false;
+		}else{
+			//메세지 보내기 절차
+			var url= "${url}/message/messagesend";
+			var params = "username="+username.value+"&content="+messagecontent.value;
+			$.ajax({
+				url:url,
+				data:params,
+				success:function(result){
+					var $result = $(result);
+					alert("쪽지를 보냈습니다.");
+					$(".modal").hide();
+				},
+				error:function(e){
+					console.log(e.resopnseText);
+				}
+			});
+		}
 		
 	
 	    	
 	});
-	
-	
-	
-	
 	
 	
 	/*쪽지부분*/

@@ -146,7 +146,7 @@
 					
 					// 메세지 전송버튼을 눌렀을 때
 					$('.msg_send_btn').on('click',function(){
-						console.log("전송버튼 인식");
+						
 						// 메세지 전송 함수 호출
 						SendMessage(room, other_nick);
 						
@@ -156,7 +156,7 @@
 					
 					$('.send_message_form').on('submit',function(){
 						event.preventDefault();//기본이벤트 제거
-						console.log("서브밋 발생");
+						
 						// 메세지 전송 함수 호출
 						SendMessage(room, other_nick);
 						
@@ -166,7 +166,7 @@
 					
 					//전화번호 보내기 버튼 눌렀을 때
 					$('.tel_send_btn').on('click',function(){
-						console.log("전화번호 보내기 인식");
+						
 						if (window.confirm("상대방에게 자신의 전화번호를 보내겠습니까?")) {
 					        //전화번호 보내기
 							SendTel(room, other_nick);
@@ -311,10 +311,7 @@
 		
 		let content = $('.write_msg').val();	
 		content = content.trim();
-		
-		console.log(room);
-		console.log(other_nick);
-		console.log(content);
+
 		if(content == ""){
 			alert("메세지를 입력하세요!");
 		}else{
@@ -350,10 +347,6 @@
 	const SendTel = function(room, other_nick){
 		
 		let content = "${logTel}";
-		
-		console.log(room);
-		console.log(other_nick);
-		console.log(content);
 		
 		$.ajax({
 			url:"tel_send_inlist.do",
