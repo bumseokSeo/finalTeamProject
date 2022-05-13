@@ -29,6 +29,10 @@ function changeStop(userid){
 
 /*쪽지부분*/	 
 function sendMessage(username){
+	if(username == "${logName}"){
+		alert("본인에게는 메시지를 보낼 수 없습니다.");
+		return false;
+	}
 	var msgInfo = document.querySelectorAll('.msgInfo');
 	msgInfo[0].innerHTML = "'"+username+"'님에게 메시지를 보냅니다.";
 	$(".modal").show();
