@@ -14,6 +14,18 @@ public class AdminVO {
 	private int birdInfoCnt;
 	private int etcInfoCnt;
 	
+	private int totalBoardCnt;
+	private int infoCnt;
+	private int shareCnt;
+	private int walkCnt;
+	private int boastCnt;
+	private int suggestCnt;
+	
+	private int totalNoticeCnt;
+	
+	private int totalAdoptCnt;
+	
+	
 	
 	public int getTotalMemberCnt() {
 		return totalMemberCnt;
@@ -75,6 +87,54 @@ public class AdminVO {
 	}
 	public void setEtcInfoCnt(int etcInfoCnt) {
 		this.etcInfoCnt = etcInfoCnt;
+	}
+	public int getTotalBoardCnt() {
+		return totalBoardCnt;
+	}
+	public void setTotalBoardCnt(int totalBoardCnt) {
+		this.totalBoardCnt = totalBoardCnt;
+	}
+	public int getInfoCnt() {
+		return infoCnt;
+	}
+	public void setInfoCnt(int infoCnt) {
+		this.infoCnt = infoCnt;
+	}
+	public int getShareCnt() {
+		return shareCnt;
+	}
+	public void setShareCnt(int shareCnt) {
+		this.shareCnt = shareCnt;
+	}
+	public int getWalkCnt() {
+		return walkCnt;
+	}
+	public void setWalkCnt(int walkCnt) {
+		this.walkCnt = walkCnt;
+	}
+	public int getBoastCnt() {
+		return boastCnt;
+	}
+	public void setBoastCnt(int boastCnt) {
+		this.boastCnt = boastCnt;
+	}
+	public int getSuggestCnt() {
+		return suggestCnt;
+	}
+	public void setSuggestCnt(int suggestCnt) {
+		this.suggestCnt = suggestCnt;
+	}
+	public int getTotalNoticeCnt() {
+		return totalNoticeCnt;
+	}
+	public void setTotalNoticeCnt(int totalNoticeCnt) {
+		this.totalNoticeCnt = totalNoticeCnt;
+	}
+	public int getTotalAdoptCnt() {
+		return totalAdoptCnt;
+	}
+	public void setTotalAdoptCnt(int totalAdoptCnt) {
+		this.totalAdoptCnt = totalAdoptCnt;
 	}
 	
 	

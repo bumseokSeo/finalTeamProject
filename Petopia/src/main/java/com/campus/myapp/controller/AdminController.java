@@ -49,8 +49,18 @@ public class AdminController {
 		vo.setBirdInfoCnt(service.birdInfoCnt(vo));
 		vo.setEtcInfoCnt(service.etcInfoCnt(vo));
 		
-		mav.addObject("vo", vo);
+		vo.setTotalBoardCnt(service.totalBoardCnt(vo));
+		vo.setInfoCnt(service.infoCnt(vo));
+		vo.setShareCnt(service.shareCnt(vo));
+		vo.setWalkCnt(service.walkCnt(vo));
+		vo.setBoastCnt(service.boastCnt(vo));
+		vo.setSuggestCnt(service.suggestCnt(vo));
 		
+		vo.setTotalNoticeCnt(service.totalNoticeCnt(vo));
+		
+		vo.setTotalAdoptCnt(service.totalAdoptCnt(vo));
+		
+		mav.addObject("vo", vo);
 		
 		mav.setViewName("admin/adminMain");
 		return mav;

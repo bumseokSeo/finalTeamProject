@@ -40,7 +40,17 @@ public interface AdminDAO {
 	public int reptileInfoCnt(AdminVO vo);
 	public int birdInfoCnt(AdminVO vo);
 	public int etcInfoCnt(AdminVO vo);
-
+	
+	public int totalBoardCnt(AdminVO vo);
+	public int infoCnt(AdminVO vo);
+	public int shareCnt(AdminVO vo);
+	public int walkCnt(AdminVO vo);
+	public int boastCnt(AdminVO vo);
+	public int suggestCnt(AdminVO vo);
+	
+	public int totalNoticeCnt(AdminVO vo);
+	
+	public int totalAdoptCnt(AdminVO vo);
 	
 	
 }

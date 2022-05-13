@@ -39,3 +39,35 @@ a:hover{
 	color: black !important;
 	font-size: 18px;
 }
+
+.InfoCard{
+	float:left; 
+	width:30%; 
+	padding:15px; 
+	border:1px solid black;
+	border-radius: 5px; 
+	margin:15px;
+}
+
+.totalNum{
+	float: right;
+	background: #FF8500;
+	border: 5px solid #FF6D00;
+	border-radius: 100%;
+	width: 100px;
+	height: 100px;
+	position: relative;
+}
+.totalNum>p{
+	position: absolute;
+	color: #fff;
+	font-size: 36px;
+	font-weight: 700;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.subNum{
+	margin-top: 30px;
+	font-size: 18px;
+}

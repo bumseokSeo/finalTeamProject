@@ -122,4 +122,33 @@
 	<select id="etcInfoCnt" resultType="int">
 		select count(breed) cnt from animalinfo where category="기타"
 	</select>
+	
+	<select id="totalBoardCnt" resultType="int">
+		select count(boardno) cnt from board where not boardtype in ('notice', 'adopt')
+	</select>
+	<select id="infoCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype="info"
+	</select>
+	<select id="shareCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype="share"
+	</select>
+	<select id="walkCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype="walk"
+	</select>
+	<select id="boastCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype="boast"
+	</select>
+	<select id="suggestCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype="suggest"
+	</select>
+	
+	<select id="totalNoticeCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype in ('notice')
+	</select>
+	
+	<select id="totalAdoptCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype in ('adopt')
+	</select>
+	
+	
 </mapper>
