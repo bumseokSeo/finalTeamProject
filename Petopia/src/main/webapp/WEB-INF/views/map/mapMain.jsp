@@ -28,6 +28,7 @@
 			<hr/>
 			<div>
 				<div class="host_info">동물병원정보띄우기</div>
+				<div></div>
 			</div>
 			<hr/>
 			<div>

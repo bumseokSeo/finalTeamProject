@@ -6,5 +6,11 @@
 	<insert id="insertShop">
 		insert into shop(shopid, shopname, shopaddr, shopnumber)
 		values(#{shopid}, #{shopname}, #{shopaddr}, #{shopnumber})
+		on duplicate key update shopid=#{shopid}
 	</insert>
+	<select id="selectShop" resultType="ShopVO">
+		select shopname, shopaddr, shopnumber 
+		from shop
+		where shopid=#{shopid}
+	</select>
 </mapper>

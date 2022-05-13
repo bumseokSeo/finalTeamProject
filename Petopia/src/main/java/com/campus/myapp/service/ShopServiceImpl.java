@@ -1,6 +1,6 @@
 package com.campus.myapp.service;
 
-import java.util.HashMap;
+import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
@@ -9,11 +9,16 @@ import com.campus.myapp.vo.ShopVO;
 
 @Service
 public class ShopServiceImpl implements ShopService {
-
+	@Inject
 	ShopDAO dao;
+
 	@Override
-	public String insertShop(HashMap<String, ShopVO> places) {
-		return dao.insertShop(places);
+	public void insertShop(ShopVO svo) {
+		dao.insertShop(svo);
 	}
 
+	@Override
+	public ShopVO selectShop(int shopid) {
+		return dao.selectShop(shopid);
+	}
 }
