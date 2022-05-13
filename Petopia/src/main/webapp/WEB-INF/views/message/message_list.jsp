@@ -388,5 +388,21 @@
 	
 </div>
 <div class="bottom2">
-	바텀
+	<div class="bottomlogo">
+		<img alt="이미지가 없습니다." src="/img/Logo(main).png" id="bottomimg">
+	</div>
+	<div class="bottominfo">
+		<ul>
+			<li>상호 : 펫토피아</li>
+			<li>주소 : 서울시 강남구 멀티캠퍼스</li>
+			<li>사업자 등록번호 : 123-456-7890</li>
+			<li>이메일 : petopia@gmail.com</li>
+		</ul>
+	</div>
+	<div class="bottometc">
+		<ul>
+			<li>개인정보처리방침 | 이메일무단수집거부</li>
+			<li>Copyrightⓒ petopia. All rights reserved.</li>
+		</ul>
+	</div>
 </div>

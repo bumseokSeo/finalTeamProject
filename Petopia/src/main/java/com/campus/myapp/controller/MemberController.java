@@ -69,6 +69,7 @@ public class MemberController {
 			session.setAttribute("logLevel", vo2.getUserlevel());
 			session.setAttribute("logName", vo2.getUsername());
 			session.setAttribute("logImg", vo2.getProfileimage());
+			session.setAttribute("logTel", vo2.getTel());
 			session.setAttribute("logStatus", "Y");
 			mav.setViewName("redirect:/");// 홈으로 이동
 		} else if (vo2 != null && vo2.getUserlevel() == 3 
