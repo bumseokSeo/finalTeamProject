@@ -132,5 +132,45 @@ public class AdminServiceImpl implements AdminService {
 		return dao.etcInfoCnt(vo);
 	}
 
+	@Override
+	public int totalBoardCnt(AdminVO vo) {
+		return dao.totalBoardCnt(vo);
+	}
+
+	@Override
+	public int infoCnt(AdminVO vo) {
+		return dao.infoCnt(vo);
+	}
+
+	@Override
+	public int shareCnt(AdminVO vo) {
+		return dao.shareCnt(vo);
+	}
+
+	@Override
+	public int walkCnt(AdminVO vo) {
+		return dao.walkCnt(vo);
+	}
+
+	@Override
+	public int boastCnt(AdminVO vo) {
+		return dao.boastCnt(vo);
+	}
+
+	@Override
+	public int suggestCnt(AdminVO vo) {
+		return dao.suggestCnt(vo);
+	}
+
+	@Override
+	public int totalNoticeCnt(AdminVO vo) {
+		return dao.totalNoticeCnt(vo);
+	}
+
+	@Override
+	public int totalAdoptCnt(AdminVO vo) {
+		return dao.totalAdoptCnt(vo);
+	}
+
 	
 }
