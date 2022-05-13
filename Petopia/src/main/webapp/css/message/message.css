@@ -107,7 +107,7 @@ img{ max-width:100%;}
   vertical-align: top;
   width: 92%;
  }
- .received_withd_msg p {
+ .messageP {
   background: #f4f4f4 none repeat scroll 0 0;
   border-radius: 7px;
   color: #646464;
@@ -116,6 +116,15 @@ img{ max-width:100%;}
   padding: 10px 10px 10px 12px;
   width: 100%;
   
+}
+.telP{
+  background: #ffff33 none repeat scroll 0 0;
+  border-radius: 7px;
+  color: #646464;
+  font-size: 14px;
+  margin: 0;
+  padding: 10px 10px 10px 12px;
+  width: 100%;
 }
 .user_name{
   color: #747474;
@@ -136,11 +145,20 @@ img{ max-width:100%;}
   width: 60%;
 }
 
- .sent_msg p {
+ .messagePsend {
   background: #97df93 none repeat scroll 0 0;
   border-radius: 7px;
   font-size: 14px;
   margin: 0; color:#fff;
+  padding: 10px 10px 10px 12px;
+  width:100%;
+  
+}
+ .telPsend {
+  background: #ffff33 none repeat scroll 0 0;
+  border-radius: 7px;
+  font-size: 14px;
+  margin: 0; color: #646464;
   padding: 10px 10px 10px 12px;
   width:100%;
   

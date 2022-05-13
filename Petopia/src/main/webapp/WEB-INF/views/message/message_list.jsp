@@ -131,7 +131,7 @@
 					let send_msg = "";
 					send_msg += "<form class='send_message_form'><div class='type_msg'>";
 					send_msg += "	<div class='input_msg_write row'>";
-					send_msg += "		<div class='col-1'><button class='tel_send_btn' type='button'><i class='bi bi-telephone-plus' aria-hidden='true'></i></button></div>";
+					send_msg += "		<div class='col-1'><button class='tel_send_btn' type='button' title='전화번호 전송하기'><i class='bi bi-telephone-plus' aria-hidden='true'></i></button></div>";
 					send_msg += "		<div class='col-10'>";
 					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력해주세요.' />";
 					send_msg += "		</div>";
@@ -151,17 +151,16 @@
 						SendMessage(room, other_nick);
 						
 						// 전송버튼을 누르면 메세지 리스트가 리로드 되면서 현재 열린 메세지의 선택됨 표시가 사라진다.
-						
 						$('.chat_list_box:first').addClass('active_chat');
 					});
 					
 					$('.send_message_form').on('submit',function(){
+						event.preventDefault();//기본이벤트 제거
 						console.log("서브밋 발생");
 						// 메세지 전송 함수 호출
 						SendMessage(room, other_nick);
 						
 						// 전송버튼을 누르면 메세지 리스트가 리로드 되면서 현재 열린 메세지의 선택됨 표시가 사라진다.
-						
 						$('.chat_list_box:first').addClass('active_chat');
 					});
 					
@@ -173,6 +172,8 @@
 							SendTel(room, other_nick);
 					          
 					        $('.chat_list_box:first').addClass('active_chat');
+					    }else{
+					    	
 					    }
 						
 						
@@ -218,7 +219,7 @@
 					let send_msg = "";
 					send_msg += "<form class='send_message_form'><div class='type_msg'>";
 					send_msg += "	<div class='input_msg_write row'>";
-					send_msg += "		<div class='col-1'><button class='tel_send_btn' type='button'><i class='bi bi-telephone-plus' aria-hidden='true'></i></button></div>";
+					send_msg += "		<div class='col-1'><button class='tel_send_btn' type='button' title='전화번호 전송하기'><i class='bi bi-telephone-plus' aria-hidden='true'></i></button></div>";
 					send_msg += "		<div class='col-10'>";
 					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력해주세요.' />";
 					send_msg += "		</div>";
@@ -243,7 +244,7 @@
 					});
 					
 					$('.send_message_form').on('submit',function(){
-						
+						event.preventDefault();//기본이벤트 제거
 						// 메세지 전송 함수 호출
 						SendMessage(room, other_nick);
 						

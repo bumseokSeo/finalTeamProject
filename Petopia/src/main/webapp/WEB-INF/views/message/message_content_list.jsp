@@ -21,7 +21,13 @@
 			<div class="received_msg">
 				<div class="received_withd_msg">
 					<span class="user_name">${tmp.send_nick}</span>
-					<p>${tmp.content }</p>
+					<c:if test="${tmp.messagetype == 'tel'}">
+						<p class="telP"><b>펫토피아에서 인증된 전화번호입니다.</b><br>[${tmp.content }]</p>
+					</c:if>
+					<c:if test="${tmp.messagetype == 'message'}">
+						<p class="messageP">${tmp.content }</p>
+					</c:if>
+					
 					<span class="time_date"> ${tmp.send_time}</span>
 				</div>
 			</div>
@@ -32,7 +38,13 @@
 		<!-- 보낸 메세지 -->
 		<div class="outgoing_msg">
 			<div class="sent_msg">
-				<p>${tmp.content }</p>
+				<c:if test="${tmp.messagetype == 'tel'}">
+					<p class="telPsend"><b>펫토피아에서 인증된 전화번호입니다.</b><br>[${tmp.content }]</p>
+				</c:if>
+				<c:if test="${tmp.messagetype == 'message'}">
+					<p class="messagePsend">${tmp.content }</p>
+				</c:if>
+				
 				<span class="time_date"> ${tmp.send_time }</span>
 			</div>
 		</div>

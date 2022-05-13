@@ -85,6 +85,7 @@ public class MessageController {
 		to.setRecv_nick(other_nick);
 		to.setContent(content);
 		to.setMessagetype(messagetype);
+		
 		int flag = MessageDAO.messageSendInlist(to);
 
 		return flag;
@@ -119,7 +120,7 @@ public class MessageController {
 		to.setSend_nick((String) session.getAttribute("logName"));
 		to.setRecv_nick(username);
 		to.setContent(content);
-
+		to.setMessagetype("message");
 		int flag = MessageDAO.messageSendInlist(to);
 
 		return flag;
