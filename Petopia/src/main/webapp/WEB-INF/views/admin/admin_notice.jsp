@@ -28,7 +28,7 @@ function noticeDelChk(boardno){
 		<h3>공지사항 관리</h3>
 		<div style="margin-bottom: 80px;">
 			<div class="writeBtn">
-				<a href="#">글쓰기</a>
+				<a href="/board/boardWrite">글쓰기</a>
 			</div>
 			<div id="searchDiv">
 				<form method="get" action="${url}/admin/admin_notice" id="searchForm">
@@ -48,11 +48,11 @@ function noticeDelChk(boardno){
 			
 			<c:forEach var="vo" items="${list }">
 				<li>${vo.boardno }</li>
-				<li><a href="#">${vo.title }</a></li>
+				<li><a href="/board/boardView?boardno=${vo.boardno}">${vo.title }</a></li>
 				<li>${vo.hit }</li>
 				<li>${vo.writedate }</li>
 				<li>
-					<a class="editBtn" href="#">수정</a>
+					<a class="editBtn" href="/board/boardEdit?boardno=${vo.boardno}">수정</a>
 					<a class="delBtn" href="javascript:noticeDelChk('${vo.boardno}')">삭제</a>
 				</li>
 			</c:forEach>

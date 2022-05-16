@@ -12,6 +12,8 @@ public class BoardVO {
 	private String filename1;
 	private String username;
 	
+	private String category;
+	private String breed;
 	
 	public int getBoardno() {
 		return boardno;
@@ -72,6 +74,18 @@ public class BoardVO {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getBreed() {
+		return breed;
+	}
+	public void setBreed(String breed) {
+		this.breed = breed;
 	}
 	
 }

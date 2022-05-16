@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+ 	
 <c:forEach var="tmp" items="${list}">
 	<c:if test="${tmp.state == 'y'}">
 	<div class="chat_list_box${tmp.room } chat_list_box">
@@ -8,12 +10,18 @@
 			<div class="chat_people">
 				<div class="chat_img" >
 					<a href="#">
-						<c:if test="${tmp.profile != null && tmp.profile != '' }">
-							<img src="${url}/img/memberimg/${tmp.profile}" alt="보낸사람 프로필">
-						</c:if>
-						<c:if test="${tmp.profile == null || tmp.profile == '' }">
-							<img src="${url}/img/sampleProfile.jpg" alt="보낸사람 프로필">
-						</c:if>
+						<c:set var ="profile" value="${tmp.profile}"/>
+						<c:choose>
+							<c:when test="${fn:startsWith(profile, 'http://')}">
+								<img src="${tmp.profile}" alt="보낸사람 프로필">
+							</c:when>
+							<c:when test="${tmp.profile != null && tmp.profile != '' }">
+								<img src="${url}/img/memberimg/${tmp.profile}" alt="보낸사람 프로필">
+							</c:when>
+							<c:when test="${tmp.profile == null || tmp.profile == '' }">
+								<img src="${url}/img/sampleProfile.jpg" alt="보낸사람 프로필">
+							</c:when>
+						</c:choose>
 					</a>
 				</div>
 				<div class="chat_ib">

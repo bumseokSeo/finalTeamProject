@@ -59,13 +59,13 @@ a:hover{
 #adoptList>li:nth-child(9n+1){
 	padding-left: 15px;
 }
-#adoptList>li:nth-child(9n+3){
+#adoptList>li:nth-child(9n+2){
 	width: 9%;
 }
 #adoptList>li:nth-child(9n+4){
 	width: 20%;
 }
-#adoptList>li:nth-child(9n+2),
+#adoptList>li:nth-child(9n+3),
 #adoptList>li:nth-child(9n+6),
 #adoptList>li:nth-child(9n+7){
 	width: 7%;

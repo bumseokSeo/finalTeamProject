@@ -72,7 +72,7 @@ function boardReviewDelChk(replyno){
 					<c:if test="${vo.boardtype=='suggest' }">건의</c:if>
 					<c:if test="${vo.boardtype=='adopt' }">입양</c:if>
 				</li>
-				<li><a href="#">${vo.boardno }</a></li> <!-- 게시물 주소 연결 필요 -->
+				<li><a href="/board/boardView?boardno=${vo.boardno}">${vo.boardno}</a></li>
 				<li>${vo.content }</li>
 				<li>${vo.userid }</li>
 				<li>${vo.writedate }</li>

@@ -119,10 +119,55 @@
 	</section>
 	
 	<section class="section">
-		<h2>section3</h2>
+		<div class="animalInfoH1">
+			<span>반려동물 정보?</span><br/>
+			<span>다 있다!</span>
+		</div>
+		
+		<div class="animalInfolink">
+			<a href="/animalInfo/animalInfoMain"><img src="/img/home/pets.png"></a>
+		</div>
+				
+		<div class="animalHospitalH1">
+			<span>동물병원?</span><br/>
+			<span>찾아보고 가자!</span>
+		</div>
+		
+		<div class="animalHospitallink">
+			<a href="/map/mapMain"><img src="/img/home/veterinarian.png"></a>
+		</div>
 	</section>
 	
-	<section class="section fp-auto-height">
-		<h2>footer</h2>
+	<section class="section ">
+			<div class="bottomlogo2">
+				<span>반려동물을 위한</span><br/>
+				<span>최고의 선택</span><br/>
+				<img alt="이미지가 없습니다." src="/img/로고2.png" class="bottomimg2">
+			</div>
+			
+			<div class="link">
+				<ul>
+					<li><a href="/map/mapMain">내 근처 병원</a></li>
+					<li><a href="/animalInfo/animalInfoMain">반려동물 정보</a></li>
+					<li><a href="/board/SubMenuSelect?type=notice">커뮤니티</a></li>
+					<li><a href="/board/adopt/adoptList">입양</a></li>
+					<li><a href="https://github.com/bumseokSeo/finalTeamProject.git"><img src="/img/home/github.png" style="width: 36px;"></a></li>
+				</ul>
+			</div>
+			
+			<div class="bottominfo2">
+				<ul>
+					<li>상호 : 펫토피아</li>
+					<li>주소 : 서울시 강남구 멀티캠퍼스</li>
+					<li>사업자 등록번호 : 123-456-7890</li>
+					<li>이메일 : petopia@gmail.com</li>
+				</ul>
+			</div>
+			<div class="bottometc2">
+				<ul>
+					<li>개인정보처리방침 | 이메일무단수집거부</li>
+					<li>Copyrightⓒ petopia. All rights reserved.</li>
+				</ul>
+			</div>
 	</section>
 </main>

@@ -54,8 +54,8 @@ function adoptDelChk(boardno){
 		
 		<ul id="adoptList">
 			<li>분류</li>
-			<li>번호</li>
 			<li>품종</li>
+			<li>번호</li>
 			<li>제목</li>
 			<li>아이디</li>
 			<li>조회수</li>
@@ -65,9 +65,9 @@ function adoptDelChk(boardno){
 			
 			<c:forEach var="vo" items="${list }">
 				<li>${vo.category }</li>
+				<li>${vo.breed }</li>
 				<li>${vo.boardno }</li>
-				<li>${vo.breed }
-				<li><a href="#">${vo.title }</a></li> <!-- 게시물 주소 연결 필요 -->
+				<li><a href="/board/boardView?boardno=${vo.boardno}">${vo.title }</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.hit }</li>
 				<li>${vo.likes }</li>

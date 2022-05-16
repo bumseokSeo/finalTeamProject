@@ -71,7 +71,7 @@ function boardDelChk(boardno){
 					<c:if test="${vo.boardtype=='suggest' }">건의</c:if>
 				</li>
 				<li>${vo.boardno }</li>
-				<li><a href="#">${vo.title }</a></li> <!-- 게시물 주소 연결 필요 -->
+				<li><a href="/board/boardView?boardno=${vo.boardno}">${vo.title }</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.hit }</li>
 				<li>${vo.likes }</li>

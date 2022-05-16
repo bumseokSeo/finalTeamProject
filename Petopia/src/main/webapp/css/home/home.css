@@ -139,3 +139,98 @@ a:hover{
 	border-radius:100%;
 	line-height:30px;
 }
+
+.bottomlogo2{
+	position: absolute;
+	top: 30%;
+	left: 55%;
+	text-align: right;
+	font-size: 48px;
+	font-weight: 700;
+}
+.bottomimg2{
+	width:400px;
+}
+.bottominfo2{
+	position: absolute;
+	top: 70%;
+	left: 20%;
+	width: 500px;
+}
+.bottominfo2>ul>li{
+	width: 100%;
+	float: left;
+	text-align: left;
+}
+.bottometc2{
+	position: absolute;
+	top: 82%;
+	left: 20%;
+	width: 500px;
+}
+.bottometc2>ul>li{
+	font-size: 0.8em;
+	width: 100%;
+	float: left;
+	text-align: left;
+}
+
+.link{
+	position: absolute;
+	top: 30%;
+	left: 20%;
+	width: 400px;
+}
+.link>ul>li{
+	float: left;
+	width: 50%;
+	font-size: 24px;
+	line-height: 48px;
+	text-align: left;
+}
+.link>ul>li>a{
+	border-bottom: 1px solid black;
+	font-weight: 700;
+}
+.link>ul>li:nth-child(5){
+	float: right;
+}
+.link>ul>li:nth-child(5)>a{
+	border: none;
+}
+
+
+.animalInfoH1{
+	position: absolute;
+	color: #fff;
+	font-size: 64px;
+	font-weight: 700;
+	text-align: left;
+	top: 20%;
+	right: 25%;
+}
+.animalHospitalH1{
+	position: absolute;
+	color: #fff;
+	font-size: 64px;
+	font-weight: 700;
+	text-align: left;
+	top: 60%;
+	left: 25%;
+}
+.animalInfolink{
+	position: absolute;
+	top: 20%;
+	left: 30%;
+}
+.animalInfolink>a>img{
+	width: 300px;
+}
+.animalHospitallink{
+	position: absolute;
+	top: 60%;
+	right: 30%;
+}
+.animalHospitallink>a>img{
+	width: 300px;
+}
