@@ -7,11 +7,13 @@
 
 <div class="container">
 	<ul class="tab_title">
-		<li><a href="#">공지사항 관리</a></li>
+		<li><a href="/admin/admin_notice">공지사항 관리</a></li>
 		<li><a href="/admin/admin_memberList">회원 관리</a></li>
-		<li><a href="#">게시판 관리</a></li>
+		<li><a href="/admin/admin_board?searchKey=all">게시판 관리</a></li>
 		<li><a href="#">입양 게시판 관리</a></li>
 		<li><a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보 관리</a></li>
+		<li><a href="/admin/admin_boardReview?searchKey=all">게시판 리뷰 관리</a></li>
+		<li><a href="#">동물병원 리뷰 관리</a></li>
 	</ul>
 	
 	<div class="tab_content" >
@@ -22,17 +24,12 @@
 		
 		<div class="InfoCard">
 			<h3>공지사항</h3>
-			<a href="#">
+			<a href="/admin/admin_notice">
 			<div class="totalNum">
 				<p>${vo.totalNoticeCnt}</p>
 			</div>
 			</a>
 			<div class="subNum">
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
 			</div>
 		</div>
 		
@@ -47,24 +44,22 @@
 				관리자 : <a href="/admin/admin_memberList?searchKey=userlevel&searchWord=1">${vo.level1MemberCnt}</a><br/>
 				일반회원 : <a href="/admin/admin_memberList?searchKey=userlevel&searchWord=2">${vo.level2MemberCnt}</a><br/>
 				정지 : <a href="/admin/admin_memberList?searchKey=userlevel&searchWord=3">${vo.level3MemberCnt}</a><br/>
-				<br/>
-				<br/>
 			</div>
 		</div>
 		
 		<div class="InfoCard">
 			<h3>게시판</h3>
-			<a href="#">
+			<a href="/admin/admin_board?searchKey=all">
 			<div class="totalNum">
 				<p>${vo.totalBoardCnt}</p>
 			</div>
 			</a>
 			<div class="subNum">
-				정보공유 : ${vo.infoCnt}<br/>
-				나눔 : ${vo.shareCnt}<br/>
-				산책 : ${vo.walkCnt}<br/>
-				자랑 : ${vo.boastCnt}<br/>
-				건의 : ${vo.suggestCnt}<br/>
+				정보공유 : <a href="/admin/admin_board?searchKey=info">${vo.infoCnt}</a><br/>
+				나눔 : <a href="/admin/admin_board?searchKey=share">${vo.shareCnt}</a><br/>
+				산책 : <a href="/admin/admin_board?searchKey=walk">${vo.walkCnt}</a><br/>
+				자랑 : <a href="/admin/admin_board?searchKey=boast">${vo.boastCnt}</a><br/>
+				건의 : <a href="/admin/admin_board?searchKey=suggest">${vo.suggestCnt}</a><br/>
 			</div>
 		</div>
 		
@@ -76,11 +71,11 @@
 			</div>
 			</a>
 			<div class="subNum">
-				<br/>
-				<br/>
-				<br/>
-				<br/>
-				<br/>
+				강아지 : <a href="#">${vo.dogAdoptCnt}</a><br/>
+				고양이 : <a href="#">${vo.catAdoptCnt}</a><br/>
+				파충류 | 양서류 : <a href="#">${vo.reptileAdoptCnt}</a><br/>
+				조류 : <a href="#">${vo.birdAdoptCnt}</a><br/>
+				기타동물 : <a href="#">${vo.etcAdoptCnt}</a><br/>
 			</div>
 		</div>
 		
@@ -100,6 +95,34 @@
 			</div>
 		</div>
 		
+		<div class="InfoCard">
+			<h3>리뷰(게시판)</h3>
+			<a href="#">
+			<div class="totalNum">
+				<p>${vo.totalReplyCnt}</p>
+			</div>
+			</a>
+			<div class="subNum">
+				공지사항 : <a href="#">${vo.noticeReplyCnt}</a><br/>
+				정보공유 : <a href="#">${vo.infoReplyCnt}</a><br/>
+				나눔 : <a href="#">${vo.shareReplyCnt}</a><br/>
+				산책 : <a href="#">${vo.walkReplyCnt}</a><br/>
+				자랑 : <a href="#">${vo.boastReplyCnt}</a><br/>
+				건의 : <a href="#">${vo.suggestReplyCnt}</a><br/>
+				입양 : <a href="#">${vo.adoptReplyCnt}</a>
+			</div>
+		</div>
+		
+		<div class="InfoCard">
+			<h3>리뷰(동물병원)</h3>
+			<a href="#">
+			<div class="totalNum">
+				<p>${vo.totalShopReviewCnt}</p>
+			</div>
+			</a>
+			<div class="subNum">
+			</div>
+		</div>
 		
 	</div>
 

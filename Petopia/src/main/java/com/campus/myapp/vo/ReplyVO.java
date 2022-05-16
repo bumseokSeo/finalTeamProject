@@ -7,6 +7,8 @@ public class ReplyVO {
 		private String writedate;
 		private int boardno;
 		
+		private String boardtype;
+		
 		public int getReplyno() {
 			return replyno;
 		}
@@ -36,6 +38,12 @@ public class ReplyVO {
 		}
 		public void setBoardno(int boardno) {
 			this.boardno = boardno;
+		}
+		public String getBoardtype() {
+			return boardtype;
+		}
+		public void setBoardtype(String boardtype) {
+			this.boardtype = boardtype;
 		}
 		
 

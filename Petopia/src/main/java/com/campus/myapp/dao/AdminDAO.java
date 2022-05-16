@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.campus.myapp.vo.AdminPagingVO;
 import com.campus.myapp.vo.AdminVO;
 import com.campus.myapp.vo.AnimalInfoVO;
+import com.campus.myapp.vo.BoardVO;
 import com.campus.myapp.vo.MemberVO;
+import com.campus.myapp.vo.ReplyVO;
 
 @Mapper
 @Repository
@@ -51,6 +53,34 @@ public interface AdminDAO {
 	public int totalNoticeCnt(AdminVO vo);
 	
 	public int totalAdoptCnt(AdminVO vo);
+	public int dogAdoptCnt(AdminVO vo);
+	public int catAdoptCnt(AdminVO vo);
+	public int reptileAdoptCnt(AdminVO vo);
+	public int birdAdoptCnt(AdminVO vo);
+	public int etcAdoptCnt(AdminVO vo);
+	
+	public List<BoardVO> boardList(AdminPagingVO apVO);
+	public int boardTotalRecord(AdminPagingVO apVO);
+	public BoardVO boardGetFileName(int boardno);
+	public int boardDataDelete(int boardno);
+	
+	public List<BoardVO> noticeList(AdminPagingVO apVO);
+	public int noticeTotalRecord(AdminPagingVO apVO);
+	
+	public int totalReplyCnt(AdminVO vo);
+	public int noticeReplyCnt(AdminVO vo);
+	public int infoReplyCnt(AdminVO vo);
+	public int shareReplyCnt(AdminVO vo);
+	public int walkReplyCnt(AdminVO vo);
+	public int boastReplyCnt(AdminVO vo);
+	public int suggestReplyCnt(AdminVO vo);
+	public int adoptReplyCnt(AdminVO vo);
+	
+	public int totalShopReviewCnt(AdminVO vo);
+	public List<ReplyVO> boardReviewList(AdminPagingVO apVO);
+	public int boardReviewTotalRecord(AdminPagingVO apVO);
+	public int boardReviewDelete(int replyno);
+	
 	
 	
 }

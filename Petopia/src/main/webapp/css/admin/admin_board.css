@@ -40,42 +40,43 @@ a:hover{
 	font-size: 18px;
 }
 
-#animalInfoList{
+#boardList{
 	overflow: auto;
 	list-style-type: none;
 	padding-left: 0px;
 }
-#animalInfoList>li{
+#boardList>li{
 	float: left;
-	width: 30%;
+	width: 10%;
 	height: 40px;
 	line-height: 40px;
 	list-style-type: none;
 	border-bottom: 1px solid #ddd;
-}
-#animalInfoList>li:nth-child(3n+2){
-	width: 50%;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-#animalInfoList>li:nth-child(3n+1){
-	width: 20%;
+#boardList>li:nth-child(8n+1){
 	padding-left: 15px;
 }
-#animalInfoList>li:nth-child(n+1):nth-child(-n+3) {
+#boardList>li:nth-child(8n+3){
+	width: 29%;
+}
+#boardList>li:nth-child(8n+2),
+#boardList>li:nth-child(8n+5),
+#boardList>li:nth-child(8n+6){
+	width: 7%;
+}
+#boardList>li:nth-child(8n+7){
+	width: 20%;
+}
+
+#boardList>li:nth-child(n+1):nth-child(-n+8) {
 	border-bottom: 3px solid #ddd;
 	background-color: rgba(205, 188, 171, 0.5);
 	font-weight: bold;
 }
-.editBtn{
-	background: #FF7900;
-	border: #FF7900;
-	font-size: 16px;
-	font-weight: 700;
-	color: #fff !important;
-	padding:2px 15px;
-}
+
 .delBtn{
 	background: gray;
 	border: #FF7900;
@@ -85,22 +86,7 @@ a:hover{
 	padding:2px 15px;
 }
 
-.writeBtn{
-	width: 80px;
-	background-color: #ff6d00;
-	text-align: center;
-	border-radius: 5px;
-	padding: 5px;
-	margin:15px 0px;
-	float: left;
-}
-.writeBtn>a{
-	color: #fff;
-	font-weight: 700;
-}
-.writeBtn:hover a{
-	color: #fff;
-}
+
 #searchDiv{
 	padding: 5px;
 	margin:15px 0px;

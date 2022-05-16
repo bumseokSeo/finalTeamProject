@@ -11,12 +11,12 @@
 	</select>
 	
 	<select id="memberByEmail" resultType="com.campus.myapp.vo.MemberVO">
-		select userid, username, profileimage, userlevel, useremail from member
+		select userid, username, profileimage, userlevel, useremail, tel, stopend from member
 		where useremail=#{useremail}
 	</select>
 	
 	<select id="memberByKakaoId" resultType="com.campus.myapp.vo.MemberVO">
-		select userid, username, profileimage, userlevel, useremail, stopend from member
+		select userid, username, profileimage, userlevel, useremail, tel, stopend from member
 		where kakaoid=#{kakaoid}
 	</select>
 	

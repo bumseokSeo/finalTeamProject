@@ -7,7 +7,7 @@ public class BoardVO {
 	private int hit;
 	private String userid;
 	private String writedate;
-	private String like; //좋아요
+	private int likes; //좋아요
 	private String boardtype;
 	private String filename1;
 	private String username;
@@ -49,11 +49,11 @@ public class BoardVO {
 	public void setWritedate(String writedate) {
 		this.writedate = writedate;
 	}
-	public String getLike() {
-		return like;
+	public int getLikes() {
+		return likes;
 	}
-	public void setLike(String like) {
-		this.like = like;
+	public void setLikes(int likes) {
+		this.likes = likes;
 	}
 	public String getBoardtype() {
 		return boardtype;

@@ -24,7 +24,9 @@ import com.campus.myapp.service.AdminService;
 import com.campus.myapp.vo.AdminPagingVO;
 import com.campus.myapp.vo.AdminVO;
 import com.campus.myapp.vo.AnimalInfoVO;
+import com.campus.myapp.vo.BoardVO;
 import com.campus.myapp.vo.MemberVO;
+import com.campus.myapp.vo.ReplyVO;
 
 @RestController
 @RequestMapping("/admin/")
@@ -59,6 +61,22 @@ public class AdminController {
 		vo.setTotalNoticeCnt(service.totalNoticeCnt(vo));
 		
 		vo.setTotalAdoptCnt(service.totalAdoptCnt(vo));
+		vo.setDogAdoptCnt(service.dogAdoptCnt(vo));
+		vo.setCatAdoptCnt(service.catAdoptCnt(vo));
+		vo.setReptileAdoptCnt(service.reptileAdoptCnt(vo));
+		vo.setBirdAdoptCnt(service.birdAdoptCnt(vo));
+		vo.setEtcAdoptCnt(service.etcAdoptCnt(vo));
+		
+		vo.setTotalReplyCnt(service.totalReplyCnt(vo));
+		vo.setNoticeReplyCnt(service.noticeReplyCnt(vo));
+		vo.setInfoReplyCnt(service.infoReplyCnt(vo));
+		vo.setShareReplyCnt(service.shareReplyCnt(vo));
+		vo.setWalkReplyCnt(service.walkReplyCnt(vo));
+		vo.setBoastReplyCnt(service.boastReplyCnt(vo));
+		vo.setSuggestReplyCnt(service.suggestReplyCnt(vo));
+		vo.setAdoptReplyCnt(service.adoptReplyCnt(vo));
+		
+		vo.setTotalShopReviewCnt(service.totalShopReviewCnt(vo));
 		
 		mav.addObject("vo", vo);
 		
@@ -187,7 +205,7 @@ public class AdminController {
 				fileDelete(path, vo.getFilename3());
 			}
 			
-			String msg = "<script>alert('반려동물정보가 삭제되었습니다.'); location.href='/admin/admin_animalInfo';</script>";
+			String msg = "<script>alert('반려동물정보가 삭제되었습니다.'); location.href='/admin/admin_animalInfo?searchKey=all';</script>";
 			
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 		}catch(Exception e) {
@@ -448,20 +466,157 @@ public class AdminController {
 	@GetMapping("/memberChangeStop")
 	public ResponseEntity<String> memberChangeStop(String userid, HttpSession session){
 	
-	ResponseEntity<String> entity = null;
-	
-	try {			
-		service.memberChangeStop(userid);
+		ResponseEntity<String> entity = null;
 		
-		String msg = "<script>alert('회원 등급이 변경되었습니다.'); location.href='/admin/admin_memberList';</script>";
-		
-		entity = new ResponseEntity<String>(msg, HttpStatus.OK);
-	}catch(Exception e) {
-		e.printStackTrace();
-		
-		String msg = "<script>alert('회원 등급 변경 실패하였습니다.');history.back();</script>";
-		entity = new ResponseEntity<String>(msg, HttpStatus.BAD_REQUEST);
+		try {			
+			service.memberChangeStop(userid);
+			
+			String msg = "<script>alert('회원 등급이 변경되었습니다.'); location.href='/admin/admin_memberList';</script>";
+			
+			entity = new ResponseEntity<String>(msg, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			String msg = "<script>alert('회원 등급 변경 실패하였습니다.');history.back();</script>";
+			entity = new ResponseEntity<String>(msg, HttpStatus.BAD_REQUEST);
+		}
+		return entity;
 	}
-	return entity;
-}
+	
+	
+	// 게시판관리 이동
+	@GetMapping("/admin_board")
+	public ModelAndView admin_board(AdminPagingVO apVO) {
+		ModelAndView mav = new ModelAndView();
+		
+		apVO.setTotalRecord(service.boardTotalRecord(apVO));
+		
+		mav.addObject("list", service.boardList(apVO));
+		mav.addObject("apVO", apVO);
+		
+		mav.setViewName("admin/admin_board");
+		return mav;
+	}
+	
+	// 게시글 삭제
+	@GetMapping("/boardDel")
+	public ResponseEntity<String> boardDel(int boardno, HttpSession session){
+		String path = session.getServletContext().getRealPath("/img/board");
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		
+		try {	
+			BoardVO vo = new BoardVO();
+			if(vo.getFilename1() != null) {
+				service.boardGetFileName(boardno);
+			}			
+			
+			service.boardDataDelete(boardno);
+			
+			if(vo.getFilename1() != null) {
+				fileDelete(path, vo.getFilename1());
+			}
+			
+			String msg = "<script>alert('게시물이 삭제되었습니다.'); location.href='/admin/admin_board?searchKey=all';</script>";
+			
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			String msg = "<script>alert('삭제실패하였습니다.');history.back();</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	
+	// 공지사항 관리 이동
+	@GetMapping("/admin_notice")
+	public ModelAndView admin_notice(AdminPagingVO apVO) {
+		ModelAndView mav = new ModelAndView();
+		
+		apVO.setTotalRecord(service.noticeTotalRecord(apVO));
+		
+		mav.addObject("list", service.noticeList(apVO));
+		mav.addObject("apVO", apVO);
+		
+		mav.setViewName("admin/admin_notice");
+		return mav;
+	}
+	// 공지사항 삭제
+	@GetMapping("/noticeDel")
+	public ResponseEntity<String> noticeDel(int boardno, HttpSession session){
+		String path = session.getServletContext().getRealPath("/img/board");
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		
+		try {	
+			BoardVO vo = new BoardVO();
+			if(vo.getFilename1() != null) {
+				service.boardGetFileName(boardno);
+			}			
+			
+			service.boardDataDelete(boardno);
+			
+			if(vo.getFilename1() != null) {
+				fileDelete(path, vo.getFilename1());
+			}
+			
+			String msg = "<script>alert('게시물이 삭제되었습니다.'); location.href='/admin/admin_notice';</script>";
+			
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			String msg = "<script>alert('삭제실패하였습니다.');history.back();</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	// 게시판리뷰관리 이동
+	@GetMapping("/admin_boardReview")
+	public ModelAndView admin_boardReview(AdminPagingVO apVO) {
+		ModelAndView mav = new ModelAndView();
+		
+		apVO.setTotalRecord(service.boardReviewTotalRecord(apVO));
+		
+		mav.addObject("list", service.boardReviewList(apVO));
+		mav.addObject("apVO", apVO);
+		
+		mav.setViewName("admin/admin_boardReview");
+		return mav;
+	}
+	// 리뷰 삭제
+	@GetMapping("/boardReviewDel")
+	public ResponseEntity<String> boardReviewDel(int replyno, HttpSession session){
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		
+		try {	
+			ReplyVO vo = new ReplyVO();
+			
+			service.boardReviewDelete(replyno);
+			
+			String msg = "<script>alert('리뷰가 삭제되었습니다.'); location.href='/admin/admin_boardReview?searchKey=all';</script>";
+			
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			String msg = "<script>alert('삭제실패하였습니다.');history.back();</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	
+	
+	
 }

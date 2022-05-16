@@ -40,30 +40,36 @@ a:hover{
 	font-size: 18px;
 }
 
-#animalInfoList{
+#noticeList{
 	overflow: auto;
 	list-style-type: none;
 	padding-left: 0px;
 }
-#animalInfoList>li{
+#noticeList>li{
 	float: left;
-	width: 30%;
+	width: 20%;
 	height: 40px;
 	line-height: 40px;
 	list-style-type: none;
 	border-bottom: 1px solid #ddd;
-}
-#animalInfoList>li:nth-child(3n+2){
-	width: 50%;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-#animalInfoList>li:nth-child(3n+1){
-	width: 20%;
+#noticeList>li:nth-child(5n+1){
 	padding-left: 15px;
+	width: 10%;
 }
-#animalInfoList>li:nth-child(n+1):nth-child(-n+3) {
+#noticeList>li:nth-child(5n+2){
+	width: 45%;
+}
+#noticeList>li:nth-child(5n+3){
+	width: 10%;
+}
+#noticeList>li:nth-child(5n){
+	width: 15%;
+}
+#noticeList>li:nth-child(n+1):nth-child(-n+5) {
 	border-bottom: 3px solid #ddd;
 	background-color: rgba(205, 188, 171, 0.5);
 	font-weight: bold;

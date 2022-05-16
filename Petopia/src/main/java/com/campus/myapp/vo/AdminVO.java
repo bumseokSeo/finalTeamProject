@@ -24,7 +24,22 @@ public class AdminVO {
 	private int totalNoticeCnt;
 	
 	private int totalAdoptCnt;
+	private int dogAdoptCnt;
+	private int catAdoptCnt;
+	private int reptileAdoptCnt;
+	private int birdAdoptCnt;
+	private int etcAdoptCnt;
 	
+	private int totalReplyCnt;
+	private int noticeReplyCnt;
+	private int infoReplyCnt;
+	private int shareReplyCnt;
+	private int walkReplyCnt;
+	private int boastReplyCnt;
+	private int suggestReplyCnt;
+	private int adoptReplyCnt;
+	
+	private int totalShopReviewCnt;
 	
 	
 	public int getTotalMemberCnt() {
@@ -135,6 +150,90 @@ public class AdminVO {
 	}
 	public void setTotalAdoptCnt(int totalAdoptCnt) {
 		this.totalAdoptCnt = totalAdoptCnt;
+	}
+	public int getDogAdoptCnt() {
+		return dogAdoptCnt;
+	}
+	public void setDogAdoptCnt(int dogAdoptCnt) {
+		this.dogAdoptCnt = dogAdoptCnt;
+	}
+	public int getCatAdoptCnt() {
+		return catAdoptCnt;
+	}
+	public void setCatAdoptCnt(int catAdoptCnt) {
+		this.catAdoptCnt = catAdoptCnt;
+	}
+	public int getReptileAdoptCnt() {
+		return reptileAdoptCnt;
+	}
+	public void setReptileAdoptCnt(int reptileAdoptCnt) {
+		this.reptileAdoptCnt = reptileAdoptCnt;
+	}
+	public int getBirdAdoptCnt() {
+		return birdAdoptCnt;
+	}
+	public void setBirdAdoptCnt(int birdAdoptCnt) {
+		this.birdAdoptCnt = birdAdoptCnt;
+	}
+	public int getEtcAdoptCnt() {
+		return etcAdoptCnt;
+	}
+	public void setEtcAdoptCnt(int etcAdoptCnt) {
+		this.etcAdoptCnt = etcAdoptCnt;
+	}
+	public int getTotalReplyCnt() {
+		return totalReplyCnt;
+	}
+	public void setTotalReplyCnt(int totalReplyCnt) {
+		this.totalReplyCnt = totalReplyCnt;
+	}
+	public int getNoticeReplyCnt() {
+		return noticeReplyCnt;
+	}
+	public void setNoticeReplyCnt(int noticeReplyCnt) {
+		this.noticeReplyCnt = noticeReplyCnt;
+	}
+	public int getInfoReplyCnt() {
+		return infoReplyCnt;
+	}
+	public void setInfoReplyCnt(int infoReplyCnt) {
+		this.infoReplyCnt = infoReplyCnt;
+	}
+	public int getShareReplyCnt() {
+		return shareReplyCnt;
+	}
+	public void setShareReplyCnt(int shareReplyCnt) {
+		this.shareReplyCnt = shareReplyCnt;
+	}
+	public int getWalkReplyCnt() {
+		return walkReplyCnt;
+	}
+	public void setWalkReplyCnt(int walkReplyCnt) {
+		this.walkReplyCnt = walkReplyCnt;
+	}
+	public int getBoastReplyCnt() {
+		return boastReplyCnt;
+	}
+	public void setBoastReplyCnt(int boastReplyCnt) {
+		this.boastReplyCnt = boastReplyCnt;
+	}
+	public int getSuggestReplyCnt() {
+		return suggestReplyCnt;
+	}
+	public void setSuggestReplyCnt(int suggestReplyCnt) {
+		this.suggestReplyCnt = suggestReplyCnt;
+	}
+	public int getAdoptReplyCnt() {
+		return adoptReplyCnt;
+	}
+	public void setAdoptReplyCnt(int adoptReplyCnt) {
+		this.adoptReplyCnt = adoptReplyCnt;
+	}
+	public int getTotalShopReviewCnt() {
+		return totalShopReviewCnt;
+	}
+	public void setTotalShopReviewCnt(int totalShopReviewCnt) {
+		this.totalShopReviewCnt = totalShopReviewCnt;
 	}
 	
 	
