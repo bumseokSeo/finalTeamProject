@@ -103,13 +103,13 @@
 			</div>
 			</a>
 			<div class="subNum">
-				공지사항 : <a href="#">${vo.noticeReplyCnt}</a><br/>
-				정보공유 : <a href="#">${vo.infoReplyCnt}</a><br/>
-				나눔 : <a href="#">${vo.shareReplyCnt}</a><br/>
-				산책 : <a href="#">${vo.walkReplyCnt}</a><br/>
-				자랑 : <a href="#">${vo.boastReplyCnt}</a><br/>
-				건의 : <a href="#">${vo.suggestReplyCnt}</a><br/>
-				입양 : <a href="#">${vo.adoptReplyCnt}</a>
+				공지사항 : <a href="admin/admin_boardReview?searchKey=notice">${vo.noticeReplyCnt}</a><br/>
+				정보공유 : <a href="admin/admin_boardReview?searchKey=info">${vo.infoReplyCnt}</a><br/>
+				나눔 : <a href="admin/admin_boardReview?searchKey=share">${vo.shareReplyCnt}</a><br/>
+				산책 : <a href="admin/admin_boardReview?searchKey=walk">${vo.walkReplyCnt}</a><br/>
+				자랑 : <a href="admin/admin_boardReview?searchKey=boast">${vo.boastReplyCnt}</a><br/>
+				건의 : <a href="admin/admin_boardReview?searchKey=suggest">${vo.suggestReplyCnt}</a><br/>
+				입양 : <a href="admin/admin_boardReview?searchKey=adopt">${vo.adoptReplyCnt}</a>
 			</div>
 		</div>
 		

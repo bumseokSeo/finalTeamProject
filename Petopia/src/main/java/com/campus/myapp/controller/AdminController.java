@@ -616,7 +616,7 @@ public class AdminController {
 		return entity;
 	}
 	
-	// 게시판관리 이동
+	// 입양게시판관리 이동
 	@GetMapping("/admin_adopt")
 	public ModelAndView admin_adopt(AdminPagingVO apVO) {
 		ModelAndView mav = new ModelAndView();
@@ -629,6 +629,37 @@ public class AdminController {
 		mav.setViewName("admin/admin_adopt");
 		return mav;
 	}
-	
+	// 입양 게시글 삭제
+	@GetMapping("/adoptDel")
+	public ResponseEntity<String> adoptDel(int boardno, HttpSession session){
+		String path = session.getServletContext().getRealPath("/img/board");
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		
+		try {	
+			BoardVO vo = new BoardVO();
+			if(vo.getFilename1() != null) {
+				service.boardGetFileName(boardno);
+			}			
+			
+			service.boardDataDelete(boardno);
+			
+			if(vo.getFilename1() != null) {
+				fileDelete(path, vo.getFilename1());
+			}
+			
+			String msg = "<script>alert('게시물이 삭제되었습니다.'); location.href='/admin/admin_adopt?searchKey=all';</script>";
+			
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			String msg = "<script>alert('삭제실패하였습니다.');history.back();</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 	
 }

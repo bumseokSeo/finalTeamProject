@@ -15,7 +15,7 @@ function noticeDelChk(boardno){
 		<li><a href="/admin/admin_notice">공지사항 관리</a></li>
 		<li><a href="/admin/admin_memberList">회원 관리</a></li>
 		<li><a href="/admin/admin_board?searchKey=all">게시판 관리</a></li>
-		<li><a href="#">입양 게시판 관리</a></li>
+		<li><a href="/admin/admin_adopt?searchKey=all">입양 게시판 관리</a></li>
 		<li><a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보 관리</a></li>
 		<li><a href="/admin/admin_boardReview?searchKey=all">게시판 리뷰 관리</a></li>
 		<li><a href="#">동물병원 리뷰 관리</a></li>
