@@ -5,9 +5,9 @@
   
 <mapper namespace="com.campus.myapp.dao.MessageDAO">
 <select id="message_list" parameterType="com.campus.myapp.vo.MessageVO" resultType="com.campus.myapp.vo.MessageVO">
-    select no, room, send_nick, recv_nick, date_format(send_time, '%Y-%m-%d %H:%i') send_time, read_time, content, read_chk
-    from message
-    where no in (select max(no) from message group by room) and (send_nick = #{username} or recv_nick=#{username})
+    select m.no, m.room, m.send_nick, m.recv_nick, date_format(m.send_time, '%Y-%m-%d %H:%i') send_time, m.read_time, m.content, m.read_chk, r.state
+    from message m join roomstate r on m.room = r.room
+    where no in (select max(no) from message group by room) and (m.send_nick = #{username} or m.recv_nick=#{username})
     order by no desc;
 </select>
 
@@ -64,10 +64,10 @@
 <insert id="messageSendInlist" parameterType="com.campus.myapp.vo.MessageVO">
     <choose>
         <when test="room != 0">
-            insert into message(no,room,send_nick,recv_nick,send_time,read_time,content,read_chk,messagetype) values(0, #{room}, #{send_nick}, #{recv_nick}, now(), now(), #{content}, 0,#{messagetype});
+            insert into message(no,room,send_nick,recv_nick,send_time,read_time,content,read_chk,messagetype) values(0, #{room}, #{send_nick}, #{recv_nick}, now(), now(), #{content}, 0,#{messagetype})
         </when>
         <otherwise>
-            insert into message(no,room,send_nick,recv_nick,send_time,read_time,content,read_chk,messagetype) values(0, #{room}, #{send_nick}, #{recv_nick}, now(), now(), #{content}, 0,#{messagetype});
+            insert into message(no,room,send_nick,recv_nick,send_time,read_time,content,read_chk,messagetype) values(0, #{room}, #{send_nick}, #{recv_nick}, now(), now(), #{content}, 0,#{messagetype})
         </otherwise>
     </choose>
 </insert>
@@ -89,4 +89,13 @@
     where (recv_nick = #{recv_nick} and send_nick=#{send_nick}) or (send_nick = #{recv_nick} and recv_nick=#{send_nick})
     limit 0,1
 </select>
+
+<insert id="create_room" parameterType="com.campus.myapp.vo.MessageVO">
+	insert into roomstate(room,state) values(#{param1},'y')
+</insert>
+
+<!-- 방의 상태를 비활성화 -->
+<update id="roomstate">
+	update roomstate set state='n' where room=#{param1}
+</update>
 </mapper>

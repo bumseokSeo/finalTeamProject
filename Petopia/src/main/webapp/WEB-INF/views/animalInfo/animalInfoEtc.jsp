@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/css/animalInfo/animalInfoMain.css" type="text/css"/>
-<style>
-</style>
 <div id="animalInfo_container" class="container">
 	<div id="animalInfo_wrap">
 		<div id="animalInfo_lnb">

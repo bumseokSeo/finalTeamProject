@@ -28,18 +28,17 @@
 			</div>
 			<div class="bar">
 				<div class="d1">
-				
 					<span class="barcontent">특징</span>
 				</div>
-				
 				<div class="d2">
-					
 					<img src="/img/특징아이콘.png" alt="" class="d-flex icon">
 				</div>
 				
 			</div>
 			<div id="distinctDiv">
-				${vo.distinction}
+				<b style="font-size: 2em; position: absolute; left: 30px;">저는..</b>
+				
+				<div><br><br>${vo.distinction}</div>
 			</div>
 			<div id="imgDiv2">
 				
@@ -54,7 +53,8 @@
 				</div>
 			</div>
 			<div id="diseaseDiv">
-				${vo.disease}
+				<b style="font-size: 2em; position: absolute; left: 30px;">저는..</b>
+				<div><br><br>${vo.disease}</div>
 			</div>
 			<div id="imgDiv3">
 				<img src="/img/animalInfo/${vo.filename3}" class="img-fluid" alt="이미지가 없습니다." id="animalImg">

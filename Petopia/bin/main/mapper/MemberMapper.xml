@@ -76,8 +76,7 @@
 	</delete>
 	
 	<select id="messagechk" resultType="int">
-		select count(read_chk) message from message where recv_nick=#{param1} and read_chk=0;
-	</select>
+		select count(m.read_chk) message from message m join roomstate r on m.room = r.room where m.recv_nick=#{param1} and m.read_chk=0 and r.state='y';	</select>
 
 	<update id="backtoNormal">
 		update member set userlevel='2', stopend=null  where userid=#{userid}
