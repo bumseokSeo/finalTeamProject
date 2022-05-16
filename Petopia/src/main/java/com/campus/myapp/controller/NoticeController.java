@@ -37,8 +37,6 @@ public class NoticeController {
 	
 	@GetMapping("/board/SubMenuSelect")
 	public ModelAndView SubMenuSelect(PagingVO pVO, String type) {
-		BoardVO bvo = new BoardVO();
-		PagingVO2 pVO2 = new PagingVO2();
 		ModelAndView mav = new ModelAndView();
 		System.out.println("게시판 컨트롤러 ");
 		
@@ -49,15 +47,7 @@ public class NoticeController {
 		return mav;
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/board/notice/noticeLists")
-	public List<BoardVO> NoticePaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
-		System.out.println("공지 페이징 작동");
-		
-		pvo.setStart(Integer.parseInt(startNum));
-		pvo.setEnd(19);
-		return service.BoardSelectList("notice", pvo);
-	}
+	// 게시판 페이징 모음
 	
 	// 검색 기능
 	@GetMapping("/board/notice/noticeSearch")
@@ -69,11 +59,22 @@ public class NoticeController {
 		mav.setViewName("/board/SubMenuSelect");
 		return mav;
 	}
+	
+	//notice
+	@ResponseBody
+	@RequestMapping(value="/board/notice/noticeLists")
+	public List<BoardVO> NoticePaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
+		System.out.println("공지 페이징 작동");
+		
+		pvo.setStart(Integer.parseInt(startNum));
+		pvo.setEnd(19);
+		return service.BoardSelectList("notice", pvo);
+	}
 		
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/board/notice/searchLists")
-	public List<BoardVO> searchMoreView(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
-		System.out.println("searchMoreView START!!!");
+	public List<BoardVO> searchMoreViewN(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
+		System.out.println("검색 결과 페이징");
 		int start = Integer.parseInt(startNum);
 		int end = 19;
 		System.out.println("searchKey -> " + searchKey);
@@ -81,10 +82,35 @@ public class NoticeController {
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "notice");
 	}
 	
+	//share
+	@ResponseBody
+	@RequestMapping(value="/board/share/shareLists")
+	public List<BoardVO> SharePaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
+		System.out.println("공지 페이징 작동");
+		
+		pvo.setStart(Integer.parseInt(startNum));
+		pvo.setEnd(12);
+		return service.BoardSelectList("share", pvo);
+	}
+	
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/board/share/searchLists")
+	public List<BoardVO> searchMoreViewS(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
+		System.out.println("검색 결과 페이징");
+		int start = Integer.parseInt(startNum);
+		int end = 12;
+		System.out.println("searchKey -> " + searchKey);
+		System.out.println("searchWord -> " + searchWord);
+		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "share");
+	}
+	
+	
+	
+	
 	//글쓰기 폼 이동
-	@GetMapping("/board/notice/noticeWrite")
+	@GetMapping("/board/boardWrite")
 	public String noticeWrite() {
-		return "/board/notice/noticeWrite";
+		return "/board/boardWrite";
 		
 	}
 	
@@ -190,8 +216,8 @@ public class NoticeController {
 			}
 		}
 		
-		//글 내용보기
-		@GetMapping("/board/notice/noticeView")
+		//글 내용보기(공통)
+		@GetMapping("/board/boardView")
 		public ModelAndView boardView(int boardno, String user, HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
 			System.out.println("조회수 증가");
@@ -209,16 +235,17 @@ public class NoticeController {
 		}
 		
 		//글 수정
-		@GetMapping("/board/notice/noticeEdit")
+		@GetMapping("/board/boardEdit")
 		public ModelAndView BoardEdit(int boardno) {
+			
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("vo", service.BoardView(boardno));
-			mav.setViewName("/board/notice/noticeEdit");
+			mav.setViewName("/board/boardEdit");
 			return mav;
 		}
 	
 		//수정(DB)
-		@PostMapping("/board/notice/noticeEditOk")
+		@PostMapping("/board/boardEditOk")
 		public ResponseEntity<String> reviewEditOk(BoardVO vo, HttpSession session, HttpServletRequest req) {
 			System.out.println("boardEdit 시작");
 			vo.setUserid((String) session.getAttribute("logId"));
@@ -317,9 +344,24 @@ public class NoticeController {
 //					}			
 
 				// 글 내용보기로 이동
+				
+				//조건걸기
+				String BF = vo.getBoardtype();
+				System.out.println(BF);
+				
 				String msg = "<script>alert('공지 게시글이 수정되었습니다.\\n글내용보기로 이동합니다');";
-				msg += "location.href='/board/notice/noticeView?boardno="+vo.getBoardno()+"';</script>";
-
+				
+				//선별조건
+				if(BF.equals("notice")) {
+				msg = "location.href='/board/notice/noticeView?boardno="+vo.getBoardno()+"';</script>";
+				}
+				if(BF.equals("share")) {
+				msg = "location.href='/board/share/shareView?boardno="+vo.getBoardno()+"';</script>";
+				}
+				if(BF.equals("adopt")) {
+				msg = "location.href='/board/adopt/adoptView?boardno="+vo.getBoardno()+"';</script>";
+				}
+				
 				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 
 			} catch (Exception e) {

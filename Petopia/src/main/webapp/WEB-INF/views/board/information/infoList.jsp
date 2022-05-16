@@ -1,14 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/css/board/share/shareList.css" type="text/css"/>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link rel="stylesheet" href="/css/board/info/infoList.css" type="text/css"/>
 <div class="container">
 	<div class="Menu_Bar_A">
-		<h1 class="Menu_title">나눔 게시판</h1>
+		<h1 class="Menu_title">공지 사항</h1>
 		<div class="Menu_img">이미지 들어갈것</div>
 	</div>
 	<div class="Menu_container">
 		<ul class="List_menu_F" id="List_menu_F">
+			<li>게시물 번호</li>
+			<li>제목</li>
+			<li>날짜</li>
+			<li>조회수</li>
 
 		</ul><!-- 게시물 -->
 		</div>
@@ -19,17 +23,18 @@
             
         </div>
     
-       <div class="Share_btn"><a href="/board/boardWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
+       <div class="Share_btn"><a href="/board/info/infoWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 	<br/><br/><br/>
 	<div class="Share_search">
-		 <form action="/board/notice/noticeSearch" id="searchFrm">
+		 <form action="/board/info/infoSearch" id="searchFrm">
 			<select name="searchKey">
 				<option value="" selected="selected">전체</option>
 				<option value="title">제목</option>
+				<option value="userid">글쓴이</option>
 				<option value="content">내용</option>
 			</select>
 			<input type="text" name="searchWord" id="searchWord"/>
-			<input type="hidden" name="type" value="notice"/>
+			<input type="hidden" name="type" value="info"/>
 			<input type="submit" value="검색"/>
 		</form>
 	</div>
@@ -48,7 +53,7 @@ $("#searchFrm").submit(function() {
 	
 window.onload=function(){
 		var startNum = 0; 
-		var addListHtmlS = "";
+		var addListHtml = "";
 		 console.log(startNum); 
 		var url;
 		var param;
@@ -59,12 +64,12 @@ window.onload=function(){
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 		console.log(pn);
 		if(pn='SubMenuSelect'){
-			url = '/board/share/shareLists';
+			url = '/board/info/infoLists';
 			param = {
 				"startNum" : startNum 
 			};
-		}if(pn='noticeSearch'){
-			url = '/board/share/searchLists';
+		}if(pn='infoSearch'){
+			url = '/board/info/searchLists';
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
@@ -79,9 +84,10 @@ window.onload=function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlS += "<div class='col-sm-3 Share'><div class='card Share_group'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='/img/Logo(main).png'></a>";
-					addListHtmlS += "<div class='card-body'><div class='card-title Share_title'>"+data[i].title+"</div><div class='card-text Share_content'>";
-					addListHtmlS += "<label class='Share_text'>"+data[i].userid+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div></div>";
+					addListHtml += "<li>"+data[i].boardno+"</li>";
+					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+					addListHtml += "<li>"+data[i].writedate+"</li>";
+					addListHtml += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
 					$("#nextView").empty();
@@ -89,7 +95,7 @@ window.onload=function(){
 				if(startNum=1){
 					$("#prevView").empty();
 				} 
-				$("#List_menu_F").append(addListHtmlSS);
+				$("#List_menu_F").append(addListHtml);
 				$("#pView").append(startNum);
 			}
 		});
@@ -97,12 +103,12 @@ window.onload=function(){
 
 $('#nextView').click(function(){
 		var startNum = parseInt($("#pView").text());
-		var addListHtmlS = "";
-		var addListHtmlSpo = "";
-					addListHtmlSpo += "<li>게시물 번호</li>";
-					addListHtmlSpo += "<li>제목</li>";
-					addListHtmlSpo += "<li>날짜</li>";
-					addListHtmlSpo += "<li>조회수</li>";
+		var addListHtml = "";
+		var addListHtmlpo = "";
+					addListHtmlpo += "<li>게시물 번호</li>";
+					addListHtmlpo += "<li>제목</li>";
+					addListHtmlpo += "<li>날짜</li>";
+					addListHtmlpo += "<li>조회수</li>";
 		 console.log(startNum); 
 		var url;
 		var param;
@@ -112,13 +118,13 @@ $('#nextView').click(function(){
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 		if(pn='SubMenuSelect'){
-			url = '/board/share/shareLists';
+			url = '/board/info/infoLists';
 			console.log("다음페이지")
 			param = {
 				"startNum" : startNum*19+1
 			};
-		}else if(pn='noticeSearch'){
-			url = '/board/share/shareLists';
+		}else if(pn='infoSearch'){
+			url = '/board/info/searchLists';
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
@@ -133,20 +139,22 @@ $('#nextView').click(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlS += "<div class='col-sm-3 Share'><div class='card Share_group'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='/img/Logo(main).png'></a>";
-					addListHtmlS += "<div class='card-body'><div class='card-title Share_title'>"+data[i].title+"</div><div class='card-text Share_content'>";
-					addListHtmlS += "<label class='Share_text'>"+data[i].userid+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div></div>";
+					addListHtml += "<li>"+data[i].boardno+"</li>";
+					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+					addListHtml += "<li>"+data[i].writedate+"</li>";
+					addListHtml += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
 					$("#nextView").empty();
 				} 
 				$("#prevView").empty();
 				$("#List_menu_F").empty();
-				$("#List_menu_F").append(addListHtmlS);
+				$("#List_menu_F").append(addListHtmlpo);
+				$("#List_menu_F").append(addListHtml);
 				$("#pView").empty();
 				$("#pView").append(startNum+1);
 				$("#prevView").append("◀");
-				/* console.log(addListHtmlS); */
+				/* console.log(addListHtml); */
 			}
 		});
 	   
@@ -155,7 +163,13 @@ $('#nextView').click(function(){
 	
 $('#prevView').click(function(){
 	var startNum = parseInt($("#pView").text()); // 시작지점
-	var addListHtmlS = "";
+	var addListHtml = "";
+	var addListHtmlpo = "";
+				addListHtmlpo += "<li>게시물 번호</li>";
+				addListHtmlpo += "<li>제목</li>";
+				addListHtmlpo += "<li>날짜</li>";
+				addListHtmlpo += "<li>조회수</li>";
+	 console.log(startNum); 
 	var url;
 	var param;
 	const params = new URL(window.location.href).searchParams;
@@ -164,13 +178,13 @@ $('#prevView').click(function(){
 	var pathname = window.location.pathname;
 	var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 	if(pn='SubMenuSelect'){
-		url = '/board/share/shareLists';
+		url = '/board/info/infoLists';
 		console.log("이전페이지")
 		param = {
 			"startNum" : (startNum-1)*19-19
 		};
-	}else if(pn='noticeSearch'){
-		url = '/board/share/searchLists';
+	}else if(pn='infoSearch'){
+		url = '/board/info/searchLists';
 		param = {
 			"startNum" : startNum ,
 			"searchKey" : key,
@@ -185,22 +199,23 @@ $('#prevView').click(function(){
 		data :param,
 		success : function(data){
 			for (var i = 0; i < data.length; i++) {
-				addListHtmlS += "<div class='col-sm-3 Share'><div class='card Share_group'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='/img/Logo(main).png'></a>";
-				addListHtmlS += "<div class='card-body'><div class='card-title Share_title'>"+data[i].title+"</div><div class='card-text Share_content'>";
-				addListHtmlS += "<label class='Share_text'>"+data[i].userid+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div></div>";
+				addListHtml += "<li>"+data[i].boardno+"</li>";
+				addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+				addListHtml += "<li>"+data[i].writedate+"</li>";
+				addListHtml += "<li>"+data[i].hit+"</li>";
 			}
 			$("#nextView").empty();
 			$("#nextView").append("▶");
 			$("#List_menu_F").empty();
-			$("#List_menu_F").append(addListHtmlSpo);
-			$("#List_menu_F").append(addListHtmlS);
+			$("#List_menu_F").append(addListHtmlpo);
+			$("#List_menu_F").append(addListHtml);
 			$("#pView").empty();
 			$("#pView").append(startNum-1);
 			
 			if(parseInt($("#pView").text())==1){
 				$("#prevView").empty();
 			} 
-			/* console.log(addListHtmlS); */
+			/* console.log(addListHtml); */
 		}
 	});
    
