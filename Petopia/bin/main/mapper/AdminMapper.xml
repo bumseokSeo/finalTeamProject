@@ -330,4 +330,52 @@
 		delete from reply where replyno=#{param1}
 	</delete>
 	
+	
+	<select id="adoptList" resultType="com.campus.myapp.vo.BoardVO">
+		select an.category, b.boardno, ad.breed, b.title, b.userid, b.hit, b.likes, b.writedate from board b
+		join adopt ad on b.boardno = ad.boardno
+		join animalinfo an on ad.breed = an.breed 
+		where b.boardtype in ('adopt')
+		<if test='searchKey == "all" and searchWord == null'>
+		</if>
+		<if test='searchKey != "all" and searchWord == null'>
+			and an.category like '${searchKey}'
+		</if>
+		<if test='searchKey != "all" and searchWord != null'>
+			and  an.category like '${searchKey}' and 
+			(b.title like '%${searchWord}%' or b.content like '%${searchWord}%' 
+			or b.userid like '%${searchWord}%' or ad.breed like '%${searchWord}%')
+		</if>
+		<if test='searchKey == "all" and searchWord != null'>
+			and b.title like '%${searchWord}%' or b.content like '%${searchWord}%' 
+			or b.userid like '%${searchWord}%' or ad.breed like '%${searchWord}%'
+		</if>
+		 order by b.writedate desc
+		 limit ${onePageRecord} offset ${offsetIndex}
+	</select>
+	<select id="adoptTotalRecord" resultType="int">
+		select count(b.boardno) cnt from board b
+		join adopt ad on b.boardno = ad.boardno
+		join animalinfo an on ad.breed = an.breed 
+		where b.boardtype in ('adopt')
+		<if test='searchKey == "all" and searchWord == null'>
+		</if>
+		<if test='searchKey != "all" and searchWord == null'>
+			and an.category like '${searchKey}'
+		</if>
+		<if test='searchKey != "all" and searchWord != null'>
+			and  an.category like '${searchKey}' and 
+			(b.title like '%${searchWord}%' or b.content like '%${searchWord}%' 
+			or b.userid like '%${searchWord}%' or ad.breed like '%${searchWord}%')
+		</if>
+		<if test='searchKey == "all" and searchWord != null'>
+			and b.title like '%${searchWord}%' or b.content like '%${searchWord}%' 
+			or b.userid like '%${searchWord}%' or ad.breed like '%${searchWord}%'
+		</if>
+	</select>
+	
+	
+	
+	
+	
 </mapper>

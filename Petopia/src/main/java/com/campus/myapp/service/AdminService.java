@@ -37,6 +37,9 @@ public interface AdminService {
 	public int boardReviewTotalRecord(AdminPagingVO apVO);
 	public int boardReviewDelete(int replyno);
 	
+	public List<BoardVO> adoptList(AdminPagingVO apVO);
+	public int adoptTotalRecord(AdminPagingVO apVO);
+	
 	public int totalMemberCnt(AdminVO vo);
 	public int level1MemberCnt(AdminVO vo);
 	public int level2MemberCnt(AdminVO vo);

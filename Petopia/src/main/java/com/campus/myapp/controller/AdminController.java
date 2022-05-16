@@ -616,7 +616,19 @@ public class AdminController {
 		return entity;
 	}
 	
-	
+	// 게시판관리 이동
+	@GetMapping("/admin_adopt")
+	public ModelAndView admin_adopt(AdminPagingVO apVO) {
+		ModelAndView mav = new ModelAndView();
+		
+		apVO.setTotalRecord(service.adoptTotalRecord(apVO));
+		
+		mav.addObject("list", service.adoptList(apVO));
+		mav.addObject("apVO", apVO);
+		
+		mav.setViewName("admin/admin_adopt");
+		return mav;
+	}
 	
 	
 }

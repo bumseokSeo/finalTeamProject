@@ -289,5 +289,15 @@ public class AdminServiceImpl implements AdminService {
 		return dao.boardReviewDelete(replyno);
 	}
 
+	@Override
+	public List<BoardVO> adoptList(AdminPagingVO apVO) {
+		return dao.adoptList(apVO);
+	}
+
+	@Override
+	public int adoptTotalRecord(AdminPagingVO apVO) {
+		return dao.adoptTotalRecord(apVO);
+	}
+
 	
 }

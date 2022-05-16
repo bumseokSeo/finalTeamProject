@@ -10,7 +10,7 @@
 		<li><a href="/admin/admin_notice">공지사항 관리</a></li>
 		<li><a href="/admin/admin_memberList">회원 관리</a></li>
 		<li><a href="/admin/admin_board?searchKey=all">게시판 관리</a></li>
-		<li><a href="#">입양 게시판 관리</a></li>
+		<li><a href="/admin/admin_adopt?searchKey=all">입양 게시판 관리</a></li>
 		<li><a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보 관리</a></li>
 		<li><a href="/admin/admin_boardReview?searchKey=all">게시판 리뷰 관리</a></li>
 		<li><a href="#">동물병원 리뷰 관리</a></li>
@@ -25,9 +25,9 @@
 		<div class="InfoCard">
 			<h3>공지사항</h3>
 			<a href="/admin/admin_notice">
-			<div class="totalNum">
-				<p>${vo.totalNoticeCnt}</p>
-			</div>
+				<div class="totalNum">
+					<p>${vo.totalNoticeCnt}</p>
+				</div>
 			</a>
 			<div class="subNum">
 			</div>
@@ -65,17 +65,17 @@
 		
 		<div class="InfoCard">
 			<h3>입양</h3>
-			<a href="#">
+			<a href="/admin/admin_adopt?searchKey=all">
 			<div class="totalNum">
 				<p>${vo.totalAdoptCnt}</p>
 			</div>
 			</a>
 			<div class="subNum">
-				강아지 : <a href="#">${vo.dogAdoptCnt}</a><br/>
-				고양이 : <a href="#">${vo.catAdoptCnt}</a><br/>
-				파충류 | 양서류 : <a href="#">${vo.reptileAdoptCnt}</a><br/>
-				조류 : <a href="#">${vo.birdAdoptCnt}</a><br/>
-				기타동물 : <a href="#">${vo.etcAdoptCnt}</a><br/>
+				강아지 : <a href="/admin/admin_adopt?searchKey=강아지">${vo.dogAdoptCnt}</a><br/>
+				고양이 : <a href="/admin/admin_adopt?searchKey=고양이">${vo.catAdoptCnt}</a><br/>
+				파충류 | 양서류 : <a href="/admin/admin_adopt?searchKey=파충류,양서류">${vo.reptileAdoptCnt}</a><br/>
+				조류 : <a href="/admin/admin_adopt?searchKey=조류">${vo.birdAdoptCnt}</a><br/>
+				기타동물 : <a href="/admin/admin_adopt?searchKey=기타">${vo.etcAdoptCnt}</a><br/>
 			</div>
 		</div>
 		
@@ -115,7 +115,7 @@
 		
 		<div class="InfoCard">
 			<h3>리뷰(동물병원)</h3>
-			<a href="#">
+			<a href="/admin/admin_boardReview?searchKey=all">
 			<div class="totalNum">
 				<p>${vo.totalShopReviewCnt}</p>
 			</div>

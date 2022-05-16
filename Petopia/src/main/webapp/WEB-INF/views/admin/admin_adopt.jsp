@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/css/admin/admin_board.css" type="text/css"/>
+<link rel="stylesheet" href="/css/admin/admin_adopt.css" type="text/css"/>
 
 <script>
-function boardDelChk(boardno){
+function adoptDelChk(boardno){
 	if(confirm("게시물("+boardno+") 정보를 삭제하시겠습니까?")) {
-		location.href="/admin/boardDel?boardno="+boardno;
+		location.href="/admin/adoptDel?boardno="+boardno;
 	}
 }
 </script>
@@ -23,27 +23,27 @@ function boardDelChk(boardno){
 	
 	<div class="tab_content">
 		<div style="float:right;">
-			<a href="/admin/adminMain">관리자페이지</a> > <a href="/admin/admin_board?searchKey=all">게시판 관리</a>
+			<a href="/admin/adminMain">관리자페이지</a> > <a href="/admin/admin_adopt?searchKey=all">입양 게시판 관리</a>
 		</div><br/><br/>
-		<h3>게시판 관리</h3>
+		<h3>입양 게시판 관리</h3>
 		<div style="margin-bottom: 80px;">
 			<div id="searchDiv">
 				<div style="float:left; line-height:34px; margin-right:20px;">
-					<a href="/admin/admin_board?searchKey=all">전체</a>&nbsp;
-					<a href="/admin/admin_board?searchKey=info">정보공유</a>&nbsp;
-					<a href="/admin/admin_board?searchKey=share">나눔</a>&nbsp;
-					<a href="/admin/admin_board?searchKey=walk">산책</a>&nbsp;
-					<a href="/admin/admin_board?searchKey=boast">자랑</a>&nbsp;
-					<a href="/admin/admin_board?searchKey=suggest">건의</a>&nbsp;
+					<a href="/admin/admin_adopt?searchKey=all">전체</a>&nbsp;
+					<a href="/admin/admin_adopt?searchKey=강아지">강아지</a>&nbsp;
+					<a href="/admin/admin_adopt?searchKey=고양이">고양이</a>&nbsp;
+					<a href="/admin/admin_adopt?searchKey=파충류,양서류">파충류|양서류</a>&nbsp;
+					<a href="/admin/admin_adopt?searchKey=조류">조류</a>&nbsp;
+					<a href="/admin/admin_adopt?searchKey=기타">기타동물</a>&nbsp;
 				</div>
-				<form style="float:left;" method="get" action="${url}/admin/admin_board" id="searchForm">
+				<form style="float:left;" method="get" action="${url}/admin/admin_adopt" id="searchForm">
 					<select class="searchKey" name="searchKey">
 						<option value="all">전체</option>
-						<option value="info">정보</option>
-						<option value="share">나눔</option>
-						<option value="walk">산책</option>
-						<option value="boast">자랑</option>
-						<option value="suggest">건의</option>
+						<option value="강아지">강아지</option>
+						<option value="고양이">고양이</option>
+						<option value="파충류,양서류">파충류|양서류</option>
+						<option value="조류">조류</option>
+						<option value="기타">기타</option>
 					</select>
 		        	<input class="searchWord" type="search" placeholder="검색하기" aria-label="Search" id="searchWord" name="searchWord">
 		        	<input type="submit" value="검색" class="searchBtn" id="searchBtn">
@@ -52,9 +52,10 @@ function boardDelChk(boardno){
 		</div>
 		
 		
-		<ul id="boardList">
+		<ul id="adoptList">
 			<li>분류</li>
 			<li>번호</li>
+			<li>품종</li>
 			<li>제목</li>
 			<li>아이디</li>
 			<li>조회수</li>
@@ -63,20 +64,15 @@ function boardDelChk(boardno){
 			<li>관리</li>
 			
 			<c:forEach var="vo" items="${list }">
-				<li>
-					<c:if test="${vo.boardtype=='info' }">정보</c:if>
-					<c:if test="${vo.boardtype=='share' }">나눔</c:if>
-					<c:if test="${vo.boardtype=='walk' }">산책</c:if>
-					<c:if test="${vo.boardtype=='boast' }">자랑</c:if>
-					<c:if test="${vo.boardtype=='suggest' }">건의</c:if>
-				</li>
+				<li>${vo.category }</li>
 				<li>${vo.boardno }</li>
+				<li>${vo.breed }
 				<li><a href="#">${vo.title }</a></li> <!-- 게시물 주소 연결 필요 -->
 				<li>${vo.userid }</li>
 				<li>${vo.hit }</li>
 				<li>${vo.likes }</li>
 				<li>${vo.writedate }</li>
-				<li><a class="delBtn" href="javascript:boardDelChk('${vo.boardno}')">삭제</a></li>
+				<li><a class="delBtn" href="javascript:adoptDelChk('${vo.boardno}')">삭제</a></li>
 			</c:forEach>
 		</ul>
 		
@@ -86,7 +82,7 @@ function boardDelChk(boardno){
 				<li>이전</li>
 			</c:if>
 			<c:if test="${apVO.pageNum>1}">
-				<li><a href="${url}/admin/admin_board?pageNum=${apVO.pageNum-1}&searchKey=${apVO.searchKey}<c:if test='${apVO.searchWord!=null}'>&searchWord=${apVO.searchWord}</c:if>">이전</a></li>
+				<li><a href="${url}/admin/admin_adopt?pageNum=${apVO.pageNum-1}&searchKey=${apVO.searchKey}<c:if test='${apVO.searchWord!=null}'>&searchWord=${apVO.searchWord}</c:if>">이전</a></li>
 			</c:if>
 			<!-- 페이지번호 -->
 			<c:forEach var="p" begin="${apVO.startPage}" end="${apVO.startPage+apVO.onePageCount-1}">
@@ -98,7 +94,7 @@ function boardDelChk(boardno){
 					<c:if test="${p!=apVO.pageNum}">
 						<li>
 					</c:if>
-					<a href="${url}/admin/admin_board?pageNum=${p}&searchKey=${apVO.searchKey}<c:if test='${apVO.searchWord!=null}'>&searchWord=${apVO.searchWord}</c:if>">${p}</a></li>
+					<a href="${url}/admin/admin_adopt?pageNum=${p}&searchKey=${apVO.searchKey}<c:if test='${apVO.searchWord!=null}'>&searchWord=${apVO.searchWord}</c:if>">${p}</a></li>
 				</c:if>
 			</c:forEach>
 			<!-- 다음페이지 -->
@@ -106,7 +102,7 @@ function boardDelChk(boardno){
 				<li>다음</li>
 			</c:if>
 			<c:if test="${apVO.pageNum<apVO.totalPage}">
-				<li><a href="${url}/admin/admin_board?pageNum=${apVO.pageNum+1}&searchKey=${apVO.searchKey}<c:if test='${apVO.searchWord!=null}'>&searchWord=${apVO.searchWord}</c:if>">다음</a></li>
+				<li><a href="${url}/admin/admin_adopt?pageNum=${apVO.pageNum+1}&searchKey=${apVO.searchKey}<c:if test='${apVO.searchWord!=null}'>&searchWord=${apVO.searchWord}</c:if>">다음</a></li>
 			</c:if>
 		</ul>
 	</div>

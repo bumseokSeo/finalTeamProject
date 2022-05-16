@@ -81,6 +81,9 @@ public interface AdminDAO {
 	public int boardReviewTotalRecord(AdminPagingVO apVO);
 	public int boardReviewDelete(int replyno);
 	
+	public List<BoardVO> adoptList(AdminPagingVO apVO);
+	public int adoptTotalRecord(AdminPagingVO apVO);
+	
 	
 	
 }
