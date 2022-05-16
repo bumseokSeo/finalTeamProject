@@ -67,16 +67,7 @@
 	            <div class="recent_heading">
 	              <h4>쪽지기능</h4>
 	            </div>
-	            <!-- 
-	            <div class="srch_bar">
-	              <div class="stylish-input-group">
-	                <input type="text" class="search-bar"  placeholder="Search" >
-	                <span class="input-group-addon">
-	                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-	                </span> 
-	              </div>
-	            </div>
-	             -->
+	            
 	          </div>
 	          
 	          <!-- 메세지 리스트 -->
@@ -136,10 +127,10 @@
 					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력해주세요.' />";
 					send_msg += "		</div>";
 					send_msg += "		<div class='col-1'>";
-					send_msg += "			<button class='msg_send_btn' type='button'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></button>";
+					send_msg += "			<button class='msg_send_btn' type='button' title='전송'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></button>";
 					send_msg += "		</div>";
 					send_msg += "	</div>";
-					send_msg += "</div></form>";
+					send_msg += "</div></form><button class='room_state_btn' type='button' title='차단하기'><i class='bi bi-person-x-fill'></i></button>";
 			          
 					// 메세지 입력, 전송 칸을 보인다.
 					$('.send_message').html(send_msg);
@@ -175,10 +166,18 @@
 					    }else{
 					    	
 					    }
-						
-						
-						
 					});
+					
+					//상대방 차단하기
+					$('.room_state_btn').on('click',function(){
+						
+						if (window.confirm(other_nick+"님을 차단하시겠습니까?\n차단시 지난 쪽지내역을 확인 할 수 없습니다.")) {
+					        RoomState(room);
+					    }else{
+					    	
+					    }
+					});
+					
 
 					
 					// 메세지 내용을 불러오는 함수 호출
@@ -224,10 +223,10 @@
 					send_msg += "			<input type='text' class='write_msg form-control' placeholder='메세지를 입력해주세요.' />";
 					send_msg += "		</div>";
 					send_msg += "		<div class='col-1'>";
-					send_msg += "			<button class='msg_send_btn' type='button'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></button>";
+					send_msg += "			<button class='msg_send_btn' type='button' title='전송'><i class='fa fa-paper-plane-o' aria-hidden='true'></i></button>";
 					send_msg += "		</div>";
 					send_msg += "	</div>";
-					send_msg += "</div></form>";
+					send_msg += "</div></form><button class='room_state_btn' type='button' title='차단하기'><i class='bi bi-person-x-fill'></i></button>";
 			          
 					// 메세지 입력, 전송 칸을 보인다.
 					$('.send_message').html(send_msg);
@@ -261,10 +260,18 @@
 					          
 					        $('.chat_list_box:first').addClass('active_chat');
 					    }
-						
-						
-						
 					});
+					
+					//상대방 차단하기
+					$('.room_state_btn').on('click',function(){
+						
+						if (window.confirm(other_nick+"님을 차단하시겠습니까?\n차단시 지난 쪽지내역을 확인 할 수 없습니다.")) {
+					        RoomState(room);
+					    }else{
+					    	
+					    }
+					});
+					
 					MessageContentList(room);
 					
 				});
@@ -372,9 +379,26 @@
 				alert('서버 에러');
 			}
 		});
-		
-		
-		
+	};
+	
+	//현재 방을 비활성화 하는 메소드=차단
+	const RoomState = function(room){
+
+		$.ajax({
+			url:"roomstate.do",
+			method:"GET",
+			data:{
+				room : room
+			},
+			success:function(data){	
+				//새로고침
+				window.location.reload();
+					
+			},
+			error : function() {
+				alert('서버 에러');
+			}
+		});
 	};
 	
 	$(document).ready(function(){

@@ -71,6 +71,7 @@ public class MessageDAO {
 			if(exist_chat == 0) {	// 메세지 내역이 없어서 0이면 message 테이블의 room 최댓값을 구해서 to에 set 한다.
 				int max_room = sqlSession.selectOne("max_room", to);
 				to.setRoom(max_room+1);
+				sqlSession.insert("create_room",max_room+1);
 			}else {		// 메세지 내역이 있다면 해당 room 번호를 가져온다.
 				int room = Integer.parseInt(sqlSession.selectOne("select_room", to) );
 				to.setRoom(room);
@@ -78,6 +79,12 @@ public class MessageDAO {
 		}
 		
 		int flag = sqlSession.insert("messageSendInlist",to);
+		return flag;
+	}
+	
+	//roomstate에서 해당방의 state를 n으로 변경
+	public int roomstate(int room) {
+		int flag = sqlSession.update("roomstate",room);
 		return flag;
 	}
 

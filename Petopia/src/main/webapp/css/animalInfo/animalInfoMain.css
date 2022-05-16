@@ -4,13 +4,14 @@
 #animalInfo_wrap {height:100%; margin:0 auto;overflow:hidden
 }
 #ad_logo {
-	display:block;
 	width:100%; height:55px;
-	margin:0px auto;
+	padding-left:10px;
+	padding-right:10px;
 	float: center;
 }
+
 #animalInfo_lnb {
-	width:12vw;
+	width:11vw;
 	float:left;
 	background-color:pink;
 	position: relative;
