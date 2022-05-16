@@ -172,7 +172,14 @@
 					$('.room_state_btn').on('click',function(){
 						
 						if (window.confirm(other_nick+"님을 차단하시겠습니까?\n차단시 지난 쪽지내역을 확인 할 수 없습니다.")) {
-					        RoomState(room);
+							if(other_nick=='관리자'){
+								//관리자는 차단 불가
+								alert("관리자는 차단할 수 없습니다.")
+							}
+							else{
+								//차단진행
+								RoomState(room);
+							}
 					    }else{
 					    	
 					    }
@@ -266,7 +273,14 @@
 					$('.room_state_btn').on('click',function(){
 						
 						if (window.confirm(other_nick+"님을 차단하시겠습니까?\n차단시 지난 쪽지내역을 확인 할 수 없습니다.")) {
-					        RoomState(room);
+							if(other_nick=='관리자'){
+								//관리자는 차단 불가
+								alert("관리자는 차단할 수 없습니다.")
+							}
+							else{
+								//차단진행
+								RoomState(room);
+							}
 					    }else{
 					    	
 					    }

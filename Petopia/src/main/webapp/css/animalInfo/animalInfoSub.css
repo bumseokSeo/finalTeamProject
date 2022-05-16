@@ -62,12 +62,13 @@
 }
 #imgDiv2{
 	float:left;
-	padding-top:30px;
+	height:250px;
 	width:40%;
 	
 }
 #imgDiv3{
-	padding-top:30px;
+	
+	height:250px;
 	width:40%;
 	
 }
@@ -83,25 +84,18 @@
 #distinctDiv{
 	margin-top: 30px;
 	border:1px solid;
-	width:60%;
-	padding-top:40px;
+	width:100%;
 	padding-bottom:40px;
-	padding-left: 40px;
-	padding-right: 40px;
 	display: flex;
-  	justify-content: center;
+  	
 	
 }
 #diseaseDiv{
 	margin-top: 30px;
 	border:1px solid;
-	width:60%;
-	padding-top:40px;
+	width:100%;
 	padding-bottom:40px;
-	padding-left: 40px;
-	padding-right: 40px;
 	display: flex;
-  	justify-content: center;
 	
 }
 .bar{
