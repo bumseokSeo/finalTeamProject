@@ -33,7 +33,7 @@
       SELECT   A.boardno, A.title, A.userid, A.writedate, A.hit, B.profileimage, B.username
       FROM     board A, member B
       WHERE    A.userid=B.userid 
-      AND      A.typetype=#{param5}
+      AND      A.boardtype=#{param5}
       <choose>
          <when test="param1.equals('title')">
             AND A.title like #{param2}
@@ -45,7 +45,7 @@
             AND A.userid like #{param2}
          </when>
       </choose>
-      ORDER BY A.board_num DESC
+      ORDER BY A.boardno DESC
       LIMIT #{param3}, #{param4}
      </select>
   	<select id="BoardNum" resultType="int"><!--  숫자 입력용  -->
