@@ -269,6 +269,7 @@ a:hover{
 .box:hover{
 	animation-play-state: paused;
 	transform: scale(1.2);
+	opacity:1;
 }
 .explain{
 	position:absolute; 
@@ -312,7 +313,6 @@ a:hover{
 }
 
 /* 4페이지 */
-/* 1페이지 */
 .section4{
  	width: 100%;
     height: 100vh;
