@@ -201,9 +201,6 @@ $(document).ready(function() {
 				<li>
 					<a class="chatBtn" href="javascript:sendMessage('${vo.username}')">쪽지보내기</a>
 					<a class="delBtn" href="javascript:memberDelChk('${vo.userid}')">탈퇴</a>
-					
-					
-					
 				</li>
 			</c:forEach>
 		</ul>

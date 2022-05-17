@@ -5,9 +5,38 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/js/home/jquery.fullPage.js"></script>
 <script src="/js/home/home.js"></script>
-<script>
-</script>
 
+<style>
+.cursor {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 256px;
+	height: 256px;
+	opacity: 0.6;
+	transform: translate(-0%, -0%);
+	z-index: 999;
+	pointer-events: none; 
+}
+.cursor>img{
+	width: 256px;
+	height: 256px;
+}
+</style>
+<div class="cursor">
+	<img src="/img/home/pet.png">
+</div>
+ <script>
+	const cursor = document.querySelector(".cursor");
+	
+	document.addEventListener("mousemove", (e) => {
+		const mouseX = e.clientX;
+		const mouseY = e.clientY;
+		cursor.style.left = mouseX + 'px';
+		cursor.style.top = mouseY + 'px';
+	});
+</script>
+    
 <nav class="home_nav">
 	<ul>
 		<li data-menuanchor="section1"><a href="#">정보</a>
@@ -66,16 +95,35 @@
 
 <main id="fullpage">
 	<section class="section section1">
-		<div>
+		<div class="logo1page">
 			<h1>반려동물과 함께하는</h1>
-			<!-- 로고 글씨 흰색으로... -->
-			<div><a href="/homeCHK"><img alt="logo" src="/img/home/logo_garo2.png" width="450px"/></a></div>
+			<div><img alt="logo" src="/img/home/logo_garo2.png" width="450px"/></div>
 			
 		</div>
 		
 	</section>
 	
 	<section class="section section2">
+	
+	<div class="animalInfoH1">
+		<span>반려동물 정보?</span><br/>
+		<span>다 있다!</span>
+	</div>
+	
+	<div class="animalInfolink">
+		<a href="/animalInfo/animalInfoMain"><img src="/img/home/pets.png"></a>
+	</div>
+			
+	<div class="animalHospitalH1">
+		<span>동물병원?</span><br/>
+		<span>찾아보고 가자!</span>
+	</div>
+	
+	<div class="animalHospitallink">
+		<a href="/map/mapMain"><img src="/img/home/veterinarian.png"></a>
+	</div>
+		
+	<!--
 		<div class="slide">
 			<div class="slide_card">
 				<a href="/animalInfo/animalInfoMain">
@@ -116,29 +164,52 @@
 				</a>
 			</div>
 		</div>
+	-->
 	</section>
 	
-	<section class="section">
-		<div class="animalInfoH1">
-			<span>반려동물 정보?</span><br/>
-			<span>다 있다!</span>
+	<section class="section section3">
+		<div class="comname">
+			<p>야, 나도 반려동물 키워!</p>
+		</div>
+		<div class="communityIcons">
+			<div class="box">
+				<p class="explain">공지사항<p>
+				<a href="/board/SubMenuSelect?type=notice"><img class="comlink" src="/img/home/notice.png"></a>
+			</div>
+			<div class="box">
+				<p class="explain">정보공유<p>
+				<a href="/board/SubMenuSelect?type=info"><img class="comlink" src="/img/home/info.png"></a>
+			</div>
+			<div class="box">
+				<p class="explain">나눔<p>
+				<a href="/board/SubMenuSelect?type=share"><img class="comlink" src="/img/home/share.png"></a>
+			</div>
+			<div class="box">
+				<p class="explain">산책<p>
+				<a href="/board/SubMenuSelect?type=walk"><img class="comlink" src="/img/home/walk.png"></a>
+			</div>
+			<div class="box">
+				<p class="explain">자랑<p>
+				<a href="/board/SubMenuSelect?type=boast"><img class="comlink" src="/img/home/boast.png"></a>
+			</div>
+			<div class="box">
+				<p class="explain">건의<p>
+				<a href="/board/SubMenuSelect?type=suggest"><img class="comlink" src="/img/home/suggest.png"></a>
+			</div>
 		</div>
 		
-		<div class="animalInfolink">
-			<a href="/animalInfo/animalInfoMain"><img src="/img/home/pets.png"></a>
-		</div>
-				
-		<div class="animalHospitalH1">
-			<span>동물병원?</span><br/>
-			<span>찾아보고 가자!</span>
-		</div>
-		
-		<div class="animalHospitallink">
-			<a href="/map/mapMain"><img src="/img/home/veterinarian.png"></a>
+	</section>
+	
+	
+	<section class="section section4">
+		<div class="logo4page">
+			<h1>사지마세요, <a href="/board/adopt/adoptList">입양</a>하세요</h1>
 		</div>
 	</section>
 	
-	<section class="section ">
+	
+	<section class="section section5">
+		<div style="width: 100%; height: 100vh;">
 			<div class="bottomlogo2">
 				<span>반려동물을 위한</span><br/>
 				<span>최고의 선택</span><br/>
@@ -169,5 +240,6 @@
 					<li>Copyrightⓒ petopia. All rights reserved.</li>
 				</ul>
 			</div>
+		</div>
 	</section>
 </main>

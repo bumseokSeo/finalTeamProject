@@ -7,7 +7,7 @@ a:hover{
 	text-decoration:none !important;
 }
 .container{
-	height: auto;
+	height: 100vh;
 	overflow:hidden;
 }
 .tab_title{
@@ -42,7 +42,6 @@ a:hover{
 
 .InfoCard{
 	float:left; 
-	width:30%; 
 	padding:15px; 
 	border:1px solid black;
 	border-radius: 5px; 
@@ -70,4 +69,21 @@ a:hover{
 .subNum{
 	margin-top: 30px;
 	font-size: 18px;
+}
+
+.gridContainer{
+	display:grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+.item.item:nth-child(3) {
+	/* 1번 라인에서 2칸 */
+	grid-column: 2 / span 1;
+	/* 1번 라인에서 3칸 */
+	grid-row: 1 / span 2;
+}
+.item.item:nth-child(6) {
+	/* 1번 라인에서 2칸 */
+	grid-column: 3 / span 1;
+	/* 1번 라인에서 3칸 */
+	grid-row: 1 / span 2;
 }
