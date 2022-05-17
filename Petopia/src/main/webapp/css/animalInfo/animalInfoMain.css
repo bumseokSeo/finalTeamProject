@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #animalInfo_container {color:#fff; overflow:hidden;}
-#animalInfo_wrap {height:100%; margin:0 auto;overflow:hidden
+#animalInfo_wrap {height:100%; margin:0 auto;overflow:hidden;margin-bottom: 50px;
 }
 #ad_logo {
 	width:100%; height:55px;
@@ -86,4 +86,22 @@
 .card-title{
 	margin-top: 15px;
 	margin-left: 15px;
+}
+.ScrollButton {
+  position: fixed;   
+  right: 10px;       
+  cursor: pointer;   
+  z-index: 100;  
+  font-size: 30px;
+  color: #4d4d4d;     
+  right: 24px;
+}
+
+#TopButton {
+
+  bottom: 85px;        
+}
+#BottomButton {
+
+  bottom: 50px;
 }
