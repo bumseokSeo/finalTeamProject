@@ -17,6 +17,11 @@ a:hover{
 	top: 0;
 	padding: 40px 0;
 	z-index: 100;
+	-ms-user-select: none; 
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .home_nav>ul{
@@ -83,15 +88,33 @@ a:hover{
 .section{
 	text-align: center;
 	background-size: cover;
+	position: relative;
+	-ms-user-select: none; 
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
-
 .section1{
-	background-image: url(/img/home/home01.jpg);
  	width: 100%;
     height: 100vh;
-    background-repeat: no-repeat;
+    position: relative;
+}
+.section1::before{
+	content: "";
+	background-image: url(/img/home/home01.jpg);
+	width: 100%;
+    height: 100vh;
+	background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
 }
 .section1 h1{
 	color: #fff;
@@ -99,6 +122,9 @@ a:hover{
 	font-weight: 800;
 	margin-top: 10%;
 	margin-bottom: 40px;
+}
+.logo1page{
+	position: relative;
 }
 .slide_card{
 	margin: 0 auto;
@@ -148,6 +174,11 @@ a:hover{
 	font-size: 48px;
 	font-weight: 700;
 }
+@media (max-width: 1600px) {
+	.bottomlogo2{
+		opacity: 0.3;
+	}
+}
 .bottomimg2{
 	width:400px;
 }
@@ -192,11 +223,20 @@ a:hover{
 	border-bottom: 1px solid black;
 	font-weight: 700;
 }
+.link>ul>li>a:hover{
+	color: #fff;
+	border-bottom: 1px solid #fff;
+}
 .link>ul>li:nth-child(5){
-	float: right;
+	width: 100%;
+	float: left;
+	margin-top: 20px;
 }
 .link>ul>li:nth-child(5)>a{
 	border: none;
+}
+.link>ul>li:nth-child(5)>a>img:hover{
+	transform: scale(1.2);
 }
 
 
@@ -208,6 +248,7 @@ a:hover{
 	text-align: left;
 	top: 20%;
 	right: 25%;
+	z-index: 100;
 }
 .animalHospitalH1{
 	position: absolute;
@@ -217,6 +258,7 @@ a:hover{
 	text-align: left;
 	top: 60%;
 	left: 25%;
+	z-index: 100;
 }
 .animalInfolink{
 	position: absolute;
@@ -226,6 +268,14 @@ a:hover{
 .animalInfolink>a>img{
 	width: 300px;
 }
+.animalInfolink>a>img:hover{
+	transform: scale(1.2);
+}
+@media (max-width: 1600px) {
+	.animalInfolink>a>img{
+		opacity: 0.5;
+	}
+}
 .animalHospitallink{
 	position: absolute;
 	top: 60%;
@@ -233,4 +283,12 @@ a:hover{
 }
 .animalHospitallink>a>img{
 	width: 300px;
+}
+.animalHospitallink>a>img:hover{
+	transform: scale(1.2);
+}
+@media (max-width: 1600px) {
+	.animalHospitallink>a>img{
+		opacity: 0.5;
+	}
 }

@@ -36,14 +36,6 @@ public class HomeController {
 		return mav;
 	}
 	
-	@GetMapping("/homeCHK")
-	public ModelAndView homeCHK(HttpSession session) {
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("homeCHK");
-		return mav;
-	}
-	
 	//안읽은 쪽지 수 체크
 	@ResponseBody
 	@RequestMapping(value = "/messageReload")
