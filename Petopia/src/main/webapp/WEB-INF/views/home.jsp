@@ -167,21 +167,49 @@
 	-->
 	</section>
 	
-	<section class="section">
-		<div>
-			section 커뮤니티 
+	<section class="section section3">
+		<div class="comname">
+			<p>야, 나도 반려동물 키워!</p>
+		</div>
+		<div class="communityIcons">
+			<div class="box">
+				<p class="explain">공지사항<p>
+				<a href="/board/SubMenuSelect?type=notice"><img class="comlink" src="/img/home/notice.png"></a>
+			</div>
+			<div class="box">
+				<p class="explain">정보공유<p>
+				<a href="/board/SubMenuSelect?type=info"><img class="comlink" src="/img/home/info.png"></a>
+			</div>
+			<div class="box">
+				<p class="explain">나눔<p>
+				<a href="/board/SubMenuSelect?type=share"><img class="comlink" src="/img/home/share.png"></a>
+			</div>
+			<div class="box">
+				<p class="explain">산책<p>
+				<a href="/board/SubMenuSelect?type=walk"><img class="comlink" src="/img/home/walk.png"></a>
+			</div>
+			<div class="box">
+				<p class="explain">자랑<p>
+				<a href="/board/SubMenuSelect?type=boast"><img class="comlink" src="/img/home/boast.png"></a>
+			</div>
+			<div class="box">
+				<p class="explain">건의<p>
+				<a href="/board/SubMenuSelect?type=suggest"><img class="comlink" src="/img/home/suggest.png"></a>
+			</div>
+		</div>
+		
+	</section>
+	
+	
+	<section class="section section4">
+		<div class="logo4page">
+			<h1>사지마세요, <a href="/board/adopt/adoptList">입양</a>하세요</h1>
 		</div>
 	</section>
 	
 	
-	<section class="section">
-		<div>
-			section 입양 
-		</div>
-	</section>
-	
-	
-	<section class="section">
+	<section class="section section5">
+		<div style="width: 100%; height: 100vh;">
 			<div class="bottomlogo2">
 				<span>반려동물을 위한</span><br/>
 				<span>최고의 선택</span><br/>
@@ -212,5 +240,6 @@
 					<li>Copyrightⓒ petopia. All rights reserved.</li>
 				</ul>
 			</div>
+		</div>
 	</section>
 </main>
