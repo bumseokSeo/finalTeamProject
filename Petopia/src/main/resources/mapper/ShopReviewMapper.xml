@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.campus.myapp.dao.ShopReviewDAO">
+	<insert id="insertReview">
+		insert into shopreview(reviewno, shopid, userid, shopreview, filename1)
+		values(#{reviewno},#{shopid},#{userid},#{shopreview},#{filename1})
+	</insert>
+	<select id="selectReview" resultType="ShopReviewVO">
+		select a.reviewno, a.shopid, a.userid, a.shopreview, date_format(a.writedate,"%m/%d %H:%i") writedate, a.filename1, b.shopid, b.shopname, b.shopaddr, b.shopnumber
+		from shopreview a right outer join shop b on a.shopid = b.shopid
+		where b.shopid=${param1}
+		order by a.reviewno desc
+	</select>
+	<update id="updateReview">
+		update shopreview set shopreview=#{shopreview}
+		where reviewno=${reviewno} and userid=#{userid}
+	</update>
+	<delete id="deleteReview">
+		delete from shopreview
+		where reviewno=${param1} and userid=#{param2}
+	</delete>
+</mapper>

@@ -71,8 +71,8 @@
 	background:rgba(255, 255, 255,0.9);
 	z-index: 1;
 	font-size:12px;
-	border-radius: 10px;
-	/* display:none; */
+	border-radius: 10px; 
+	display:none;
 }
 .host_title {
 	text-align:center;
@@ -262,7 +262,7 @@
 .placeinfo .map_review{
 	width:100%;
 }
-.placeinfo .map_review #rev{
+.placeinfo .map_review #shopreview{
 	width:80%;
 }
 .placeinfo .map_review .rev_btn{

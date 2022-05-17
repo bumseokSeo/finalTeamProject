@@ -9,7 +9,7 @@
 		on duplicate key update shopid=#{shopid}
 	</insert>
 	<select id="selectShop" resultType="ShopVO">
-		select shopname, shopaddr, shopnumber 
+		select shopid,shopname, shopaddr, shopnumber 
 		from shop
 		where shopid=#{shopid}
 	</select>

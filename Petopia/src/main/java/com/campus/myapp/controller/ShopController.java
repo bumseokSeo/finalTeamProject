@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ public class ShopController {
 	
 	@Inject
 	ShopService service;
+	
 	ModelAndView mav = new ModelAndView();
 	ResponseEntity<String> entity = null;
 	
@@ -46,7 +48,7 @@ public class ShopController {
 			String saddr = object.get("shopaddr").getAsString();
 			String sname = object.get("shopname").getAsString();
 			String snumber = object.get("shopnumber").getAsString();
-			ShopVO svo = new ShopVO(Integer.parseInt(sid), saddr, sname, snumber);
+			ShopVO svo = new ShopVO(Integer.parseInt(sid), sname, saddr, snumber);
 			
 //			System.out.println("id : " + object.get("shopid"));     
 //			System.out.println("address : " + object.get("shopaddr"));   
@@ -59,5 +61,10 @@ public class ShopController {
 		} 
 	}
 	
+	@GetMapping("showshop")
+	public ShopVO showShop(int shopid) {
+		
+		return service.selectShop(shopid);
+	}
 }
  

@@ -27,12 +27,17 @@
 			</div>
 			<hr/>
 			<div>
-				<div class="host_info">동물병원정보띄우기</div>
-				<div></div>
+				<div class="host_info"><동물병원정보></div>
+				<div class="host_info2">
+				
+				</div>
 			</div>
 			<hr/>
 			<div>
 				<div class="host_review">리뷰</div>
+				<div id="host_review2">
+				
+				</div>
 			</div>
 		</div>
 	</div>
