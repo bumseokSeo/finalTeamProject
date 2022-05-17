@@ -13,6 +13,7 @@ import com.campus.myapp.vo.AnimalInfoVO;
 import com.campus.myapp.vo.BoardVO;
 import com.campus.myapp.vo.MemberVO;
 import com.campus.myapp.vo.ReplyVO;
+import com.campus.myapp.vo.ShopReviewVO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -297,6 +298,26 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int adoptTotalRecord(AdminPagingVO apVO) {
 		return dao.adoptTotalRecord(apVO);
+	}
+
+	@Override
+	public List<ShopReviewVO> shopReviewList(AdminPagingVO apVO) {
+		return dao.shopReviewList(apVO);
+	}
+
+	@Override
+	public int shopReviewTotalRecord(AdminPagingVO apVO) {
+		return dao.shopReviewTotalRecord(apVO);
+	}
+
+	@Override
+	public ShopReviewVO shopReviewGetFileName(int reviewno) {
+		return dao.shopReviewGetFileName(reviewno);
+	}
+
+	@Override
+	public int shopReviewDataDelete(int reviewno) {
+		return dao.shopReviewDataDelete(reviewno);
 	}
 
 	

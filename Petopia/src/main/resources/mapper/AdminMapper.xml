@@ -374,8 +374,54 @@
 		</if>
 	</select>
 	
+	<select id="shopReviewList" resultType="com.campus.myapp.vo.ShopReviewVO">
+		select s.shopname, r.shopreview, r.userid, r.writedate, r.reviewno from shopreview r
+		join shop s on r.shopid = s.shopid
+		<if test='searchKey == "all" and searchWord == null'>
+		</if>
+		<if test='searchKey != "all" and searchWord == null'>
+		</if>
+		<if test='searchKey == "shopname" and searchWord != null'>
+			where s.shopname like '%${searchWord}%'
+		</if>
+		<if test='searchKey == "userid" and searchWord != null'>
+			where r.userid like '%${searchWord}%'
+		</if>
+		<if test='searchKey == "shopreview" and searchWord != null'>
+			where r.shopreview like '%${searchWord}%'
+		</if>
+		<if test='searchKey == "all" and searchWord != null'>
+			where s.shopname like '%${searchWord}%' or r.userid like '%${searchWord}%' or r.shopreview like '%${searchWord}%'
+		</if>
+		 order by r.writedate desc
+		 limit ${onePageRecord} offset ${offsetIndex}
+	</select>
+	<select id="shopReviewTotalRecord" resultType="int">
+		select count(r.reviewno) cnt from shopreview r 
+		join shop s on r.shopid = s.shopid
+		<if test='searchKey == "all" and searchWord == null'>
+		</if>
+		<if test='searchKey != "all" and searchWord == null'>
+		</if>
+		<if test='searchKey == "shopname" and searchWord != null'>
+			where s.shopname like '%${searchWord}%'
+		</if>
+		<if test='searchKey == "userid" and searchWord != null'>
+			where r.userid like '%${searchWord}%'
+		</if>
+		<if test='searchKey == "shopreview" and searchWord != null'>
+			where r.shopreview like '%${searchWord}%'
+		</if>
+		<if test='searchKey == "all" and searchWord != null'>
+			where s.shopname like '%${searchWord}%' or r.userid like '%${searchWord}%' or r.shopreview like '%${searchWord}%'
+		</if>
+	</select>
+	<select id="shopReviewGetFileName" resultType="com.campus.myapp.vo.ShopReviewVO">
+		select filename1 from shopreview where reviewno=#{param1}
+	</select>
 	
-	
-	
+	<delete id="shopReviewDataDelete">
+		delete from shopreview where reviewno=#{param1}
+	</delete>
 	
 </mapper>
