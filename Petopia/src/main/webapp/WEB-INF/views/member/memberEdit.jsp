@@ -256,11 +256,11 @@
 		<div class="form_box">
 			<c:set var ="profileimage" value="${vo.profileimage}"/>
 			<c:choose>
-				<c:when test="${vo.profileimage == '' || vo.profileimage == null}">
-					<img src='${url}/img/sampleProfile.jpg' id="preview" style="display: block" class="rounded-circle"/>
-				</c:when>
 				<c:when test="${fn:startsWith(profileimage, 'http://')}">
 					<img src='${vo.profileimage}' style="display: block" id="preview" class="rounded-circle"/>
+				</c:when>
+				<c:when test="${vo.profileimage == '' || vo.profileimage == null}">
+					<img src='${url}/img/sampleProfile.jpg' id="preview" style="display: block" class="rounded-circle"/>
 				</c:when>
 				<c:when test="${vo.profileimage != '' || vo.profileimage != null}">
 					<img src='${url}/img/memberimg/${vo.profileimage}' style="display: block" id="preview" class="rounded-circle"/>

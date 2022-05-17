@@ -17,23 +17,23 @@
 		</ul><!-- 게시물 -->
 		</div>
 		 <div class="paging" style="width:100%; text-align: center; font-size: 35px;">
-           <b id="prevView" > < </b>
-           <b id="pView" > 1 </b>
-           <b id="nextView" > > </b>
+           <b id="prevView"> ◀ </b>
+           <b id="pView"></b>
+           <b id="nextView" > ▶ </b>
             
         </div>
     
-       <div class="Share_btn"><a href="/board/notice/noticeWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
+       <div class="Share_btn"><a href="/board/boardWrite"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 	<br/><br/><br/>
 	<div class="Share_search">
 		 <form action="/board/notice/noticeSearch" id="searchFrm">
 			<select name="searchKey">
 				<option value="" selected="selected">전체</option>
 				<option value="title">제목</option>
-				<option value="userid">글쓴이</option>
 				<option value="content">내용</option>
 			</select>
 			<input type="text" name="searchWord" id="searchWord"/>
+			<input type="hidden" name="type" value="notice"/>
 			<input type="submit" value="검색"/>
 		</form>
 	</div>
@@ -51,7 +51,7 @@ $("#searchFrm").submit(function() {
 });
 	
 window.onload=function(){
-		var startNum = 1; // oldlist안에 li태그의 길이
+		var startNum = 0; 
 		var addListHtml = "";
 		 console.log(startNum); 
 		var url;
@@ -62,12 +62,12 @@ window.onload=function(){
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 		console.log(pn);
-		if($("#UserNoticeShow").css('display','block')){
+		if(pn='SubMenuSelect'){
 			url = '/board/notice/noticeLists';
 			param = {
 				"startNum" : startNum 
 			};
-		}else if(pn='noticeSearch'){
+		}if(pn='noticeSearch'){
 			url = '/board/notice/searchLists';
 			param = {
 				"startNum" : startNum ,
@@ -84,20 +84,24 @@ window.onload=function(){
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
 					addListHtml += "<li>"+data[i].boardno+"</li>";
-					addListHtml += "<li><a href='/board/notice/noticeView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
 					addListHtml += "<li>"+data[i].writedate+"</li>";
 					addListHtml += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
-					$("#nextView").remove();
+					$("#nextView").empty();
+				} 
+				if(startNum=1){
+					$("#prevView").empty();
 				} 
 				$("#List_menu_F").append(addListHtml);
+				$("#pView").append(startNum);
 			}
 		});
 }
 
 $('#nextView').click(function(){
-		var startNum = $("#List_menu_F li").length/4 -1; // oldlist안에 li태그의 길이
+		var startNum = parseInt($("#pView").text());
 		var addListHtml = "";
 		var addListHtmlpo = "";
 					addListHtmlpo += "<li>게시물 번호</li>";
@@ -112,11 +116,11 @@ $('#nextView').click(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		if($("#UserNoticeShow").css('display','block')){
+		if(pn='SubMenuSelect'){
 			url = '/board/notice/noticeLists';
 			console.log("다음페이지")
 			param = {
-				"startNum" : startNum 
+				"startNum" : startNum*19+1
 			};
 		}else if(pn='noticeSearch'){
 			url = '/board/notice/searchLists';
@@ -135,16 +139,20 @@ $('#nextView').click(function(){
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
 					addListHtml += "<li>"+data[i].boardno+"</li>";
-					addListHtml += "<li><a href='/board/notice/noticeView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
 					addListHtml += "<li>"+data[i].writedate+"</li>";
 					addListHtml += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
-					$("#nextView").remove();
+					$("#nextView").empty();
 				} 
+				$("#prevView").empty();
 				$("#List_menu_F").empty();
 				$("#List_menu_F").append(addListHtmlpo);
 				$("#List_menu_F").append(addListHtml);
+				$("#pView").empty();
+				$("#pView").append(startNum+1);
+				$("#prevView").append("◀");
 				/* console.log(addListHtml); */
 			}
 		});
@@ -153,7 +161,7 @@ $('#nextView').click(function(){
 	});
 	
 $('#prevView').click(function(){
-	var startNum = $("#List_menu_F li").length/4 -1; // oldlist안에 li태그의 길이
+	var startNum = parseInt($("#pView").text()); // 시작지점
 	var addListHtml = "";
 	var addListHtmlpo = "";
 				addListHtmlpo += "<li>게시물 번호</li>";
@@ -168,11 +176,11 @@ $('#prevView').click(function(){
 	var word = params.get('searchWord');
 	var pathname = window.location.pathname;
 	var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-	if($("#UserNoticeShow").css('display','block')){
+	if(pn='SubMenuSelect'){
 		url = '/board/notice/noticeLists';
-		console.log("다음페이지")
+		console.log("이전페이지")
 		param = {
-			"startNum" : startNum 
+			"startNum" : (startNum-1)*19-19
 		};
 	}else if(pn='noticeSearch'){
 		url = '/board/notice/searchLists';
@@ -191,16 +199,21 @@ $('#prevView').click(function(){
 		success : function(data){
 			for (var i = 0; i < data.length; i++) {
 				addListHtml += "<li>"+data[i].boardno+"</li>";
-				addListHtml += "<li><a href='/board/notice/noticeView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+				addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
 				addListHtml += "<li>"+data[i].writedate+"</li>";
 				addListHtml += "<li>"+data[i].hit+"</li>";
 			}
-			if(data.length<19){
-				$("#nextView").remove();
-			} 
+			$("#nextView").empty();
+			$("#nextView").append("▶");
 			$("#List_menu_F").empty();
 			$("#List_menu_F").append(addListHtmlpo);
 			$("#List_menu_F").append(addListHtml);
+			$("#pView").empty();
+			$("#pView").append(startNum-1);
+			
+			if(parseInt($("#pView").text())==1){
+				$("#prevView").empty();
+			} 
 			/* console.log(addListHtml); */
 		}
 	});

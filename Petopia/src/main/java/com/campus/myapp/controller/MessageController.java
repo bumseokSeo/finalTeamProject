@@ -125,5 +125,14 @@ public class MessageController {
 
 		return flag;
 	}
+	
+	//상대방 차단하기
+	@ResponseBody
+	@RequestMapping(value = "/roomstate.do")
+	public int roomstate(@RequestParam int room) {
+		int flag = MessageDAO.roomstate(room);
+
+		return flag;
+	}
 
 }

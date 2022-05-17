@@ -12,14 +12,13 @@ function breedDelChk(breed){
 
 <div class="container">
 	<ul class="tab_title">
-		<li><a href="#">공지사항 관리</a></li>
+		<li><a href="/admin/admin_notice">공지사항 관리</a></li>
 		<li><a href="/admin/admin_memberList">회원 관리</a></li>
-		<li><a href="#">정보공유 게시판 관리</a></li>
-		<li><a href="#">나눔 게시판 관리</a></li>
-		<li><a href="#">자랑 게시판 관리</a></li>
-		<li><a href="#">입양 게시판 관리</a></li>
-		<li><a href="#">산책 게시판 관리</a></li>
+		<li><a href="/admin/admin_board?searchKey=all">게시판 관리</a></li>
+		<li><a href="/admin/admin_adopt?searchKey=all">입양 게시판 관리</a></li>
 		<li><a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보 관리</a></li>
+		<li><a href="/admin/admin_boardReview?searchKey=all">게시판 리뷰 관리</a></li>
+		<li><a href="#">동물병원 리뷰 관리</a></li>
 	</ul>
 	
 	<div class="tab_content">
@@ -32,7 +31,15 @@ function breedDelChk(breed){
 				<a href="/admin/admin_animalInfo_Write">글쓰기</a>
 			</div>
 			<div id="searchDiv">
-				<form method="get" action="${url}/admin/admin_animalInfo" id="searchForm">
+				<div style="float:left; line-height: 34px; margin-right: 20px;">
+					<a href="/admin/admin_animalInfo?searchKey=all">전체</a>&nbsp;
+					<a href="/admin/admin_animalInfo?searchKey=강아지">강아지</a>&nbsp;
+					<a href="/admin/admin_animalInfo?searchKey=고양이">고양이</a>&nbsp;
+					<a href="/admin/admin_animalInfo?searchKey=파충류,양서류">파충류|양서류</a>&nbsp;
+					<a href="/admin/admin_animalInfo?searchKey=조류">조류</a>&nbsp;
+					<a href="/admin/admin_animalInfo?searchKey=기타">기타동물</a>&nbsp;
+				</div>
+				<form style="float:left;" method="get" action="${url}/admin/admin_animalInfo" id="searchForm">
 					<select class="searchKey" name="searchKey">
 						<option value="all">전체</option>
 						<option value="강아지">강아지</option>
@@ -49,16 +56,17 @@ function breedDelChk(breed){
 		
 		
 		<ul id="animalInfoList">
-			<li>category</li>
-			<li>breed</li>
-			<li>edit</li>
-			<li>delete</li>
+			<li>분류</li>
+			<li>품종</li>
+			<li>관리</li>
 			
 			<c:forEach var="vo" items="${list }">
 				<li>${vo.category }</li>
 				<li><a href="/animalInfo/animalInfoSub?breedkey=${vo.breed}">${vo.breed }</a></li>
-				<li><a class="editBtn" href="/admin/admin_animalInfo_Edit?breedkey=${vo.breed}">수정</a></li>
-				<li><a class="delBtn" href="javascript:breedDelChk('${vo.breed}')">삭제</a></li>
+				<li>
+					<a class="editBtn" href="/admin/admin_animalInfo_Edit?breedkey=${vo.breed}">수정</a>
+					<a class="delBtn" href="javascript:breedDelChk('${vo.breed}')">삭제</a>
+				</li>
 			</c:forEach>
 		</ul>
 		

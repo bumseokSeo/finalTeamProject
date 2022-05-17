@@ -11,9 +11,8 @@ public class MessageVO {
 	private String content;
 	private int read_chk;
 	private String messagetype;
-	
-	
-	
+	private String state;
+
 	//상대방 닉네임
 	private String other_nick;
 	
@@ -141,6 +140,15 @@ public class MessageVO {
 	public void setMessagetype(String messagetype) {
 		this.messagetype = messagetype;
 	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+	
 	
 	
 	

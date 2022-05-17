@@ -69,6 +69,7 @@ public class MemberController {
 			session.setAttribute("logLevel", vo2.getUserlevel());
 			session.setAttribute("logName", vo2.getUsername());
 			session.setAttribute("logImg", vo2.getProfileimage());
+			session.setAttribute("logTel", vo2.getTel());
 			session.setAttribute("logStatus", "Y");
 			mav.setViewName("redirect:/");// 홈으로 이동
 		} else if (vo2 != null && vo2.getUserlevel() == 3 
@@ -355,6 +356,7 @@ public class MemberController {
 			session.setAttribute("logLevel", kvo.getUserlevel());
 			session.setAttribute("logName", kvo.getUsername());
 			session.setAttribute("logImg", kvo.getProfileimage());
+			session.setAttribute("logTel", kvo.getTel());
 			session.setAttribute("logStatus", "Y");
 			session.setAttribute("kakao", "Y");
 			mav.setViewName("redirect:/");// 홈으로 이동
@@ -368,6 +370,7 @@ public class MemberController {
 			session.setAttribute("logLevel", kvo.getUserlevel());
 			session.setAttribute("logName", kvo.getUsername());
 			session.setAttribute("logImg", kvo.getProfileimage());
+			session.setAttribute("logTel", kvo.getTel());
 			session.setAttribute("logStatus", "Y");
 			session.setAttribute("kakao", "Y");
 			mav.setViewName("redirect:/");// 홈으로 이동

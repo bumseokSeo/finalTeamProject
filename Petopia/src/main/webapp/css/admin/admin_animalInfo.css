@@ -7,7 +7,7 @@ a:hover{
 	text-decoration:none !important;
 }
 .container{
-	height: auto;
+	height: 100vh;
 	overflow:hidden;
 }
 .tab_title{
@@ -47,30 +47,26 @@ a:hover{
 }
 #animalInfoList>li{
 	float: left;
-	width: 15%;
+	width: 30%;
 	height: 40px;
 	line-height: 40px;
 	list-style-type: none;
 	border-bottom: 1px solid #ddd;
 }
-#animalInfoList>li:nth-child(4n+2){
+#animalInfoList>li:nth-child(3n+2){
 	width: 50%;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-#animalInfoList>li:nth-child(4n+1){
+#animalInfoList>li:nth-child(3n+1){
 	width: 20%;
 	padding-left: 15px;
 }
-#animalInfoList>li:nth-child(n+1):nth-child(-n+4) {
+#animalInfoList>li:nth-child(n+1):nth-child(-n+3) {
 	border-bottom: 3px solid #ddd;
 	background-color: rgba(205, 188, 171, 0.5);
 	font-weight: bold;
-}
-#animalInfoList>li:nth-child(4n+3),
-#animalInfoList>li:nth-child(4n){
-	text-align: center;
 }
 .editBtn{
 	background: #FF7900;

@@ -17,6 +17,11 @@ a:hover{
 	top: 0;
 	padding: 40px 0;
 	z-index: 100;
+	-ms-user-select: none; 
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .home_nav>ul{
@@ -80,18 +85,46 @@ a:hover{
 	font-weight: 500;
 }
 
+.msgCnt{
+	position:absolute; 
+	right:15%; 
+	background:#ff6d00;
+	width:30px;
+	border-radius:100%;
+	line-height:30px;
+}
+
 .section{
 	text-align: center;
 	background-size: cover;
+	position: relative;
+	-ms-user-select: none; 
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
+/* 1페이지 */
 .section1{
-	background-image: url(/img/home/home01.jpg);
  	width: 100%;
     height: 100vh;
-    background-repeat: no-repeat;
+    position: relative;
+}
+.section1::before{
+	content: "";
+	background-image: url(/img/home/home01.jpg);
+	width: 100%;
+    height: 100vh;
+	background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 .section1 h1{
 	color: #fff;
@@ -100,6 +133,65 @@ a:hover{
 	margin-top: 10%;
 	margin-bottom: 40px;
 }
+.logo1page{
+	position: relative;
+}
+
+
+/* 2페이지 */
+.animalInfoH1{
+	position: absolute;
+	color: #fff;
+	font-size: 64px;
+	font-weight: 700;
+	text-align: left;
+	top: 20%;
+	right: 25%;
+	z-index: 100;
+}
+.animalHospitalH1{
+	position: absolute;
+	color: #fff;
+	font-size: 64px;
+	font-weight: 700;
+	text-align: left;
+	top: 60%;
+	left: 25%;
+	z-index: 100;
+}
+.animalInfolink{
+	position: absolute;
+	top: 20%;
+	left: 30%;
+}
+.animalInfolink>a>img{
+	width: 300px;
+}
+.animalInfolink>a>img:hover{
+	transform: scale(1.2);
+}
+@media (max-width: 1600px) {
+	.animalInfolink>a>img{
+		opacity: 0.5;
+	}
+}
+.animalHospitallink{
+	position: absolute;
+	top: 60%;
+	right: 30%;
+}
+.animalHospitallink>a>img{
+	width: 300px;
+}
+.animalHospitallink>a>img:hover{
+	transform: scale(1.2);
+}
+@media (max-width: 1600px) {
+	.animalHospitallink>a>img{
+		opacity: 0.5;
+	}
+}
+
 .slide_card{
 	margin: 0 auto;
 	width: 1280px;
@@ -119,7 +211,6 @@ a:hover{
 	font-size: 72px;
 	font-weight: bold;
 }
-
 #fp-nav ul li a span{
 	background: #fff;
 }
@@ -131,11 +222,207 @@ a:hover{
 	left: 5%;
 }
 
-.msgCnt{
+/* 3페이지 */
+.communityIcons{
+	height: 100vh;
+	width: 100%;
+	display: flex;
+  	justify-content : center;
+}
+.box{
+	position:relative;
+	margin: 250px 15px;
+	border-radius: 50%;
+	float: left;
+	opacity: 0.4;
+	width: 250px;
+	height: 250px;
+	outline: 1px solid transparent;
+	background: crimson;
+	animation: aniCommunity 2s 0s infinite ease-in-out alternate;
+}
+.comlink{
+	width: 250px;
+	height: 250px;
+}
+.box:nth-child(2){
+	animation-delay:0.4s;
+	background: CadetBlue;
+}
+.box:nth-child(3){
+	animation-delay:0.8s;
+	background: HotPink;
+}
+.box:nth-child(4){
+	animation-delay:1.2s;
+	background: DodgerBlue;
+}
+.box:nth-child(5){
+	animation-delay:1.6s;
+	background: Gold;
+}
+.box:nth-child(6){
+	animation-delay:2.0s;
+	background: Darkorange;
+}
+
+.box:hover{
+	animation-play-state: paused;
+	transform: scale(1.2);
+	opacity:1;
+}
+.explain{
 	position:absolute; 
-	right:15%; 
-	background:#ff6d00;
-	width:30px;
-	border-radius:100%;
-	line-height:30px;
+	opacity:0;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 64px;
+	color: #fff;
+	font-weight: 700;
+}
+.box:hover .explain{
+	width: 300px;
+	opacity:1;
+}
+.box:hover .comlink{
+	opacity:0;
+}
+@keyframes aniCommunity{
+	0%{
+		margin: 250px 15px;
+	}
+	70%{
+		margin: 450px 15px; 
+		opacity: 0.7;
+	}
+	100%{
+		margin: 530px 15px;
+		opacity: 1;
+	}
+}
+.comname{
+	position:absolute; 
+	top: 30%; 
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	color: #fff;
+	font-size: 64px;
+	font-weight: 800;
+	font-family: arial;
+}
+
+/* 4페이지 */
+.section4{
+ 	width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.section4::before{
+	content: "";
+	background-image: url(/img/home/catwindow.jpg);
+	width: 100%;
+    height: 100vh;
+	background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.section4 h1{
+	color: #fff;
+	font-size: 48px;
+	font-weight: 800;
+}
+.section4 h1>a{
+	color: #ff9e00;
+	font-size: 72px;
+}
+.section4 h1>a:hover{
+	color: #ff6d00;
+	border-bottom: thick double #fff;
+}
+.logo4page{
+	width: 750px;
+	position: absolute;
+	left: 10%;
+	top: 30%;
+}
+
+/* 5페이지 */
+.bottomlogo2{
+	position: absolute;
+	top: 30%;
+	left: 55%;
+	text-align: right;
+	font-size: 48px;
+	font-weight: 700;
+}
+@media (max-width: 1600px) {
+	.bottomlogo2{
+		opacity: 0.3;
+	}
+}
+.bottomimg2{
+	width:400px;
+}
+.bottominfo2{
+	position: absolute;
+	top: 70%;
+	left: 20%;
+	width: 500px;
+}
+.bottominfo2>ul>li{
+	width: 100%;
+	float: left;
+	text-align: left;
+}
+.bottometc2{
+	position: absolute;
+	top: 82%;
+	left: 20%;
+	width: 500px;
+}
+.bottometc2>ul>li{
+	font-size: 0.8em;
+	width: 100%;
+	float: left;
+	text-align: left;
+}
+
+.link{
+	position: absolute;
+	top: 30%;
+	left: 20%;
+	width: 400px;
+}
+.link>ul>li{
+	float: left;
+	width: 50%;
+	font-size: 24px;
+	line-height: 48px;
+	text-align: left;
+}
+.link>ul>li>a{
+	border-bottom: 1px solid black;
+	font-weight: 700;
+}
+.link>ul>li>a:hover{
+	color: #fff;
+	border-bottom: 1px solid #fff;
+}
+.link>ul>li:nth-child(5){
+	width: 100%;
+	float: left;
+	margin-top: 20px;
+}
+.link>ul>li:nth-child(5)>a{
+	border: none;
+}
+.link>ul>li:nth-child(5)>a>img:hover{
+	transform: scale(1.2);
 }

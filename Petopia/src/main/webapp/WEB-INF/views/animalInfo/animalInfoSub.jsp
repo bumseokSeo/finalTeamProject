@@ -28,23 +28,23 @@
 			</div>
 			<div class="bar">
 				<div class="d1">
-				
 					<span class="barcontent">특징</span>
 				</div>
-				
 				<div class="d2">
-					
 					<img src="/img/특징아이콘.png" alt="" class="d-flex icon">
 				</div>
 				
 			</div>
 			<div id="distinctDiv">
-				${vo.distinction}
-			</div>
-			<div id="imgDiv2">
+				<b style="font-size: 2em; position: absolute; left: 30px; margin-top: 20px;">저는..</b>
 				
-				<img src="/img/animalInfo/${vo.filename2}" class="img-fluid" alt="이미지가 없습니다." id="animalImg">
+				<div style="margin: 0 auto;"><br><br><br>${vo.distinction}</div>
+				<div id="imgDiv2">
+				
+					<img src="/img/animalInfo/${vo.filename2}" class="img-fluid" alt="이미지가 없습니다." id="animalImg">
+				</div>
 			</div>
+			
 			<div class="bar">
 				<div>
 					<span class="barcontent">질병정보</span>
@@ -54,13 +54,14 @@
 				</div>
 			</div>
 			<div id="diseaseDiv">
-				${vo.disease}
+				<b style="font-size: 2em; position: absolute; left: 30px; margin-top: 20px;">저는..</b>
+				<div style="margin: 0 auto;"><br><br><br>${vo.disease}</div>
+				<div id="imgDiv3">
+					<img src="/img/animalInfo/${vo.filename3}" class="img-fluid" alt="이미지가 없습니다." id="animalImg">
+				</div>
 			</div>
-			<div id="imgDiv3">
-				<img src="/img/animalInfo/${vo.filename3}" class="img-fluid" alt="이미지가 없습니다." id="animalImg">
-			</div>
+			
 		</div>
 
-		
 	</div>
 </div>

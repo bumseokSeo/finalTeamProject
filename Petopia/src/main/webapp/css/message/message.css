@@ -209,9 +209,24 @@ img{ max-width:100%;}
 .msg_send_btn:hover{
 	background: #5fcd58 none repeat scroll 0 0;
 }
-
+.tel_send_btn:hover{
+	background: #5fcd58 none repeat scroll 0 0;
+}
 .messaging { padding: 0 0 50px 0;}
 .msg_history {
   height: 516px;
   overflow-y: auto;
+}
+.room_state_btn{
+	background: red none repeat scroll 0 0;
+  	border: medium none;
+	position: relative;
+	border-radius: 50%;
+	color: #fff;
+	right:-96%;
+	top:-590px;
+	cursor: pointer;
+  	font-size: 17px;
+  	width: 25px;
+  	height: 25px;
 }

@@ -122,4 +122,260 @@
 	<select id="etcInfoCnt" resultType="int">
 		select count(breed) cnt from animalinfo where category="기타"
 	</select>
+	
+	<select id="totalBoardCnt" resultType="int">
+		select count(boardno) cnt from board where not boardtype in ('notice', 'adopt')
+	</select>
+	<select id="infoCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype="info"
+	</select>
+	<select id="shareCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype="share"
+	</select>
+	<select id="walkCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype="walk"
+	</select>
+	<select id="boastCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype="boast"
+	</select>
+	<select id="suggestCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype="suggest"
+	</select>
+	
+	<select id="totalNoticeCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype in ('notice')
+	</select>
+	
+	<select id="totalAdoptCnt" resultType="int">
+		select count(boardno) cnt from board where boardtype in ('adopt')
+	</select>
+	<select id="dogAdoptCnt" resultType="int">
+		select count(b.boardno) cnt from board b 
+		join adopt ad on b.boardno = ad.boardno
+		join animalinfo an on ad.breed = an.breed
+		where an.category in ('강아지')
+	</select>
+	<select id="catAdoptCnt" resultType="int">
+		select count(b.boardno) cnt from board b 
+		join adopt ad on b.boardno = ad.boardno
+		join animalinfo an on ad.breed = an.breed
+		where an.category in ('고양이')
+	</select>
+	<select id="reptileAdoptCnt" resultType="int">
+		select count(b.boardno) cnt from board b 
+		join adopt ad on b.boardno = ad.boardno
+		join animalinfo an on ad.breed = an.breed
+		where an.category in ('파충류,양서류')
+	</select>
+	<select id="birdAdoptCnt" resultType="int">
+		select count(b.boardno) cnt from board b 
+		join adopt ad on b.boardno = ad.boardno
+		join animalinfo an on ad.breed = an.breed
+		where an.category in ('조류')
+	</select>
+	<select id="etcAdoptCnt" resultType="int">
+		select count(b.boardno) cnt from board b 
+		join adopt ad on b.boardno = ad.boardno
+		join animalinfo an on ad.breed = an.breed
+		where not an.category in ('강아지', '고양이', '파충류,양서류', '조류')
+	</select>
+	
+	
+	<select id="boardList" resultType="com.campus.myapp.vo.BoardVO">
+		select boardno, title, content, hit, userid, writedate, hit, likes, boardtype from board
+		<if test='searchKey == "all" and searchWord == null'>
+			where not boardtype in ('notice', 'adopt')
+		</if>
+		<if test='searchKey != "all" and searchWord == null'>
+			where not boardtype in ('notice', 'adopt') and boardtype like '${searchKey}'
+		</if>
+		<if test='searchKey != "all" and searchWord != null'>
+			where not boardtype in ('notice', 'adopt') and  boardtype like '${searchKey}' and 
+			(title like '%${searchWord}%' or content like '%${searchWord}%' or userid like '%${searchWord}%')
+		</if>
+		<if test='searchKey == "all" and searchWord != null'>
+			where not boardtype in ('notice', 'adopt') and 
+			(title like '%${searchWord}%' or content like '%${searchWord}%' or userid like '%${searchWord}%')
+		</if>
+		 order by boardno desc
+		 limit ${onePageRecord} offset ${offsetIndex}
+	</select>
+	<select id="boardTotalRecord" resultType="int">
+		select count(boardno) cnt from board
+		<if test='searchKey == "all" and searchWord == null'>
+			where not boardtype in ('notice', 'adopt')
+		</if>
+		<if test='searchKey != "all" and searchWord == null'>
+			where not boardtype in ('notice', 'adopt') and boardtype like '${searchKey}'
+		</if>
+		<if test='searchKey != "all" and searchWord != null'>
+			where not boardtype in ('notice', 'adopt') and  boardtype like '${searchKey}' and 
+			(title like '%${searchWord}%' or content like '%${searchWord}%' or userid like '%${searchWord}%')
+		</if>
+		<if test='searchKey == "all" and searchWord != null'>
+			where not boardtype in ('notice', 'adopt') and 
+			(title like '%${searchWord}%' or content like '%${searchWord}%' or userid like '%${searchWord}%')
+		</if>
+	</select>
+	<select id="boardGetFileName" resultType="com.campus.myapp.vo.BoardVO">
+		select filename1 from board where boardno=#{param1}
+	</select>
+	
+	<delete id="boardDataDelete">
+		delete from board where boardno=#{param1}
+	</delete>
+	
+	
+	<select id="noticeList" resultType="com.campus.myapp.vo.BoardVO">
+		select boardno, title, content, hit, userid, writedate, hit, likes, boardtype from board
+		<if test='searchWord == null'>
+			where boardtype in ('notice')
+		</if>
+		<if test='searchWord != null'>
+			where boardtype in ('notice') and 
+			(title like '%${searchWord}%' or content like '%${searchWord}%')
+		</if>
+		 order by boardno desc
+		 limit ${onePageRecord} offset ${offsetIndex}
+	</select>
+	<select id="noticeTotalRecord" resultType="int">
+		select count(boardno) cnt from board
+		<if test='searchWord == null'>
+			where boardtype in ('notice')
+		</if>
+		<if test='searchWord != null'>
+			where boardtype in ('notice') and 
+			(title like '%${searchWord}%' or content like '%${searchWord}%')
+		</if>
+	</select>
+	
+	<select id="totalReplyCnt" resultType="int">
+		select count(replyno) cnt from reply
+	</select>
+	<select id="noticeReplyCnt" resultType="int">
+		select count(r.replyno) cnt from reply r 
+		join board b on r.boardno = b.boardno 
+		where b.boardtype in ('notice')
+	</select>
+	<select id="infoReplyCnt" resultType="int">
+		select count(r.replyno) cnt from reply r 
+		join board b on r.boardno = b.boardno 
+		where b.boardtype in ('info')
+	</select>
+	<select id="shareReplyCnt" resultType="int">
+		select count(r.replyno) cnt from reply r 
+		join board b on r.boardno = b.boardno 
+		where b.boardtype in ('share')
+	</select>
+	<select id="walkReplyCnt" resultType="int">
+		select count(r.replyno) cnt from reply r 
+		join board b on r.boardno = b.boardno 
+		where b.boardtype in ('walk')
+	</select>
+	<select id="boastReplyCnt" resultType="int">
+		select count(r.replyno) cnt from reply r 
+		join board b on r.boardno = b.boardno 
+		where b.boardtype in ('boast')
+	</select>
+	<select id="suggestReplyCnt" resultType="int">
+		select count(r.replyno) cnt from reply r 
+		join board b on r.boardno = b.boardno 
+		where b.boardtype in ('suggest')
+	</select>
+	<select id="adoptReplyCnt" resultType="int">
+		select count(r.replyno) cnt from reply r 
+		join board b on r.boardno = b.boardno 
+		where b.boardtype in ('adopt')
+	</select>
+	
+	<select id="totalShopReviewCnt" resultType="int">
+		select count(reviewno) cnt from shopreview
+	</select>
+	
+	<select id="boardReviewList" resultType="com.campus.myapp.vo.ReplyVO">
+		select b.boardtype, b.boardno, r.content, r.userid, r.writedate, r.replyno from reply r
+		join board b on r.boardno = b.boardno 
+		<if test='searchKey == "all" and searchWord == null'>
+		</if>
+		<if test='searchKey != "all" and searchWord == null'>
+			where b.boardtype like '${searchKey}'
+		</if>
+		<if test='searchKey != "all" and searchWord != null'>
+			where b.boardtype like '${searchKey}' and 
+			(r.content like '%${searchWord}%' or r.userid like '%${searchWord}%')
+		</if>
+		<if test='searchKey == "all" and searchWord != null'>
+			where r.content like '%${searchWord}%' or r.userid like '%${searchWord}%'
+		</if>
+		 order by r.writedate desc
+		 limit ${onePageRecord} offset ${offsetIndex}
+	</select>
+	<select id="boardReviewTotalRecord" resultType="int">
+		select count(r.replyno) cnt from reply r 
+		join board b on r.boardno = b.boardno 
+		<if test='searchKey == "all" and searchWord == null'>
+		</if>
+		<if test='searchKey != "all" and searchWord == null'>
+			where b.boardtype like '${searchKey}'
+		</if>
+		<if test='searchKey != "all" and searchWord != null'>
+			where b.boardtype like '${searchKey}' and 
+			(r.content like '%${searchWord}%' or r.userid like '%${searchWord}%')
+		</if>
+		<if test='searchKey == "all" and searchWord != null'>
+			where r.content like '%${searchWord}%' or r.userid like '%${searchWord}%'
+		</if>
+	</select>
+	<delete id="boardReviewDelete">
+		delete from reply where replyno=#{param1}
+	</delete>
+	
+	
+	<select id="adoptList" resultType="com.campus.myapp.vo.BoardVO">
+		select an.category, b.boardno, ad.breed, b.title, b.userid, b.hit, b.likes, b.writedate from board b
+		join adopt ad on b.boardno = ad.boardno
+		join animalinfo an on ad.breed = an.breed 
+		where b.boardtype in ('adopt')
+		<if test='searchKey == "all" and searchWord == null'>
+		</if>
+		<if test='searchKey != "all" and searchWord == null'>
+			and an.category like '${searchKey}'
+		</if>
+		<if test='searchKey != "all" and searchWord != null'>
+			and  an.category like '${searchKey}' and 
+			(b.title like '%${searchWord}%' or b.content like '%${searchWord}%' 
+			or b.userid like '%${searchWord}%' or ad.breed like '%${searchWord}%')
+		</if>
+		<if test='searchKey == "all" and searchWord != null'>
+			and b.title like '%${searchWord}%' or b.content like '%${searchWord}%' 
+			or b.userid like '%${searchWord}%' or ad.breed like '%${searchWord}%'
+		</if>
+		 order by b.writedate desc
+		 limit ${onePageRecord} offset ${offsetIndex}
+	</select>
+	<select id="adoptTotalRecord" resultType="int">
+		select count(b.boardno) cnt from board b
+		join adopt ad on b.boardno = ad.boardno
+		join animalinfo an on ad.breed = an.breed 
+		where b.boardtype in ('adopt')
+		<if test='searchKey == "all" and searchWord == null'>
+		</if>
+		<if test='searchKey != "all" and searchWord == null'>
+			and an.category like '${searchKey}'
+		</if>
+		<if test='searchKey != "all" and searchWord != null'>
+			and  an.category like '${searchKey}' and 
+			(b.title like '%${searchWord}%' or b.content like '%${searchWord}%' 
+			or b.userid like '%${searchWord}%' or ad.breed like '%${searchWord}%')
+		</if>
+		<if test='searchKey == "all" and searchWord != null'>
+			and b.title like '%${searchWord}%' or b.content like '%${searchWord}%' 
+			or b.userid like '%${searchWord}%' or ad.breed like '%${searchWord}%'
+		</if>
+	</select>
+	
+	
+	
+	
+	
 </mapper>

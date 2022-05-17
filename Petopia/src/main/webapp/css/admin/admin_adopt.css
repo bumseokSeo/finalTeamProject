@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+a{ 
+	text-decoration:none !important;
+}
+a:hover{ 
+	text-decoration:none !important;
+}
+.container{
+	height: 100vh;
+	overflow:hidden;
+}
+.tab_title{
+	float: left;
+	width: 19%; 
+}
+.tab_content{
+ 	float: right;
+	width: 79%;
+}
+
+.tab_title>li{
+	width: 200px;
+	min-width: 200px !important;
+	padding: 10px;
+	background: rgba(255, 121, 0, 0.6);
+}
+.tab_title>li>a{
+	color: rgba(255, 255, 255);  
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.tab_title>li:hover{ 
+	background: rgba(255, 146, 0, 1);
+	color: black !important;
+}
+.tab_title>li:hover a{
+	color: black !important;
+	font-size: 18px;
+}
+
+#adoptList{
+	overflow: auto;
+	list-style-type: none;
+	padding-left: 0px;
+}
+#adoptList>li{
+	float: left;
+	width: 10%;
+	height: 40px;
+	line-height: 40px;
+	list-style-type: none;
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+#adoptList>li:nth-child(9n+1){
+	padding-left: 15px;
+}
+#adoptList>li:nth-child(9n+2){
+	width: 9%;
+}
+#adoptList>li:nth-child(9n+4){
+	width: 20%;
+}
+#adoptList>li:nth-child(9n+3),
+#adoptList>li:nth-child(9n+6),
+#adoptList>li:nth-child(9n+7){
+	width: 7%;
+}
+#adoptList>li:nth-child(9n+8){
+	width: 20%;
+}
+
+#adoptList>li:nth-child(n+1):nth-child(-n+9) {
+	border-bottom: 3px solid #ddd;
+	background-color: rgba(205, 188, 171, 0.5);
+	font-weight: bold;
+}
+
+.delBtn{
+	background: gray;
+	border: #FF7900;
+	font-size: 16px;
+	font-weight: 700;
+	color: #fff !important;
+	padding:2px 15px;
+}
+
+
+#searchDiv{
+	padding: 5px;
+	margin:15px 0px;
+	float: right;
+	height: 34px;
+}
+.searchKey{
+	height: 34px;
+	padding: 5px;
+}
+.searchWord{
+	height: 34px;
+	padding: 5px;
+}
+.searchBtn{
+	width: 80px;
+	height: 34px;
+	background-color: #ff6d00;
+	text-align: center;
+	border-radius: 5px;
+	padding: 5px;
+	border: none;
+	color: #fff;
+	font-weight: 700;
+}
+
+.now>a{
+	color: red;
+	font-weight: 700;
+}
+.paging{
+	text-align: center;
+	display: table;
+	margin: 0 auto;
+	overflow: auto;
+}
+.paging li{
+	float: left;
+	padding: 15px;
+}
