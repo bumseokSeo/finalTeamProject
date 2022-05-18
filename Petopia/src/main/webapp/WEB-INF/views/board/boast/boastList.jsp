@@ -72,7 +72,7 @@ $(document).ready(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlB += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
 					addListHtmlB += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-					addListHtmlB += "<label class='Boast_text'>"+data[i].userid+"</label><label class='Boast_text'>"+data[i].writedate+"</label></div></div></div>";
+					addListHtmlB += "<label class='Boast_text'>"+data[i].username+"</label><label class='Boast_text'>"+data[i].writedate+"</label></div></div></div>";
 				}
 				if(data.length<8){
 					$("#nextViewB").empty();
@@ -121,7 +121,7 @@ $('#nextViewB').click(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlB += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
 					addListHtmlB += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-					addListHtmlB += "<label class='Boast_text'>"+data[i].userid+"</label><label class='Boast_text'>"+data[i].writedate+"</label></div></div></div>";
+					addListHtmlB += "<label class='Boast_text'>"+data[i].username+"</label><label class='Boast_text'>"+data[i].writedate+"</label></div></div></div>";
 				}
 				if(data.length<8){
 					$("#nextViewB").empty();
@@ -173,7 +173,7 @@ $('#prevViewB').click(function(){
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlB += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
 				addListHtmlB += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-				addListHtmlB += "<label class='Boast_text'>"+data[i].userid+"</label><label class='Boast_text'>"+data[i].writedate+"</label></div></div></div>";
+				addListHtmlB += "<label class='Boast_text'>"+data[i].username+"</label><label class='Boast_text'>"+data[i].writedate+"</label></div></div></div>";
 			}
 			$("#nextViewB").empty();
 			$("#nextViewB").append("▶");
