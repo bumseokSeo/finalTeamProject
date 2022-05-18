@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/campus/myapp/HomeController.java=UTF-8
 encoding//src/main/resources/application.properties=UTF-8
 encoding//src/main/webapp/WEB-INF/views/board/SubMenuSelect.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/editor.jsp=UTF-8

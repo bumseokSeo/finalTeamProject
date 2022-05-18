@@ -36,7 +36,7 @@ public class HomeController {
 		return mav;
 	}
 	
-	//안읽은 쪽지 수 체크
+	//�븞�씫�� 履쎌� �닔 泥댄겕
 	@ResponseBody
 	@RequestMapping(value = "/messageReload")
 	public int messagesend(HttpSession session) {
