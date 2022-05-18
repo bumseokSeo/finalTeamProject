@@ -409,10 +409,9 @@ public class BoardController {
 				System.out.println(result);
 				
 				//게시판 회귀 선별조건
-				String userid = (String)req.getSession().getAttribute("logId");
-				vo.setBoardno(service.BoardNum(userid));
-				
 				String type = service.getType(vo.getBoardno());
+				System.out.println(type);
+				
 				service.BoardUpdate(vo);
 				System.out.println(type);
 				
