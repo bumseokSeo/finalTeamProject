@@ -212,7 +212,29 @@ public class BoardController {
 		
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "suggest");
 	}
-	
+	//adopt
+	@ResponseBody
+	@RequestMapping(value="/board/adopt/adoptListMethod")
+	public List<BoardVO> AdoptPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
+		System.out.println("입양 페이징 작동");
+		
+		pvo.setStart(Integer.parseInt(startNum));
+		pvo.setEnd(8);
+		return service.BoardSelectList("adopt", pvo);
+	}
+		
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/board/adopt/searchLists")
+	public List<BoardVO> searchMoreViewAD(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
+		System.out.println("입양 검색 결과 페이징");
+
+		int start = Integer.parseInt(startNum);
+		int end = 8;
+		System.out.println("searchKey -> " + searchKey);
+		System.out.println("searchWord -> " + searchWord);
+		
+		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "adopt");
+	}
 	
 	
 	
