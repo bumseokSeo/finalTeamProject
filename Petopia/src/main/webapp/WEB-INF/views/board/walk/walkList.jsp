@@ -86,7 +86,7 @@ $(document).ready(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlW += "<li>"+data[i].boardno+"</li>";
 					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtmlW += "<li>"+data[i].userid+"</li>"
+					addListHtmlW += "<li>"+data[i].username+"</li>"
 					addListHtmlW += "<li>"+data[i].writedate+"</li>";
 					addListHtmlW += "<li>"+data[i].hit+"</li>";
 				}
@@ -143,7 +143,7 @@ $('#nextViewW').click(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlW += "<li>"+data[i].boardno+"</li>";
 					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtmlW += "<li>"+data[i].userid+"</li>"
+					addListHtmlW += "<li>"+data[i].username+"</li>"
 					addListHtmlW += "<li>"+data[i].writedate+"</li>";
 					addListHtmlW += "<li>"+data[i].hit+"</li>";
 				}
@@ -205,7 +205,7 @@ $('#prevViewW').click(function(){
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlW += "<li>"+data[i].boardno+"</li>";
 				addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-				addListHtmlW += "<li>"+data[i].userid+"</li>"
+				addListHtmlW += "<li>"+data[i].username+"</li>"
 				addListHtmlW += "<li>"+data[i].writedate+"</li>";
 				addListHtmlW += "<li>"+data[i].hit+"</li>";
 			}

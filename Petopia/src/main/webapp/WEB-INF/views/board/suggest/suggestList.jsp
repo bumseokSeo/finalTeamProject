@@ -47,7 +47,7 @@ $(document).ready(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlSU += "<li>"+data[i].boardno+"</li>";
 					addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtmlSU += "<li>"+data[i].userid+"</li>"
+					addListHtmlSU += "<li>"+data[i].username+"</li>"
 					addListHtmlSU += "<li>"+data[i].writedate+"</li>";
 					addListHtmlSU += "<li>"+data[i].hit+"</li>";
 				}
@@ -104,7 +104,7 @@ $('#nextViewSU').click(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlSU += "<li>"+data[i].boardno+"</li>";
 					addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtmlSU += "<li>"+data[i].userid+"</li>"
+					addListHtmlSU += "<li>"+data[i].username+"</li>"
 					addListHtmlSU += "<li>"+data[i].writedate+"</li>";
 					addListHtmlSU += "<li>"+data[i].hit+"</li>";
 				}
@@ -166,7 +166,7 @@ $('#prevViewSU').click(function(){
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlSU += "<li>"+data[i].boardno+"</li>";
 				addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-				addListHtmlSU += "<li>"+data[i].userid+"</li>"
+				addListHtmlSU += "<li>"+data[i].username+"</li>"
 				addListHtmlSU += "<li>"+data[i].writedate+"</li>";
 				addListHtmlSU += "<li>"+data[i].hit+"</li>";
 			}
