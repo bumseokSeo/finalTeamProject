@@ -84,7 +84,7 @@ window.onload=function(){
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
 					addListHtml += "<li>"+data[i].boardno+"</li>";
-					addListHtml += "<li><a href='/board/notice/noticeView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
 					addListHtml += "<li>"+data[i].writedate+"</li>";
 					addListHtml += "<li>"+data[i].hit+"</li>";
 				}

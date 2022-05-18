@@ -4,11 +4,11 @@
 }
 
 /*List*/
-.Menu_titleS{
+.Menu_titleB{
 	margin:40px 47px;
 }
 
-.Menu_Bar_AS{
+.Menu_Bar_AB{
 	display:flex;
 	height:120px;
 	width:1000px;
@@ -16,7 +16,7 @@
 	line-height: 120px;
 }
 
-.Menu_titleS{
+.Menu_titleB{
 	width:300px;
 }
 
@@ -24,7 +24,7 @@
 	width:500px;
 }
 
-.Menu_containerS{
+.Menu_containerB{
 	width:1000px;
 	height:800px;
 	border:2px solid red;/* 임시 경계선 */
@@ -91,23 +91,23 @@
 	margin-bottom:-10px;
 }
 
-.Share_btn{
+.Boast_btn{
 	float:right;
 	margin:10px;
 }
-.Share_btn a{
+.Boast_btn a{
 	text-decoration:none;
 	color:black;
 	font-size:1.2em;
 }
-.Share_btn a:hover{
+.Boast_btn a:hover{
 	color:#FF7900;
 }
 .searchWord{
 	float:right;
 }
 
-.Share_search{
+.Boast_search{
 	float:right;
 	margin-bottom:20px;
 	margin-top:-15px;

@@ -4,11 +4,11 @@
 	width:1000px;
 }
 /*List*/
-.Menu_title{
+.Menu_titleSU{
 	margin:40px 10px;
 }
 
-.Menu_Bar_A{
+.Menu_Bar_ASU{
 	display:flex;
 	height:120px;
 	width:1000px;
@@ -16,7 +16,7 @@
 	line-height: 120px;
 }
 
-.Menu_title{
+.Menu_titleSU{
 	width:300px;
 }
 
@@ -24,17 +24,17 @@
 	width:500px;
 }
 
-.Menu_container{
+.Menu_containerSU{
 	width:1000px;
 	height:800px;
 	border:2px solid red;/* 임시 경계선 */
 }
 
 /*게시글목록*/
-.List_menu_F{
+.List_menu_FSU{
 	padding-left:0px;
 }
-.List_menu_F>li{
+.List_menu_FSU>li{
 	width:10%;
 	height:40px;
 	line-height:40px;
@@ -45,18 +45,20 @@
 	background-color: white;
 }
 
-.List_menu_F>li:nth-child(4n+2){ /*제목*/
-	width:60%;
+.List_menu_FSU>li:nth-child(5n+2){ /*제목*/
+	width:50%;
 	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.List_menu_F>li:nth-child(4n+3){
+.List_menu_FSU>li:nth-child(5n+3){
+	width:10%;
+}
+.List_menu_FSU>li:nth-child(5n+4){
 	width:20%;
 }
-.List_menu_F>li:nth-child(4n+4){
+.List_menu_FSU>li:nth-child(5n+5){
 	width:10%;
-	
 }
 /*게시글목록 끝*/
 
@@ -69,28 +71,28 @@
 	margin-bottom:-10px;
 }
 
-.Share_btn{
+.Suggest_btn{
 	float:right;
 	margin:10px;
 }
-.Share_btn a{
+.Suggest_btn a{
 	text-decoration:none;
 	color:black;
 	font-size:1.2em;
 }
-.Share_btn a:hover{
+.Suggest_btn a:hover{
 	color:#FF7900;
 }
 .searchWord{
 	float:right;
 }
 
-.Share_search{
+.Suggest_search{
 	float:right;
 	margin-bottom:20px;
 	margin-top:-15px;
 }
-.Share_paging>ul>li{
+.Suggest_paging>ul>li{
 	float:left;
 	margin-left:10px;
 	margin-right:10px;
