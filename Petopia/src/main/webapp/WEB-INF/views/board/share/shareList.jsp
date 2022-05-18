@@ -49,7 +49,7 @@ $(document).ready(function(){
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 		console.log(pn);
-		if(pn='SubMenuSelect' && $("#UserShareShow").css('display')=='block'){
+		if(pn='SubMenuSelect'){
 			url = '/board/share/shareLists';
 			param = {
 				"startNum" : startNum
