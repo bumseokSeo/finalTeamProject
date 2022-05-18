@@ -68,7 +68,7 @@ $(document).ready(function(){
 			param = {
 				"startNum" : startNum 
 			};
-		}if(pn='infoSearch'){
+		}else if(pn='infoSearch'){
 			url = '/board/info/searchLists';
 			param = {
 				"startNum" : startNum ,

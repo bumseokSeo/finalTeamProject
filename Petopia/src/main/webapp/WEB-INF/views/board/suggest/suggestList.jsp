@@ -29,7 +29,7 @@ $(document).ready(function(){
 			param = {
 				"startNum" : startNum 
 			};
-		}if(pn='suggestSearch'){
+		}else if(pn='suggestSearch'){
 			url = '/board/suggest/searchLists';
 			param = {
 				"startNum" : startNum ,

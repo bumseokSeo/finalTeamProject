@@ -29,7 +29,7 @@ window.onload=function(){
 			param = {
 				"startNum" : startNum 
 			};
-		}if(pn='noticeSearch'){
+		}else if(pn='noticeSearch'){
 			url = '/board/notice/searchLists';
 			param = {
 				"startNum" : startNum ,

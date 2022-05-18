@@ -54,7 +54,7 @@ $(document).ready(function(){
 			param = {
 				"startNum" : startNum
 			};
-		}if(pn='boastSearch'){
+		}else if(pn='boastSearch'){
 			url = '/board/boast/searchLists';
 			param = {
 				"startNum" : startNum ,
