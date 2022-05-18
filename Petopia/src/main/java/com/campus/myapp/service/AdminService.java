@@ -8,6 +8,7 @@ import com.campus.myapp.vo.AnimalInfoVO;
 import com.campus.myapp.vo.BoardVO;
 import com.campus.myapp.vo.MemberVO;
 import com.campus.myapp.vo.ReplyVO;
+import com.campus.myapp.vo.ShopReviewVO;
 
 public interface AdminService {
 	public List<AnimalInfoVO> animalInfoList(AdminPagingVO apVO);
@@ -36,6 +37,11 @@ public interface AdminService {
 	public List<ReplyVO> boardReviewList(AdminPagingVO apVO);
 	public int boardReviewTotalRecord(AdminPagingVO apVO);
 	public int boardReviewDelete(int replyno);
+	
+	public List<ShopReviewVO> shopReviewList(AdminPagingVO apVO);
+	public int shopReviewTotalRecord(AdminPagingVO apVO);
+	public ShopReviewVO shopReviewGetFileName(int reviewno);
+	public int shopReviewDataDelete(int reviewno);
 	
 	public List<BoardVO> adoptList(AdminPagingVO apVO);
 	public int adoptTotalRecord(AdminPagingVO apVO);
@@ -78,10 +84,6 @@ public interface AdminService {
 	public int adoptReplyCnt(AdminVO vo);
 	
 	public int totalShopReviewCnt(AdminVO vo);
-	
-	
-	
-	
 	
 	
 	

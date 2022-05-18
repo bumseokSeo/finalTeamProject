@@ -11,6 +11,7 @@ import com.campus.myapp.vo.AnimalInfoVO;
 import com.campus.myapp.vo.BoardVO;
 import com.campus.myapp.vo.MemberVO;
 import com.campus.myapp.vo.ReplyVO;
+import com.campus.myapp.vo.ShopReviewVO;
 
 @Mapper
 @Repository
@@ -83,6 +84,11 @@ public interface AdminDAO {
 	
 	public List<BoardVO> adoptList(AdminPagingVO apVO);
 	public int adoptTotalRecord(AdminPagingVO apVO);
+	
+	public List<ShopReviewVO> shopReviewList(AdminPagingVO apVO);
+	public int shopReviewTotalRecord(AdminPagingVO apVO);
+	public ShopReviewVO shopReviewGetFileName(int reviewno);
+	public int shopReviewDataDelete(int reviewno);
 	
 	
 	

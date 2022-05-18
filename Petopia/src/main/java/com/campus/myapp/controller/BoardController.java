@@ -1,14 +1,24 @@
 package com.campus.myapp.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,11 +37,17 @@ import org.springframework.web.servlet.ModelAndView;
 import com.campus.myapp.service.BoardService;
 import com.campus.myapp.vo.BoardVO;
 import com.campus.myapp.vo.PagingVO;
-import com.campus.myapp.vo.PagingVO2;
+
 
 @Controller
-public class NoticeController {
+public class BoardController {
 
+	@Value("${image.upload.path}")
+	private String uploadPath;
+
+	@Value("${resource.handler}")
+	private String resourceHandler;
+	
 	@Inject
 	BoardService service;
 	
@@ -65,7 +81,7 @@ public class NoticeController {
 	@RequestMapping(value="/board/notice/noticeLists")
 	public List<BoardVO> NoticePaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
 		System.out.println("공지 페이징 작동");
-		
+				
 		pvo.setStart(Integer.parseInt(startNum));
 		pvo.setEnd(19);
 		return service.BoardSelectList("notice", pvo);
@@ -75,21 +91,47 @@ public class NoticeController {
 	@RequestMapping(value = "/board/notice/searchLists")
 	public List<BoardVO> searchMoreViewN(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		System.out.println("검색 결과 페이징");
+
 		int start = Integer.parseInt(startNum);
 		int end = 19;
 		System.out.println("searchKey -> " + searchKey);
 		System.out.println("searchWord -> " + searchWord);
+		
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "notice");
+	}
+	
+	//info
+	@ResponseBody
+	@RequestMapping(value="/board/info/infoLists")
+	public List<BoardVO> InfoPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
+		System.out.println("정보 페이징 작동");
+				
+		pvo.setStart(Integer.parseInt(startNum));
+		pvo.setEnd(19);
+		return service.BoardSelectList("info", pvo);
+	}
+		
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/board/info/searchLists")
+	public List<BoardVO> searchMoreViewI(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
+		System.out.println("정보 검색 결과 페이징");
+
+		int start = Integer.parseInt(startNum);
+		int end = 19;
+		System.out.println("searchKey -> " + searchKey);
+		System.out.println("searchWord -> " + searchWord);
+		
+		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "info");
 	}
 	
 	//share
 	@ResponseBody
 	@RequestMapping(value="/board/share/shareLists")
 	public List<BoardVO> SharePaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
-		System.out.println("공지 페이징 작동");
+		System.out.println("나눔 페이징 작동");
 		
 		pvo.setStart(Integer.parseInt(startNum));
-		pvo.setEnd(12);
+		pvo.setEnd(8);
 		return service.BoardSelectList("share", pvo);
 	}
 	
@@ -98,10 +140,100 @@ public class NoticeController {
 	public List<BoardVO> searchMoreViewS(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		System.out.println("검색 결과 페이징");
 		int start = Integer.parseInt(startNum);
-		int end = 12;
+		int end = 8;
 		System.out.println("searchKey -> " + searchKey);
 		System.out.println("searchWord -> " + searchWord);
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "share");
+	}
+	//walk
+	@ResponseBody
+	@RequestMapping(value="/board/walk/walkLists")
+	public List<BoardVO> WalkPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
+		System.out.println("산책 페이징 작동");
+				
+		pvo.setStart(Integer.parseInt(startNum));
+		pvo.setEnd(19);
+		return service.BoardSelectList("walk", pvo);
+	}
+		
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/board/walk/searchLists")
+	public List<BoardVO> searchMoreViewW(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
+		System.out.println("산책 검색 결과 페이징");
+
+		int start = Integer.parseInt(startNum);
+		int end = 19;
+		System.out.println("searchKey -> " + searchKey);
+		System.out.println("searchWord -> " + searchWord);
+		
+		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "walk");
+	}
+	//boast
+	@ResponseBody
+	@RequestMapping(value="/board/boast/boastLists")
+	public List<BoardVO> BoastPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
+		System.out.println("자랑 페이징 작동");
+		
+		pvo.setStart(Integer.parseInt(startNum));
+		pvo.setEnd(8);
+		return service.BoardSelectList("boast", pvo);
+	}
+	
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/board/boast/searchLists")
+	public List<BoardVO> searchMoreViewB(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
+		System.out.println("검색 결과 페이징");
+		int start = Integer.parseInt(startNum);
+		int end = 8;
+		System.out.println("searchKey -> " + searchKey);
+		System.out.println("searchWord -> " + searchWord);
+		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "boast");
+	}
+	//suggest
+	@ResponseBody
+	@RequestMapping(value="/board/suggest/suggestLists")
+	public List<BoardVO> SuggestPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
+		System.out.println("건의 페이징 작동");
+				
+		pvo.setStart(Integer.parseInt(startNum));
+		pvo.setEnd(19);
+		return service.BoardSelectList("suggest", pvo);
+	}
+		
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/board/suggest/searchLists")
+	public List<BoardVO> searchMoreViewSu(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
+		System.out.println("건의 검색 결과 페이징");
+
+		int start = Integer.parseInt(startNum);
+		int end = 19;
+		System.out.println("searchKey -> " + searchKey);
+		System.out.println("searchWord -> " + searchWord);
+		
+		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "suggest");
+	}
+	//adopt
+	@ResponseBody
+	@RequestMapping(value="/board/adopt/adoptListMethod")
+	public List<BoardVO> AdoptPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
+		System.out.println("입양 페이징 작동");
+		
+		pvo.setStart(Integer.parseInt(startNum));
+		pvo.setEnd(8);
+		return service.BoardSelectList("adopt", pvo);
+	}
+		
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/board/adopt/searchLists")
+	public List<BoardVO> searchMoreViewAD(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
+		System.out.println("입양 검색 결과 페이징");
+
+		int start = Integer.parseInt(startNum);
+		int end = 8;
+		System.out.println("searchKey -> " + searchKey);
+		System.out.println("searchWord -> " + searchWord);
+		
+		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "adopt");
 	}
 	
 	
@@ -109,17 +241,71 @@ public class NoticeController {
 	
 	//글쓰기 폼 이동
 	@GetMapping("/board/boardWrite")
-	public String noticeWrite() {
-		return "/board/boardWrite";
+	public ModelAndView noticeWrite(String type) {
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("type",type);
+		return mav;
 		
 	}
+	
+	//글쓰기 이미지 업로드
+	
+	@RequestMapping("/board/ckeditorImageUpload")
+	public void fileUpload(MultipartFile upload,HttpServletRequest req, HttpServletResponse res) { 
+		
+		String uploadPath = req.getSession().getServletContext().getRealPath("/upload/");
+		
+		OutputStream out = null;
+        PrintWriter printWriter = null;
+
+        res.setCharacterEncoding("utf-8");
+        res.setContentType("text/html;charset=utf-8");
+
+        try{
+
+            UUID uuid = UUID.randomUUID();
+            String extension = FilenameUtils.getExtension(upload.getOriginalFilename());
+
+            byte[] bytes = upload.getBytes();
+
+            // 실제 이미지 저장 경로
+            String imgUploadPath = uploadPath + File.separator + uuid + "." + extension;
+
+            // 이미지 저장
+            out = new FileOutputStream(imgUploadPath);
+            out.write(bytes);
+            out.flush();
+
+            // ckEditor 로 전송
+            printWriter = res.getWriter();
+            String callback = req.getParameter("CKEditorFuncNum");
+            String fileUrl = "/upload/" + uuid + "." + extension;
+
+            printWriter.println("<script type='text/javascript'>"
+                    + "window.parent.CKEDITOR.tools.callFunction("
+                    + callback+",'"+ fileUrl+"','이미지를 업로드하였습니다.')"
+                    +"</script>");
+
+            printWriter.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(out != null) { out.close(); }
+                if(printWriter != null) { printWriter.close(); }
+            } catch(IOException e) { e.printStackTrace(); }
+        }
+    }
+	
 	
 	//글 쓰기(공통)
 	@PostMapping("/board/BoardWriteOk")
 	public ResponseEntity<String> boardWriteOk(BoardVO vo, HttpServletRequest request) {
 		System.out.println("BoardWrite");
 		vo.setUserid((String)request.getSession().getAttribute("logId"));//아이디 등록
-		
+	
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", Charset.forName("UTF-8")));
@@ -127,75 +313,56 @@ public class NoticeController {
 		String path = request.getSession().getServletContext().getRealPath("/upload/"); // 파일업로드를 위한 업로드 위치의 절대주소
 		System.out.println("path -> "+path);
 		try {
-			MultipartHttpServletRequest mr = (MultipartHttpServletRequest)request;
-
-			List<MultipartFile> files = mr.getFiles("filename");
-			System.out.println("업로드 파일 수 -> "+files.size());
-			
-			if(files!=null) {	//if 1
-				int cnt = 1;	
-				for(int i=0; i<files.size(); i++) {	// for 222
-					//	1. MultipartFile
-					MultipartFile mf = files.get(i);
-					
-					//	2.실제 파일명
-					String orgFileName = mf.getOriginalFilename();
-					System.out.println("orgFileName -> "+ orgFileName );
-					
-					//	3. rename
-					if(orgFileName!=null && !orgFileName.equals("")) {	//if 3
-						File f = new File(path, orgFileName);
-						if(f.exists()) {	//if 4
-							for(int renameNum=1;; renameNum++) {	//for 5
-								//	확장자와 파일을 분리
-								int point = orgFileName.lastIndexOf(".");
-								String fileName = orgFileName.substring(0, point);
-								String ext = orgFileName.substring(point+1);
-								
-								f = new File(path, fileName+" ("+renameNum+")."+ext);
-								if(!f.exists()) {
-									orgFileName = f.getName();
-									break;
-								}	//if 6
-								
-							}	//for 5
-							
-						}	//if 4
-						//	4. 파일 업로드
-						try {
-							mf.transferTo(f);
-							System.out.println(f);
-						}catch(Exception ee) {
-							ee.printStackTrace();
-						}
-						
-						//	5.새로운파일명 vo에 셋팅
-						if(cnt==1) vo.setFilename1(orgFileName);
-						cnt++;
-					}	//if 3
-					
-				}// for 2
-				
-			}//	if 1
-			System.out.println(vo.getFilename1());
-
 			//DB등록
-			service.BoardInsert(vo);
+			Pattern pattern  =  Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
+			String content = vo.getContent();
+			Matcher match = pattern.matcher(content);
+
+			String imgTag = "/img/Logo(main).png";
+			String result = imgTag;
+			if(match.find()){ // 이미지 태그를 찾았다면,,
+			    imgTag = match.group(0); // 글 내용 중에 첫번째 이미지 태그를 뽑아옴.
+			    result = imgTag.substring(imgTag.indexOf("src=")+5,(imgTag.substring(imgTag.indexOf("src=")).indexOf("style")+(imgTag.indexOf("src=")-2)));
+			}			
+			vo.setFilename1(result);
+			System.out.println(result);
+			
+			//게시판 회귀 선별조건
+			
+			
 			String userid = (String)request.getSession().getAttribute("logId");
 			vo.setBoardno(service.BoardNum(userid));
-			//게시판 회귀 선별조건
-			String BF = vo.getBoardtype();
-			System.out.println(BF);
 			
-			if(BF.equals("notice")) {
+			service.BoardInsert(vo);
+			String type = service.getType(vo.getBoardno());
+			System.out.println(type);
+			
+			
+			if(type.equals("notice")) {
 			String msg = "<script>alert('공지사항 등록완료');location.href='/board/SubMenuSelect?type=notice';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
-			if(BF.equals("share")) {
+			if(type.equals("info")) {
+			String msg = "<script>alert('정보게시판 등록완료');location.href='/board/SubMenuSelect?type=info';</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
+			}
+			if(type.equals("share")) {
 			String msg = "<script>alert('나눔게시판 등록완료');location.href='/board/SubMenuSelect?type=share';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
-			if(BF.equals("adopt")) {
+			if(type.equals("walk")) {
+			String msg = "<script>alert('산책게시판 등록완료');location.href='/board/SubMenuSelect?type=walk';</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
+			}
+			if(type.equals("boast")) {
+			String msg = "<script>alert('자랑게시판 등록완료');location.href='/board/SubMenuSelect?type=boast';</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
+			}
+			if(type.equals("suggest")) {
+			String msg = "<script>alert('건의게시판 등록완료');location.href='/board/SubMenuSelect?type=suggest';</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
+			}
+			if(type.equals("adopt")) {
 			String msg = "<script>alert('입양게시판 등록완료');location.href='/board/adopt/adoptList';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
@@ -203,7 +370,7 @@ public class NoticeController {
 		}catch(Exception e) {
 			e.printStackTrace();
 				fileDelete(path, vo.getFilename1());
-			String msg = "<script>alert('공지사항 등록 실패');history.back();</script>";
+			String msg = "<script>alert('글 등록 실패');history.back();</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);	//400
 		}
 		return entity;

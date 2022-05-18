@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/css/board/notice/noticeView.css" type="text/css"/>
+<link rel="stylesheet" href="/css/board/boardView.css" type="text/css"/>
 <script>
 function delCheck(){
 	if(confirm("삭제하시겠습니까?")){

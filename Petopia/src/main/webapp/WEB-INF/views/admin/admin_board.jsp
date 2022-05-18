@@ -18,7 +18,7 @@ function boardDelChk(boardno){
 		<li><a href="/admin/admin_adopt?searchKey=all">입양 게시판 관리</a></li>
 		<li><a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보 관리</a></li>
 		<li><a href="/admin/admin_boardReview?searchKey=all">게시판 리뷰 관리</a></li>
-		<li><a href="#">동물병원 리뷰 관리</a></li>
+		<li><a href="/admin/admin_shopReview?searchKey=all">동물병원 리뷰 관리</a></li>
 	</ul>
 	
 	<div class="tab_content">
