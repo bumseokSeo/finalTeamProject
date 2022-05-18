@@ -50,7 +50,7 @@ function shopReviewDelChk(reviewno){
 			<li>관리</li>
 			
 			<c:forEach var="vo" items="${list }">
-				<li><a href="#">${vo.shopname}</a></li> <!-- 링크타면 shopname이 지도에서 검색될수있도록? -->
+				<li>${vo.shopname}</li> <!-- 링크타면 shopname이 지도에서 검색될수있도록? -->
 				<li>${vo.shopreview }</li>
 				<li>${vo.userid }</li>
 				<li>${vo.writedate }</li>
