@@ -49,7 +49,7 @@ $(document).ready(function(){
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 		console.log(pn);
-		if(pn='SubMenuSelect' && $("#UserBoastShow").css('display')=='block'){
+		if(pn='SubMenuSelect'){
 			url = '/board/boast/boastLists';
 			param = {
 				"startNum" : startNum
