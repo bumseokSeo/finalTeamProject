@@ -42,8 +42,8 @@ public class BoardServiceImp implements BoardService{
 	}
 	
 	@Override
-	public int BoardNum(String userid){
-		return dao.BoardNum(userid);
+	public int BoardNum(){
+		return dao.BoardNum();
 	}
 	
 	@Override
