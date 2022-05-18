@@ -41,8 +41,8 @@
          <when test="param1.equals('content')">
             AND A.content like #{param2}
          </when>
-         <when test="param1.equals('userid')">
-            AND A.userid like #{param2}
+         <when test="param1.equals('username')">
+            AND B.username like #{param2}
          </when>
       </choose>
       ORDER BY A.boardno DESC

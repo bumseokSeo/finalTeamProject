@@ -72,7 +72,7 @@ $(document).ready(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlS += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
 					addListHtmlS += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-					addListHtmlS += "<label class='Share_text'>"+data[i].userid+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div>";
+					addListHtmlS += "<label class='Share_text'>"+data[i].username+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div>";
 				}
 				if(data.length<8){
 					$("#nextViewS").empty();
@@ -121,7 +121,7 @@ $('#nextViewS').click(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlS += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
 					addListHtmlS += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-					addListHtmlS += "<label class='Share_text'>"+data[i].userid+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div>";
+					addListHtmlS += "<label class='Share_text'>"+data[i].username+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div>";
 				}
 				if(data.length<8){
 					$("#nextViewS").empty();
@@ -173,7 +173,7 @@ $('#prevViewS').click(function(){
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlS += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
 				addListHtmlS += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-				addListHtmlS += "<label class='Share_text'>"+data[i].userid+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div>";
+				addListHtmlS += "<label class='Share_text'>"+data[i].username+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div>";
 			}
 			$("#nextViewS").empty();
 			$("#nextViewS").append("▶");
