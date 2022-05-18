@@ -27,6 +27,7 @@ import com.campus.myapp.vo.AnimalInfoVO;
 import com.campus.myapp.vo.BoardVO;
 import com.campus.myapp.vo.MemberVO;
 import com.campus.myapp.vo.ReplyVO;
+import com.campus.myapp.vo.ShopReviewVO;
 
 @RestController
 @RequestMapping("/admin/")
@@ -662,4 +663,50 @@ public class AdminController {
 		return entity;
 	}
 	
+	
+	// 동물병원리뷰관리 이동
+	@GetMapping("/admin_shopReview")
+	public ModelAndView admin_shopReview(AdminPagingVO apVO) {
+		ModelAndView mav = new ModelAndView();
+		
+		apVO.setTotalRecord(service.shopReviewTotalRecord(apVO));
+		
+		mav.addObject("list", service.shopReviewList(apVO));
+		mav.addObject("apVO", apVO);
+		
+		mav.setViewName("admin/admin_shopReview");
+		return mav;
+	}
+	// 동물병원리뷰 삭제
+	@GetMapping("/shopReviewDel")
+	public ResponseEntity<String> shopReviewDel(int reviewno, HttpSession session){
+		String path = session.getServletContext().getRealPath("/img");
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "text/html; charset=utf-8");
+		
+		try {	
+			ShopReviewVO vo = new ShopReviewVO();
+			if(vo.getFilename1() != null) {
+				service.shopReviewGetFileName(reviewno);
+			}			
+			
+			service.shopReviewDataDelete(reviewno);
+			
+			if(vo.getFilename1() != null) {
+				fileDelete(path, vo.getFilename1());
+			}
+			
+			String msg = "<script>alert('리뷰가 삭제되었습니다.'); location.href='/admin/admin_shopReview?searchKey=all';</script>";
+			
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+			String msg = "<script>alert('삭제실패하였습니다.');history.back();</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
 }

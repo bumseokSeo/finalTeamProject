@@ -1,0 +1,114 @@
+@charset "UTF-8";
+.container{
+	width:1000px;
+}
+
+/*List*/
+.Menu_titleB{
+	margin:40px 47px;
+}
+
+.Menu_Bar_AB{
+	display:flex;
+	height:120px;
+	width:1000px;
+	border: 2px solid green;
+	line-height: 120px;
+}
+
+.Menu_titleB{
+	width:300px;
+}
+
+.Menu_img{
+	width:500px;
+}
+
+.Menu_containerB{
+	width:1000px;
+	height:800px;
+	border:2px solid red;/* 임시 경계선 */
+	padding-left:15px;
+	padding-top:20px;
+}
+
+/*게시글목록*/
+.PostArea{
+	float:left;
+	width:225px;
+	position:relative;
+	overflow: hidden;
+	background-color: white;
+	margin: 15px 7px 15px 10px;
+}
+
+.PostImg_Area{
+	width:225px;
+	height:226px;
+}
+.PostImg_Area a{
+	width:225px;
+	color:black;
+	text-decoration:none;
+}
+
+.PostImg_Area a:hover{
+	opacity:10%;
+}
+
+.PostImg_Area img{
+	border-bottom:1px solid gray;
+	width:225px;
+}
+
+.Post_body{
+	padding : 1rem 1rem;
+}
+
+.Post_body_title{
+	margin-bottom: 0.5rem;
+	white-space :nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.Post_body_content{
+	margin-bottom:0;
+}
+
+.Post_body_content label{
+	display : inline-block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+/*페이징*/
+.paging{
+	width:100%; 
+	text-align: center; 
+	font-size: 30px;
+	margin-top:10px;
+	margin-bottom:-10px;
+}
+
+.Boast_btn{
+	float:right;
+	margin:10px;
+}
+.Boast_btn a{
+	text-decoration:none;
+	color:black;
+	font-size:1.2em;
+}
+.Boast_btn a:hover{
+	color:#FF7900;
+}
+.searchWord{
+	float:right;
+}
+
+.Boast_search{
+	float:right;
+	margin-bottom:20px;
+	margin-top:-15px;
+}

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/css/board/notice/noticeWrite.css" type="text/css"/>
+<link rel="stylesheet" href="/css/board/boardWrite.css" type="text/css"/>
   <script>
  $(function(){
 	 $("#noticeFrm").submit(function(){
@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="notice-wrapper"><!--  전체 틀  -->
-<h1>공지사항 작성</h1>
+<h1>입양게시글 작성</h1>
 <hr/>
 	<form method="post" action="/board/BoardWriteOk" id="noticeFrm" enctype="multipart/form-data">
   	  	<ul>

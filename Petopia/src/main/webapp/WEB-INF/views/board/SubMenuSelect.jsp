@@ -3,16 +3,18 @@
 <link rel="stylesheet" href="/css/SubMenuSelect.css" type="text/css"/>
 <script>
 $(document).ready(function(){
-	
+	//$("#resultArea>div").css('display','none !important');
 	switch('${type}'){
 	case 'notice' : 
+		
+		console.log(22);
 			  $("#UserNoticeShow").css('display','block');
 			  break;
 	case 'info' : 
-		  	  $("#MenuInfo_container").css('display','block');
+		  	  $("#UserInfoShow").css('display','block');
 			  break;
 	case 'share' : 
-			  $("#UserShareShow").css('display','block');
+			 $("#UserShareShow").css('display','block');
 			  break;
 	case 'walk' : 
 			  $("#UserWalkShow").css('display','block');
@@ -26,55 +28,29 @@ $(document).ready(function(){
 		
 	}
 		
-	$("#MenuNotice").click(function(){ 
+	$("#MenuNotice").click(function(){
+		$("#resultArea>div").css('display','none');
 		$("#UserNoticeShow").css('display','block');
-		$("#MenuInfo_container").css('display','none');
-		$("#UserShareShow").css('display','none');
-		$("#MenuWalk_container").css('display','none');
-		$("#MenuBoast_container").css('display','none');
-		$("#MenuSuggest_container").css('display','none');
-		
-	   });
+	  });
 	$("#MenuInfo").click(function(){ 
-		$("#MenuNotice_container").css('display','none');
-		$("#MenuInfo_container").css('display','block');
-		$("#MenuShare_container").css('display','none');
-		$("#MenuWalk_container").css('display','none');
-		$("#MenuBoast_container").css('display','none');
-		$("#MenuSuggest_container").css('display','none');
+		$("#resultArea>div").css('display','none');
+		$("#UserInfoShow").css('display','block');
 	   });
 	$("#MenuShare").click(function(){ 
-		$("#UserNoticeShow").css('display','none');
-		$("#MenuInfo_container").css('display','none');
+		$("#resultArea>div").css('display','none');
 		$("#UserShareShow").css('display','block');
-		$("#MenuWalk_container").css('display','none');
-		$("#MenuBoast_container").css('display','none');
-		$("#MenuSuggest_container").css('display','none');
 	 });
 	$("#MenuWalk").click(function(){ 
-		$("#MenuNotice_container").css('display','none');
-		$("#MenuInfo_container").css('display','none');
-		$("#MenuShare_container").css('display','none');
-		$("#MenuWalk_container").css('display','block');
-		$("#MenuBoast_container").css('display','none');
-		$("#MenuSuggest_container").css('display','none');
+		$("#resultArea>div").css('display','none');
+		$("#UserWalkShow").css('display','block');
 	 });
 	$("#MenuBoast").click(function(){ 
-		$("#MenuNotice_container").css('display','none');
-		$("#MenuInfo_container").css('display','none');
-		$("#MenuShare_container").css('display','none');
-		$("#MenuWalk_container").css('display','none');
-		$("#MenuBoast_container").css('display','block');
-		$("#MenuSuggest_container").css('display','none');
+		$("#resultArea>div").css('display','none');
+		$("#UserBoastShow").css('display','block');
 	 });
 	$("#MenuSuggest").click(function(){ 
-		$("#MenuNotice_container").css('display','none');
-		$("#MenuInfo_container").css('display','none');
-		$("#MenuShare_container").css('display','none');
-		$("#MenuWalk_container").css('display','none');
-		$("#MenuBoast_container").css('display','none');
-		$("#MenuSuggest_container").css('display','block');
-		console.log(${type});
+		$("#resultArea>div").css('display','none');
+		$("#UserSuggestShow").css('display','block');
 	 });
 });
 </script>
@@ -93,8 +69,12 @@ $(document).ready(function(){
 				</ul>
 		</div>
 		<div id="resultArea">
-			<span id="UserNoticeShow"><%@ include file="/WEB-INF/views/board/notice/noticeList.jsp" %></span>
-			<span id="UserShareShow"><%@ include file="/WEB-INF/views/board/share/shareList.jsp" %></span>
+			<div id="UserNoticeShow"><%@ include file="/WEB-INF/views/board/notice/noticeList.jsp" %></div>
+			<div id="UserInfoShow"><%@ include file="/WEB-INF/views/board/info/infoList.jsp" %></div>
+			<div id="UserShareShow"><%@ include file="/WEB-INF/views/board/share/shareList.jsp" %></div>
+			<div id="UserWalkShow"><%@ include file="/WEB-INF/views/board/walk/walkList.jsp" %></div>
+			<div id="UserBoastShow"><%@ include file="/WEB-INF/views/board/boast/boastList.jsp" %></div>
+			<div id="UserSuggestShow"><%@ include file="/WEB-INF/views/board/suggest/suggestList.jsp" %></div>
 		</div>
 	</div>
 </div>
