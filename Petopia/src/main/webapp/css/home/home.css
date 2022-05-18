@@ -303,13 +303,12 @@ a:hover{
 }
 .comname{
 	position:absolute; 
-	top: 30%; 
-	left: 50%; 
-	transform: translate(-50%, -50%);
+	top: 30%;
+	width:100%;
+	transform: translate(0, -50%);
 	color: #fff;
 	font-size: 64px;
 	font-weight: 800;
-	font-family: arial;
 }
 
 /* 4페이지 */
