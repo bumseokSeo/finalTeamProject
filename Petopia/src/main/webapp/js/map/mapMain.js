@@ -202,7 +202,7 @@ function getListItem(index, places) {
 	var el = document.createElement('li');
 	var itemStr = '<span class="markerbg marker_' + (index + 1) + '"></span>' +
 		'<div class="info" onclick="openInfo('+places.id+')">' +
-		'	<h5 name="shopname">' + places.place_name + '</h5><span name="shopid">' + places.id + '</span>';
+		'	<h5 name="shopname">' + places.place_name + '</h5><span name="shopid" style="display:none">' + places.id + '</span>';
 
 	if (places.road_address_name) {
 		itemStr += '	<span name="shopaddr">' + places.road_address_name + '</span>' +
@@ -218,9 +218,9 @@ function getListItem(index, places) {
 	return el;
 }
 function openInfo(sid) {
-	
 	selectReview(sid);
 }
+// 전체 리뷰 띄우기
 function selectReview(sid) {
 	let url = "/map/reviewList";
 	let data = "shopid=" + sid;
@@ -232,28 +232,39 @@ function selectReview(sid) {
 		success: function(res) {
 			$('.host_info2').html("");
 			$("#host_review2").html("");
-			if (res.length > 0 && res[0].shopid == sid) {
-				let str2 = `<span name="shopid" id="` + res[0].shopid + `" style="display:hidden"></span>
-				<span name="shopname" id="shopname" style="color:#212121;font-weight:bold;font-size:1.5em">`+ res[0].shopname + `</span><br/>
-				<span id="shopaddr" style="color:#434343;font-size:1.5em">`+ res[0].shopaddr + `</span><br/>
-				<span id="shopnumber" style="color:#434343;font-size:1.2em">`+ res[0].shopnumber + `</span>`;
+			let str2 = `<span name="shopid" id="` + res[0].shopid + `" style="display:hidden"></span>
+				<div style="text-align:center;"><span name="shopname" id="shopname" style="color:#212121;font-weight:bold;font-size:2.5em;text-align:center"> &nbsp;`+ res[0].shopname + `</span></div><br/>
+				<i class="bi bi-geo-alt" style="font-size:1.5em"></i><span id="shopaddr" style="color:#434343;font-size:1.5em"> &nbsp;`+ res[0].shopaddr + `</span><br/>
+				<i class="bi bi-telephone" style="font-size:1.5em"></i><span id="shopnumber" style="color:#434343;font-size:1.2em"> &nbsp;`+ res[0].shopnumber + `</span>`;
 				$('.host_info2').html(str2);
-
+			if (res.length > 0 && res[0].shopid == sid) {
 				var str = ''
 				$(res).each(function(idx, shop) {
 					str += `<div style="border:1px solid #ddd; margin:5px;"><span style="font-size:1.5em;font-weight:bold;margin:3px">` + shop.userid + `</span>` +
 						`<span style="color:#696969">   ` + shop.writedate + `</span>` +
-						`<div><span style="font-size:1.2em;margin:5px;">` + shop.shopreview + `</span><br/></div></div>`;
-					str += `<span class="btns"><input type="button" class="btn" value="수정">`;
-					str += `<input type="button" class="btn" value="삭제" title="` + shop.reviewno + `"></span></div>`;
-					/*
+						`<div><span style="font-size:1.2em;margin:5px;">` + shop.shopreview + `</span><br/>`;
+					if(shop.filename1!=null){
+						str+=`<img src="/upload/`+shop.filename1+`" style="width:100%"/></div></div>`;
+					}
+					str += `</div></div>`;
+
 					if(shop.userid==userid){
-						str+=`<div style="display:none"><form method="post">`;
+						str += `<span class="btns"><input type="button" class="btn" value="수정">`;
+						str += `<input type="button" class="btn" value="삭제" title="` + shop.reviewno + `"></span></div>`;
+					}
+					if(shop.userid==userid){
+						str+=`<div style="display:none"><form id="reviewFrm2" method="post">`;
+						str+=`<input type="hidden" name="reviewno" id="reviewno" value="`+shop.reviewno+`">`
 						str+=`<input type="hidden" name="shopid" id="shopid" value="`+shop.shopid+`">`;
-						str+=`<div class="map_review"><textarea name="shopreview">`+shop.shopreview+`</textarea><br/>`;
-						str+=`<input type="submit" class="rev_btn" value="수정하기"><br/>`;
+						str+=`<div class="map_review"><textarea name="shopreview" style="width:80%">`+shop.shopreview+`</textarea>`;
+						str+=`<input type="submit" style="border:none" class="rev_btn" value="수정하기"><br/>`;
+						if(shop.filename1!=null){
+							//str+=`<input type="file" name="filename" id="filename"/>`+shop.filename1+`</div></form></div>`;
+							str+=`<div>`+shop.filename1+`&nbsp; <span class="btn xbtn">X</span></div>`;
+							str+=`<input type="hidden" name="" value="`+shop.filename1+`"/>`;
+						}
 						str+=`<input type="file" name="filename" id="filename"/></div></form></div>`;
-					}*/
+					}
 				})
 				$("#host_review2").html(str);
 				$("#menu_wrap_2").toggle(
@@ -263,9 +274,9 @@ function selectReview(sid) {
 			}
 			else {
 				let str3 = `<span name="shopid" id="` + res[0].shopid + `" style="display:hidden"></span>
-				<span name="shopname" id="shopname" style="color:#212121;font-weight:bold;font-size:1.5em">`+ res[0].shopname + `</span><br/>
-				<span id="shopaddr" style="color:#434343;font-size:1.5em">`+ res[0].shopaddr + `</span><br/>
-				<span id="shopnumber" style="color:#434343;font-size:1.2em">`+ res[0].shopnumber + `</span>`;
+				<div style="text-align:center;"><span name="shopname" id="shopname" style="color:#212121;font-weight:bold;font-size:2.5em;text-align:center"> &nbsp;`+ res[0].shopname + `</span></div><br/>
+				<i class="bi bi-geo-alt" style="font-size:1.5em"></i><span id="shopaddr" style="color:#434343;font-size:1.5em"> &nbsp;`+ res[0].shopaddr + `</span><br/>
+				<i class="bi bi-telephone" style="font-size:1.5em"></i><span id="shopnumber" style="color:#434343;font-size:1.2em"> &nbsp;`+ res[0].shopnumber + `</span>`;
 				$('.host_info2').html(str3);
 				$("#menu_wrap_2").toggle(
 					function() { $("#menu_wrap_2").addClass('show') }, //클릭하면 show클래스 적용되서 보이기
@@ -276,35 +287,53 @@ function selectReview(sid) {
 	})
 }
 //수정버튼 클릭 시
-$(document).on('click', '#reviewList input[value=수정]', function() {
+$(document).on('click', '#host_review2 input[value=수정]', function() {
 	$(this).parent().css("display", "none");
 	$(this).parent().next().css("display", "block");
+	
+	$(".xbtn").on('click',function(){
+		$(this).parent().css("display","none");
+		$(this).parent().next().attr("name","deleteFile");
+		$(this).parent().next().next().attr("type","file");
+	})
 })
+
 // DB 수정
-$(document).on('submit', '#reviewList form', function() {
+$(document).on('submit', '#host_review2 form', function() {
 	event.preventDefault();
 
+	var data = new FormData($("#reviewFrm2")[0]); // form데이터 보내기
+	
 	$.ajax({
-		url: 'editOk',
-		data: $(this).serialize(),
+		url: '/map/editOk',
+		data: data,
+		dataType:'text',
 		type: "POST",
+		processData: false,
+		contentType: false,
 		success: function() {
-			selectReview();
+			alert("리뷰가 수정되었습니다.");
+			selectReview(data.get('shopid'));
 		}, error: function() {
+			alert("리뷰 수정에 실패");
 			console.log("수정실패");
 		}
 	})
 })
 //리뷰 삭제
-$(document).on('click', "#reviewList input[value=삭제]", function() {
+$(document).on('click', "#host_review2 input[value=삭제]", function() {
 	if (confirm('리뷰를 삭제하시겠습니까?')) {
 		let data = "reviewno=" + $(this).attr("title");
 		$.ajax({
-			url: "deleteOk",
+			url: "/map/deleteOk",
 			data: data,
 			success: function() {
-				selectReview();
+				alert("리뷰가 삭제되었습니다.");
+				$("#shopreview").val("");
+				$("#filename").val("");
+				
 			}, error: function() {
+				alert('리뷰 삭제 실패');
 				console.log("삭제 실패");
 			}
 		})
@@ -333,6 +362,7 @@ function displayPlaceInfo(place) {
 	placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
 	placeOverlay.setMap(map);
 }
+//이미지 파일 올리기
 function sendFile() {
 	event.preventDefault();
 
@@ -351,6 +381,7 @@ function sendFile() {
 		processData: false,
 		contentType: false,
 		success: function(result) {
+			alert("리뷰가 등록되었습니다.");
 			$("#shopreview").val("");
 			$("#filename").val("");
 		}
@@ -367,17 +398,3 @@ function removeAllChildNods(el) {
 function closeOverlay() {
 	placeOverlay.setMap(null);
 }
-/*
-// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성
-var infoWindow = new kakao.maps.InfoWindow({zIndex:1});
-searchPlaces(); //키워드로 장소 검색
-
-//검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수
-// 인포윈도우에 장소명을 표시
-function displayInfowindow(marker, title){
-	var content = '<div style="padding:5px; z-index:1;">' + title + '</div>';
-
-	infoWindow.setContent(content);
-	infoWindow.open(map, marker);
-}
- */

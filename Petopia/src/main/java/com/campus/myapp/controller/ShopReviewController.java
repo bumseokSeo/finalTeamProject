@@ -1,6 +1,7 @@
 package com.campus.myapp.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -51,8 +52,19 @@ public class ShopReviewController {
 	
 	//리뷰 수정
 	@PostMapping("editOk")
-	public int updateReview(ShopReviewVO vo, HttpSession session) {
+	public int updateReview(@RequestParam("filename") MultipartFile filename, ShopReviewVO vo, HttpSession session) {
 		vo.setUserid((String)session.getAttribute("logId"));
+		String path = session.getServletContext().getRealPath("/upload");
+		
+		try {
+			if(!filename.isEmpty()) {
+				filename.transferTo(new File(path+"/"+filename.getOriginalFilename()));
+				vo.setFilename1(filename.getOriginalFilename());
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		return service.updateReview(vo);
 	}
 	

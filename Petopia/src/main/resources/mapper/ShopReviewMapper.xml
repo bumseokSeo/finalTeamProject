@@ -14,7 +14,7 @@
 		order by a.reviewno desc
 	</select>
 	<update id="updateReview">
-		update shopreview set shopreview=#{shopreview}
+		update shopreview set shopreview=#{shopreview}, filename1=#{filename1}
 		where reviewno=${reviewno} and userid=#{userid}
 	</update>
 	<delete id="deleteReview">

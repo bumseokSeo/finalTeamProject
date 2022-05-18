@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/css/map/mapMain.css" type="text/css">
 
 <div class="map_wrap">
-	<div><input type="button" id="getMyPositionBtn" value="내위치 불러오기" onclick="getCurrentPosBtn()"></div>
+	<div><input type="button" id="getMyPositionBtn" value="&#xF3E8;" onclick="getCurrentPosBtn()"></div>
 	<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 	<div id="menu_wrap" class="bg_white">
 		<div class="option">
@@ -27,14 +27,14 @@
 			</div>
 			<hr/>
 			<div>
-				<div class="host_info"><동물병원정보></div>
+				<div class="host_info"></div>
 				<div class="host_info2">
 				
 				</div>
 			</div>
 			<hr/>
 			<div>
-				<div class="host_review">리뷰</div>
+				<div class="host_review"><i class="bi bi-pencil-square"></i></div>
 				<div id="host_review2">
 				
 				</div>
@@ -45,3 +45,6 @@
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bffc103d445dc60ffcc8badf1da53cf7&libraries=services"></script>
 <script src="/js/map/mapMain.js"></script>
+<script>
+	let userid = "${logId}";
+</script>

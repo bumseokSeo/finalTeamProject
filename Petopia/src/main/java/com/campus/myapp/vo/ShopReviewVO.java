@@ -12,6 +12,8 @@ public class ShopReviewVO {
 	private String shopaddr;
 	private String shopnumber;
 	
+	private String deleteFile;
+	
 	public int getReviewno() {
 		return reviewno;
 	}
@@ -65,6 +67,12 @@ public class ShopReviewVO {
 	}
 	public void setShopnumber(String shopnumber) {
 		this.shopnumber = shopnumber;
+	}
+	public String getDeleteFile() {
+		return deleteFile;
+	}
+	public void setDeleteFile(String deleteFile) {
+		this.deleteFile = deleteFile;
 	}	
 	
 }
