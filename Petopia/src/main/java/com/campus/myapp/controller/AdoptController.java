@@ -41,10 +41,6 @@ public class AdoptController {
 		return service.BoardSelectList("adopt", pvo);
 	}
 	
-	@GetMapping("/board/adopt/adoptWrite")
-	public String noticeWrite() {
-		return "/board/adopt/adoptWrite";
-	}
 	
 	
 
