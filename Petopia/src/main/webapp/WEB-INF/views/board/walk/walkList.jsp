@@ -68,7 +68,7 @@ $(document).ready(function(){
 			param = {
 				"startNum" : startNum 
 			};
-		}if(pn='walkSearch'){
+		}else if(pn='walkSearch'){
 			url = '/board/walk/searchLists';
 			param = {
 				"startNum" : startNum ,

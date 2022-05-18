@@ -53,7 +53,7 @@ $(document).ready(function(){
 			param = {
 				"startNum" : startNum
 			};
-		}if(pn='adoptSearch'){
+		}else if(pn='adoptSearch'){
 			url = '/board/adopt/searchLists';
 			param = {
 				"startNum" : startNum ,
@@ -62,6 +62,7 @@ $(document).ready(function(){
 			};
 			console.log(startNum);
 		}
+		console.log(pn,url);
 		$.ajax({
 			url : url,
 			type : 'POST',
@@ -72,6 +73,7 @@ $(document).ready(function(){
 					addListHtmlD += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
 					addListHtmlD += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
 					addListHtmlD += "<label class='adopt_text'>"+data[i].userid+"</label><label class='adopt_text'>"+data[i].writedate+"</label></div></div></div>";
+			    console.log(data[i].filename1);
 				}
 				if(data.length<8){
 					$("#nextViewD").empty();
@@ -189,8 +191,8 @@ $('#prevViewD').click(function(){
 	});
 });
 
-$("#searchFrmS").submit(function() {
-	  if ($("#searchWordS").val() == "") {
+$("#searchFrmD").submit(function() {
+	  if ($("#searchWordD").val() == "") {
 	     alert("검색어를 입력하세요");
 	     return false;
 	   }

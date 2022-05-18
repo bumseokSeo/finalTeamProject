@@ -79,9 +79,7 @@ public class BoardController {
 	//notice
 	@ResponseBody
 	@RequestMapping(value="/board/notice/noticeLists")
-	public List<BoardVO> NoticePaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
-		System.out.println("공지 페이징 작동");
-				
+	public List<BoardVO> NoticePaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{	
 		pvo.setStart(Integer.parseInt(startNum));
 		pvo.setEnd(19);
 		return service.BoardSelectList("notice", pvo);
@@ -90,8 +88,6 @@ public class BoardController {
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/board/notice/searchLists")
 	public List<BoardVO> searchMoreViewN(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
-		System.out.println("검색 결과 페이징");
-
 		int start = Integer.parseInt(startNum);
 		int end = 19;
 		System.out.println("searchKey -> " + searchKey);
@@ -103,9 +99,7 @@ public class BoardController {
 	//info
 	@ResponseBody
 	@RequestMapping(value="/board/info/infoLists")
-	public List<BoardVO> InfoPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
-		System.out.println("정보 페이징 작동");
-				
+	public List<BoardVO> InfoPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{	
 		pvo.setStart(Integer.parseInt(startNum));
 		pvo.setEnd(19);
 		return service.BoardSelectList("info", pvo);
@@ -114,8 +108,6 @@ public class BoardController {
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/board/info/searchLists")
 	public List<BoardVO> searchMoreViewI(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
-		System.out.println("정보 검색 결과 페이징");
-
 		int start = Integer.parseInt(startNum);
 		int end = 19;
 		System.out.println("searchKey -> " + searchKey);
@@ -128,8 +120,6 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping(value="/board/share/shareLists")
 	public List<BoardVO> SharePaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
-		System.out.println("나눔 페이징 작동");
-		
 		pvo.setStart(Integer.parseInt(startNum));
 		pvo.setEnd(8);
 		return service.BoardSelectList("share", pvo);
@@ -138,7 +128,6 @@ public class BoardController {
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/board/share/searchLists")
 	public List<BoardVO> searchMoreViewS(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
-		System.out.println("검색 결과 페이징");
 		int start = Integer.parseInt(startNum);
 		int end = 8;
 		System.out.println("searchKey -> " + searchKey);
@@ -149,8 +138,6 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping(value="/board/walk/walkLists")
 	public List<BoardVO> WalkPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
-		System.out.println("산책 페이징 작동");
-				
 		pvo.setStart(Integer.parseInt(startNum));
 		pvo.setEnd(19);
 		return service.BoardSelectList("walk", pvo);
@@ -159,8 +146,6 @@ public class BoardController {
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/board/walk/searchLists")
 	public List<BoardVO> searchMoreViewW(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
-		System.out.println("산책 검색 결과 페이징");
-
 		int start = Integer.parseInt(startNum);
 		int end = 19;
 		System.out.println("searchKey -> " + searchKey);
@@ -172,8 +157,6 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping(value="/board/boast/boastLists")
 	public List<BoardVO> BoastPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
-		System.out.println("자랑 페이징 작동");
-		
 		pvo.setStart(Integer.parseInt(startNum));
 		pvo.setEnd(8);
 		return service.BoardSelectList("boast", pvo);
@@ -182,7 +165,6 @@ public class BoardController {
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/board/boast/searchLists")
 	public List<BoardVO> searchMoreViewB(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
-		System.out.println("검색 결과 페이징");
 		int start = Integer.parseInt(startNum);
 		int end = 8;
 		System.out.println("searchKey -> " + searchKey);
@@ -192,9 +174,7 @@ public class BoardController {
 	//suggest
 	@ResponseBody
 	@RequestMapping(value="/board/suggest/suggestLists")
-	public List<BoardVO> SuggestPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
-		System.out.println("건의 페이징 작동");
-				
+	public List<BoardVO> SuggestPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{	
 		pvo.setStart(Integer.parseInt(startNum));
 		pvo.setEnd(19);
 		return service.BoardSelectList("suggest", pvo);
@@ -203,8 +183,6 @@ public class BoardController {
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/board/suggest/searchLists")
 	public List<BoardVO> searchMoreViewSu(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
-		System.out.println("건의 검색 결과 페이징");
-
 		int start = Integer.parseInt(startNum);
 		int end = 19;
 		System.out.println("searchKey -> " + searchKey);
@@ -216,18 +194,18 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping(value="/board/adopt/adoptListMethod")
 	public List<BoardVO> AdoptPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
-		System.out.println("입양 페이징 작동");
-		
 		pvo.setStart(Integer.parseInt(startNum));
 		pvo.setEnd(8);
-		return service.BoardSelectList("adopt", pvo);
+		List<BoardVO>  lst= service.BoardSelectList("adopt", pvo);
+		for(BoardVO vo  : lst) {
+			System.out.println(vo.getFilename1());
+		}
+		return lst;
 	}
 		
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/board/adopt/searchLists")
 	public List<BoardVO> searchMoreViewAD(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
-		System.out.println("입양 검색 결과 페이징");
-
 		int start = Integer.parseInt(startNum);
 		int end = 8;
 		System.out.println("searchKey -> " + searchKey);
