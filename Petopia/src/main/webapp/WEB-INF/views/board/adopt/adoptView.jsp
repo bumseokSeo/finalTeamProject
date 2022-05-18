@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/css/board/boardView.css" type="text/css"/>
 <link rel="stylesheet" href="/css/board/adopt/adoptView.css" type="text/css">
 <script type="text/javascript">
 	
@@ -242,7 +241,6 @@ $(function(){
 	  	  	<div id="View_date">${vo.writedate}</div>
   	  	</div>
   	  </div>
-	</div>
   	  	<div class="View_content">${vo.content}
   	  	고양이의 입양과 임시보호를 올리는 게시판입니다. 내눈에 순화적 길고양로 보여도 가엽다고 무조건 입양글을 올리면
 		안됩니다. 길에서 살아갈 수 없는 고양이에 한해 성격파악후 입양을 추진해야 해당 고양이에게 피해가 없답니다. 입양은 아이의
