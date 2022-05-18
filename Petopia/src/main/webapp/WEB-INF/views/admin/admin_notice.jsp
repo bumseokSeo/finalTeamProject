@@ -28,7 +28,7 @@ function noticeDelChk(boardno){
 		<h3>공지사항 관리</h3>
 		<div style="margin-bottom: 80px;">
 			<div class="writeBtn">
-				<a href="/board/boardWrite">글쓰기</a>
+				<a href="/board/boardWrite?type=notice">글쓰기</a>
 			</div>
 			<div id="searchDiv">
 				<form method="get" action="${url}/admin/admin_notice" id="searchForm">
