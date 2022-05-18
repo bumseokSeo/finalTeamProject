@@ -282,6 +282,7 @@ public class BoardController {
 		
 		String path = request.getSession().getServletContext().getRealPath("/upload/"); // 파일업로드를 위한 업로드 위치의 절대주소
 		System.out.println("path -> "+path);
+		
 		try {
 			//DB등록
 			Pattern pattern  =  Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
@@ -298,10 +299,8 @@ public class BoardController {
 			System.out.println(result);
 			
 			//게시판 회귀 선별조건
-			
-			
-			String userid = (String)request.getSession().getAttribute("logId");
-			vo.setBoardno(service.BoardNum(userid));
+			vo.setBoardno(service.BoardNum()+1);
+			System.out.println(vo.getBoardno());
 			
 			service.BoardInsert(vo);
 			String type = service.getType(vo.getBoardno());
