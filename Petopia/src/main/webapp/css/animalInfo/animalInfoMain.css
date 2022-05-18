@@ -88,13 +88,14 @@
 	margin-left: 15px;
 }
 .ScrollButton {
-  position: relative;   
-         
+  position: fixed;   
+  right: 10px;       
   cursor: pointer;   
-  z-index: 100;  
+  z-index: 10;  
   font-size: 30px;
   color: #4d4d4d;     
-  left:1000px;
+  /*display: none;*/
+  right: 24px;
 }
 
 #TopButton {
