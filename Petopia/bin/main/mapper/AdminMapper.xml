@@ -67,7 +67,7 @@
 		<if test='searchWord != null'>
 			where ${searchKey} like '%${searchWord}%'
 		</if>
-		order by userlevel
+		order by userid
 		limit ${onePageRecord} offset ${offsetIndex}
 	</select>
 	

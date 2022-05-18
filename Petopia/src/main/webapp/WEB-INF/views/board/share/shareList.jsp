@@ -9,8 +9,8 @@
 		<div class="Menu_img">이미지 들어갈것</div>
 	</div>
 	<div class="Menu_containerS">
-
-		</div>
+		<div class="row"></div>
+	</div>
 		 <div class="paging">
            <b id="prevViewS"> ◀ </b>
            <b id="pViewS"></b>
@@ -70,9 +70,11 @@ $(document).ready(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlS += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
-					addListHtmlS += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-					addListHtmlS += "<label class='Share_text'>"+data[i].username+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div>";
+					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6'><div class='card'>";
+					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
+					addListHtmlS += "<h5 class='card-title'>"+data[i].title+"</h5>";
+					addListHtmlS += "<div class='card-body'><p class='card-text'>"+data[i].writedate+"</p></div>";
+					addListHtmlS += "</div></div>";
 				}
 				if(data.length<8){
 					$("#nextViewS").empty();
@@ -80,7 +82,7 @@ $(document).ready(function(){
 				if(startNum=1){
 					$("#prevViewS").empty();
 				} 
-				$(".Menu_containerS").append(addListHtmlS);
+				$(".row").append(addListHtmlS);
 				$("#pViewS").append(startNum);
 			}
 		});
@@ -119,9 +121,11 @@ $('#nextViewS').click(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlS += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
-					addListHtmlS += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-					addListHtmlS += "<label class='Share_text'>"+data[i].username+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div>";
+					addListHtmlS += "<div class='col col-xl-3 col-lg-6'><div class='card'>";
+					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
+					addListHtmlS += "<h5 class='card-title'>"+data[i].title+"</h5>";
+					addListHtmlS += "<div class='card-body'><p class='card-text'>"+data[i].writedate+"</p></div>";
+					addListHtmlS += "</div></div>";
 				}
 				if(data.length<8){
 					$("#nextViewS").empty();
@@ -171,9 +175,11 @@ $('#prevViewS').click(function(){
 		data :param,
 		success : function(data){
 			for (var i = 0; i < data.length; i++) {
-				addListHtmlS += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
-				addListHtmlS += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-				addListHtmlS += "<label class='Share_text'>"+data[i].username+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div>";
+				addListHtmlS += "<div class='col col-xl-3 col-lg-6'><div class='card'>";
+				addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
+				addListHtmlS += "<h5 class='card-title'>"+data[i].title+"</h5>";
+				addListHtmlS += "<div class='card-body'><p class='card-text'>"+data[i].writedate+"</p></div>";
+				addListHtmlS += "</div></div>";
 			}
 			$("#nextViewS").empty();
 			$("#nextViewS").append("▶");

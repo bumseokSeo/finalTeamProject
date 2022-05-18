@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .container{
-	width:1000px;
+	
 }
 
 /*List*/
@@ -11,7 +11,7 @@
 .Menu_Bar_AS{
 	display:flex;
 	height:120px;
-	width:1000px;
+	
 	border: 2px solid green;
 	line-height: 120px;
 }
@@ -25,7 +25,7 @@
 }
 
 .Menu_containerS{
-	width:1000px;
+	
 	height:800px;
 	border:2px solid red;/* 임시 경계선 */
 	padding-left:15px;
@@ -33,54 +33,25 @@
 }
 
 /*게시글목록*/
-.PostArea{
-	float:left;
-	width:225px;
-	position:relative;
-	overflow: hidden;
-	background-color: white;
-	margin: 15px 7px 15px 10px;
+
+
+.shareimg{
+	width:100%;
+	height:225.25px;
 }
 
-.PostImg_Area{
-	width:225px;
-	height:226px;
-}
-.PostImg_Area a{
-	width:225px;
-	color:black;
-	text-decoration:none;
-}
-
-.PostImg_Area a:hover{
+.card a:hover{
 	opacity:10%;
 }
 
-.PostImg_Area img{
-	border-bottom:1px solid gray;
-	width:225px;
-}
-
-.Post_body{
-	padding : 1rem 1rem;
-}
-
-.Post_body_title{
-	margin-bottom: 0.5rem;
-	white-space :nowrap;
-	text-overflow: ellipsis;
+.card-title{
 	overflow: hidden;
+	white-space: nowrap;
+	text-overflow : ellipsis;/* 넘친내용...*/
 }
 
-.Post_body_content{
-	margin-bottom:0;
-}
 
-.Post_body_content label{
-	display : inline-block;
-	text-overflow: ellipsis;
-	overflow: hidden;
-}
+
 
 /*페이징*/
 .paging{
