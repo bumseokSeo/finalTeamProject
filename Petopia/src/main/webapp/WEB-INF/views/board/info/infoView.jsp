@@ -128,7 +128,7 @@ $(function(){
   	  	<div class="View_content">${vo.content}</div>
   	  	<div class="View_bottommenu">
   	  		<p style="float: right;">
-				<a href="/board/boardEdit?boardno=${vo.boardno}" id="modi_AA">수정</a> 
+				<a href="/board/boardEdit?type=info&boardno=${vo.boardno}" id="modi_AA">수정</a> 
 				<a href="javascript:delCheck()" id="Del_AA">삭제</a>
 			</p>
   	  	</div>
