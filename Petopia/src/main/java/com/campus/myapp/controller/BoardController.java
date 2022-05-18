@@ -90,8 +90,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewN(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 19;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
+
 		
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "notice");
 	}
@@ -110,8 +109,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewI(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 19;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
+
 		
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "info");
 	}
@@ -130,8 +128,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewS(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 8;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
+
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "share");
 	}
 	//walk
@@ -148,8 +145,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewW(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 19;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
+
 		
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "walk");
 	}
@@ -167,8 +163,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewB(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 8;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
+
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "boast");
 	}
 	//suggest
@@ -185,8 +180,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewSu(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 19;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
+
 		
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "suggest");
 	}
@@ -208,9 +202,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewAD(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 8;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
-		
+
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "adopt");
 	}
 	
