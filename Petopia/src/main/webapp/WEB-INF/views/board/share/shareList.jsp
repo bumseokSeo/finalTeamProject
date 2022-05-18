@@ -54,7 +54,7 @@ $(document).ready(function(){
 			param = {
 				"startNum" : startNum
 			};
-		}if(pn='shareSearch'){
+		}else if(pn='shareSearch'){
 			url = '/board/share/searchLists';
 			param = {
 				"startNum" : startNum ,
