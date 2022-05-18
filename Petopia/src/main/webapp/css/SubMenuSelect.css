@@ -21,20 +21,25 @@
 	transform:translateX(-20px);
 }
 #Board_lnb {
-	width:15vw; height:550px;
+	width:280px; height:550px;
 	float:left;
 	position:relative;
-	border: 2px solid rgba(33,33,33,0.8);
+	border: 1px solid rgba(33,33,33,0.8);
+	
+	background: rgba(255, 158, 0, 0.7);
 }
 
 #Board_sub_M{
-	margin-left:1vw;
-	margin-top:1vw;
-	width:13vw;
-	height:200px;
-	border: 1px solid red;
+	width:100%;
+	height:170px;
+	padding: 10px 10px 0 20px;
+	border: 1px solid transparent;
+	background: #fff;
 }
-#Board_lnb ul {margin-top:10px}
+#Board_lnb ul {
+	margin-top:30px;
+	
+}
 #Board_lnb ul li span {
 	width:80%;
 	height:50px;
@@ -42,7 +47,16 @@
 	margin-left:10%;
 	line-height:50px;
 	cursor:pointer;
-	border-bottom:1px solid black;
+	border-bottom:1px solid #fff;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 500;
+}
+#Board_lnb ul li span:hover{
+	background: #ff9e00;
+	color: black;
+	font-weight: 700;
+	font-size: 20px;
 }
 #resultArea {
 	margin-left:80px;

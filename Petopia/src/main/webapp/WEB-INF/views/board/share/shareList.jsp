@@ -103,7 +103,7 @@ $('#nextViewS').click(function(){
 			url = '/board/share/shareLists';
 			console.log("다음페이지")
 			param = {
-				"startNum" : startNum*8+1
+				"startNum" : startNum*8
 			};
 		}else if(pn='shareSearch'){
 			url = '/board/share/shareLists';
