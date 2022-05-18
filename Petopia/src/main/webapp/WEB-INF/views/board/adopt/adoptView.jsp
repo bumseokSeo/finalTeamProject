@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/css/board/notice/noticeView.css" type="text/css"/>
+<link rel="stylesheet" href="/css/board/boardView.css" type="text/css"/>
 <link rel="stylesheet" href="/css/board/adopt/adoptView.css" type="text/css">
 <script type="text/javascript">
 	
@@ -242,10 +242,6 @@ $(function(){
 	  	  	<div id="View_date">${vo.writedate}</div>
   	  	</div>
   	  </div>
-  	  <div class="Adopt_img"><img name="filename1" src="/img/board/adopt/cat.jpeg" style="width:500px"></div>
-  	  <div class="Adopt_files">
-		<img src="img/board/adopt/cat.jpeg" alt="고양이이미지">
-		<img src="img/board/adopt/cat.jpeg" alt="고양이이미지">
 	</div>
   	  	<div class="View_content">${vo.content}
   	  	고양이의 입양과 임시보호를 올리는 게시판입니다. 내눈에 순화적 길고양로 보여도 가엽다고 무조건 입양글을 올리면
@@ -266,7 +262,7 @@ $(function(){
 				<input type="button" id="chatBtn" value="쪽지보내기"/>
 			</div>
   	  		<p style="float: right;">
-				<a href="/board/notice/noticeEdit?boardno=${vo.boardno}" id="modi_AA">수정</a> 
+				<a href="/board/boardEdit?type=adopt&boardno=${vo.boardno}" id="modi_AA">수정</a> 
 				<a href="javascript:delCheck()" id="Del_AA">삭제</a>
 			</p>
   	  	</div>

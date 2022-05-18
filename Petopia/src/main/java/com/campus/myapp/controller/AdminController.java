@@ -502,7 +502,7 @@ public class AdminController {
 	// 게시글 삭제
 	@GetMapping("/boardDel")
 	public ResponseEntity<String> boardDel(int boardno, HttpSession session){
-		String path = session.getServletContext().getRealPath("/img/board");
+		String path = session.getServletContext().getRealPath("/upload");
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -549,7 +549,7 @@ public class AdminController {
 	// 공지사항 삭제
 	@GetMapping("/noticeDel")
 	public ResponseEntity<String> noticeDel(int boardno, HttpSession session){
-		String path = session.getServletContext().getRealPath("/img/board");
+		String path = session.getServletContext().getRealPath("/upload");
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -633,7 +633,7 @@ public class AdminController {
 	// 입양 게시글 삭제
 	@GetMapping("/adoptDel")
 	public ResponseEntity<String> adoptDel(int boardno, HttpSession session){
-		String path = session.getServletContext().getRealPath("/img/board");
+		String path = session.getServletContext().getRealPath("/upload");
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
@@ -680,7 +680,7 @@ public class AdminController {
 	// 동물병원리뷰 삭제
 	@GetMapping("/shopReviewDel")
 	public ResponseEntity<String> shopReviewDel(int reviewno, HttpSession session){
-		String path = session.getServletContext().getRealPath("/img");
+		String path = session.getServletContext().getRealPath("/upload");
 		
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();

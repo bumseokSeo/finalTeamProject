@@ -115,7 +115,7 @@
 			
 			<div class="item InfoCard">
 				<h3>리뷰(동물병원)</h3>
-				<a href="/admin/admin_boardReview?searchKey=all">
+				<a href="/admin/admin_shopReview?searchKey=all">
 				<div class="totalNum">
 					<p>${vo.totalShopReviewCnt}</p>
 				</div>

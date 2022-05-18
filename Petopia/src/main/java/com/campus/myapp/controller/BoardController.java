@@ -90,8 +90,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewN(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 19;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
+
 		
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "notice");
 	}
@@ -110,8 +109,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewI(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 19;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
+
 		
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "info");
 	}
@@ -130,8 +128,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewS(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 8;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
+
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "share");
 	}
 	//walk
@@ -148,8 +145,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewW(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 19;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
+
 		
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "walk");
 	}
@@ -167,8 +163,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewB(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 8;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
+
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "boast");
 	}
 	//suggest
@@ -185,8 +180,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewSu(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 19;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
+
 		
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "suggest");
 	}
@@ -208,9 +202,7 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewAD(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 8;
-		System.out.println("searchKey -> " + searchKey);
-		System.out.println("searchWord -> " + searchWord);
-		
+
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "adopt");
 	}
 	
@@ -373,7 +365,6 @@ public class BoardController {
 			
 			String BF = service.getType(boardno);
 			System.out.println(BF);
-			
 
 			mav.setViewName("/board/"+BF+"/"+BF+"View");
 			return mav;
@@ -381,10 +372,11 @@ public class BoardController {
 		
 		//글 수정
 		@GetMapping("/board/boardEdit")
-		public ModelAndView BoardEdit(int boardno) {
+		public ModelAndView BoardEdit(int boardno, String type) {
 			
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("vo", service.BoardView(boardno));
+			mav.addObject("type",type);
 			mav.setViewName("/board/boardEdit");
 			return mav;
 		}
@@ -392,142 +384,51 @@ public class BoardController {
 		//수정(DB)
 		@PostMapping("/board/boardEditOk")
 		public ResponseEntity<String> reviewEditOk(BoardVO vo, HttpSession session, HttpServletRequest req) {
-			System.out.println("boardEdit 시작");
-			vo.setUserid((String) session.getAttribute("logId"));
-			String path = session.getServletContext().getRealPath("/upload");
-
+			System.out.println("BoardEdit");
+			vo.setUserid((String)req.getSession().getAttribute("logId"));//아이디 등록
+		
 			ResponseEntity<String> entity = null;
 			HttpHeaders headers = new HttpHeaders();
-			headers.add("Content-Type", "text/html; charset=UTF-8");
-
-			//List<String> fileList = new ArrayList<String>(); // 새로 DB에 업데이트 할 파일명 정리하는 컬렉션
-			List<String> newUpload = new ArrayList<String>(); // 폼에서 온 파일중 게시물에 없는 파일만 고른 컬렉션
+			headers.setContentType(new MediaType("text","html", Charset.forName("UTF-8")));
+			
+			String path = req.getSession().getServletContext().getRealPath("/upload/"); // 파일업로드를 위한 업로드 위치의 절대주소
+			System.out.println("path -> "+path);
 			try {
-				// 1. DB에서 파일명 가져오기
-				//  BoardVO dbfileVO = service.getFileName(vo.getBoardno()); 지금은 없음.
-				// fileList.add(dbfileVO.getFile1());
+				//DB등록
+				Pattern pattern  =  Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
+				String content = vo.getContent();
+				Matcher match = pattern.matcher(content);
 
-				// 2. 삭제된 파일이 있을 경우 List에서 같은 파일명을 지운다.
-//					if(vo.getDelFile() != null) {		// null은 삭제파일이 없다
-//						for(String delFile : vo.getDelFile()) {
-//							fileList.remove(delFile);
-//						}
-//					}
-
-				// 3. 새로 업로드 하기
-				MultipartHttpServletRequest mr = (MultipartHttpServletRequest) req;
-
-				// 새로 업로드된 MultipartFile객체를 얻어오기
-				List<MultipartFile> newFileList = mr.getFiles("filename");
-				if (newFileList != null) { // 새로 업로드 된 파일이 있으면
-					for (int i = 0; i < newFileList.size(); i++) {
-						MultipartFile newMf = newFileList.get(i);
-						String newUploadFilename = newMf.getOriginalFilename();
-						System.out.println((i + 1) + "번째 파일 -> " + newUploadFilename);
-						// 리네임 작업
-						if (newUploadFilename != null && !newUploadFilename.equals("")) {
-							File f = new File(path, newUploadFilename);
-//								if(fileList.contains(newUploadFilename)) {
-//									//이미 해당 글에 업로드 된 파일이라면 리네임이나 업로드하지 않음
-//								}else {
-							// 해당 글에는 없지만 이미 업로드 된 파일이라면
-							// 리네임 후 업로드
-							if (f.exists()) {
-								// 있으면 여기서 rename
-								for (int n = 1;; n++) {
-									int point = newUploadFilename.lastIndexOf(".");
-									String fileNameNoExt = newUploadFilename.substring(0, point);
-									String ext = newUploadFilename.substring(point + 1);
-
-									// 새로운 파일명 만들어 존재유무 확인
-									String nf = fileNameNoExt + " (" + n + ")." + ext;
-									f = new File(path, nf);
-									if (!f.exists()) { // 없으면
-										newUploadFilename = nf;
-										break;
-									}
-								} // for
-							}
-							// 업로드
-							try {
-								newMf.transferTo(f);
-								newUpload.add(newUploadFilename);
-							} catch (Exception ee) {
-							}
-
-					//		if(i==0) {
-					//			if(dbfileVO.getFilename1()!=null) {
-					//				fileDelete(path, dbfileVO.getFilename1());
-					//			}
-					//			dbfileVO.setFilename1(newUploadFilename);
-					//		}
-							// }
-
-							// fileList.add(newUploadFilename); //db에 등록할 파일명에 추가
-							// newUpload.add(newUploadFilename); //새로 업로드 목록 추가
-							// }
-							// }//for
-						} // if
-					//	else {
-					//	}
-					}
-				}
-				// fileList에 있는 DB에 등록할 파일명을 filename1, filename2에 세팅(여러개일경우)
-//					for(int k=0; k<newUpload.size(); k++) {
-//						if(k==0) vo.setFile1(newUpload.get(k));
-//					}
-		//		dbfileVO.setBoardno(vo.getBoardno());
-				// DB update
+				String imgTag = "/img/Logo(main).png";
+				String result = imgTag;
+				if(match.find()){ // 이미지 태그를 찾았다면,,
+				    imgTag = match.group(0); // 글 내용 중에 첫번째 이미지 태그를 뽑아옴.
+				    result = imgTag.substring(imgTag.indexOf("src=")+5,(imgTag.substring(imgTag.indexOf("src=")).indexOf("style")+(imgTag.indexOf("src=")-2)));
+				}			
+				vo.setFilename1(result);
+				System.out.println(result);
+				
+				//게시판 회귀 선별조건
+				String userid = (String)req.getSession().getAttribute("logId");
+				vo.setBoardno(service.BoardNum(userid));
+				
+				String type = service.getType(vo.getBoardno());
 				service.BoardUpdate(vo);
-		//		service.BoardFileUpdate(dbfileVO);
-
-				// // DB수정되었을 때
-//					if(vo.getDelFile()!=null) {
-//						for(String fname:vo.getDelFile()) {
-//							fileDelete(path, fname);
-//						}
-//					}			
-
-				// 글 내용보기로 이동
+				System.out.println(type);
 				
-				//조건걸기
-				String BF = vo.getBoardtype();
-				System.out.println(BF);
 				
-				String msg = "<script>alert('공지 게시글이 수정되었습니다.\\n글내용보기로 이동합니다');";
+				String msg = "<script>location.href='/board/boardView?boardno="+vo.getBoardno()+"';</script>";
+				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 				
-				//선별조건
-				if(BF.equals("notice")) {
-				msg = "location.href='/board/notice/noticeView?boardno="+vo.getBoardno()+"';</script>";
-				}
-				if(BF.equals("share")) {
-				msg = "location.href='/board/share/shareView?boardno="+vo.getBoardno()+"';</script>";
-				}
-				if(BF.equals("adopt")) {
-				msg = "location.href='/board/adopt/adoptView?boardno="+vo.getBoardno()+"';</script>";
-				}
 				
-				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
-
-			} catch (Exception e) {
+			}catch(Exception e) {
 				e.printStackTrace();
-				// DB잘못수정했을때
-				for (String fname : newUpload) {
-					fileDelete(path, fname);
-				}
-
-				// 수정페이지로 이동
-				String msg = "<script>";
-				msg += "alert('글 수정 실패하였습니다'\\n수정폼으로 이동합니다)";
-				msg += "history.back();</script>";
-				entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+					fileDelete(path, vo.getFilename1());
+				String msg = "<script>alert('글 등록 실패');history.back();</script>";
+				entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);	//400
 			}
-			/*
-			 * for(String d:fileList) { System.out.println(d); }
-			 */
 			return entity;
 		}
-		
 		//글 삭제
 		@GetMapping("/board/boardDelete")
 		public ResponseEntity<String> boardDelete(int boardno, HttpSession session) {
