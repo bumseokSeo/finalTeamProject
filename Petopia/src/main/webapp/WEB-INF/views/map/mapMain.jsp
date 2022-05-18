@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/css/map/mapMain.css" type="text/css">
 
 <div class="map_wrap">
-	<div><input type="button" id="getMyPositionBtn" value="&#xF3E8;" onclick="getCurrentPosBtn()"></div>
+	<div><button id="getMyPositionBtn" onclick="getCurrentPosBtn()"><i class="bi bi-cursor"></i></button></div>
 	<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 	<div id="menu_wrap" class="bg_white">
 		<div class="option">

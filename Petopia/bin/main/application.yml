@@ -21,7 +21,7 @@ spring:
   servlet:
     multipart:
       file-size-threshold: 10MB
-      location: /Users/yunri/Desktop/upload
+      location: /Users/yunri/Desktop/finalTeamProject/Petopia/src/main/webapp/upload
       max-file-size: 100MB
       max-request-size: 100MB
         
