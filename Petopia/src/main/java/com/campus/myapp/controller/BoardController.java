@@ -63,6 +63,14 @@ public class BoardController {
 		return mav;
 	}
 	
+	@GetMapping("/board/adopt/adoptList")
+	public ModelAndView AdoptList(PagingVO pVO) {
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("/board/adopt/adoptList");
+		return mav;
+	}
+	
 	// 게시판 페이징 모음
 	
 	// 검색 기능
