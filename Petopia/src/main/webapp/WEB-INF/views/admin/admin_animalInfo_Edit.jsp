@@ -156,6 +156,15 @@ $(function(){
 	</ul>
 	
 	<div class="tab_content">
+		<ul class="tab_title2" >
+			<li style="float: left;"><a href="/admin/admin_notice">공지사항</a></li>
+			<li><a href="/admin/admin_memberList">회원</a></li>
+			<li><a href="/admin/admin_board?searchKey=all">게시판</a></li>
+			<li><a href="/admin/admin_adopt?searchKey=all">입양</a></li>
+			<li><a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보</a></li>
+			<li><a href="/admin/admin_boardReview?searchKey=all">게시판 리뷰</a></li>
+			<li><a href="/admin/admin_shopReview?searchKey=all">동물병원 리뷰</a></li>
+		</ul>
 		<div style="float:right;">
 			<a href="/admin/adminMain">관리자페이지</a> > <a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보 관리</a> > <a href="/admin/admin_animalInfo_Edit?breedkey=${vo.breed}">수정</a>
 		</div><br/><br/>
