@@ -38,6 +38,19 @@
 	background: rgba(255, 158, 0, 0.7);
 	position: fixed;
 }
+@media (max-width: 1800px) {
+	#Board_lnb, #Board_lnb2{
+		width: 200px;
+	}
+}
+@media (max-width: 1300px) {
+	#Board_lnb, #Board_lnb2{
+		display: none;
+	}
+	#MenuSpanTop{
+		display: block !important;
+	}
+}
 
 #Board_sub_M{
 	width:100%;
@@ -115,6 +128,22 @@
 	background: #ff9e00;
 	color: black;
 	font-weight: 700;
+	font-size: 20px;
+}
+#MenuSpanTop{
+	margin-bottom: 30px;
+	display: none;
+}
+#MenuSpanTop>li{
+	float: left;
+	margin: 0 auto;
+	width: 16%;
+	font-weight: bold;
+	cursor: pointer;
+	text-align: center;
+}
+#MenuSpanTop>li:hover{
+	color: #ff6d00;
 	font-size: 20px;
 }
 
