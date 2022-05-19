@@ -64,6 +64,7 @@ a:hover{
 	padding-left: 15px;
 }
 #animalInfoList>li:nth-child(n+1):nth-child(-n+3) {
+	height: 40px;
 	border-bottom: 3px solid #ddd;
 	background-color: rgba(205, 188, 171, 0.5);
 	font-weight: bold;

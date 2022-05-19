@@ -38,16 +38,17 @@
 	line-height:40px;
 	float:left;
 	text-align: center;
-	border:1px dotted blue; /*임시경계선*/
-	border-bottom:1px solid black;
+	border-bottom:1px solid #ddd;
 	background-color: white;
 }
 
 .List_menu_F>li:nth-child(4n+2){ /*제목*/
+	text-align: left;
 	width:60%;
 	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding-left: 30px;
 }
 .List_menu_F>li:nth-child(4n+3){
 	width:20%;
@@ -55,6 +56,14 @@
 .List_menu_F>li:nth-child(4n+4){
 	width:10%;
 	
+}
+.List_menu_F>li:nth-child(n+1):nth-child(-n+4) {
+	height:50px;
+	line-height: 50px; 
+	border-bottom: 3px solid #ddd;
+	font-weight: bold;
+	text-align: center;
+	padding: 0;	
 }
 /*게시글목록 끝*/
 
