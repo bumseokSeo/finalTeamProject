@@ -7,8 +7,8 @@
 		<h1 class="Menu_titleD">입양게시판</h1>
 		<div class="Menu_img">이미지 들어갈것</div>
 	</div>
-	<div class="Menu_containerD">
-
+		<div class="Menu_containerD">
+			<div class="row" id="rowAdopt"></div>
 		</div>
 		 <div class="paging" style="width:100%; text-align: center; font-size: 35px;">
            <b id="prevViewD" > ◀ </b>
@@ -39,7 +39,6 @@
 $(document).ready(function(){
 		var startNum = 0; 
 		var addListHtmlD = "";
-		 console.log("입양"); 
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -47,7 +46,6 @@ $(document).ready(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		console.log(pn);
 		if(pn='adoptList'){
 			url = '/board/adopt/adoptListMethod';
 			param = {
@@ -60,7 +58,7 @@ $(document).ready(function(){
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
+			
 		}
 		console.log(pn,url);
 		$.ajax({
@@ -70,18 +68,21 @@ $(document).ready(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlD += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
-					addListHtmlD += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-					addListHtmlD += "<label class='adopt_text'>"+data[i].username+"</label><label class='adopt_text'>"+data[i].writedate+"</label></div></div></div>";
-			    console.log(data[i].filename1);
+					addListHtmlD += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
+					addListHtmlD += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
+					addListHtmlD += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlD += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
+					addListHtmlD += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
+					addListHtmlD += "</div></div>";
+			    
 				}
-				if(data.length<8){
+				if(data.length<12){
 					$("#nextViewD").empty();
 				} 
 				if(startNum=1){
 					$("#prevViewD").empty();
 				} 
-				$(".Menu_containerD").append(addListHtmlD);
+				$("#rowAdopt").append(addListHtmlD);
 				$("#pViewD").append(startNum);
 			}
 		});
@@ -102,7 +103,7 @@ $('#nextViewD').click(function(){
 			url = '/board/adopt/adoptListMethod';
 			console.log("다음페이지")
 			param = {
-				"startNum" : startNum*8+1
+				"startNum" : startNum*12+1
 			};
 		}else if(pn='adoptSearch'){
 			url = '/board/adopt/adoptListMethod';
@@ -120,16 +121,19 @@ $('#nextViewD').click(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlD += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
-					addListHtmlD += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-					addListHtmlD += "<label class='adopt_text'>"+data[i].username+"</label><label class='adopt_text'>"+data[i].writedate+"</label></div></div></div>";
+					addListHtmlD += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
+					addListHtmlD += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
+					addListHtmlD += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlD += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
+					addListHtmlD += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
+					addListHtmlD += "</div></div>";
 				}
 				if(data.length<8){
 					$("#nextViewD").empty();
 				} 
 				$("#prevViewD").empty();
-				$(".Menu_containerD").empty();
-				$(".Menu_containerD").append(addListHtmlD);
+				$("#rowAdopt").empty();
+				$("#rowAdopt").append(addListHtmlD);
 				$("#pViewD").empty();
 				$("#pViewD").append(startNum+1);
 				$("#prevViewD").append("◀");
@@ -154,7 +158,7 @@ $('#prevViewD').click(function(){
 		url = '/board/adopt/adoptListMethod';
 		console.log("이전페이지")
 		param = {
-			"startNum" : (startNum-1)*8-8
+			"startNum" : (startNum-1)*12-12
 		};
 	}else if(pn='adoptSearch'){
 		url = '/board/adopt/searchLists';
@@ -172,14 +176,17 @@ $('#prevViewD').click(function(){
 		data :param,
 		success : function(data){
 			for (var i = 0; i < data.length; i++) {
-				addListHtmlD += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
-				addListHtmlD += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-				addListHtmlD += "<label class='adopt_text'>"+data[i].username+"</label><label class='adopt_text'>"+data[i].writedate+"</label></div></div></div>";
+				addListHtmlD += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
+				addListHtmlD += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
+				addListHtmlD += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+				addListHtmlD += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
+				addListHtmlD += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
+				addListHtmlD += "</div></div>";
 			}
 			$("#nextViewD").empty();
 			$("#nextViewD").append("▶");
-			$(".Menu_containerD").empty();
-			$(".Menu_containerD").append(addListHtmlD);
+			$("#rowAdopt").empty();
+			$("#rowAdopt").append(addListHtmlD);
 			$("#pViewD").empty();
 			$("#pViewD").append(startNum-1);
 			

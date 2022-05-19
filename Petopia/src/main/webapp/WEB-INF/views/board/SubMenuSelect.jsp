@@ -30,6 +30,7 @@ $(document).ready(function(){
 	}
 		
 	$("#MenuNotice").click(function(){
+		//window.location.href = "/board/SubMenuSelect?type=notice";
 		$("#resultArea>div").css('display','none');
 		$("#UserNoticeShow").css('display','block');
 	  });
@@ -57,43 +58,38 @@ $(document).ready(function(){
 </script>
 
 <style>
-#preview{
-	width: 150px;
-	height: 150px;
-	float: left;
-	outline: 1px solid black;
-}
-#logName{
-	line-height: 50px;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	margin-top: 100px;
-	font-weight: bold;
-	padding-left: 15px;
-}
+
 </style>
 <div id="Board_container">
 	<div id="Board_wrap">
-		<div id="Board_lnb">
-			<div id="Board_sub_M">
-				<a href="/member/memberEdit">
-					<c:set var ="profileimage" value="${logImg }"/>
-					<c:choose>
-						<c:when test="${fn:startsWith(profileimage, 'http://')}">
-							<img src='${logImg }' style="display: block" id="preview" class="rounded-circle"/>
-						</c:when>
-						<c:when test="${logImg == '' || logImg == null}">
-							<img src='${url}/img/sampleProfile.jpg' id="preview" style="display: block" class="rounded-circle"/>
-						</c:when>
-						<c:when test="${logImg != '' || logImg != null}">
-							<img src='${url}/img/memberimg/${logImg}' style="display: block" id="preview" class="rounded-circle"/>
-						</c:when>
-					</c:choose>
-				</a>
-				<p id="logName">${logName}</p>
-			</div>
-			
+		<c:if test="${logStatus != 'Y' }">
+			<div id="Board_lnb2">
+		</c:if>
+		<c:if test="${logStatus == 'Y' }">
+			<div id="Board_lnb">
+				<div id="Board_sub_M">
+						<div class="box">
+							<p class="explain">회원정보수정<p>
+							<a href="/member/memberEdit">
+								<c:set var ="profileimage" value="${logImg }"/>
+								<c:choose>
+									<c:when test="${fn:startsWith(profileimage, 'http://')}">
+										<img src='${logImg }' style="display: block" id="preview" class="rounded-circle"/>
+									</c:when>
+									<c:when test="${logImg == '' || logImg == null}">
+										<img src='${url}/img/sampleProfile.jpg' id="preview" style="display: block" class="rounded-circle"/>
+									</c:when>
+									<c:when test="${logImg != '' || logImg != null}">
+										<img src='${url}/img/memberimg/${logImg}' style="display: block" id="preview" class="rounded-circle"/>
+									</c:when>
+								</c:choose>
+							</a>
+						</div>
+						<p id="logName"><b>${logName}</b>님</p>
+						<p class="myCnt">내가 쓴 글 <span><b>${vo.myWriteCnt}</b>개</span></p>
+						<p class="myCnt">내가 쓴 댓글 <span><b>${vo.myReviewCnt}</b>개</span></p>
+				</div>
+			</c:if>
 				<ul id="MenuSpan">
 					<li><span id="MenuNotice">공지사항</span></li>
 					<li><span id="MenuInfo">정보공유</span></li>

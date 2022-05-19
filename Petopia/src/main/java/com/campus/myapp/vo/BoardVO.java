@@ -15,6 +15,9 @@ public class BoardVO {
 	private String category;
 	private String breed;
 	
+	private int myWriteCnt;
+	private int myReviewCnt;
+	
 	public int getBoardno() {
 		return boardno;
 	}
@@ -87,5 +90,18 @@ public class BoardVO {
 	public void setBreed(String breed) {
 		this.breed = breed;
 	}
+	public int getMyWriteCnt() {
+		return myWriteCnt;
+	}
+	public void setMyWriteCnt(int myWriteCnt) {
+		this.myWriteCnt = myWriteCnt;
+	}
+	public int getMyReviewCnt() {
+		return myReviewCnt;
+	}
+	public void setMyReviewCnt(int myReviewCnt) {
+		this.myReviewCnt = myReviewCnt;
+	}
+	
 	
 }

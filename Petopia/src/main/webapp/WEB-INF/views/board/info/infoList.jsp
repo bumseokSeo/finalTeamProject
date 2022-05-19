@@ -4,19 +4,18 @@
 <link rel="stylesheet" href="/css/board/info/infoList.css" type="text/css"/>
 <div class="container">
 	<div class="Menu_Bar_AI">
-		<h1 class="Menu_titleI">정보 게시판</h1>
-		<div class="Menu_img">이미지 들어갈것</div>
+		<h1 class="Menu_titleI">정보공유</h1>
 	</div>
 	<div class="Menu_containerI">
 		<ul class="List_menu_FI" id="List_menu_FI">
-			<li>게시물 번호</li>
+			<li>번호</li>
 			<li>제목</li>
 			<li>작성자</li>
-			<li>날짜</li>
-			<li>조회수</li>
+			<li>작성일</li>
+			<li>조회</li>
 
 		</ul><!-- 게시물 -->
-		</div>
+		
 		 <div class="paging">
            <b id="prevViewI"> ◀ </b>
            <b id="pViewI"></b>
@@ -25,20 +24,20 @@
         </div>
     
        <div class="info_btn"><a href="/board/boardWrite?type=info"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
-	<br/><br/><br/>
-	<div class="info_search">
-		 <form action="/board/info/infoSearch" id="searchFrmI">
-			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWordI"/>
-			<input type="hidden" name="type" value="info"/>
-			<input type="submit" value="검색"/>
-		</form>
+		<br/><br/><br/>
+		<div class="info_search">
+			 <form action="/board/info/infoSearch" id="searchFrmI">
+				<select name="searchKey">
+					<option value="" selected="selected">전체</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWordI"/>
+				<input type="hidden" name="type" value="info"/>
+				<input type="submit" value="검색"/>
+			</form>
+		</div>
 	</div>
-	
 </div>
 <br/>
 
@@ -83,11 +82,21 @@ $(document).ready(function(){
 			dataType : 'json',
 			data :param,
 			success : function(data){
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
+				var day = new String(('0' + date.getDate()).slice(-2));
+				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlI += "<li>"+data[i].boardno+"</li>";
 					addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
 					addListHtmlI += "<li>"+data[i].username+"</li>"
-					addListHtmlI += "<li>"+data[i].writedate+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtmlI += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+					}else{
+						addListHtmlI += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+					}
+					
 					addListHtmlI += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
@@ -106,11 +115,11 @@ $('#nextViewI').click(function(){
 		var startNum = parseInt($("#pViewI").text());
 		var addListHtmlI = "";
 		var addListHtmlIpo = "";
-					addListHtmlIpo += "<li>게시물 번호</li>";
+					addListHtmlIpo += "<li>번호</li>";
 					addListHtmlIpo += "<li>제목</li>";
 					addListHtmlIpo += "<li>작성자</li>";
-					addListHtmlIpo += "<li>날짜</li>";
-					addListHtmlIpo += "<li>조회수</li>";
+					addListHtmlIpo += "<li>작성일</li>";
+					addListHtmlIpo += "<li>조회</li>";
 		 console.log(startNum); 
 		var url;
 		var param;
@@ -140,11 +149,21 @@ $('#nextViewI').click(function(){
 			dataType : 'json',
 			data :param,
 			success : function(data){
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
+				var day = new String(('0' + date.getDate()).slice(-2));
+				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlI += "<li>"+data[i].boardno+"</li>";
 					addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
 					addListHtmlI += "<li>"+data[i].username+"</li>"
-					addListHtmlI += "<li>"+data[i].writedate+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtmlI += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+					}else{
+						addListHtmlI += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+					}
+					
 					addListHtmlI += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
@@ -168,11 +187,11 @@ $('#prevViewI').click(function(){
 	var startNum = parseInt($("#pViewI").text()); // 시작지점
 	var addListHtmlI = "";
 	var addListHtmlIpo = "";
-				addListHtmlIpo += "<li>게시물 번호</li>";
+				addListHtmlIpo += "<li>번호</li>";
 				addListHtmlIpo += "<li>제목</li>";
 				addListHtmlIpo += "<li>작성자</li>";
-				addListHtmlIpo += "<li>날짜</li>";
-				addListHtmlIpo += "<li>조회수</li>";
+				addListHtmlIpo += "<li>작성일</li>";
+				addListHtmlIpo += "<li>조회</li>";
 	 console.log(startNum); 
 	var url;
 	var param;
@@ -202,11 +221,21 @@ $('#prevViewI').click(function(){
 		dataType : 'json',
 		data :param,
 		success : function(data){
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
+			var day = new String(('0' + date.getDate()).slice(-2));
+			
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlI += "<li>"+data[i].boardno+"</li>";
 				addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
 				addListHtmlI += "<li>"+data[i].username+"</li>"
-				addListHtmlI += "<li>"+data[i].writedate+"</li>";
+				if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+					addListHtmlI += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+				}else{
+					addListHtmlI += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+				}
+				
 				addListHtmlI += "<li>"+data[i].hit+"</li>";
 			}
 			$("#nextViewI").empty();

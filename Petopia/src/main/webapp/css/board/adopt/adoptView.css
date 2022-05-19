@@ -201,7 +201,7 @@ border:none;
 	left: 50%;
 	transform: translate(-50%, -20%);
 	background-color: #ffffff;
-	width: 40%;
+	width: 30%;
 	height: 20%;
 	text-align: center;
 }
@@ -223,9 +223,10 @@ border:none;
 	width:70%;
 	height:70%;
 	
+	
 }
 
-#messageSubmit{
-	width:10%;
-	height: 70%;
+.msg_send_btn{
+	width:30px;
+	height:30px;
 }

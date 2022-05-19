@@ -2,30 +2,46 @@
 
 
 /*List*/
-.Menu_titleI{
-	margin:40px 10px;
-}
 
 .Menu_Bar_AI{
 	display:flex;
 	height:120px;
-	width:1000px;
-	border: 2px solid green;
+	width: 100%;
 	line-height: 120px;
+	position: relative;
+	background: #fff;
+}
+.Menu_Bar_AI::before{
+	content: "";
+	background-image: url(/img/board/infoBar.jpg);
+	background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+	opacity: 0.7;
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
-.Menu_titleI{
-	width:300px;
+.Menu_Bar_AI>h1{
+	margin:40px 10px;
+	font-size: 48px;
+	color: #fff;
+	font-weight: 800;
+	position: relative;
 }
 
 .Menu_img{
-	width:500px;
+	margin:40px 10px;
 }
 
 .Menu_containerI{
-	width:1000px;
-	height:800px;
-	border:2px solid red;/* 임시 경계선 */
+	height: auto;
+	min-height: 100vh;
+	overflow:hidden;
+	padding-top:20px;
 }
 
 /*게시글목록*/
@@ -38,16 +54,16 @@
 	line-height:40px;
 	float:left;
 	text-align: center;
-	border:1px dotted blue; /*임시경계선*/
-	border-bottom:1px solid black;
-	background-color: white;
+	border-bottom:1px solid #ddd;
 }
 
 .List_menu_FI>li:nth-child(5n+2){ /*제목*/
+	text-align: left;
 	width:50%;
 	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding-left: 30px;
 }
 .List_menu_FI>li:nth-child(5n+3){
 	width:10%;
@@ -57,7 +73,14 @@
 }
 .List_menu_FI>li:nth-child(5n+5){
 	width:10%;
-	
+}
+.List_menu_FI>li:nth-child(n+1):nth-child(-n+5) {
+	height:50px;
+	line-height: 50px; 
+	border-bottom: 3px solid #ddd;
+	font-weight: bold;
+	text-align: center;
+	padding: 0;	
 }
 /*게시글목록 끝*/
 
@@ -66,7 +89,7 @@
 	width:100%; 
 	text-align: center; 
 	font-size: 30px;
-	margin-top:10px;
+	margin-top:50px;
 	margin-bottom:-10px;
 }
 

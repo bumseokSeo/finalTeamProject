@@ -5,12 +5,11 @@
 
 <div class="container">
 	<div class="Menu_Bar_AS">
-		<h1 class="Menu_titleS">나눔 게시판</h1>
-		<div class="Menu_img">이미지 들어갈것</div>
+		<h1 class="Menu_titleS">나눔 할래요</h1>
 	</div>
 	<div class="Menu_containerS">
-		<div class="row"></div>
-	</div>
+		<div class="row" id="rowShare"></div>
+	
 		 <div class="paging">
            <b id="prevViewS"> ◀ </b>
            <b id="pViewS"></b>
@@ -19,20 +18,20 @@
         </div>
     
        <div class="Share_btn"><a href="/board/boardWrite?type=share"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
-	<br/><br/><br/>
-	<div class="Share_search">
-		 <form action="/board/notice/noticeSearch" id="searchFrmS">
-			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWordS"/>
-			<input type="hidden" name="type" value="share"/>
-			<input type="submit" value="검색"/>
-		</form>
+		<br/><br/><br/>
+		<div class="Share_search">
+			 <form action="/board/notice/noticeSearch" id="searchFrmS">
+				<select name="searchKey">
+					<option value="" selected="selected">전체</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWordS"/>
+				<input type="hidden" name="type" value="share"/>
+				<input type="submit" value="검색"/>
+			</form>
+		</div>
 	</div>
-	
 </div>
 <br/>
 
@@ -70,19 +69,20 @@ $(document).ready(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12'><div class='card'>";
+					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-					addListHtmlS += "<h5 class='card-title'>"+data[i].title+"</h5>";
-					addListHtmlS += "<div class='card-body'><p class='card-text'>"+data[i].writedate+"</p></div>";
+					addListHtmlS += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
+					addListHtmlS += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlS += "</div></div>";
 				}
-				if(data.length<8){
+				if(data.length<12){
 					$("#nextViewS").empty();
 				} 
 				if(startNum=1){
 					$("#prevViewS").empty();
 				} 
-				$(".row").append(addListHtmlS);
+				$("#rowShare").append(addListHtmlS);
 				$("#pViewS").append(startNum);
 			}
 		});
@@ -103,7 +103,7 @@ $('#nextViewS').click(function(){
 			url = '/board/share/shareLists';
 			console.log("다음페이지")
 			param = {
-				"startNum" : startNum*8
+				"startNum" : startNum*12
 			};
 		}else if(pn='shareSearch'){
 			url = '/board/share/shareLists';
@@ -121,18 +121,19 @@ $('#nextViewS').click(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12'><div class='card'>";
+					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-					addListHtmlS += "<h5 class='card-title'>"+data[i].title+"</h5>";
-					addListHtmlS += "<div class='card-body'><p class='card-text'>"+data[i].writedate+"</p></div>";
+					addListHtmlS += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
+					addListHtmlS += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlS += "</div></div>";
 				}
-				if(data.length<8){
+				if(data.length<13){
 					$("#nextViewS").empty();
 				} 
 				$("#prevViewS").empty();
-				$(".row").empty();
-				$(".row").append(addListHtmlS);
+				$("#rowShare").empty();
+				$("#rowShare").append(addListHtmlS);
 				$("#pViewS").empty();
 				$("#pViewS").append(startNum+1);
 				$("#prevViewS").append("◀");
@@ -157,7 +158,7 @@ $('#prevViewS').click(function(){
 		url = '/board/share/shareLists';
 		console.log("이전페이지")
 		param = {
-			"startNum" : (startNum-1)*8-8
+			"startNum" : (startNum-1)*12-12
 		};
 	}else if(pn='shareSearch'){
 		url = '/board/share/searchLists';
@@ -175,16 +176,17 @@ $('#prevViewS').click(function(){
 		data :param,
 		success : function(data){
 			for (var i = 0; i < data.length; i++) {
-				addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12'><div class='card'>";
+				addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 				addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-				addListHtmlS += "<h5 class='card-title'>"+data[i].title+"</h5>";
-				addListHtmlS += "<div class='card-body'><p class='card-text'>"+data[i].writedate+"</p></div>";
+				addListHtmlS += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+				addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
+				addListHtmlS += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 				addListHtmlS += "</div></div>";
 			}
 			$("#nextViewS").empty();
 			$("#nextViewS").append("▶");
-			$(".row").empty();
-			$(".row").append(addListHtmlS);
+			$("#rowShare").empty();
+			$("#rowShare").append(addListHtmlS);
 			$("#pViewS").empty();
 			$("#pViewS").append(startNum-1);
 			
