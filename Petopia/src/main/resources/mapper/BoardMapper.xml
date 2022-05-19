@@ -17,8 +17,10 @@
   	
   	<!--  글목록 불러오기 -->
   	<select id="BoardSelectList" resultType="com.campus.myapp.vo.BoardVO">
-  	SELECT A.boardno, A.title, A.userid, A.content, A.hit, A.writedate, A.filename1,
-  		   B.profileimage, B.userlevel, B.username
+  	SELECT A.boardno, A.title, A.userid, A.content, A.hit, 
+  		   date_format(A.writedate, '%Y-%m-%d') writedate,
+  		   date_format(A.writedate, '%H:%i') writetime,
+  		   A.filename1, B.profileimage, B.userlevel, B.username
   	FROM   board A, member B
   	WHERE  A.userid=B.userid 
 	AND    A.boardtype=#{param1}
