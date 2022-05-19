@@ -16,7 +16,7 @@ $(function() {
 <div id="animalInfo_container" class="container">
 	<div id="animalInfo_wrap">
 		<div id="animalInfo_lnb">
-			<div style="float: center; margin:0px auto;">
+			<div style="float: center; margin:30px auto;">
 				<a href="/animalInfo/animalInfoMain"><img id="ad_logo" src="/img/로고2.png" alt="logo"/></a>
 			</div>
 			<ul>
