@@ -34,7 +34,7 @@
 			</div>
 			<hr/>
 			<div>
-				<div class="host_review"><i class="bi bi-pencil-square"></i>리뷰를 남겨주세요</div>
+				<div class="host_review"><i class="bi bi-pencil-square"></i>&nbsp;리뷰를 남겨주세요</div>
 				<div class='host_review3'>
 					
 				</div>

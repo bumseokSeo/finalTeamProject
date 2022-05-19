@@ -141,14 +141,16 @@ function displayPlaces(places) {
 		bounds.extend(placePosition);
 		
 		(function(marker, title) {
-           /* kakao.maps.event.addListener(marker, 'mouseover', function() {
+            kakao.maps.event.addListener(marker, 'mouseover', function() {
                 displayInfowindow(marker, title);
-            });*/
+            });
 
             kakao.maps.event.addListener(marker, 'click', function() {
                 infowindow.close();
             });
-			
+			kakao.maps.event.addListener(marker, 'mouseout', function() {
+                infowindow.close();
+            });
             itemEl.onmouseover =  function () {
                 displayInfowindow(marker, title);
             };
@@ -251,7 +253,7 @@ function selectReview(sid) {
 				$('.host_info2').html(str2);
 			let str4 = `<form method="post" id="reviewFrm" enctype="multipart/form-data" onsubmit="sendFile()">` + 
 						`<input type="hidden" name="shopid" id="shopid" value="` + sid + `">`+
-						`<div class="map_review"><textarea name="shopreview" id="shopreview"></textarea>` +
+						`<div class="map_review"><textarea name="shopreview" id="shopreview" style="margin:5px 0 0 10px; padding: 0 0 5px 0;"></textarea>` +
 						`<input type="submit" class="rev_btn" value="글쓰기"><br/>` +
 						`<input type="file" name="filename" id="filename"/>`+
 						`</div></form>`;
@@ -262,7 +264,7 @@ function selectReview(sid) {
 				
 				str+=`<i class="bi bi-card-text" style="font-size:1.5em"></i><br/>`;
 				$(res).each(function(idx, shop) {
-					str += `<div style="border:1px solid #ddd; margin:5px;">&nbsp;<i style="font-size:1.5em;" class="bi bi-person-circle"></i>&nbsp;<span style="font-size:1.5em;font-weight:bold;margin:3px">` + shop.username + `</span>` +
+					str += `<div id="review_list" style="border:1px solid #ddd; margin:5px;">&nbsp;<i style="font-size:1.5em;" class="bi bi-person-circle"></i>&nbsp;<span style="font-size:1.5em;font-weight:bold;margin:3px">` + shop.username + `</span>` +
 						`<span style="color:#696969">   ` + shop.writedate + `</span>` +
 						`<div><span style="font-size:1.2em;margin:5px;">` + shop.shopreview + `</span><br/>`;
 					if(shop.filename1!=null){
@@ -279,7 +281,8 @@ function selectReview(sid) {
 						str+=`<input type="hidden" name="reviewno" id="reviewno" value="`+shop.reviewno+`">`
 						str+=`<input type="hidden" name="shopid" id="shopid" value="`+shop.shopid+`">`;
 						str+=`<div class="map_review"><textarea name="shopreview" style="width:80%">`+shop.shopreview+`</textarea>`;
-						str+=`<input type="submit" style="border:none" class="rev_btn" value="수정하기"><br/>`;
+						str+=`<input type="submit" class="rev_btn" value="수정하기">`+
+								`<input type="button" class="rev_btn" value="취소"><br/>`;
 						if(shop.filename1!=null){
 							//str+=`<input type="file" name="filename" id="filename"/>`+shop.filename1+`</div></form></div>`;
 							str+=`<div>`+shop.filename1+`&nbsp; <span class="btn xbtn">X</span></div>`;
@@ -314,12 +317,10 @@ function selectReview(sid) {
 //이미지 파일 올리기
 function sendFile() {
 	event.preventDefault();
-
 	if ($("#shopreview").val() == "") { //리뷰 입력 안함
 		alert("리뷰를 입력 후에 등록해주세요");
 		return;
 	}
-
 	// 리뷰 입력
 	var data = new FormData($("#reviewFrm")[0]); // form데이터 보내기
 	$.ajax({
@@ -341,12 +342,19 @@ function sendFile() {
 $(document).on('click', '#host_review2 input[value=수정]', function() {
 	$(this).parent().css("display", "none");
 	$(this).parent().next().css("display", "block");
+	//$(this).parent().next().child().child().next().next().css("display","block");
 	
 	$(".xbtn").on('click',function(){
 		$(this).parent().css("display","none");
 		$(this).parent().next().attr("name","deleteFile");
 		$(this).parent().next().next().attr("type","file");
 	})
+	
+})
+//취소 버튼 클릭 시
+$(document).on('click','#host_review2 input[value=취소]',function(){
+	$(this).parent().parent().parent().css("display","none");
+	$(this).parent().parent().parent().prev().css("display", "block");
 })
 // DB 수정
 function editOk(idx){
