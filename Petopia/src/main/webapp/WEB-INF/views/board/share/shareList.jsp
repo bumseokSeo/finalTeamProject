@@ -74,7 +74,7 @@ $(document).ready(function(){
 					addListHtmlS += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
 					addListHtmlS += "<label class='Share_text'>"+data[i].username+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div>";
 				}
-				if(data.length<8){
+				if(data.length<13){
 					$("#nextViewS").empty();
 				} 
 				if(startNum=1){
@@ -101,7 +101,7 @@ $('#nextViewS').click(function(){
 			url = '/board/share/shareLists';
 			console.log("다음페이지")
 			param = {
-				"startNum" : startNum*8+1
+				"startNum" : startNum*12+1
 			};
 		}else if(pn='shareSearch'){
 			url = '/board/share/shareLists';
@@ -123,7 +123,7 @@ $('#nextViewS').click(function(){
 					addListHtmlS += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
 					addListHtmlS += "<label class='Share_text'>"+data[i].username+"</label><label class='Share_text'>"+data[i].writedate+"</label></div></div></div>";
 				}
-				if(data.length<8){
+				if(data.length<13){
 					$("#nextViewS").empty();
 				} 
 				$("#prevViewS").empty();
@@ -153,7 +153,7 @@ $('#prevViewS').click(function(){
 		url = '/board/share/shareLists';
 		console.log("이전페이지")
 		param = {
-			"startNum" : (startNum-1)*8-8
+			"startNum" : (startNum-1)*12
 		};
 	}else if(pn='shareSearch'){
 		url = '/board/share/searchLists';

@@ -127,7 +127,7 @@ public class BoardController {
 	@RequestMapping(value="/board/share/shareLists")
 	public List<BoardVO> SharePaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
 		pvo.setStart(Integer.parseInt(startNum));
-		pvo.setEnd(8);
+		pvo.setEnd(12);
 		return service.BoardSelectList("share", pvo);
 	}
 	
@@ -135,7 +135,7 @@ public class BoardController {
 	@RequestMapping(value = "/board/share/searchLists")
 	public List<BoardVO> searchMoreViewS(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
-		int end = 8;
+		int end = 12;
 
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "share");
 	}
@@ -280,7 +280,7 @@ public class BoardController {
 	
 	//글 쓰기(공통)
 	@PostMapping("/board/BoardWriteOk")
-	public ResponseEntity<String> boardWriteOk(BoardVO vo, HttpServletRequest request) {
+	public ResponseEntity<String> boardWriteOk(BoardVO vo, HttpServletRequest request, String type) {
 		System.out.println("BoardWrite");
 		vo.setUserid((String)request.getSession().getAttribute("logId"));//아이디 등록
 	
@@ -307,39 +307,36 @@ public class BoardController {
 			System.out.println(result);
 			
 			//게시판 회귀 선별조건
-			vo.setBoardno(service.BoardNum()+1);
-			System.out.println(vo.getBoardno());
+			vo.setBoardno(service.BoardNum()+1); // 번호 매기도록 하는것.
 			
+			vo.setBoardtype(vo.getBoardtype());
 			service.BoardInsert(vo);
-			String type = service.getType(vo.getBoardno());
-			System.out.println(type);
-			
-			
-			if(type.equals("notice")) {
+		
+			if(vo.getBoardtype().equals("notice")) {
 			String msg = "<script>alert('공지사항 등록완료');location.href='/board/SubMenuSelect?type=notice';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
-			if(type.equals("info")) {
+			if(vo.getBoardtype().equals("info")) {
 			String msg = "<script>alert('정보게시판 등록완료');location.href='/board/SubMenuSelect?type=info';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
-			if(type.equals("share")) {
+			if(vo.getBoardtype().equals("share")) {
 			String msg = "<script>alert('나눔게시판 등록완료');location.href='/board/SubMenuSelect?type=share';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
-			if(type.equals("walk")) {
+			if(vo.getBoardtype().equals("walk")) {
 			String msg = "<script>alert('산책게시판 등록완료');location.href='/board/SubMenuSelect?type=walk';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
-			if(type.equals("boast")) {
+			if(vo.getBoardtype().equals("boast")) {
 			String msg = "<script>alert('자랑게시판 등록완료');location.href='/board/SubMenuSelect?type=boast';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
-			if(type.equals("suggest")) {
+			if(vo.getBoardtype().equals("suggest")) {
 			String msg = "<script>alert('건의게시판 등록완료');location.href='/board/SubMenuSelect?type=suggest';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
-			if(type.equals("adopt")) {
+			if(vo.getBoardtype().equals("adopt")) {
 			String msg = "<script>alert('입양게시판 등록완료');location.href='/board/adopt/adoptList';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
