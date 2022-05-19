@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/css/map/mapMain.css" type="text/css">
 
 <div class="map_wrap">
-	<div><button id="getMyPositionBtn" onclick="getCurrentPosBtn()"><i class="bi bi-cursor"></i></button></div>
+	<div><button id="getMyPositionBtn" onclick="getCurrentPosBtn()" title="내위치로이동"><i class="bi bi-cursor"></i></button></div>
 	<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 	<div id="menu_wrap" class="bg_white">
 		<div class="option">
@@ -29,18 +29,22 @@
 			<div>
 				<div class="host_info"></div>
 				<div class="host_info2">
-				
+					
 				</div>
 			</div>
 			<hr/>
 			<div>
-				<div class="host_review"><i class="bi bi-pencil-square"></i></div>
+				<div class="host_review"><i class="bi bi-pencil-square"></i>&nbsp;리뷰를 남겨주세요</div>
+				<div class='host_review3'>
+					
+				</div>
 				<div id="host_review2">
 				
 				</div>
 			</div>
 		</div>
 	</div>
+	<div id="closeBtn" onclick="closeMenu()"><span><i class="bi bi-x-lg"></i></span></div>
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bffc103d445dc60ffcc8badf1da53cf7&libraries=services"></script>
