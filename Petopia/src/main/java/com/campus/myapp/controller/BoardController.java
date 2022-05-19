@@ -127,7 +127,7 @@ public class BoardController {
 	@RequestMapping(value="/board/share/shareLists")
 	public List<BoardVO> SharePaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
 		pvo.setStart(Integer.parseInt(startNum));
-		pvo.setEnd(8);
+		pvo.setEnd(12);
 		return service.BoardSelectList("share", pvo);
 	}
 	
@@ -135,7 +135,7 @@ public class BoardController {
 	@RequestMapping(value = "/board/share/searchLists")
 	public List<BoardVO> searchMoreViewS(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
-		int end = 8;
+		int end = 12;
 
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "share");
 	}
@@ -162,7 +162,7 @@ public class BoardController {
 	@RequestMapping(value="/board/boast/boastLists")
 	public List<BoardVO> BoastPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
 		pvo.setStart(Integer.parseInt(startNum));
-		pvo.setEnd(8);
+		pvo.setEnd(12);
 		return service.BoardSelectList("boast", pvo);
 	}
 	
@@ -170,7 +170,7 @@ public class BoardController {
 	@RequestMapping(value = "/board/boast/searchLists")
 	public List<BoardVO> searchMoreViewB(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
-		int end = 8;
+		int end = 12;
 
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "boast");
 	}
@@ -197,7 +197,7 @@ public class BoardController {
 	@RequestMapping(value="/board/adopt/adoptListMethod")
 	public List<BoardVO> AdoptPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
 		pvo.setStart(Integer.parseInt(startNum));
-		pvo.setEnd(8);
+		pvo.setEnd(12);
 		List<BoardVO>  lst= service.BoardSelectList("adopt", pvo);
 		for(BoardVO vo  : lst) {
 			System.out.println(vo.getFilename1());
@@ -209,7 +209,7 @@ public class BoardController {
 	@RequestMapping(value = "/board/adopt/searchLists")
 	public List<BoardVO> searchMoreViewAD(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
-		int end = 8;
+		int end = 12;
 
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "adopt");
 	}
