@@ -9,7 +9,7 @@
 		<div class="Menu_img">이미지 들어갈것</div>
 	</div>
 	<div class="Menu_containerS">
-		<div class="row"></div>
+		<div class="row" id="rowShare"></div>
 	</div>
 		 <div class="paging">
            <b id="prevViewS"> ◀ </b>
@@ -70,19 +70,20 @@ $(document).ready(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12'><div class='card'>";
+					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-					addListHtmlS += "<h5 class='card-title'>"+data[i].title+"</h5>";
-					addListHtmlS += "<div class='card-body'><p class='card-text'>"+data[i].writedate+"</p></div>";
+					addListHtmlS += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
+					addListHtmlS += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlS += "</div></div>";
 				}
-				if(data.length<8){
+				if(data.length<12){
 					$("#nextViewS").empty();
 				} 
 				if(startNum=1){
 					$("#prevViewS").empty();
 				} 
-				$(".row").append(addListHtmlS);
+				$("#rowShare").append(addListHtmlS);
 				$("#pViewS").append(startNum);
 			}
 		});
@@ -103,7 +104,7 @@ $('#nextViewS').click(function(){
 			url = '/board/share/shareLists';
 			console.log("다음페이지")
 			param = {
-				"startNum" : startNum*8
+				"startNum" : startNum*12
 			};
 		}else if(pn='shareSearch'){
 			url = '/board/share/shareLists';
@@ -121,18 +122,19 @@ $('#nextViewS').click(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12'><div class='card'>";
+					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-					addListHtmlS += "<h5 class='card-title'>"+data[i].title+"</h5>";
-					addListHtmlS += "<div class='card-body'><p class='card-text'>"+data[i].writedate+"</p></div>";
+					addListHtmlS += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
+					addListHtmlS += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlS += "</div></div>";
 				}
-				if(data.length<8){
+				if(data.length<13){
 					$("#nextViewS").empty();
 				} 
 				$("#prevViewS").empty();
-				$(".row").empty();
-				$(".row").append(addListHtmlS);
+				$("#rowShare").empty();
+				$("#rowShare").append(addListHtmlS);
 				$("#pViewS").empty();
 				$("#pViewS").append(startNum+1);
 				$("#prevViewS").append("◀");
@@ -157,7 +159,7 @@ $('#prevViewS').click(function(){
 		url = '/board/share/shareLists';
 		console.log("이전페이지")
 		param = {
-			"startNum" : (startNum-1)*8-8
+			"startNum" : (startNum-1)*12-12
 		};
 	}else if(pn='shareSearch'){
 		url = '/board/share/searchLists';
@@ -175,16 +177,17 @@ $('#prevViewS').click(function(){
 		data :param,
 		success : function(data){
 			for (var i = 0; i < data.length; i++) {
-				addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12'><div class='card'>";
+				addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 				addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-				addListHtmlS += "<h5 class='card-title'>"+data[i].title+"</h5>";
-				addListHtmlS += "<div class='card-body'><p class='card-text'>"+data[i].writedate+"</p></div>";
+				addListHtmlS += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+				addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
+				addListHtmlS += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 				addListHtmlS += "</div></div>";
 			}
 			$("#nextViewS").empty();
 			$("#nextViewS").append("▶");
-			$(".row").empty();
-			$(".row").append(addListHtmlS);
+			$("#rowShare").empty();
+			$("#rowShare").append(addListHtmlS);
 			$("#pViewS").empty();
 			$("#pViewS").append(startNum-1);
 			

@@ -1,7 +1,4 @@
 @charset "UTF-8";
-.container{
-	
-}
 
 /*List*/
 .Menu_titleS{
@@ -11,7 +8,6 @@
 .Menu_Bar_AS{
 	display:flex;
 	height:120px;
-	
 	border: 2px solid green;
 	line-height: 120px;
 }
@@ -28,7 +24,6 @@
 	
 	
 	border:2px solid red;/* 임시 경계선 */
-	
 	padding-top:20px;
 }
 
@@ -37,7 +32,7 @@
 
 .shareimg{
 	width:100%;
-	height:225.25px;
+	/*height:225.25px;*/
 }
 
 .card a:hover{
@@ -48,6 +43,13 @@
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow : ellipsis;/* 넘친내용...*/
+}
+.cardDiv{
+	padding: 20px;
+	
+}
+.card-text{
+	margin-bottom: 5px;
 }
 
 
