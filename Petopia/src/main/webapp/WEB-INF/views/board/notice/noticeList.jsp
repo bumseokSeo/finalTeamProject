@@ -44,10 +44,20 @@ window.onload=function(){
 			dataType : 'json',
 			data :param,
 			success : function(data){
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
+				var day = new String(('0' + date.getDate()).slice(-2));
+				
 				for (var i = 0; i < data.length; i++) {
 					addListHtml += "<li>"+data[i].boardno+"</li>";
 					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtml += "<li>"+data[i].writedate+"</li>";
+					if(year+"-"+month+"-"+day == data[i].writedate){
+						addListHtml += "<li>"+data[i].writetime+"</li>";
+						
+					}else{
+						addListHtml += "<li>"+data[i].writedate+"</li>";
+					}
 					addListHtml += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
@@ -66,10 +76,10 @@ $('#nextView').click(function(){
 		var startNum = parseInt($("#pView").text());
 		var addListHtml = "";
 		var addListHtmlpo = "";
-					addListHtmlpo += "<li>게시물 번호</li>";
+					addListHtmlpo += "<li>번호</li>";
 					addListHtmlpo += "<li>제목</li>";
-					addListHtmlpo += "<li>날짜</li>";
-					addListHtmlpo += "<li>조회수</li>";
+					addListHtmlpo += "<li>작성일</li>";
+					addListHtmlpo += "<li>조회</li>";
 		 console.log(startNum); 
 		var url;
 		var param;
@@ -99,10 +109,20 @@ $('#nextView').click(function(){
 			dataType : 'json',
 			data :param,
 			success : function(data){
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
+				var day = new String(('0' + date.getDate()).slice(-2));
+				
 				for (var i = 0; i < data.length; i++) {
 					addListHtml += "<li>"+data[i].boardno+"</li>";
 					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtml += "<li>"+data[i].writedate+"</li>";
+					if(year+"-"+month+"-"+day == data[i].writedate){
+						addListHtml += "<li>"+data[i].writetime+"</li>";
+						
+					}else{
+						addListHtml += "<li>"+data[i].writedate+"</li>";
+					}
 					addListHtml += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
@@ -126,10 +146,10 @@ $('#prevView').click(function(){
 	var startNum = parseInt($("#pView").text()); // 시작지점
 	var addListHtml = "";
 	var addListHtmlpo = "";
-				addListHtmlpo += "<li>게시물 번호</li>";
+				addListHtmlpo += "<li>번호</li>";
 				addListHtmlpo += "<li>제목</li>";
-				addListHtmlpo += "<li>날짜</li>";
-				addListHtmlpo += "<li>조회수</li>";
+				addListHtmlpo += "<li>작성일</li>";
+				addListHtmlpo += "<li>조회</li>";
 	 console.log(startNum); 
 	var url;
 	var param;
@@ -159,10 +179,20 @@ $('#prevView').click(function(){
 		dataType : 'json',
 		data :param,
 		success : function(data){
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
+			var day = new String(('0' + date.getDate()).slice(-2));
+			
 			for (var i = 0; i < data.length; i++) {
 				addListHtml += "<li>"+data[i].boardno+"</li>";
 				addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-				addListHtml += "<li>"+data[i].writedate+"</li>";
+				if(year+"-"+month+"-"+day == data[i].writedate){
+					addListHtml += "<li>"+data[i].writetime+"</li>";
+					
+				}else{
+					addListHtml += "<li>"+data[i].writedate+"</li>";
+				}
 				addListHtml += "<li>"+data[i].hit+"</li>";
 			}
 			$("#nextView").empty();
@@ -184,15 +214,15 @@ $('#prevView').click(function(){
 
 <div class="container">
 	<div class="Menu_Bar_A">
-		<h1 class="Menu_title">공지 사항</h1>
+		<h1 class="Menu_title">공지사항</h1>
 		<div class="Menu_img">이미지 들어갈것</div>
 	</div>
 	<div class="Menu_container">
 		<ul class="List_menu_F" id="List_menu_F">
-			<li>게시물 번호</li>
+			<li>번호</li>
 			<li>제목</li>
-			<li>날짜</li>
-			<li>조회수</li>
+			<li>작성일</li>
+			<li>조회</li>
 
 		</ul><!-- 게시물 -->
 		</div>

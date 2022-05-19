@@ -30,6 +30,7 @@ $(document).ready(function(){
 	}
 		
 	$("#MenuNotice").click(function(){
+		//window.location.href = "/board/SubMenuSelect?type=notice";
 		$("#resultArea>div").css('display','none');
 		$("#UserNoticeShow").css('display','block');
 	  });
