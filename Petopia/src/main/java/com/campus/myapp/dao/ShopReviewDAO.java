@@ -14,4 +14,5 @@ public interface ShopReviewDAO {
 	public List<ShopReviewVO> selectReview(int shopid);
 	public int updateReview(ShopReviewVO vo);
 	public int deleteReview(int reviewno, String userid);
+	public String selectFile(int reviewno);
 }

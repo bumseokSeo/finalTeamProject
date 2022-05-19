@@ -11,7 +11,8 @@ var mapContainer = document.getElementById("map"),
 	}
 // 지도 생성
 var map = new kakao.maps.Map(mapContainer, mapOptions);
-
+//인포윈도우
+var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 var lat = 37.566826;
 var lng = 126.9786567;
 var m = 1000;
@@ -54,26 +55,6 @@ addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
 //커스텀 오버레이 컨텐츠 설정하기
 placeOverlay.setContent(contentNode);
 let boundsChange = [];
-
-
-/*
-kakao.maps.event.addListener(map, 'idle', searchPlaces);
-//idle이벤트로 지도 드래그해서 범위 바꿀 때 마다 마커 새로 고침
-kakao.maps.event.addListener(map, 'idle', function() {
-	var level = map.getLevel();
-	var latlng = map.getCenter();
-	
-	if(level>3){
-		m = 5000;
-	} else if(level == 3){
-		m = 2500;
-	} else if(level == 2){
-		m = 1000;
-	} else if(level == 1){
-		m = 500;
-	}
-});
-*/
 
 //엘리먼트에 이벤트 핸들러를 등록하는 함수
 function addEventHandle(target, type, callback) {
@@ -158,11 +139,26 @@ function displayPlaces(places) {
 		//검색된 장소 위치를 기준으로 지도 범위를 재설정.
 		//LatLngBounds객체에 좌표 추가
 		bounds.extend(placePosition);
+		
+		(function(marker, title) {
+           /* kakao.maps.event.addListener(marker, 'mouseover', function() {
+                displayInfowindow(marker, title);
+            });*/
 
+            kakao.maps.event.addListener(marker, 'click', function() {
+                infowindow.close();
+            });
+			
+            itemEl.onmouseover =  function () {
+                displayInfowindow(marker, title);
+            };
+        })(marker, places[i].place_name);
+        
 		//마커 클릭시, 커스텀 오버레이창 띄우기
 		(function(marker, place) {
 			kakao.maps.event.addListener(marker, 'click', function() {
 				displayPlaceInfo(place);
+				
 			});
 		})(marker, places[i]);
 		fragment.appendChild(itemEl);
@@ -217,8 +213,23 @@ function getListItem(index, places) {
 
 	return el;
 }
-function openInfo(sid) {
-	selectReview(sid);
+//menu_wrap_2 열기
+function openInfo(places) {
+
+		$("#menu_wrap_2").css("display","block");
+		$("#closeBtn").css("display","block");
+		$(".bi-x-lg").css("display","block");
+	
+	//alert(places)
+	selectReview(places);
+}
+//menu_wrap_2 닫기
+function closeMenu(){
+	$("#closeBtn").on('click',function(){
+		$("#menu_wrap_2").css("display","none");
+		$("#closeBtn").css("display","none");
+		$(".bi-x-lg").css("display","none");
+	});
 }
 // 전체 리뷰 띄우기
 function selectReview(sid) {
@@ -230,17 +241,28 @@ function selectReview(sid) {
 		async: false,
 		cache: false,
 		success: function(res) {
+			//console.log(res[0].username)
 			$('.host_info2').html("");
 			$("#host_review2").html("");
-			let str2 = `<span name="shopid" id="` + res[0].shopid + `" style="display:hidden"></span>
+			let str2 = `<span name="shopid" id="` + sid + `" style="display:hidden"></span>
 				<div style="text-align:center;"><span name="shopname" id="shopname" style="color:#212121;font-weight:bold;font-size:2.5em;text-align:center"> &nbsp;`+ res[0].shopname + `</span></div><br/>
 				<i class="bi bi-geo-alt" style="font-size:1.5em"></i><span id="shopaddr" style="color:#434343;font-size:1.5em"> &nbsp;`+ res[0].shopaddr + `</span><br/>
 				<i class="bi bi-telephone" style="font-size:1.5em"></i><span id="shopnumber" style="color:#434343;font-size:1.2em"> &nbsp;`+ res[0].shopnumber + `</span>`;
 				$('.host_info2').html(str2);
+			let str4 = `<form method="post" id="reviewFrm" enctype="multipart/form-data" onsubmit="sendFile()">` + 
+						`<input type="hidden" name="shopid" id="shopid" value="` + sid + `">`+
+						`<div class="map_review"><textarea name="shopreview" id="shopreview"></textarea>` +
+						`<input type="submit" class="rev_btn" value="글쓰기"><br/>` +
+						`<input type="file" name="filename" id="filename"/>`+
+						`</div></form>`;
+				//alert(str4);
+				$('.host_review3').html(str4);
 			if (res.length > 0 && res[0].shopid == sid) {
-				var str = ''
+				var str = "";
+				
+				str+=`<i class="bi bi-card-text" style="font-size:1.5em"></i><br/>`;
 				$(res).each(function(idx, shop) {
-					str += `<div style="border:1px solid #ddd; margin:5px;"><span style="font-size:1.5em;font-weight:bold;margin:3px">` + shop.userid + `</span>` +
+					str += `<div style="border:1px solid #ddd; margin:5px;">&nbsp;<i style="font-size:1.5em;" class="bi bi-person-circle"></i>&nbsp;<span style="font-size:1.5em;font-weight:bold;margin:3px">` + shop.username + `</span>` +
 						`<span style="color:#696969">   ` + shop.writedate + `</span>` +
 						`<div><span style="font-size:1.2em;margin:5px;">` + shop.shopreview + `</span><br/>`;
 					if(shop.filename1!=null){
@@ -249,11 +271,11 @@ function selectReview(sid) {
 					str += `</div></div>`;
 
 					if(shop.userid==userid){
-						str += `<span class="btns"><input type="button" class="btn" value="수정">`;
-						str += `<input type="button" class="btn" value="삭제" title="` + shop.reviewno + `"></span></div>`;
+						str += `<span class="btns"><input type="button" class="btn btn1" value="수정">`;
+						str += `<input type="button" class="btn btn2" value="삭제" title="` + shop.reviewno + `"></span></div>`;
 					}
 					if(shop.userid==userid){
-						str+=`<div style="display:none"><form id="reviewFrm2" method="post">`;
+						str+=`<div style="display:none"><form id="reviewFrm`+idx+`" method="post" onsubmit="editOk(`+idx+`)">`;
 						str+=`<input type="hidden" name="reviewno" id="reviewno" value="`+shop.reviewno+`">`
 						str+=`<input type="hidden" name="shopid" id="shopid" value="`+shop.shopid+`">`;
 						str+=`<div class="map_review"><textarea name="shopreview" style="width:80%">`+shop.shopreview+`</textarea>`;
@@ -262,105 +284,32 @@ function selectReview(sid) {
 							//str+=`<input type="file" name="filename" id="filename"/>`+shop.filename1+`</div></form></div>`;
 							str+=`<div>`+shop.filename1+`&nbsp; <span class="btn xbtn">X</span></div>`;
 							str+=`<input type="hidden" name="" value="`+shop.filename1+`"/>`;
+							str+=`<input type="hidden" name="filename" id="filename"/></div></form></div>`;
+						} else if(shop.filename1==null){
+							str+=`<input type="file" name="filename" id="filename"/></div></form></div>`;
 						}
-						str+=`<input type="file" name="filename" id="filename"/></div></form></div>`;
+						
 					}
 				})
 				$("#host_review2").html(str);
-				$("#menu_wrap_2").toggle(
-					function() { $("#menu_wrap_2").addClass('show') }, //클릭하면 show클래스 적용되서 보이기
-					function() { $("#menu_wrap_2").addClass('hide') } //한 번 더 클릭하면 hide클래스가 숨기기
-				)
+				
 			}
 			else {
-				let str3 = `<span name="shopid" id="` + res[0].shopid + `" style="display:hidden"></span>
+				let str3 = `<span name="shopid" id="` + sid + `" style="display:hidden"></span>
 				<div style="text-align:center;"><span name="shopname" id="shopname" style="color:#212121;font-weight:bold;font-size:2.5em;text-align:center"> &nbsp;`+ res[0].shopname + `</span></div><br/>
 				<i class="bi bi-geo-alt" style="font-size:1.5em"></i><span id="shopaddr" style="color:#434343;font-size:1.5em"> &nbsp;`+ res[0].shopaddr + `</span><br/>
 				<i class="bi bi-telephone" style="font-size:1.5em"></i><span id="shopnumber" style="color:#434343;font-size:1.2em"> &nbsp;`+ res[0].shopnumber + `</span>`;
 				$('.host_info2').html(str3);
-				$("#menu_wrap_2").toggle(
-					function() { $("#menu_wrap_2").addClass('show') }, //클릭하면 show클래스 적용되서 보이기
-					function() { $("#menu_wrap_2").addClass('hide') } //한 번 더 클릭하면 hide클래스가 숨기기
-				)
+				let str5 = `<form method="post" id="reviewFrm" enctype="multipart/form-data" onsubmit="sendFile()">` + 
+							`<input type="hidden" name="shopid" id="shopid" value="` + sid + `">`+
+							`<div class="map_review"><textarea name="shopreview" id="shopreview"></textarea>` +
+							`<input type="submit" class="rev_btn" value="글쓰기"><br/>` +
+							`<input type="file" name="filename" id="filename"/>` +
+							`</div></form>`;
+				$('.host_review3').html(str5);
 			}
 		}
 	})
-}
-//수정버튼 클릭 시
-$(document).on('click', '#host_review2 input[value=수정]', function() {
-	$(this).parent().css("display", "none");
-	$(this).parent().next().css("display", "block");
-	
-	$(".xbtn").on('click',function(){
-		$(this).parent().css("display","none");
-		$(this).parent().next().attr("name","deleteFile");
-		$(this).parent().next().next().attr("type","file");
-	})
-})
-
-// DB 수정
-$(document).on('submit', '#host_review2 form', function() {
-	event.preventDefault();
-
-	var data = new FormData($("#reviewFrm2")[0]); // form데이터 보내기
-	
-	$.ajax({
-		url: '/map/editOk',
-		data: data,
-		dataType:'text',
-		type: "POST",
-		processData: false,
-		contentType: false,
-		success: function() {
-			alert("리뷰가 수정되었습니다.");
-			selectReview(data.get('shopid'));
-		}, error: function() {
-			alert("리뷰 수정에 실패");
-			console.log("수정실패");
-		}
-	})
-})
-//리뷰 삭제
-$(document).on('click', "#host_review2 input[value=삭제]", function() {
-	if (confirm('리뷰를 삭제하시겠습니까?')) {
-		let data = "reviewno=" + $(this).attr("title");
-		$.ajax({
-			url: "/map/deleteOk",
-			data: data,
-			success: function() {
-				alert("리뷰가 삭제되었습니다.");
-				$("#shopreview").val("");
-				$("#filename").val("");
-				
-			}, error: function() {
-				alert('리뷰 삭제 실패');
-				console.log("삭제 실패");
-			}
-		})
-	}
-})
-//클릭한 마커에 대한 장소 정보를 커스텀 오버레이로 표시하는 함수
-function displayPlaceInfo(place) {
-	var content = '<div class="placeinfo">' +
-		'	<div class="title_close"><div class="close" onclick="closeOverlay()" title="닫기"></div><a class="title" name="shopname" onclick="openInfo(' + place.id + ')" title="' + place.place_name + '">' + place.place_name + '</a></div>';
-
-	if (place.road_address_name) {
-		content += '	<span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
-			'	<span class="jibun" title="' + place.address_name + '">(지번: ' + place.address_name + ')</span>';
-	} else {
-		content += '	<span title="' + place.address_name + '">' + place.address_name + '</span>';
-	}
-	content += '	<span class="tel">' + place.phone + '</span>' +
-		'	<form method="post" id="reviewFrm" enctype="multipart/form-data" onsubmit="sendFile()">' + '<input type="hidden" name="shopid" id="shopid" value="' + place.id + '">' +
-		'<div class="map_review"><textarea name="shopreview" id="shopreview"></textarea>' +
-		'<input type="submit" class="rev_btn" value="글쓰기"><br/>' +
-		'<input type="file" name="filename" id="filename"/>' +
-		'</div></form>' +
-		'</div>' +
-		'<div class="after"></div>';
-	contentNode.innerHTML = content;
-	placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
-	placeOverlay.setMap(map);
 }
 //이미지 파일 올리기
 function sendFile() {
@@ -384,8 +333,78 @@ function sendFile() {
 			alert("리뷰가 등록되었습니다.");
 			$("#shopreview").val("");
 			$("#filename").val("");
+			selectReview(data.get('shopid'));
 		}
 	});
+}
+//수정버튼 클릭 시
+$(document).on('click', '#host_review2 input[value=수정]', function() {
+	$(this).parent().css("display", "none");
+	$(this).parent().next().css("display", "block");
+	
+	$(".xbtn").on('click',function(){
+		$(this).parent().css("display","none");
+		$(this).parent().next().attr("name","deleteFile");
+		$(this).parent().next().next().attr("type","file");
+	})
+})
+// DB 수정
+function editOk(idx){
+	event.preventDefault();
+	
+	var data = new FormData($("#reviewFrm"+idx)[0]); // form데이터 보내기
+	console.log(data)
+	$.ajax({
+		url: '/map/editOk',
+		data: data,
+		dataType:'text',
+		type: "POST",
+		processData: false,
+		contentType: false,
+		success: function() {
+			alert("리뷰가 수정되었습니다.");
+			selectReview(data.get('shopid'));
+		}, error: function() {
+			alert("리뷰 수정에 실패");
+			console.log("수정실패");
+		}
+	})
+}
+//리뷰 삭제
+$(document).on('click', "#host_review2 input[value=삭제]", function() {
+	var sid=$('#shopid').val()
+	if (confirm('리뷰를 삭제하시겠습니까?')) {
+		let data = "reviewno=" + $(this).attr("title");
+		$.ajax({
+			url: "/map/deleteOk",
+			data: data,
+			success: function() {
+				alert("리뷰가 삭제되었습니다.");
+				$("#shopreview").val("");
+				$("#filename").val("");
+				selectReview(sid);
+			}, error: function() {
+				alert('리뷰 삭제 실패');
+				console.log("삭제 실패");
+			}
+		})
+	}
+})
+//클릭한 마커에 대한 장소 정보를 커스텀 오버레이로 표시하는 함수
+function displayPlaceInfo(place) {
+	var content = '<div class="placeinfo">' +
+		'	<div class="title_close"><div class="close" onclick="closeOverlay()" title="닫기"></div><a class="title" name="shopname" onclick="openInfo(' + place.id + ')" title="' + place.place_name + '">' + place.place_name + '</a></div>';
+
+	if (place.road_address_name) {
+		content += '	<span title="' + place.road_address_name + '">' + place.road_address_name + '</span>' +
+			'	<span class="jibun" title="' + place.address_name + '">(지번: ' + place.address_name + ')</span>';
+	} else {
+		content += '	<span title="' + place.address_name + '">' + place.address_name + '</span>';
+	}
+	content += '	<span class="tel">' + place.phone + '</span>' +'</div><div class="after"></div>';
+	contentNode.innerHTML = content;
+	placeOverlay.setPosition(new kakao.maps.LatLng(place.y, place.x));
+	placeOverlay.setMap(map);
 }
 
 //검색결과 목록의 자식 Element를 제거하는 함수
@@ -398,3 +417,12 @@ function removeAllChildNods(el) {
 function closeOverlay() {
 	placeOverlay.setMap(null);
 }
+// 인포윈도우에 장소명을 표시합니다
+function displayInfowindow(marker, title) {
+    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
+
+    infowindow.setContent(content);
+    infowindow.open(map, marker);
+}
+
+ 
