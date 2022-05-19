@@ -96,4 +96,14 @@ public class BoardServiceImp implements BoardService{
 	public String getType(int boardno) {
 		return dao.getType(boardno);
 	}
+
+	@Override
+	public int myWriteCnt(String userid) {
+		return dao.myWriteCnt(userid);
+	}
+
+	@Override
+	public int myReviewCnt(String userid) {
+		return dao.myReviewCnt(userid);
+	}
 }

@@ -37,4 +37,7 @@ public interface BoardService {
 	public int shareInsert(BoardVO vo);
 	public List<BoardVO> shareSelectList(PagingVO pvo, BoardVO vo);
 	public int shareTotalRecord(PagingVO pvo, BoardVO vo);
+	
+	public int myWriteCnt(String userid);
+	public int myReviewCnt(String userid);
 }

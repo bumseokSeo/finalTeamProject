@@ -52,11 +52,11 @@ window.onload=function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtml += "<li>"+data[i].boardno+"</li>";
 					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					if(year+"-"+month+"-"+day == data[i].writedate){
-						addListHtml += "<li>"+data[i].writetime+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtml += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 						
 					}else{
-						addListHtml += "<li>"+data[i].writedate+"</li>";
+						addListHtml += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
 					}
 					addListHtml += "<li>"+data[i].hit+"</li>";
 				}
@@ -117,11 +117,11 @@ $('#nextView').click(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtml += "<li>"+data[i].boardno+"</li>";
 					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					if(year+"-"+month+"-"+day == data[i].writedate){
-						addListHtml += "<li>"+data[i].writetime+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtml += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 						
 					}else{
-						addListHtml += "<li>"+data[i].writedate+"</li>";
+						addListHtml += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
 					}
 					addListHtml += "<li>"+data[i].hit+"</li>";
 				}
@@ -187,11 +187,11 @@ $('#prevView').click(function(){
 			for (var i = 0; i < data.length; i++) {
 				addListHtml += "<li>"+data[i].boardno+"</li>";
 				addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-				if(year+"-"+month+"-"+day == data[i].writedate){
-					addListHtml += "<li>"+data[i].writetime+"</li>";
+				if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+					addListHtml += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 					
 				}else{
-					addListHtml += "<li>"+data[i].writedate+"</li>";
+					addListHtml += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
 				}
 				addListHtml += "<li>"+data[i].hit+"</li>";
 			}

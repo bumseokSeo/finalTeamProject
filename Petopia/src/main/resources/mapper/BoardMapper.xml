@@ -11,13 +11,11 @@
   	</insert>
   	<!--  글목록 불러오기 -->
   	<select id="BoardSelectList" resultType="com.campus.myapp.vo.BoardVO">
-  	SELECT A.boardno, A.title, A.userid, A.content, A.hit, 
-  		   date_format(A.writedate, '%Y-%m-%d') writedate,
-  		   date_format(A.writedate, '%H:%i') writetime,
+  	SELECT A.boardno, A.title, A.userid, A.content, A.hit, A.writedate,
   		   A.filename1, B.profileimage, B.userlevel, B.username
   	FROM   board A, member B
-  	WHERE  A.userid=B.userid 
-	AND    A.boardtype=#{param1}
+  	WHERE  A.boardtype=#{param1} 
+	AND    A.userid=B.userid
 	ORDER by boardno desc 
 	LIMIT 	 #{param2.start}, #{param2.end}
   	</select>
@@ -109,5 +107,14 @@
 		select count(boardno) count 
 		from board
 		where boardtype=#{param2.boardtype}
+	</select>
+	
+	<select id="myWriteCnt" resultType="int">
+		select count(boardno) cnt from board
+		where userid=#{userid}
+	</select>
+	<select id="myReviewCnt" resultType="int">
+		select count(replyno) cnt from reply
+		where userid=#{userid}
 	</select>
 </mapper>
