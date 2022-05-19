@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -31,7 +30,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.campus.myapp.service.BoardService;
@@ -277,7 +275,6 @@ public class BoardController {
         }
     }
 	
-	
 	//글 쓰기(공통)
 	@PostMapping("/board/BoardWriteOk")
 	public ResponseEntity<String> boardWriteOk(BoardVO vo, HttpServletRequest request, String type) {
@@ -310,6 +307,9 @@ public class BoardController {
 			vo.setBoardno(service.BoardNum()+1); // 번호 매기도록 하는것.
 			
 			vo.setBoardtype(vo.getBoardtype());
+			
+			
+			
 			service.BoardInsert(vo);
 		
 			if(vo.getBoardtype().equals("notice")) {
