@@ -25,7 +25,7 @@
     </select>
   	<!--  글 1개 선택 -->
   	<select id="BoardSelect" resultType="com.campus.myapp.vo.BoardVO">
-  	SELECT b.boardno, b.title, b.userid, b.content, b.hit, b.writedate, m.username, m.profileimage
+  	SELECT b.boardno, b.title, b.userid, b.content, b.hit, b.writedate, m.username, m.profileimage, m.userlevel
   	FROM board b join member m on b.userid=m.userid
   	WHERE boardno = #{param1}
   	</select>

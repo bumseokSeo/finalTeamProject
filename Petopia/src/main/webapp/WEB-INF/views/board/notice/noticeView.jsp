@@ -25,8 +25,9 @@ $(function(){
 					tag +="<div class='reply_date'>"+vo.writedate+"</div>";
 
 					if(vo.userid == '${logId}'){
-					tag +="<input type='button' value='수정' class='reply_modi'/><input type='button' value='삭제' title='"+vo.replyno+"' class='reply_del'/></div>";
+					tag +="<input type='button' value='수정' class='reply_modi'/><input type='button' value='삭제' title='"+vo.replyno+"' class='reply_del'/>";
 					}
+					tag+="</div>";
 					if(vo.userid == '${logId}'){   // user_id
 						tag += "<div class='content_modify' style='display:none'><form method='post'>";
 						tag += "<input type='hidden' name='replyno' value='"+vo.replyno+"'/>";
@@ -112,8 +113,6 @@ $(function(){
 </head>
 <body>
 <div class="container"><!--  전체 틀  -->
-<h1>공지사항</h1>
-<hr/>
 <div>
 </div>
 	<div class="View_topmenu">
@@ -126,8 +125,19 @@ $(function(){
 				<img src="${url}/img/sampleProfile.jpg" class="View_topmenu_profile" alt="보낸사람 프로필">
 			</c:if>
 	  	  	
-	  	  	<div class="View_author">작성자:${vo.username}</div>
+	  	  	<div class="View_author"><h4>${vo.username}</h4></div>
 	  	  	<p class='text-end'><small class='text-muted'>${vo.writedate} 조회수:${vo.hit}</small></p>
+	  	  	
+	  	  	<c:if test="${vo.userlevel == 1 }">
+				<p class='text-start'><small class='text-muted'>관리자</small></p>
+			</c:if>
+			<c:if test="${vo.userlevel == 2 }">
+				<p class='text-start'><small class='text-muted'>일반 유저</small></p>
+			</c:if>
+			<c:if test="${vo.userlevel == 3 }">
+				<p class='text-start'><small class='text-muted'>제재 대상</small></p>
+			</c:if>
+	  	  	
 	  	  	
   	  	</div>
   	 </div>
@@ -138,6 +148,7 @@ $(function(){
 				<a href="javascript:delCheck()" id="Del_AA">삭제</a>
 			</p>
   	  	</div>
+  	  	
   	  	<hr/>
   	  <div class="reply">
         	<br/>
@@ -149,8 +160,8 @@ $(function(){
 					<div id="reply_area">
 						<form id="replyFrm">
 							<input type="hidden" name="boardno" value="${vo.boardno}"/>
-								<div id="reply_info">댓글 작성  | 작성자 : ${vo.username}</div>
-								<textarea name="content" id='View_conment'
+								<div id="reply_info">댓글 작성  | 작성자 : ${logName}</div>
+								<textarea name="content" id='View_conment' maxlength="99"
 									style="width: 100%; height: 120px; font-size:18px; border:none; border-radius: 15px;" placeholder=" 댓글 입력" ></textarea>
 								<input type="submit" value="등록" id="replybtn" />						
 						</form>

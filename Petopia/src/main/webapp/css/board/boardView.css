@@ -1,11 +1,15 @@
 @charset "UTF-8";
 .container{
 	overflow: hidden;
+	border:1px solid #e9ecef;
+	padding-top: 20px;
 }
 .View_topmenu{
 	width:100%;
 	padding-left:10px;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #e9ecef;
+	padding-bottom: 20px;
+	height:100px;
 }
 /*
 #View_title{
@@ -14,10 +18,13 @@
 }*/
 #View_subtitle{
 	position: relative;
-	height:40px;
-	line-height: 40px;
+	
+	line-height: 30px;
 }
 .View_topmenu_profile{
+	position: absolute;
+	left:0px;
+	top:-5px;
 	width:50px;
 	height:50px;
 	border: 0px;
@@ -26,7 +33,17 @@
 }
 .View_author{
 	position: absolute;
-	left:0px;
+	left:60px;
+}
+.text-end{
+	position: relative;
+	bottom: -30px;
+}
+.text-start{
+	position: relative;
+	left:63px;
+	bottom:20px;
+	color: #e9ecef;
 }
 /*
 #View_author{
@@ -43,12 +60,11 @@
 	position: absolute;
 	right:50px;
 }*/
-#View_title{
-	border:1px solid green;
-}
 
-#View_content{
+
+.View_content{
 	width:100%;
+	margin-top: 30px;
 }
 
 .View_bottommenu{
@@ -65,6 +81,7 @@
 	line-height:40px; 
 	text-align:center; 
 	margin-top:10px;
+	top:10px;
 }
 
 #Del_AA{
@@ -78,8 +95,13 @@
 	text-align:center; 
 	margin-right:40px; 
 	margin-top:10px;
+	top:10px;
 }
-
+#chatBtn{
+	position: absolute;
+	right:10px;
+	top:-50px;
+}
 /*리플 */
 #replyList>ul{
 	padding-left:0;
