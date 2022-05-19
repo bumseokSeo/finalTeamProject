@@ -278,7 +278,7 @@ $(function(){
 								<div id="reply_info">댓글 작성  | 작성자 : ${user}</div>
 								<textarea name="content" id='View_conment'
 									style="width: 100%; height: 120px; font-size:18px; border:none; border-radius: 15px;" placeholder=" 댓글 입력" ></textarea>
-								<input type="submit" value="등록" id="replybtn" />						
+								<input type="submit" value="등록" id="replybtn" />					
 						</form>
 					</div>
 				</c:if>
@@ -297,7 +297,8 @@ $(function(){
 				<form method="get" id="messageForm">			
 					<input type="text" name="messagecontent" id="messagecontent" maxlength="100" />					
 					<input type="hidden" name ="username" id="username" value="${vo.username}" maxlength="100" />
-					<input type="button" value="전송" id="messagebtn"/>				
+					<button id="messagebtn" class='msg_send_btn' type='button' title='전송' style="background-color: #97df93;border: medium none;border-radius: 50%;position: relative;left:0px;top:0px;color: #fff;font-size: 17px;">
+					<i class='fa fa-paper-plane-o' aria-hidden='true'></i></button>				
 					
 				</form>
 				
