@@ -12,6 +12,8 @@ public class BoardVO {
 	private String filename1;
 	private String username;
 	
+	private String writetime;
+	
 	private String category;
 	private String breed;
 	
@@ -87,5 +89,12 @@ public class BoardVO {
 	public void setBreed(String breed) {
 		this.breed = breed;
 	}
+	public String getWritetime() {
+		return writetime;
+	}
+	public void setWritetime(String writetime) {
+		this.writetime = writetime;
+	}
+	
 	
 }
