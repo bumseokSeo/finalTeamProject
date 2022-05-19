@@ -216,8 +216,7 @@ $('#prevViewSU').click(function(){
 
 <div class="container">
 	<div class="Menu_Bar_ASU">
-		<h1 class="Menu_titleSU">건의 사항</h1>
-		<div class="Menu_img">이미지 들어갈것</div>
+		<h1 class="Menu_titleSU">건의 할래요</h1>
 	</div>
 	<div class="Menu_containerSU">
 		<ul class="List_menu_FSU" id="List_menu_FSU">
@@ -228,7 +227,7 @@ $('#prevViewSU').click(function(){
 			<li>조회</li>
 
 		</ul><!-- 게시물 -->
-		</div>
+		
 		 <div class="paging">
            <b id="prevViewSU"> ◀ </b>
            <b id="pViewSU"></b>
@@ -237,19 +236,19 @@ $('#prevViewSU').click(function(){
         </div>
     
        <div class="Suggest_btn"><a href="/board/boardWrite?type=suggest"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
-	<br/><br/><br/>
-	<div class="Suggest_search">
-		 <form action="/board/suggest/suggestSearch" id="searchFrmSU">
-			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWordSU"/>
-			<input type="hidden" name="type" value="suggest"/>
-			<input type="submit" value="검색"/>
-		</form>
+		<br/><br/><br/>
+		<div class="Suggest_search">
+			 <form action="/board/suggest/suggestSearch" id="searchFrmSU">
+				<select name="searchKey">
+					<option value="" selected="selected">전체</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWordSU"/>
+				<input type="hidden" name="type" value="suggest"/>
+				<input type="submit" value="검색"/>
+			</form>
+		</div>
 	</div>
-	
 </div>
 <br/>

@@ -1,19 +1,33 @@
 @charset "UTF-8";
 
 /*List*/
-.Menu_titleS{
-	margin:40px 47px;
-}
 
 .Menu_Bar_AS{
 	display:flex;
 	height:120px;
-	border: 2px solid green;
 	line-height: 120px;
+	position: relative;
+	background: black;
 }
-
-.Menu_titleS{
-	width:30%;
+.Menu_Bar_AS::before{
+	content: "";
+	background-image: url(/img/board/shareBar.png);
+	background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+	opacity: 0.7;
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.Menu_Bar_AS>h1{
+	margin:40px 10px;
+	font-size: 48px;
+	color: #fff;
+	font-weight: 800;
+	position: relative;
 }
 
 .Menu_img{
@@ -21,9 +35,9 @@
 }
 
 .Menu_containerS{
-	
-	
-	border:2px solid red;/* 임시 경계선 */
+	height: auto;
+	min-height: 100vh;
+	overflow:hidden;
 	padding-top:20px;
 }
 
@@ -60,7 +74,7 @@
 	width:100%; 
 	text-align: center; 
 	font-size: 30px;
-	margin-top:10px;
+	margin-top:50px;
 	margin-bottom:-10px;
 }
 
