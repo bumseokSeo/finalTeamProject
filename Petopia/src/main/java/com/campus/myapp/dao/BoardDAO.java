@@ -23,7 +23,7 @@ public interface BoardDAO {
 	public void hitCount(int boardno);
 
 	
-	public int BoardNum(String userid);
+	public int BoardNum();
 	
 	//글보기
 	public BoardVO BoardView(int boardno);

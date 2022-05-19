@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 #notice-wrapper{
     width:1180px;
 	margin:0 auto;
@@ -71,7 +71,7 @@
 	margin-top:10px;
 }
 
-/*¸®ÇÃ */
+/*ë¦¬í”Œ */
 #replyList>ul{
 	padding-left:0;
 }
@@ -170,5 +170,5 @@ border:none;
 	background-color:rgba(0,0,0,0);
 	z-index:50;
 }
-/*´ñ±Û ³¡*/
+/*ëŒ“ê¸€ ë*/
 

@@ -41,15 +41,15 @@
          <when test="param1.equals('content')">
             AND A.content like #{param2}
          </when>
-         <when test="param1.equals('userid')">
-            AND A.userid like #{param2}
+         <when test="param1.equals('username')">
+            AND B.username like #{param2}
          </when>
       </choose>
       ORDER BY A.boardno DESC
       LIMIT #{param3}, #{param4}
      </select>
   	<select id="BoardNum" resultType="int"><!--  숫자 입력용  -->
-  	SELECT boardno FROM board WHERE userid=#{param1} ORDER BY boardno DESC LIMIT 1;
+  	SELECT boardno FROM board ORDER BY boardno DESC LIMIT 1;
   	</select>
   	<!--  조회수 증가 -->
   	<update id="hitCount">

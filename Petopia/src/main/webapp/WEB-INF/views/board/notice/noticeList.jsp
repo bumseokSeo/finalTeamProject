@@ -203,7 +203,6 @@ $('#prevView').click(function(){
             
         </div>
     
-       <div class="Share_btn"><a href="/board/boardWrite?type=notice"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 	<br/><br/><br/>
 	<div class="Share_search">
 		 <form action="/board/notice/noticeSearch" id="searchFrm">

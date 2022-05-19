@@ -18,7 +18,7 @@ public interface BoardService {
 	//조회수 증가
 	public void hitCount(int boardno);
 	
-	public int BoardNum(String userid);
+	public int BoardNum();
 	
 	//글수정
 	public int BoardUpdate(BoardVO vo);

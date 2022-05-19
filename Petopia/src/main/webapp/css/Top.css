@@ -7,9 +7,7 @@
 	box-sizing: border-box;
     list-style-type:none;
 }
-.container{
-	min-height:717px;
-}
+
 
 a:link, a:visited {
 	text-decoration: none;
