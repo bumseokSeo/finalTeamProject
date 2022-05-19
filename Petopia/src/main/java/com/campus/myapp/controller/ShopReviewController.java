@@ -31,7 +31,7 @@ public class ShopReviewController {
 	@PostMapping("writeOk")
 	public int writeOk(@RequestParam("filename") MultipartFile filename, ShopReviewVO vo, HttpSession session) {
 		vo.setUserid((String) session.getAttribute("logId"));
-		String path = session.getServletContext().getRealPath("/upload");
+		String path = session.getServletContext().getRealPath("/upload/review");
 		try {
 			if(!filename.isEmpty()) {
 				filename.transferTo(new File(path+"/"+filename.getOriginalFilename()));
@@ -52,16 +52,23 @@ public class ShopReviewController {
 	
 	//리뷰 수정
 	@PostMapping("editOk")
-	public int updateReview(@RequestParam("filename") MultipartFile filename, ShopReviewVO vo, HttpSession session) {
+	public int updateReview(@RequestParam("filename") MultipartFile filename,ShopReviewVO vo, HttpSession session) {
 		vo.setUserid((String)session.getAttribute("logId"));
-		String path = session.getServletContext().getRealPath("/upload");
-		
+		String path = session.getServletContext().getRealPath("/upload/review");
+
 		try {
+			if(vo.getDeleteFile()!=null && vo.getDeleteFile()!="") {
+				vo.setFilename1(null);
+				File f = new File(path,vo.getDeleteFile());
+				if(f!=null && f.exists()) {
+					f.delete();
+				}
+			}
 			if(!filename.isEmpty()) {
+				String fname =  service.selectFile(vo.getReviewno());
 				filename.transferTo(new File(path+"/"+filename.getOriginalFilename()));
 				vo.setFilename1(filename.getOriginalFilename());
 			}
-			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -71,6 +78,15 @@ public class ShopReviewController {
 	//리뷰 삭제
 	@GetMapping("deleteOk")
 	public int deleteReview(int reviewno, HttpSession session) {
+		String filename =  service.selectFile(reviewno);
+		
+		String path = session.getServletContext().getRealPath("/upload/review");
+		if(filename!=null) {
+			File f = new File(path,filename);
+			if(f!=null && f.exists()) {
+				f.delete();
+			}
+		}
 		return service.deleteReview(reviewno, (String)session.getAttribute("logId"));
 	}
 }

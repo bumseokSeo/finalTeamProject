@@ -5,12 +5,11 @@
 
 <div class="container">
 	<div class="Menu_Bar_AS">
-		<h1 class="Menu_titleS">나눔 게시판</h1>
-		<div class="Menu_img">이미지 들어갈것</div>
+		<h1 class="Menu_titleS">나눔 할래요</h1>
 	</div>
 	<div class="Menu_containerS">
 		<div class="row" id="rowShare"></div>
-	</div>
+	
 		 <div class="paging">
            <b id="prevViewS"> ◀ </b>
            <b id="pViewS"></b>
@@ -19,20 +18,20 @@
         </div>
     
        <div class="Share_btn"><a href="/board/boardWrite?type=share"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
-	<br/><br/><br/>
-	<div class="Share_search">
-		 <form action="/board/notice/noticeSearch" id="searchFrmS">
-			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWordS"/>
-			<input type="hidden" name="type" value="share"/>
-			<input type="submit" value="검색"/>
-		</form>
+		<br/><br/><br/>
+		<div class="Share_search">
+			 <form action="/board/notice/noticeSearch" id="searchFrmS">
+				<select name="searchKey">
+					<option value="" selected="selected">전체</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWordS"/>
+				<input type="hidden" name="type" value="share"/>
+				<input type="submit" value="검색"/>
+			</form>
+		</div>
 	</div>
-	
 </div>
 <br/>
 

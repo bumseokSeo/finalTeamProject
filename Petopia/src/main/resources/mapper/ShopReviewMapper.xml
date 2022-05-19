@@ -8,8 +8,11 @@
 		values(#{reviewno},#{shopid},#{userid},#{shopreview},#{filename1})
 	</insert>
 	<select id="selectReview" resultType="ShopReviewVO">
-		select a.reviewno, a.shopid, a.userid, a.shopreview, date_format(a.writedate,"%m/%d %H:%i") writedate, a.filename1, b.shopid, b.shopname, b.shopaddr, b.shopnumber
-		from shopreview a right outer join shop b on a.shopid = b.shopid
+		select a.reviewno, a.shopid, a.userid, a.shopreview, date_format(a.writedate,"%m/%d %H:%i") writedate, a.filename1,
+				b.shopid, b.shopname, b.shopaddr, b.shopnumber,
+				(select username from member where userid=a.userid) username
+		from shopreview a  
+		right outer join shop b on a.shopid = b.shopid
 		where b.shopid=${param1}
 		order by a.reviewno desc
 	</select>
@@ -18,11 +21,18 @@
 		<if test="filename1!=null and filename1!=''">
 			,filename1=#{filename1}
 		</if>
-		
+		<if test="filename1==null and deleteFile!=null">
+			,filename1=null
+		</if>
 		where reviewno=${reviewno} and userid=#{userid}
 	</update>
 	<delete id="deleteReview">
 		delete from shopreview
 		where reviewno=${param1} and userid=#{param2}
 	</delete>
+	<select id="selectFile" resultType="String">
+		select filename1
+		from shopreview
+		where reviewno=${reviewno}
+	</select>
 </mapper>
