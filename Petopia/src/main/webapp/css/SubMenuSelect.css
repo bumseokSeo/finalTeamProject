@@ -21,7 +21,15 @@
 	transform:translateX(-20px);
 }
 #Board_lnb {
-	width:280px; height:550px;
+	width:280px; height:650px;
+	float:left;
+	position:relative;
+	border: 1px solid rgba(33,33,33,0.8);
+	
+	background: rgba(255, 158, 0, 0.7);
+}
+#Board_lnb2{
+	width:280px; height:370px;
 	float:left;
 	position:relative;
 	border: 1px solid rgba(33,33,33,0.8);
@@ -31,16 +39,66 @@
 
 #Board_sub_M{
 	width:100%;
-	height:170px;
-	padding: 10px 10px 0 20px;
+	height:280px;
+	padding: 10px 30px 0 30px;
 	border: 1px solid transparent;
 	background: #fff;
 }
-#Board_lnb ul {
+#Board_sub_M>p{
+	line-height: 20px;
+	height: 20px;
+}
+#preview{
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+	outline: 1px solid black;
+	margin-bottom: 10px;
+}
+#preview:hover{
+	opacity: 0.2;
+}
+#logName{
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+#logName>b{
+	font-size: 20px;
+}
+.myCnt>span{
+	float: right;
+}
+.box{
+	width: 150px;
+	height: 150px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	border-radius: 50%;
+	position:relative;
+}
+.explain{
+	position:absolute; 
+	opacity:0;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-size: 24px;
+	color: black;
+	font-weight: 700;
+	width: 150px;
+	text-align: center;
+}
+.box:hover .explain{
+	opacity:1;
+}
+
+#Board_lnb ul, #Board_lnb2 ul  {
 	margin-top:30px;
 	
 }
-#Board_lnb ul li span {
+#Board_lnb ul li span, #Board_lnb2 ul li span {
 	width:80%;
 	height:50px;
 	display:inline-block;
@@ -52,12 +110,13 @@
 	font-size: 18px;
 	font-weight: 500;
 }
-#Board_lnb ul li span:hover{
+#Board_lnb ul li span:hover, #Board_lnb2 ul li span:hover{
 	background: #ff9e00;
 	color: black;
 	font-weight: 700;
 	font-size: 20px;
 }
+
 #resultArea {
 	margin-left:80px;
 	/* display:flex;

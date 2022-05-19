@@ -54,5 +54,8 @@ public interface BoardDAO {
 	//글삭제
 	public int boardDelete(int boardno, String userid);
 	
+	public int myWriteCnt(String userid);
+	public int myReviewCnt(String userid);
+	
 }
 

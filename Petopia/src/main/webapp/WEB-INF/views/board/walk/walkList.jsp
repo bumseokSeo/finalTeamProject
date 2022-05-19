@@ -9,11 +9,11 @@
 	</div>
 	<div class="Menu_container">
 		<ul class="List_menu_FW" id="List_menu_FW">
-			<li>게시물 번호</li>
+			<li>번호</li>
 			<li>제목</li>
 			<li>작성자</li>
-			<li>날짜</li>
-			<li>조회수</li>
+			<li>작성일</li>
+			<li>조회</li>
 
 		</ul><!-- 게시물 -->
 		</div>
@@ -83,11 +83,21 @@ $(document).ready(function(){
 			dataType : 'json',
 			data :param,
 			success : function(data){
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
+				var day = new String(('0' + date.getDate()).slice(-2));
+				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlW += "<li>"+data[i].boardno+"</li>";
 					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtmlW += "<li>"+data[i].username+"</li>"
-					addListHtmlW += "<li>"+data[i].writedate+"</li>";
+					addListHtmlW += "<li>"+data[i].username+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtmlW += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+					}else{
+						addListHtmlW += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+					}
+					
 					addListHtmlW += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
@@ -106,11 +116,11 @@ $('#nextViewW').click(function(){
 		var startNum = parseInt($("#pViewW").text());
 		var addListHtmlW = "";
 		var addListHtmlWpo = "";
-					addListHtmlWpo += "<li>게시물 번호</li>";
+					addListHtmlWpo += "<li>번호</li>";
 					addListHtmlWpo += "<li>제목</li>";
 					addListHtmlWpo += "<li>작성자</li>";
-					addListHtmlWpo += "<li>날짜</li>";
-					addListHtmlWpo += "<li>조회수</li>";
+					addListHtmlWpo += "<li>작성일</li>";
+					addListHtmlWpo += "<li>조회</li>";
 		 console.log(startNum); 
 		var url;
 		var param;
@@ -140,11 +150,21 @@ $('#nextViewW').click(function(){
 			dataType : 'json',
 			data :param,
 			success : function(data){
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
+				var day = new String(('0' + date.getDate()).slice(-2));
+				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlW += "<li>"+data[i].boardno+"</li>";
 					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtmlW += "<li>"+data[i].username+"</li>"
-					addListHtmlW += "<li>"+data[i].writedate+"</li>";
+					addListHtmlW += "<li>"+data[i].username+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtmlW += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+					}else{
+						addListHtmlW += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+					}
+					
 					addListHtmlW += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
@@ -168,11 +188,11 @@ $('#prevViewW').click(function(){
 	var startNum = parseInt($("#pViewW").text()); // 시작지점
 	var addListHtmlW = "";
 	var addListHtmlWpo = "";
-				addListHtmlWpo += "<li>게시물 번호</li>";
+				addListHtmlWpo += "<li>번호</li>";
 				addListHtmlWpo += "<li>제목</li>";
 				addListHtmlWpo += "<li>작성자</li>";
-				addListHtmlWpo += "<li>날짜</li>";
-				addListHtmlWpo += "<li>조회수</li>";
+				addListHtmlWpo += "<li>작성일</li>";
+				addListHtmlWpo += "<li>조회</li>";
 	 console.log(startNum); 
 	var url;
 	var param;
@@ -202,11 +222,21 @@ $('#prevViewW').click(function(){
 		dataType : 'json',
 		data :param,
 		success : function(data){
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
+			var day = new String(('0' + date.getDate()).slice(-2));
+			
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlW += "<li>"+data[i].boardno+"</li>";
 				addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-				addListHtmlW += "<li>"+data[i].username+"</li>"
-				addListHtmlW += "<li>"+data[i].writedate+"</li>";
+				addListHtmlW += "<li>"+data[i].username+"</li>";
+				if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+					addListHtmlW += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+				}else{
+					addListHtmlW += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+				}
+				
 				addListHtmlW += "<li>"+data[i].hit+"</li>";
 			}
 			$("#nextViewW").empty();

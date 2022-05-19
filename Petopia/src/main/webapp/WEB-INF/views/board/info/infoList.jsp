@@ -92,10 +92,10 @@ $(document).ready(function(){
 					addListHtmlI += "<li>"+data[i].boardno+"</li>";
 					addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
 					addListHtmlI += "<li>"+data[i].username+"</li>"
-					if(year+"-"+month+"-"+day == data[i].writedate){
-						addListHtmlI += "<li>"+data[i].writetime+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtmlI += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 					}else{
-						addListHtmlI += "<li>"+data[i].writedate+"</li>";
+						addListHtmlI += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
 					}
 					
 					addListHtmlI += "<li>"+data[i].hit+"</li>";
@@ -159,10 +159,10 @@ $('#nextViewI').click(function(){
 					addListHtmlI += "<li>"+data[i].boardno+"</li>";
 					addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
 					addListHtmlI += "<li>"+data[i].username+"</li>"
-					if(year+"-"+month+"-"+day == data[i].writedate){
-						addListHtmlI += "<li>"+data[i].writetime+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtmlI += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 					}else{
-						addListHtmlI += "<li>"+data[i].writedate+"</li>";
+						addListHtmlI += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
 					}
 					
 					addListHtmlI += "<li>"+data[i].hit+"</li>";
@@ -231,10 +231,10 @@ $('#prevViewI').click(function(){
 				addListHtmlI += "<li>"+data[i].boardno+"</li>";
 				addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
 				addListHtmlI += "<li>"+data[i].username+"</li>"
-				if(year+"-"+month+"-"+day == data[i].writedate){
-					addListHtmlI += "<li>"+data[i].writetime+"</li>";
+				if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+					addListHtmlI += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 				}else{
-					addListHtmlI += "<li>"+data[i].writedate+"</li>";
+					addListHtmlI += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
 				}
 				
 				addListHtmlI += "<li>"+data[i].hit+"</li>";

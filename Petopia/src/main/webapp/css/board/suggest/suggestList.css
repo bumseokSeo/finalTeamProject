@@ -40,8 +40,7 @@
 	line-height:40px;
 	float:left;
 	text-align: center;
-	border:1px dotted blue; /*임시경계선*/
-	border-bottom:1px solid black;
+	border-bottom:1px solid #ddd;
 	background-color: white;
 }
 
@@ -50,6 +49,8 @@
 	white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: left;
+    padding-left: 30px;
 }
 .List_menu_FSU>li:nth-child(5n+3){
 	width:10%;
@@ -59,6 +60,14 @@
 }
 .List_menu_FSU>li:nth-child(5n+5){
 	width:10%;
+}
+.List_menu_FSU>li:nth-child(n+1):nth-child(-n+5) {
+	height:50px;
+	line-height: 50px; 
+	border-bottom: 3px solid #ddd;
+	font-weight: bold;
+	text-align: center;
+	padding: 0;	
 }
 /*게시글목록 끝*/
 
