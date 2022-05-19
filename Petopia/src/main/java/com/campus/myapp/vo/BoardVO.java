@@ -17,6 +17,7 @@ public class BoardVO {
 	
 	private int myWriteCnt;
 	private int myReviewCnt;
+	private String profileimage;
 	
 	public int getBoardno() {
 		return boardno;
@@ -102,6 +103,13 @@ public class BoardVO {
 	public void setMyReviewCnt(int myReviewCnt) {
 		this.myReviewCnt = myReviewCnt;
 	}
+	public String getProfileimage() {
+		return profileimage;
+	}
+	public void setProfileimage(String profileimage) {
+		this.profileimage = profileimage;
+	}
+	
 	
 	
 }

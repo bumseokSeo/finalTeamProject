@@ -18,11 +18,10 @@ $(function(){
 			data:params,
 			success:function(result){
 				var $result = $(result);
-				console.log(result);
-				console.log(${vo.boardno});
+				
 				var tag = "<ul>";
 				$result.each(function(idx, vo){		//vo에서 프로필사진 가져올 자리
-					tag +="<li><div class='reply_area'><div class='reply_u_info'><div class='reply_user'>"+vo.userid+"</div><div class='reply_proima'>프로필 이미지</div>";
+					tag +="<li><div class='reply_area'><div class='reply_u_info'><div class='reply_user'>"+vo.username+"</div>";
 					tag +="<div class='reply_date'>"+vo.writedate+"</div>";
 
 					if(vo.userid == '${logId}'){
@@ -49,7 +48,7 @@ $(function(){
     // 댓글등록------
 	$("#replyFrm").submit(function(){
 		event.preventDefault();
-		if($("#content").val()==""){
+		if($("#View_conment").val()==""){
 			alert("댓글을 입력후 등록하세요.")
 			return;
 		}else{	
@@ -84,7 +83,7 @@ $(function(){
             data : params2,
             type : 'POST',
             success : function(result){
-                console.log(result);
+                
                 replyListAll();
             }, error : function(e){
                 console.log('수정에러');
@@ -112,19 +111,26 @@ $(function(){
 </script>	
 </head>
 <body>
-<div id="notice-wrapper"><!--  전체 틀  -->
+<div class="container"><!--  전체 틀  -->
 <h1>공지사항</h1>
 <hr/>
 <div>
 </div>
 	<div class="View_topmenu">
-  	  	<div id="View_title">${vo.title}</div>
+  	  	<h2>${vo.title}</h2>
   	  	<div id="View_subtitle">
-	  	  	<div id="View_author">${vo.userid}</div>
-	  	  	<div id="View_hit">${vo.hit}</div>
-	  	  	<div id="View_date">${vo.writedate}</div>
+  	  		<c:if test="${vo.profileimage != null && vo.profileimage != '' }">
+				<img src="${url}/img/memberimg/${vo.profileimage}" class="View_topmenu_profile" alt="보낸사람 프로필">
+			</c:if>
+			<c:if test="${vo.profileimage == null || vo.profileimage == '' }">
+				<img src="${url}/img/sampleProfile.jpg" class="View_topmenu_profile" alt="보낸사람 프로필">
+			</c:if>
+	  	  	
+	  	  	<div class="View_author">작성자:${vo.username}</div>
+	  	  	<p class='text-end'><small class='text-muted'>${vo.writedate} 조회수:${vo.hit}</small></p>
+	  	  	
   	  	</div>
-  	  </div>
+  	 </div>
   	  	<div class="View_content">${vo.content}</div>
   	  	<div class="View_bottommenu">
   	  		<p style="float: right;">
@@ -143,7 +149,7 @@ $(function(){
 					<div id="reply_area">
 						<form id="replyFrm">
 							<input type="hidden" name="boardno" value="${vo.boardno}"/>
-								<div id="reply_info">댓글 작성  | 작성자 : ${user}</div>
+								<div id="reply_info">댓글 작성  | 작성자 : ${vo.username}</div>
 								<textarea name="content" id='View_conment'
 									style="width: 100%; height: 120px; font-size:18px; border:none; border-radius: 15px;" placeholder=" 댓글 입력" ></textarea>
 								<input type="submit" value="등록" id="replybtn" />						

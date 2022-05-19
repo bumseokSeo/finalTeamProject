@@ -1,25 +1,34 @@
 @charset "UTF-8";
-#notice-wrapper{
-    width:1180px;
-	margin:0 auto;
+.container{
+	overflow: hidden;
 }
-
 .View_topmenu{
 	width:100%;
-	height:100px;
-	border:2px dotted red;
+	padding-left:10px;
+	border-bottom: 1px solid gray;
 }
-
+/*
 #View_title{
 	height:60px;
 	line-height: 60px;
-}
+}*/
 #View_subtitle{
 	position: relative;
 	height:40px;
 	line-height: 40px;
 }
-
+.View_topmenu_profile{
+	width:50px;
+	height:50px;
+	border: 0px;
+	border-radius: 50%;
+	
+}
+.View_author{
+	position: absolute;
+	left:0px;
+}
+/*
 #View_author{
 	position: absolute;
 	left:10px;
@@ -33,7 +42,7 @@
 #View_date{
 	position: absolute;
 	right:50px;
-}
+}*/
 #View_title{
 	border:1px solid green;
 }

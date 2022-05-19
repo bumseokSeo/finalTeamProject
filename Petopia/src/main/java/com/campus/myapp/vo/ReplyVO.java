@@ -8,6 +8,7 @@ public class ReplyVO {
 		private int boardno;
 		
 		private String boardtype;
+		private String username;
 		
 		public int getReplyno() {
 			return replyno;
@@ -45,6 +46,13 @@ public class ReplyVO {
 		public void setBoardtype(String boardtype) {
 			this.boardtype = boardtype;
 		}
+		public String getUsername() {
+			return username;
+		}
+		public void setUsername(String username) {
+			this.username = username;
+		}
+		
 		
 
 }

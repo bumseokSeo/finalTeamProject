@@ -14,8 +14,7 @@ $("#searchFrm").submit(function() {
 window.onload=function(){
 		var startNum = 0; 
 		var addListHtml = "";
-		console.log("공지"); 
-		 console.log(startNum); 
+		
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;

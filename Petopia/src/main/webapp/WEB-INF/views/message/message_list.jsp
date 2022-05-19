@@ -194,8 +194,8 @@
 				
 			}
 		})
-		//15초마다 쪽지 리스트 초기화
-		timer=setInterval(MessageList,15000);
+		//1분마다 쪽지 리스트 초기화
+		timer=setInterval(MessageList,60000);
 	};
 	
 	// 메세지 리스트를 다시 가져온다.
