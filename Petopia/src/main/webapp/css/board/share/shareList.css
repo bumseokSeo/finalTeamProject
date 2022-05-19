@@ -17,18 +17,18 @@
 }
 
 .Menu_titleS{
-	width:300px;
+	width:30%;
 }
 
 .Menu_img{
-	width:500px;
+	width:69%;
 }
 
 .Menu_containerS{
 	
-	height:800px;
+	
 	border:2px solid red;/* 임시 경계선 */
-	padding-left:15px;
+	
 	padding-top:20px;
 }
 

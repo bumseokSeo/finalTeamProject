@@ -70,7 +70,7 @@ $(document).ready(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6'><div class='card'>";
+					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12'><div class='card'>";
 					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 					addListHtmlS += "<h5 class='card-title'>"+data[i].title+"</h5>";
 					addListHtmlS += "<div class='card-body'><p class='card-text'>"+data[i].writedate+"</p></div>";
@@ -121,7 +121,7 @@ $('#nextViewS').click(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlS += "<div class='col col-xl-3 col-lg-6'><div class='card'>";
+					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12'><div class='card'>";
 					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 					addListHtmlS += "<h5 class='card-title'>"+data[i].title+"</h5>";
 					addListHtmlS += "<div class='card-body'><p class='card-text'>"+data[i].writedate+"</p></div>";
@@ -131,8 +131,8 @@ $('#nextViewS').click(function(){
 					$("#nextViewS").empty();
 				} 
 				$("#prevViewS").empty();
-				$(".Menu_containerS").empty();
-				$(".Menu_containerS").append(addListHtmlS);
+				$(".row").empty();
+				$(".row").append(addListHtmlS);
 				$("#pViewS").empty();
 				$("#pViewS").append(startNum+1);
 				$("#prevViewS").append("◀");
@@ -175,7 +175,7 @@ $('#prevViewS').click(function(){
 		data :param,
 		success : function(data){
 			for (var i = 0; i < data.length; i++) {
-				addListHtmlS += "<div class='col col-xl-3 col-lg-6'><div class='card'>";
+				addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12'><div class='card'>";
 				addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 				addListHtmlS += "<h5 class='card-title'>"+data[i].title+"</h5>";
 				addListHtmlS += "<div class='card-body'><p class='card-text'>"+data[i].writedate+"</p></div>";
@@ -183,8 +183,8 @@ $('#prevViewS').click(function(){
 			}
 			$("#nextViewS").empty();
 			$("#nextViewS").append("▶");
-			$(".Menu_containerS").empty();
-			$(".Menu_containerS").append(addListHtmlS);
+			$(".row").empty();
+			$(".row").append(addListHtmlS);
 			$("#pViewS").empty();
 			$("#pViewS").append(startNum-1);
 			
