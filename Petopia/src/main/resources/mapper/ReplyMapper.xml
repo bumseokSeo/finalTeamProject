@@ -9,7 +9,7 @@
 		values(#{boardno}, #{userid}, #{content})
 	</insert>
 	<select id="replyList" resultType="com.campus.myapp.vo.ReplyVO">
-		SELECT A.replyno, A.userid, A.content, A.writedate, B.profileimage, B.userid, B.userlevel 
+		SELECT A.replyno, A.userid, A.content, date_format(A.writedate, '%Y-%m-%d %H:%i') writedate , B.profileimage, B.userid, B.userlevel, B.username 
 		FROM   reply A join member B ON A.userid = B.userid 
 		WHERE  A.boardno=${param1}
 		ORDER BY A.replyno DESC;

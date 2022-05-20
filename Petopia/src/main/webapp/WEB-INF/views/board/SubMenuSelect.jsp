@@ -30,7 +30,6 @@ $(document).ready(function(){
 	}
 		
 	$("#MenuNotice").click(function(){
-		//window.location.href = "/board/SubMenuSelect?type=notice";
 		$("#resultArea>div").css('display','none');
 		$("#UserNoticeShow").css('display','block');
 	  });
@@ -51,6 +50,31 @@ $(document).ready(function(){
 		$("#UserBoastShow").css('display','block');
 	 });
 	$("#MenuSuggest").click(function(){ 
+		$("#resultArea>div").css('display','none');
+		$("#UserSuggestShow").css('display','block');
+	 });
+	
+	$("#MenuNotice2").click(function(){
+		$("#resultArea>div").css('display','none');
+		$("#UserNoticeShow").css('display','block');
+	  });
+	$("#MenuInfo2").click(function(){ 
+		$("#resultArea>div").css('display','none');
+		$("#UserInfoShow").css('display','block');
+	   });
+	$("#MenuShare2").click(function(){ 
+		$("#resultArea>div").css('display','none');
+		$("#UserShareShow").css('display','block');
+	 });
+	$("#MenuWalk2").click(function(){ 
+		$("#resultArea>div").css('display','none');
+		$("#UserWalkShow").css('display','block');
+	 });
+	$("#MenuBoast2").click(function(){ 
+		$("#resultArea>div").css('display','none');
+		$("#UserBoastShow").css('display','block');
+	 });
+	$("#MenuSuggest2").click(function(){ 
 		$("#resultArea>div").css('display','none');
 		$("#UserSuggestShow").css('display','block');
 	 });
@@ -100,6 +124,14 @@ $(document).ready(function(){
 				</ul>
 		</div>
 		<div id="resultArea">
+			<ul id="MenuSpanTop">
+				<li><span id="MenuNotice2">공지사항</span></li>
+				<li><span id="MenuInfo2">정보공유</span></li>
+				<li><span id="MenuShare2">나눔</span></li>
+				<li><span id="MenuWalk2">산책</span></li>
+				<li><span id="MenuBoast2">자랑</span></li>
+				<li><span id="MenuSuggest2">건의</span></li>
+			</ul><br/>
 			<div id="UserNoticeShow"><%@ include file="/WEB-INF/views/board/notice/noticeList.jsp" %></div>
 			<div id="UserInfoShow"><%@ include file="/WEB-INF/views/board/info/infoList.jsp" %></div>
 			<div id="UserShareShow"><%@ include file="/WEB-INF/views/board/share/shareList.jsp" %></div>

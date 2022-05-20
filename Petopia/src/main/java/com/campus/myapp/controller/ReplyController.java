@@ -22,7 +22,6 @@ public class ReplyController {
 	//댓글 등록
 	@RequestMapping(value="/reply/replyWrite", method=RequestMethod.POST)
 	public int replyWrite(ReplyVO vo, HttpSession session) {
-		System.out.println("댓글등록 시작");
 		vo.setUserid((String)session.getAttribute("logId"));
 		return service.replyWrite(vo);
 	}
@@ -31,7 +30,6 @@ public class ReplyController {
 	@RequestMapping("/reply/replyList")
 	public List<ReplyVO> replyList(int boardno){
 		List<ReplyVO> lst = service.replyList(boardno);
-		System.out.println(lst.size());// 댓글 사이즈
 		return lst;
 	}
 	

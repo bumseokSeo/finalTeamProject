@@ -18,16 +18,16 @@ $(function(){
 			data:params,
 			success:function(result){
 				var $result = $(result);
-				console.log(result);
-				console.log(${vo.boardno});
+				
 				var tag = "<ul>";
 				$result.each(function(idx, vo){		//vo에서 프로필사진 가져올 자리
-					tag +="<li><div class='reply_area'><div class='reply_u_info'><div class='reply_user'>"+vo.userid+"</div><div class='reply_proima'>프로필 이미지</div>";
+					tag +="<li><div class='reply_area'><div class='reply_u_info'><div class='reply_user'>"+vo.username+"</div>";
 					tag +="<div class='reply_date'>"+vo.writedate+"</div>";
 
 					if(vo.userid == '${logId}'){
-					tag +="<input type='button' value='수정' class='reply_modi'/><input type='button' value='삭제' title='"+vo.replyno+"' class='reply_del'/></div>";
+					tag +="<input type='button' value='수정' class='reply_modi'/><input type='button' value='삭제' title='"+vo.replyno+"' class='reply_del'/>";
 					}
+					tag+="</div>";
 					if(vo.userid == '${logId}'){   // user_id
 						tag += "<div class='content_modify' style='display:none'><form method='post'>";
 						tag += "<input type='hidden' name='replyno' value='"+vo.replyno+"'/>";
@@ -49,7 +49,7 @@ $(function(){
     // 댓글등록------
 	$("#replyFrm").submit(function(){
 		event.preventDefault();
-		if($("#content").val()==""){
+		if($("#View_conment").val()==""){
 			alert("댓글을 입력후 등록하세요.")
 			return;
 		}else{	
@@ -84,7 +84,7 @@ $(function(){
             data : params2,
             type : 'POST',
             success : function(result){
-                console.log(result);
+                
                 replyListAll();
             }, error : function(e){
                 console.log('수정에러');
@@ -112,19 +112,35 @@ $(function(){
 </script>	
 </head>
 <body>
-<div id="notice-wrapper"><!--  전체 틀  -->
-<h1>공지사항</h1>
-<hr/>
+<div class="container"><!--  전체 틀  -->
 <div>
 </div>
 	<div class="View_topmenu">
-  	  	<div id="View_title">${vo.title}</div>
+  	  	<h2>${vo.title}</h2>
   	  	<div id="View_subtitle">
-	  	  	<div id="View_author">${vo.userid}</div>
-	  	  	<div id="View_hit">${vo.hit}</div>
-	  	  	<div id="View_date">${vo.writedate}</div>
+  	  		<c:if test="${vo.profileimage != null && vo.profileimage != '' }">
+				<img src="${url}/img/memberimg/${vo.profileimage}" class="View_topmenu_profile" alt="보낸사람 프로필">
+			</c:if>
+			<c:if test="${vo.profileimage == null || vo.profileimage == '' }">
+				<img src="${url}/img/sampleProfile.jpg" class="View_topmenu_profile" alt="보낸사람 프로필">
+			</c:if>
+	  	  	
+	  	  	<div class="View_author"><h4>${vo.username}</h4></div>
+	  	  	<p class='text-end'><small class='text-muted'>${vo.writedate} 조회수:${vo.hit}</small></p>
+	  	  	
+	  	  	<c:if test="${vo.userlevel == 1 }">
+				<p class='text-start'><small class='text-muted'>관리자</small></p>
+			</c:if>
+			<c:if test="${vo.userlevel == 2 }">
+				<p class='text-start'><small class='text-muted'>일반 유저</small></p>
+			</c:if>
+			<c:if test="${vo.userlevel == 3 }">
+				<p class='text-start'><small class='text-muted'>제재 대상</small></p>
+			</c:if>
+	  	  	
+	  	  	
   	  	</div>
-  	  </div>
+  	 </div>
   	  	<div class="View_content">${vo.content}</div>
   	  	<div class="View_bottommenu">
   	  		<p style="float: right;">
@@ -132,6 +148,7 @@ $(function(){
 				<a href="javascript:delCheck()" id="Del_AA">삭제</a>
 			</p>
   	  	</div>
+  	  	
   	  	<hr/>
   	  <div class="reply">
         	<br/>
@@ -143,8 +160,8 @@ $(function(){
 					<div id="reply_area">
 						<form id="replyFrm">
 							<input type="hidden" name="boardno" value="${vo.boardno}"/>
-								<div id="reply_info">댓글 작성  | 작성자 : ${user}</div>
-								<textarea name="content" id='View_conment'
+								<div id="reply_info">댓글 작성  | 작성자 : ${logName}</div>
+								<textarea name="content" id='View_conment' maxlength="99"
 									style="width: 100%; height: 120px; font-size:18px; border:none; border-radius: 15px;" placeholder=" 댓글 입력" ></textarea>
 								<input type="submit" value="등록" id="replybtn" />						
 						</form>
