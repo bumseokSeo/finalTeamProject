@@ -1,7 +1,6 @@
 package com.campus.myapp.controller;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,7 +29,7 @@ public class ShopReviewController {
 	@PostMapping("writeOk")
 	public int writeOk(@RequestParam("filename") MultipartFile filename, ShopReviewVO vo, HttpSession session) {
 		vo.setUserid((String) session.getAttribute("logId"));
-		String path = session.getServletContext().getRealPath("/upload/review");
+		String path = session.getServletContext().getRealPath("/upload");
 		try {
 			if(!filename.isEmpty()) {
 				filename.transferTo(new File(path+"/"+filename.getOriginalFilename()));
@@ -54,7 +52,7 @@ public class ShopReviewController {
 	@PostMapping("editOk")
 	public int updateReview(@RequestParam("filename") MultipartFile filename,ShopReviewVO vo, HttpSession session) {
 		vo.setUserid((String)session.getAttribute("logId"));
-		String path = session.getServletContext().getRealPath("/upload/review");
+		String path = session.getServletContext().getRealPath("/upload");
 
 		try {
 			if(vo.getDeleteFile()!=null && vo.getDeleteFile()!="") {
@@ -80,7 +78,7 @@ public class ShopReviewController {
 	public int deleteReview(int reviewno, HttpSession session) {
 		String filename =  service.selectFile(reviewno);
 		
-		String path = session.getServletContext().getRealPath("/upload/review");
+		String path = session.getServletContext().getRealPath("/upload");
 		if(filename!=null) {
 			File f = new File(path,filename);
 			if(f!=null && f.exists()) {
