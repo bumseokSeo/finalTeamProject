@@ -84,6 +84,9 @@ $(function(){
 		if("${logName}"==""){
 			alert("로그인후 이용해주세요.");
 			return false;
+		}else if("${logName}"==$("#username").val()){
+			alert("본인에게 쪽지를 보낼 수 없습니다.");
+			return false;
 		}else{
 			//메세지 보내기 절차
 			var url= "${url}/message/messagesend";
@@ -126,7 +129,12 @@ $(function(){
 		if("${logName}"==""){
 			alert("로그인후 이용해주세요.");
 			return false;
-		}else{
+		}else if("${logName}"==$("#username").val()){
+			alert("본인에게 쪽지를 보낼 수 없습니다.");
+			return false;
+		}
+		
+		else{
 			//메세지 보내기 절차
 			var url= "${url}/message/messagesend";
 			var params = "username="+username.value+"&content="+messagecontent.value;
