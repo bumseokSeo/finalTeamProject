@@ -18,12 +18,12 @@ spring:
       enabled: true
 
 
-  #servlet:
-    #multipart:
-      #file-size-threshold: 10MB
+  servlet:
+    multipart:
+      file-size-threshold: 10MB
       #location: /Users/yunri/Desktop/finalTeamProject/Petopia/src/main/webapp/upload/review
-      #max-file-size: 100MB
-      #max-request-size: 100MB
+      max-file-size: 100MB
+      max-request-size: 100MB
         
 mybatis:
   type-aliases-package: com.campus.myapp.vo #mybatis에서 패키지 생략 할 수 있도록 설정
