@@ -20,11 +20,11 @@
        <div class="Share_btn"><a href="/board/boardWrite?type=share"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 		<br/><br/><br/>
 		<div class="Share_search">
-			 <form action="/board/notice/noticeSearch" id="searchFrmS">
+			 <form action="/board/share/shareSearch?type=share" id="searchFrmS">
 				<select name="searchKey">
-					<option value="" selected="selected">전체</option>
-					<option value="title">제목</option>
+					<option value="title" selected="selected">제목</option>
 					<option value="content">내용</option>
+					<option value="username">작성자</option>
 				</select>
 				<input type="text" name="searchWord" id="searchWordS"/>
 				<input type="hidden" name="type" value="share"/>
@@ -47,12 +47,12 @@ $(document).ready(function(){
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 		var pn2 = pn.substring(pn.lastIndexOf('Search'));
-		if(pn='SubMenuSelect'){
+		if(pn=='SubMenuSelect'){
 			url = '/board/share/shareLists';
 			param = {
 				"startNum" : startNum
 			};
-		}else if(pn='shareSearch'){
+		}else if(pn=='shareSearch'){
 			url = '/board/share/searchLists';
 			param = {
 				"startNum" : startNum ,
@@ -79,7 +79,7 @@ $(document).ready(function(){
 					addListHtmlS += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlS += "</div></div>";
 				}
-				if(data.length<13){
+				if(data.length<12){
 					$("#nextViewS").empty();
 				} 
 				if(startNum=1){
@@ -109,7 +109,7 @@ $('#nextViewS').click(function(){
 			param = {
 				"startNum" : startNum*12+1
 			};
-		}else if(pn='shareSearch'){
+		}else if(pn=='shareSearch'){
 			url = '/board/share/shareLists';
 			param = {
 				"startNum" : startNum ,
@@ -136,7 +136,7 @@ $('#nextViewS').click(function(){
 					addListHtmlS += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlS += "</div></div>";
 				}
-				if(data.length<13){
+				if(data.length<12){
 					$("#nextViewS").empty();
 				} 
 				$("#prevViewS").empty();
@@ -163,13 +163,13 @@ $('#prevViewS').click(function(){
 	var pathname = window.location.pathname;
 	var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 	var pn2 = pn.substring(pn.lastIndexOf('Search'));
-	if(pn='SubMenuSelect'){
+	if(pn=='SubMenuSelect'){
 		url = '/board/share/shareLists';
 		console.log("이전페이지")
 		param = {
 			"startNum" : (startNum-1)*12-12
 		};
-	}else if(pn='shareSearch'){
+	}else if(pn=='shareSearch'){
 		url = '/board/share/searchLists';
 		param = {
 			"startNum" : startNum ,

@@ -6,7 +6,6 @@
 <div class="container">
 	<div class="Menu_Bar_A">
 		<h1 class="Menu_title">공지사항</h1>
-		<div class="Menu_img">이미지 들어갈것</div>
 	</div>
 	<div class="Menu_container">
 		<ul class="List_menu_F" id="List_menu_F">
@@ -28,7 +27,6 @@
 	<div class="Share_search">
 		 <form action="/board/notice/noticeSearch?type=notice" id="searchFrm">
 			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
 				<option value="title">제목</option>
 				<option value="content">내용</option>
 			</select>

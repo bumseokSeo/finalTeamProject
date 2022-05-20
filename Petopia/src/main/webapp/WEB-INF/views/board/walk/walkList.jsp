@@ -26,11 +26,11 @@
        <div class="info_btn"><a href="/board/boardWrite?type=walk"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 	<br/><br/><br/>
 	<div class="info_search">
-		 <form action="/board/notice/noticeSearch" id="searchFrmW">
+		 <form action="/board/walk/walkSearch?type=walk" id="searchFrmW">
 			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
-				<option value="title">제목</option>
+				<option value="title" selected="selected">제목</option>
 				<option value="content">내용</option>
+				<option value="username">작성자</option>
 			</select>
 			<input type="text" name="searchWord" id="searchWordW"/>
 			<input type="hidden" name="type" value="walk"/>

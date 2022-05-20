@@ -46,12 +46,8 @@ $(document).ready(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-<<<<<<< HEAD
-		if(pn='adoptList'){
-=======
 		console.log(pn);
 		if(pn=='adoptList'){
->>>>>>> refs/heads/CHK
 			url = '/board/adopt/adoptListMethod';
 			param = {
 				"startNum" : startNum
@@ -63,10 +59,6 @@ $(document).ready(function(){
 				"searchKey" : key,
 				"searchWord" : word
 			};
-<<<<<<< HEAD
-			
-=======
->>>>>>> refs/heads/CHK
 		}
 		$.ajax({
 			url : url,
@@ -75,25 +67,12 @@ $(document).ready(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-<<<<<<< HEAD
-					addListHtmlD += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
-					addListHtmlD += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-					addListHtmlD += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
-					addListHtmlD += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
-					addListHtmlD += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
-					addListHtmlD += "</div></div>";
-			    
-=======
 					addListHtmlD += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
 					addListHtmlD += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
 					addListHtmlD += "<label class='adopt_text'>"+data[i].username+"</label><label class='adopt_text'>"+data[i].writedate+"</label></div></div></div>";
->>>>>>> refs/heads/CHK
+
 				}
-<<<<<<< HEAD
-				if(data.length<12){
-=======
 				if(data.length<9){
->>>>>>> refs/heads/CHK
 					$("#nextViewD").empty();
 				} 
 				if(startNum=1){
