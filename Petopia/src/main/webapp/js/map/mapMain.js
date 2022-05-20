@@ -144,7 +144,6 @@ function displayPlaces(places) {
             kakao.maps.event.addListener(marker, 'mouseover', function() {
                 displayInfowindow(marker, title);
             });
-
             kakao.maps.event.addListener(marker, 'click', function() {
                 infowindow.close();
             });
@@ -332,7 +331,7 @@ function sendFile() {
 		contentType: false,
 		success: function(result) {
 			alert("리뷰가 등록되었습니다.");
-			$("#shopreview").val("");
+			$("#shopreview").val("");	
 			$("#filename").val("");
 			selectReview(data.get('shopid'));
 		}
