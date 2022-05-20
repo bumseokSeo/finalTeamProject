@@ -34,4 +34,9 @@ public class ShopReviewServiceImpl implements ShopReviewService{
 		return dao.deleteReview(reviewno, userid);
 	}
 
+	@Override
+	public String selectFile(int reviewno) {
+		return dao.selectFile(reviewno);
+	}
+
 }

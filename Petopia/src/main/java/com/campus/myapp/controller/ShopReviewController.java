@@ -1,7 +1,6 @@
 package com.campus.myapp.controller;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,16 +50,23 @@ public class ShopReviewController {
 	
 	//리뷰 수정
 	@PostMapping("editOk")
-	public int updateReview(@RequestParam("filename") MultipartFile filename, ShopReviewVO vo, HttpSession session) {
+	public int updateReview(@RequestParam("filename") MultipartFile filename,ShopReviewVO vo, HttpSession session) {
 		vo.setUserid((String)session.getAttribute("logId"));
 		String path = session.getServletContext().getRealPath("/upload");
-		
+
 		try {
+			if(vo.getDeleteFile()!=null && vo.getDeleteFile()!="") {
+				vo.setFilename1(null);
+				File f = new File(path,vo.getDeleteFile());
+				if(f!=null && f.exists()) {
+					f.delete();
+				}
+			}
 			if(!filename.isEmpty()) {
+				String fname =  service.selectFile(vo.getReviewno());
 				filename.transferTo(new File(path+"/"+filename.getOriginalFilename()));
 				vo.setFilename1(filename.getOriginalFilename());
 			}
-			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -71,6 +76,15 @@ public class ShopReviewController {
 	//리뷰 삭제
 	@GetMapping("deleteOk")
 	public int deleteReview(int reviewno, HttpSession session) {
+		String filename =  service.selectFile(reviewno);
+		
+		String path = session.getServletContext().getRealPath("/upload");
+		if(filename!=null) {
+			File f = new File(path,filename);
+			if(f!=null && f.exists()) {
+				f.delete();
+			}
+		}
 		return service.deleteReview(reviewno, (String)session.getAttribute("logId"));
 	}
 }

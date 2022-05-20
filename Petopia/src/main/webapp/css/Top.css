@@ -8,7 +8,11 @@
     list-style-type:none;
 }
 
-
+.container{
+	height: auto;
+	min-height: 100vh;
+	overflow:hidden;
+}
 a:link, a:visited {
 	text-decoration: none;
 	color: black;
@@ -17,7 +21,6 @@ a:link, a:visited {
 	text-decoration:underline;
 	color: black;
 }
-
 
 /* Top */
 #Top_Logo{
@@ -146,6 +149,7 @@ a:link, a:visited {
 	border:2px solid rgba(189,189,189,0.5);
 	background-color: rgba(132,144,22,0.5);
 	position: relative;
+	margin-top: 50px;
 }
 .bottomlogo{
 	width:20%;

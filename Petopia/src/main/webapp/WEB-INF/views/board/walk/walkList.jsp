@@ -5,18 +5,17 @@
 <div class="container">
 	<div class="Menu_Bar_AW">
 		<h1 class="Menu_titleW">산책 할래요</h1>
-		<div class="Menu_img">이미지 들어갈것</div>
 	</div>
 	<div class="Menu_container">
 		<ul class="List_menu_FW" id="List_menu_FW">
-			<li>게시물 번호</li>
+			<li>번호</li>
 			<li>제목</li>
 			<li>작성자</li>
-			<li>날짜</li>
-			<li>조회수</li>
+			<li>작성일</li>
+			<li>조회</li>
 
 		</ul><!-- 게시물 -->
-		</div>
+		
 		 <div class="paging">
            <b id="prevViewW"> ◀ </b>
            <b id="pViewW"></b>
@@ -25,20 +24,20 @@
         </div>
     
        <div class="info_btn"><a href="/board/boardWrite?type=walk"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
-	<br/><br/><br/>
-	<div class="info_search">
-		 <form action="/board/walk/walkSearch" id="searchFrmW">
-			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWordW"/>
-			<input type="hidden" name="type" value="walk"/>
-			<input type="submit" value="검색"/>
-		</form>
+		<br/><br/><br/>
+		<div class="info_search">
+			 <form action="/board/walk/walkSearch" id="searchFrmW">
+				<select name="searchKey">
+					<option value="">전체</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWordW"/>
+				<input type="hidden" name="type" value="walk"/>
+				<input type="submit" value="검색"/>
+			</form>
+		</div>
 	</div>
-	
 </div>
 <br/>
 
@@ -63,7 +62,7 @@ $(document).ready(function(){
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 		console.log(pn);
-		if(pn='SubMenuSelect'&& $("#UserwalkShow").css('display')=='block'){
+		if(pn='SubMenuSelect'&& $("#UserWalkShow").css('display')=='block'){
 			url = '/board/walk/walkLists';
 			param = {
 				"startNum" : startNum 
@@ -83,11 +82,24 @@ $(document).ready(function(){
 			dataType : 'json',
 			data :param,
 			success : function(data){
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
+				var day = new String(('0' + date.getDate()).slice(-2));
+				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlW += "<li>"+data[i].boardno+"</li>";
-					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtmlW += "<li>"+data[i].username+"</li>"
-					addListHtmlW += "<li>"+data[i].writedate+"</li>";
+					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					if(data[i].reviewcnt != 0){
+						addListHtmlW += " [" + data[i].reviewcnt+"]";
+					}
+					addListHtmlW += "</a></li><li>"+data[i].username+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtmlW += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+					}else{
+						addListHtmlW += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+					}
+					
 					addListHtmlW += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
@@ -106,11 +118,11 @@ $('#nextViewW').click(function(){
 		var startNum = parseInt($("#pViewW").text());
 		var addListHtmlW = "";
 		var addListHtmlWpo = "";
-					addListHtmlWpo += "<li>게시물 번호</li>";
+					addListHtmlWpo += "<li>번호</li>";
 					addListHtmlWpo += "<li>제목</li>";
 					addListHtmlWpo += "<li>작성자</li>";
-					addListHtmlWpo += "<li>날짜</li>";
-					addListHtmlWpo += "<li>조회수</li>";
+					addListHtmlWpo += "<li>작성일</li>";
+					addListHtmlWpo += "<li>조회</li>";
 		 console.log(startNum); 
 		var url;
 		var param;
@@ -140,11 +152,24 @@ $('#nextViewW').click(function(){
 			dataType : 'json',
 			data :param,
 			success : function(data){
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
+				var day = new String(('0' + date.getDate()).slice(-2));
+				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlW += "<li>"+data[i].boardno+"</li>";
-					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtmlW += "<li>"+data[i].username+"</li>"
-					addListHtmlW += "<li>"+data[i].writedate+"</li>";
+					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					if(data[i].reviewcnt != 0){
+						addListHtmlW += " [" + data[i].reviewcnt+"]";
+					}
+					addListHtmlW += "</a></li><li>"+data[i].username+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtmlW += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+					}else{
+						addListHtmlW += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+					}
+					
 					addListHtmlW += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
@@ -168,11 +193,11 @@ $('#prevViewW').click(function(){
 	var startNum = parseInt($("#pViewW").text()); // 시작지점
 	var addListHtmlW = "";
 	var addListHtmlWpo = "";
-				addListHtmlWpo += "<li>게시물 번호</li>";
+				addListHtmlWpo += "<li>번호</li>";
 				addListHtmlWpo += "<li>제목</li>";
 				addListHtmlWpo += "<li>작성자</li>";
-				addListHtmlWpo += "<li>날짜</li>";
-				addListHtmlWpo += "<li>조회수</li>";
+				addListHtmlWpo += "<li>작성일</li>";
+				addListHtmlWpo += "<li>조회</li>";
 	 console.log(startNum); 
 	var url;
 	var param;
@@ -202,11 +227,24 @@ $('#prevViewW').click(function(){
 		dataType : 'json',
 		data :param,
 		success : function(data){
+			var date = new Date();
+			var year = date.getFullYear();
+			var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
+			var day = new String(('0' + date.getDate()).slice(-2));
+			
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlW += "<li>"+data[i].boardno+"</li>";
-				addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-				addListHtmlW += "<li>"+data[i].username+"</li>"
-				addListHtmlW += "<li>"+data[i].writedate+"</li>";
+				addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+				if(data[i].reviewcnt != 0){
+					addListHtmlW += " [" + data[i].reviewcnt+"]";
+				}
+				addListHtmlW += "</a></li><li>"+data[i].username+"</li>";
+				if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+					addListHtmlW += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+				}else{
+					addListHtmlW += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+				}
+				
 				addListHtmlW += "<li>"+data[i].hit+"</li>";
 			}
 			$("#nextViewW").empty();

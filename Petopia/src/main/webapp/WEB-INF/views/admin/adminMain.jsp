@@ -17,6 +17,15 @@
 	</ul>
 	
 	<div class="tab_content" >
+		<ul class="tab_title2" >
+			<li style="float: left;"><a href="/admin/admin_notice">공지사항</a></li>
+			<li><a href="/admin/admin_memberList">회원</a></li>
+			<li><a href="/admin/admin_board?searchKey=all">게시판</a></li>
+			<li><a href="/admin/admin_adopt?searchKey=all">입양</a></li>
+			<li><a href="/admin/admin_animalInfo?searchKey=all">반려동물 정보</a></li>
+			<li><a href="/admin/admin_boardReview?searchKey=all">게시판 리뷰</a></li>
+			<li><a href="/admin/admin_shopReview?searchKey=all">동물병원 리뷰</a></li>
+		</ul>
 		<div style="float:right;">
 			<a href="/admin/adminMain">관리자페이지</a>
 		</div><br/><br/>
@@ -97,19 +106,19 @@
 			
 			<div class="item InfoCard">
 				<h3>리뷰(게시판)</h3>
-				<a href="#">
+				<a href="/admin/admin_boardReview?searchKey=all">
 				<div class="totalNum">
 					<p>${vo.totalReplyCnt}</p>
 				</div>
 				</a>
 				<div class="subNum">
-					공지사항 : <a href="admin/admin_boardReview?searchKey=notice">${vo.noticeReplyCnt}</a><br/>
-					정보공유 : <a href="admin/admin_boardReview?searchKey=info">${vo.infoReplyCnt}</a><br/>
-					나눔 : <a href="admin/admin_boardReview?searchKey=share">${vo.shareReplyCnt}</a><br/>
-					산책 : <a href="admin/admin_boardReview?searchKey=walk">${vo.walkReplyCnt}</a><br/>
-					자랑 : <a href="admin/admin_boardReview?searchKey=boast">${vo.boastReplyCnt}</a><br/>
-					건의 : <a href="admin/admin_boardReview?searchKey=suggest">${vo.suggestReplyCnt}</a><br/>
-					입양 : <a href="admin/admin_boardReview?searchKey=adopt">${vo.adoptReplyCnt}</a>
+					공지사항 : <a href="/admin/admin_boardReview?searchKey=notice">${vo.noticeReplyCnt}</a><br/>
+					정보공유 : <a href="/admin/admin_boardReview?searchKey=info">${vo.infoReplyCnt}</a><br/>
+					나눔 : <a href="/admin/admin_boardReview?searchKey=share">${vo.shareReplyCnt}</a><br/>
+					산책 : <a href="/admin/admin_boardReview?searchKey=walk">${vo.walkReplyCnt}</a><br/>
+					자랑 : <a href="/admin/admin_boardReview?searchKey=boast">${vo.boastReplyCnt}</a><br/>
+					건의 : <a href="/admin/admin_boardReview?searchKey=suggest">${vo.suggestReplyCnt}</a><br/>
+					입양 : <a href="/admin/admin_boardReview?searchKey=adopt">${vo.adoptReplyCnt}</a>
 				</div>
 			</div>
 			

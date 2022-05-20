@@ -6,7 +6,8 @@ a:hover{
 	text-decoration:none !important;
 }
 .container{
-	height: 100vh;
+	height: auto;
+	min-height: 100vh;
 	overflow:hidden;
 }
 .tab_title{
@@ -199,4 +200,32 @@ a:hover{
 #messageSubmit{
 	width:10%;
 	height: 70%;
+}
+
+.tab_title2{
+	margin-bottom: 50px;
+	display: none;
+}
+.tab_title2>li{
+	float: left;
+	margin: 0 auto;
+	width: 12%;
+	font-weight: bold;
+	cursor: pointer;
+	text-align: center;
+}
+.tab_title2>li:hover a{
+	color: #ff6d00;
+}
+
+@media (max-width: 1300px) {
+	.tab_title{
+		display: none;
+	}
+	.tab_title2{
+		display: block !important;
+	}
+	.tab_content{
+		width: 100%;
+	}
 }

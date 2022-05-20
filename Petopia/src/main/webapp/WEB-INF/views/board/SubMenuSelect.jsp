@@ -30,7 +30,6 @@ $(document).ready(function(){
 	}
 		
 	$("#MenuNotice").click(function(){
-		//window.location.href = "/board/SubMenuSelect?type=notice";
 		$("#resultArea>div").css('display','none');
 		$("#UserNoticeShow").css('display','block');
 	  });
@@ -54,47 +53,67 @@ $(document).ready(function(){
 		$("#resultArea>div").css('display','none');
 		$("#UserSuggestShow").css('display','block');
 	 });
+	
+	$("#MenuNotice2").click(function(){
+		$("#resultArea>div").css('display','none');
+		$("#UserNoticeShow").css('display','block');
+	  });
+	$("#MenuInfo2").click(function(){ 
+		$("#resultArea>div").css('display','none');
+		$("#UserInfoShow").css('display','block');
+	   });
+	$("#MenuShare2").click(function(){ 
+		$("#resultArea>div").css('display','none');
+		$("#UserShareShow").css('display','block');
+	 });
+	$("#MenuWalk2").click(function(){ 
+		$("#resultArea>div").css('display','none');
+		$("#UserWalkShow").css('display','block');
+	 });
+	$("#MenuBoast2").click(function(){ 
+		$("#resultArea>div").css('display','none');
+		$("#UserBoastShow").css('display','block');
+	 });
+	$("#MenuSuggest2").click(function(){ 
+		$("#resultArea>div").css('display','none');
+		$("#UserSuggestShow").css('display','block');
+	 });
 });
 </script>
 
 <style>
-#preview{
-	width: 150px;
-	height: 150px;
-	float: left;
-	outline: 1px solid black;
-}
-#logName{
-	line-height: 50px;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	margin-top: 100px;
-	font-weight: bold;
-	padding-left: 15px;
-}
+
 </style>
 <div id="Board_container">
 	<div id="Board_wrap">
-		<div id="Board_lnb">
-			<div id="Board_sub_M">
-				<a href="/member/memberEdit">
-					<c:set var ="profileimage" value="${logImg }"/>
-					<c:choose>
-						<c:when test="${fn:startsWith(profileimage, 'http://')}">
-							<img src='${logImg }' style="display: block" id="preview" class="rounded-circle"/>
-						</c:when>
-						<c:when test="${logImg == '' || logImg == null}">
-							<img src='${url}/img/sampleProfile.jpg' id="preview" style="display: block" class="rounded-circle"/>
-						</c:when>
-						<c:when test="${logImg != '' || logImg != null}">
-							<img src='${url}/img/memberimg/${logImg}' style="display: block" id="preview" class="rounded-circle"/>
-						</c:when>
-					</c:choose>
-				</a>
-				<p id="logName">${logName}</p>
-			</div>
-			
+		<c:if test="${logStatus != 'Y' }">
+			<div id="Board_lnb2">
+		</c:if>
+		<c:if test="${logStatus == 'Y' }">
+			<div id="Board_lnb">
+				<div id="Board_sub_M">
+						<div class="box">
+							<p class="explain">회원정보수정<p>
+							<a href="/member/memberEdit">
+								<c:set var ="profileimage" value="${logImg }"/>
+								<c:choose>
+									<c:when test="${fn:startsWith(profileimage, 'http://')}">
+										<img src='${logImg }' style="display: block" id="preview" class="rounded-circle"/>
+									</c:when>
+									<c:when test="${logImg == '' || logImg == null}">
+										<img src='${url}/img/sampleProfile.jpg' id="preview" style="display: block" class="rounded-circle"/>
+									</c:when>
+									<c:when test="${logImg != '' || logImg != null}">
+										<img src='${url}/img/memberimg/${logImg}' style="display: block" id="preview" class="rounded-circle"/>
+									</c:when>
+								</c:choose>
+							</a>
+						</div>
+						<p id="logName"><b>${logName}</b>님</p>
+						<p class="myCnt">내가 쓴 글 <span><b>${vo.myWriteCnt}</b>개</span></p>
+						<p class="myCnt">내가 쓴 댓글 <span><b>${vo.myReviewCnt}</b>개</span></p>
+				</div>
+			</c:if>
 				<ul id="MenuSpan">
 					<li><span id="MenuNotice">공지사항</span></li>
 					<li><span id="MenuInfo">정보공유</span></li>
@@ -105,6 +124,14 @@ $(document).ready(function(){
 				</ul>
 		</div>
 		<div id="resultArea">
+			<ul id="MenuSpanTop">
+				<li><span id="MenuNotice2">공지사항</span></li>
+				<li><span id="MenuInfo2">정보공유</span></li>
+				<li><span id="MenuShare2">나눔</span></li>
+				<li><span id="MenuWalk2">산책</span></li>
+				<li><span id="MenuBoast2">자랑</span></li>
+				<li><span id="MenuSuggest2">건의</span></li>
+			</ul><br/>
 			<div id="UserNoticeShow"><%@ include file="/WEB-INF/views/board/notice/noticeList.jsp" %></div>
 			<div id="UserInfoShow"><%@ include file="/WEB-INF/views/board/info/infoList.jsp" %></div>
 			<div id="UserShareShow"><%@ include file="/WEB-INF/views/board/share/shareList.jsp" %></div>

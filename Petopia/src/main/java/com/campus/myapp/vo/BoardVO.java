@@ -12,10 +12,15 @@ public class BoardVO {
 	private String filename1;
 	private String username;
 	
-	private String writetime;
-	
 	private String category;
 	private String breed;
+	
+	private int myWriteCnt;
+	private int myReviewCnt;
+	private String profileimage;
+	private int userlevel;
+	
+	private int reviewcnt;
 	
 	public int getBoardno() {
 		return boardno;
@@ -89,12 +94,38 @@ public class BoardVO {
 	public void setBreed(String breed) {
 		this.breed = breed;
 	}
-	public String getWritetime() {
-		return writetime;
+	public int getMyWriteCnt() {
+		return myWriteCnt;
 	}
-	public void setWritetime(String writetime) {
-		this.writetime = writetime;
+	public void setMyWriteCnt(int myWriteCnt) {
+		this.myWriteCnt = myWriteCnt;
 	}
+	public int getMyReviewCnt() {
+		return myReviewCnt;
+	}
+	public void setMyReviewCnt(int myReviewCnt) {
+		this.myReviewCnt = myReviewCnt;
+	}
+	public String getProfileimage() {
+		return profileimage;
+	}
+	public void setProfileimage(String profileimage) {
+		this.profileimage = profileimage;
+	}
+	public int getUserlevel() {
+		return userlevel;
+	}
+	public void setUserlevel(int userlevel) {
+		this.userlevel = userlevel;
+	}
+	public int getReviewcnt() {
+		return reviewcnt;
+	}
+	public void setReviewcnt(int reviewcnt) {
+		this.reviewcnt = reviewcnt;
+	}
+	
+	
 	
 	
 }

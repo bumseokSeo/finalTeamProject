@@ -14,8 +14,7 @@ $("#searchFrm").submit(function() {
 window.onload=function(){
 		var startNum = 0; 
 		var addListHtml = "";
-		console.log("공지"); 
-		 console.log(startNum); 
+		
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -51,12 +50,16 @@ window.onload=function(){
 				
 				for (var i = 0; i < data.length; i++) {
 					addListHtml += "<li>"+data[i].boardno+"</li>";
-					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					if(year+"-"+month+"-"+day == data[i].writedate){
-						addListHtml += "<li>"+data[i].writetime+"</li>";
+					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					if(data[i].reviewcnt != 0){
+						addListHtml += " [" + data[i].reviewcnt+"]";
+					}
+					addListHtml += "</a></li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtml += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 						
 					}else{
-						addListHtml += "<li>"+data[i].writedate+"</li>";
+						addListHtml += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
 					}
 					addListHtml += "<li>"+data[i].hit+"</li>";
 				}
@@ -116,12 +119,16 @@ $('#nextView').click(function(){
 				
 				for (var i = 0; i < data.length; i++) {
 					addListHtml += "<li>"+data[i].boardno+"</li>";
-					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					if(year+"-"+month+"-"+day == data[i].writedate){
-						addListHtml += "<li>"+data[i].writetime+"</li>";
+					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					if(data[i].reviewcnt != 0){
+						addListHtml += " [" + data[i].reviewcnt+"]";
+					}
+					addListHtml += "</a></li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtml += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 						
 					}else{
-						addListHtml += "<li>"+data[i].writedate+"</li>";
+						addListHtml += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
 					}
 					addListHtml += "<li>"+data[i].hit+"</li>";
 				}
@@ -186,12 +193,16 @@ $('#prevView').click(function(){
 			
 			for (var i = 0; i < data.length; i++) {
 				addListHtml += "<li>"+data[i].boardno+"</li>";
-				addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-				if(year+"-"+month+"-"+day == data[i].writedate){
-					addListHtml += "<li>"+data[i].writetime+"</li>";
+				addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+				if(data[i].reviewcnt != 0){
+					addListHtml += " [" + data[i].reviewcnt+"]";
+				}
+				addListHtml += "</a></li>";
+				if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+					addListHtml += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 					
 				}else{
-					addListHtml += "<li>"+data[i].writedate+"</li>";
+					addListHtml += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
 				}
 				addListHtml += "<li>"+data[i].hit+"</li>";
 			}
@@ -215,7 +226,6 @@ $('#prevView').click(function(){
 <div class="container">
 	<div class="Menu_Bar_A">
 		<h1 class="Menu_title">공지사항</h1>
-		<div class="Menu_img">이미지 들어갈것</div>
 	</div>
 	<div class="Menu_container">
 		<ul class="List_menu_F" id="List_menu_F">
@@ -225,7 +235,7 @@ $('#prevView').click(function(){
 			<li>조회</li>
 
 		</ul><!-- 게시물 -->
-		</div>
+		
 		 <div class="paging">
            <b id="prevView"> ◀ </b>
            <b id="pView"></b>
@@ -233,19 +243,19 @@ $('#prevView').click(function(){
             
         </div>
     
-	<br/><br/><br/>
-	<div class="Share_search">
-		 <form action="/board/notice/noticeSearch" id="searchFrm">
-			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWord"/>
-			<input type="hidden" name="type" value="notice"/>
-			<input type="submit" value="검색"/>
-		</form>
+		<br/><br/><br/>
+		<div class="Share_search">
+			 <form action="/board/notice/noticeSearch" id="searchFrm">
+				<select name="searchKey">
+					<option value="" selected="selected">전체</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWord"/>
+				<input type="hidden" name="type" value="notice"/>
+				<input type="submit" value="검색"/>
+			</form>
+		</div>
 	</div>
-	
 </div>
 <br/>

@@ -5,12 +5,11 @@
 
 <div class="container">
 	<div class="Menu_Bar_AB">
-		<h1 class="Menu_titleB">자랑 게시판</h1>
-		<div class="Menu_img">이미지 들어갈것</div>
+		<h1 class="Menu_titleB">자랑 할래요</h1>
 	</div>
 	<div class="Menu_containerB">
-
-		</div>
+		<div class="row" id="rowBoast"></div>
+	
 		 <div class="paging">
            <b id="prevViewB"> ◀ </b>
            <b id="pViewB"></b>
@@ -19,20 +18,20 @@
         </div>
     
        <div class="Boast_btn"><a href="/board/boardWrite?type=boast"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
-	<br/><br/><br/>
-	<div class="Boast_search">
-		 <form action="/board/boast/boastSearch" id="searchFrmB">
-			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWordB"/>
-			<input type="hidden" name="type" value="Boast"/>
-			<input type="submit" value="검색"/>
-		</form>
+		<br/><br/><br/>
+		<div class="Boast_search">
+			 <form action="/board/boast/boastSearch" id="searchFrmB">
+				<select name="searchKey">
+					<option value="" selected="selected">전체</option>
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWordB"/>
+				<input type="hidden" name="type" value="Boast"/>
+				<input type="submit" value="검색"/>
+			</form>
+		</div>
 	</div>
-	
 </div>
 <br/>
 
@@ -40,7 +39,6 @@
 $(document).ready(function(){
 		var startNum = 0; 
 		var addListHtmlB = "";
-		 console.log("자랑"); 
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -48,7 +46,6 @@ $(document).ready(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		console.log(pn);
 		if(pn='SubMenuSelect'){
 			url = '/board/boast/boastLists';
 			param = {
@@ -61,7 +58,6 @@ $(document).ready(function(){
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
 		}
 		$.ajax({
 			url : url,
@@ -70,17 +66,20 @@ $(document).ready(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlB += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
-					addListHtmlB += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-					addListHtmlB += "<label class='Boast_text'>"+data[i].username+"</label><label class='Boast_text'>"+data[i].writedate+"</label></div></div></div>";
+					addListHtmlB += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
+					addListHtmlB += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
+					addListHtmlB += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlB += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
+					addListHtmlB += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
+					addListHtmlB += "</div></div>";
 				}
-				if(data.length<8){
+				if(data.length<12){
 					$("#nextViewB").empty();
 				} 
 				if(startNum=1){
 					$("#prevViewB").empty();
 				} 
-				$(".Menu_containerB").append(addListHtmlB);
+				$("#rowBoast").append(addListHtmlB);
 				$("#pViewB").append(startNum);
 			}
 		});
@@ -101,7 +100,7 @@ $('#nextViewB').click(function(){
 			url = '/board/boast/boastLists';
 			console.log("다음페이지")
 			param = {
-				"startNum" : startNum*8+1
+				"startNum" : startNum*12+1
 			};
 		}else if(pn='boastSearch'){
 			url = '/board/boast/boastLists';
@@ -119,16 +118,19 @@ $('#nextViewB').click(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlB += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
-					addListHtmlB += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-					addListHtmlB += "<label class='Boast_text'>"+data[i].username+"</label><label class='Boast_text'>"+data[i].writedate+"</label></div></div></div>";
+					addListHtmlB += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
+					addListHtmlB += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
+					addListHtmlB += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlB += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
+					addListHtmlB += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
+					addListHtmlB += "</div></div>";
 				}
-				if(data.length<8){
+				if(data.length<12){
 					$("#nextViewB").empty();
 				} 
 				$("#prevViewB").empty();
-				$(".Menu_containerB").empty();
-				$(".Menu_containerB").append(addListHtmlB);
+				$("#rowBoast").empty();
+				$("#rowBoast").append(addListHtmlB);
 				$("#pViewB").empty();
 				$("#pViewB").append(startNum+1);
 				$("#prevViewB").append("◀");
@@ -153,7 +155,7 @@ $('#prevViewB').click(function(){
 		url = '/board/boast/boastLists';
 		console.log("이전페이지")
 		param = {
-			"startNum" : (startNum-1)*8-8
+			"startNum" : (startNum-1)*12-12
 		};
 	}else if(pn='boastSearch'){
 		url = '/board/boast/searchLists';
@@ -171,14 +173,17 @@ $('#prevViewB').click(function(){
 		data :param,
 		success : function(data){
 			for (var i = 0; i < data.length; i++) {
-				addListHtmlB += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
-				addListHtmlB += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-				addListHtmlB += "<label class='Boast_text'>"+data[i].username+"</label><label class='Boast_text'>"+data[i].writedate+"</label></div></div></div>";
+				addListHtmlB += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
+				addListHtmlB += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
+				addListHtmlB += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+				addListHtmlB += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
+				addListHtmlB += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
+				addListHtmlB += "</div></div>";
 			}
 			$("#nextViewB").empty();
 			$("#nextViewB").append("▶");
-			$(".Menu_containerB").empty();
-			$(".Menu_containerB").append(addListHtmlB);
+			$("#rowBoast").empty();
+			$("#rowBoast").append(addListHtmlB);
 			$("#pViewB").empty();
 			$("#pViewB").append(startNum-1);
 			

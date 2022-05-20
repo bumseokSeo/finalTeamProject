@@ -11,6 +11,7 @@ public class ShopReviewVO {
 	private String shopname;
 	private String shopaddr;
 	private String shopnumber;
+	private String username;
 	
 	private String deleteFile;
 	
@@ -73,6 +74,12 @@ public class ShopReviewVO {
 	}
 	public void setDeleteFile(String deleteFile) {
 		this.deleteFile = deleteFile;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}	
 	
 }

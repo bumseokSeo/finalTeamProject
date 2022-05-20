@@ -17,13 +17,12 @@
   	
   	<!--  글목록 불러오기 -->
   	<select id="BoardSelectList" resultType="com.campus.myapp.vo.BoardVO">
-  	SELECT A.boardno, A.title, A.userid, A.content, A.hit, 
-  		   date_format(A.writedate, '%Y-%m-%d') writedate,
-  		   date_format(A.writedate, '%H:%i') writetime,
-  		   A.filename1, B.profileimage, B.userlevel, B.username
+  	SELECT A.boardno, A.title, A.userid, A.content, A.hit, A.writedate,
+  		   A.filename1, B.profileimage, B.userlevel, B.username, 
+  		   (select count(reply.replyno) from reply where A.boardno=reply.boardno) as reviewcnt
   	FROM   board A, member B
-  	WHERE  A.userid=B.userid 
-	AND    A.boardtype=#{param1}
+  	WHERE  A.boardtype=#{param1} 
+	AND    A.userid=B.userid
 	ORDER by boardno desc 
 	LIMIT 	 #{param2.start}, #{param2.end}
   	</select>
@@ -33,7 +32,8 @@
     </select>
   	<!--  글 1개 선택 -->
   	<select id="BoardSelect" resultType="com.campus.myapp.vo.BoardVO">
-  	SELECT b.boardno, b.title, b.userid, b.content, b.hit, b.writedate, m.username
+  	SELECT b.boardno, b.title, b.userid, b.content, b.hit, b.writedate, m.username, m.profileimage, m.userlevel,
+  	(select count(reply.replyno) from reply where A.boardno=reply.boardno) as reviewcnt
   	FROM board b join member m on b.userid=m.userid
   	WHERE boardno = #{param1}
   	</select>
@@ -93,5 +93,44 @@
  	<select id="getType" resultType="String">
  		select boardtype from board where boardno=${param1}
  	</select>
+<<<<<<< HEAD
 
+=======
+ 	
+ 	<!--  페이징 -->
+	<select id="BoardtotalRecord" resultType="int">
+		select count(boardno) count 
+		from board
+		where boardtype=#{param2}
+	</select>
+    
+  	
+  	<!-- share board 글 등록 -->
+  	<insert id="shareInsert">
+		insert into board(userid, title, content, boardtype)
+		values(#{userid},#{title},#{content},#{boardtype})
+	</insert>
+	<!-- share board 게시글 리스트 -->
+	<select id="shareSelectList" resultType="BoardVO">
+		select boardno, title, userid, date_format(writedate,"%m/%d") writedate, boardtype
+		from board 
+		where boardtype=#{param2.boardtype}
+		order by boardno desc limit ${param1.recordPerPage} offset ${param1.offsetIndex}
+	</select>
+	<!-- share board 전체 레코드 수 -->
+	<select id="shareTotalRecord" resultType="int">
+		select count(boardno) count 
+		from board
+		where boardtype=#{param2.boardtype}
+	</select>
+	
+	<select id="myWriteCnt" resultType="int">
+		select count(boardno) cnt from board
+		where userid=#{userid}
+	</select>
+	<select id="myReviewCnt" resultType="int">
+		select count(replyno) cnt from reply
+		where userid=#{userid}
+	</select>
+>>>>>>> branch 'main' of https://github.com/bumseokSeo/finalTeamProject.git
 </mapper>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="/css/board/adopt/adoptView.css" type="text/css">
+<link rel="stylesheet" href="/css/board/boardView.css" type="text/css">
 <script type="text/javascript">
 	
 
@@ -21,16 +21,15 @@ $(function(){
 			data:params,
 			success:function(result){
 				var $result = $(result);
-				console.log(result);
-				console.log(${vo.boardno});
 				var tag = "<ul>";
 				$result.each(function(idx, vo){		//vo에서 프로필사진 가져올 자리
-					tag +="<li><div class='reply_area'><div class='reply_u_info'><div class='reply_user'>"+vo.userid+"</div><div class='reply_proima'>프로필 이미지</div>";
+					tag +="<li><div class='reply_area'><div class='reply_u_info'><div class='reply_user'>"+vo.username+"</div>";
 					tag +="<div class='reply_date'>"+vo.writedate+"</div>";
 
 					if(vo.userid == '${logId}'){
-					tag +="<input type='button' value='수정' class='reply_modi'/><input type='button' value='삭제' title='"+vo.replyno+"' class='reply_del'/></div>";
+					tag +="<input type='button' value='수정' class='reply_modi'/><input type='button' value='삭제' title='"+vo.replyno+"' class='reply_del'/>";
 					}
+					tag+="</div>";
 					if(vo.userid == '${logId}'){   // user_id
 						tag += "<div class='content_modify' style='display:none'><form method='post'>";
 						tag += "<input type='hidden' name='replyno' value='"+vo.replyno+"'/>";
@@ -165,7 +164,7 @@ $(function(){
     // 댓글등록------
 	$("#replyFrm").submit(function(){
 		event.preventDefault();
-		if($("#content").val()==""){
+		if($("#View_conment").val()==""){
 			alert("댓글을 입력후 등록하세요.")
 			return;
 		}else{	
@@ -228,43 +227,64 @@ $(function(){
 </script>	
 </head>
 <body>
-<div id="notice-wrapper"><!--  전체 틀  -->
-<h1>입양 프로필</h1>
-<hr/>
+<div class="container"><!--  전체 틀  -->
 <div>
 </div>
 	<div class="View_topmenu">
-  	  	<div id="View_title">${vo.title}</div>
+  	  	<h2>${vo.title}</h2>
   	  	<div id="View_subtitle">
-	  	  	<div id="View_author">${vo.userid}</div>
-	  	  	<div id="View_hit">${vo.hit}</div>
-	  	  	<div id="View_date">${vo.writedate}</div>
+  	  		<c:if test="${vo.profileimage != null && vo.profileimage != '' }">
+				<img src="${url}/img/memberimg/${vo.profileimage}" class="View_topmenu_profile" alt="보낸사람 프로필">
+			</c:if>
+			<c:if test="${vo.profileimage == null || vo.profileimage == '' }">
+				<img src="${url}/img/sampleProfile.jpg" class="View_topmenu_profile" alt="보낸사람 프로필">
+			</c:if>
+	  	  	
+	  	  	<div class="View_author"><h4>${vo.username}</h4></div>
+	  	  	<p class='text-end'><small class='text-muted'>${vo.writedate} 조회수:${vo.hit}</small></p>
+	  	  	
+	  	  	<c:if test="${vo.userlevel == 1 }">
+				<p class='text-start'><small class='text-muted'>관리자</small></p>
+			</c:if>
+			<c:if test="${vo.userlevel == 2 }">
+				<p class='text-start'><small class='text-muted'>일반 유저</small></p>
+			</c:if>
+			<c:if test="${vo.userlevel == 3 }">
+				<p class='text-start'><small class='text-muted'>제재 대상</small></p>
+			</c:if>
+			<button type="button" id="chatBtn" class="btn btn-warning"><i class="bi bi-chat-left"></i>쪽지 보내기</button>
+	  	  	
+	  	  	
   	  	</div>
-  	  </div>
-  	  	<div class="View_content">${vo.content}
-  	  	고양이의 입양과 임시보호를 올리는 게시판입니다. 내눈에 순화적 길고양로 보여도 가엽다고 무조건 입양글을 올리면
-		안됩니다. 길에서 살아갈 수 없는 고양이에 한해 성격파악후 입양을 추진해야 해당 고양이에게 피해가 없답니다. 입양은 아이의
-		묘생 전체가 좌지우지되는 일입니다. 보내는 분들도 입양하시는 분들 모두 고양이를 존중하는 신중한 판단을 요합니다.	
-		<br/><br/>
-		 제 수명을 다할 때까지 사랑해주고 보호해 주셔야 하며, 실외 또는 외출 고양이로 키우시는 것은 안됩니다.<br/>
-		 - 입양 후, 3개월 간은 임시보호기간입니다.  지속적인 연락 등이 되지 않거나, 소식을 보내주시지 않으면 입양이 취소됩니다.<br/>
-  		 - 부득이한 사정으로 키우지 못하게 되시는 경우, 반드시 원보호자에게 다시 돌려 보내주셔야 합니다.<br/>
-  		 - 결혼을 앞둔 분, 신혼이신 분은 안됩니다.<br/>
-  		 - 미성년자는 부모의 동의가 있어도 안됩니다.<br/>
-  		 - 입양신청서를 작성해서 이메일로 보내주셔야 합니다.(메일을 보내시면 입양조건에 동의하신 것으로 간주합니다.)<br/>
-		이름, 나이, 전화번호, 현주소, 직업, 가족상황과 입양에 대한 반응등을 적어서 보내주세요.
-  	  	
+  	 </div>
+  	  	<div class="View_content">
+  	  		${vo.content}
+  	  		<div class="precaution">
+  	  			<div class="precautionTop">
+  	  				<strong>반려동물을 기르기 전 고려해야 할 사항</strong>
+  	  			</div>
+  	  			<div class="precautionBody">
+					&nbsp;·&nbsp;반려동물을 입양 또는 분양을 받기 전에 모든 가족 구성원이 동의하고 충분히 생각해 보셨나요?<br><br>
+					&nbsp;·&nbsp;개와 고양이의 수명은 약 15년 정도입니다. 살아가면서 질병도 걸릴 수 있습니다. 생활패턴이나 환경이 바뀌어도 오랜 기간 동안 책임지고 잘 돌보아 줄 수 있나요?<br><br>
+					&nbsp;·&nbsp;매일 산책을 시켜주거나 함께 있어줄 수 있는 시간이 충분한가요? 개는 물론이고 고양이도 혼자 있으면 외로워하는 사회적 동물입니다.<br><br>
+					&nbsp;·&nbsp;식비, 건강 검진비, 예방접종과 치료비 등 관리비용을 충당할 수 있을 정도의 경제적 여유를 갖고 계신가요?<br><br>
+					&nbsp;·&nbsp;동물의 소음(짖거나 울음소리), 냄새(배변 등), 털 빠짐 등의 상황이 일어납니다. 또한 물거나 할퀼 수도 있으며 다양한 문제행동을 보일 수도 있습니다.<br><br>
+					&nbsp;·&nbsp;개와 고양이로 인한 알레르기 반응은 없나요? 입양 또는 분양받기 전에 반드시 가족 구성원 모두 알레르기 유무를 확인해야 합니다.
+					&nbsp;·&nbsp;반려동물의 중성화수술 및 동물등록에 동의하시나요?
+  	  			</div>
+  	  		</div>
   	  	</div>
   	  	<div class="View_bottommenu">
-	  	  	<div class="col-2 Adopt_chatBtn">
-				<input type="button" id="chatBtn" value="쪽지보내기"/>
-			</div>
+  	  		<c:if test="${logId == vo.userid}">
   	  		<p style="float: right;">
-				<a href="/board/boardEdit?type=adopt&boardno=${vo.boardno}" id="modi_AA">수정</a> 
+				<a href="/board/boardEdit?type=notice&boardno=${vo.boardno}" id="modi_AA">수정</a> 
 				<a href="javascript:delCheck()" id="Del_AA">삭제</a>
 			</p>
+			</c:if>
   	  	</div>
+
   	  	<hr/>
+  	  	
   	  <div class="reply">
         	<br/>
 			<b>댓글</b>
@@ -275,8 +295,8 @@ $(function(){
 					<div id="reply_area">
 						<form id="replyFrm">
 							<input type="hidden" name="boardno" value="${vo.boardno}"/>
-								<div id="reply_info">댓글 작성  | 작성자 : ${user}</div>
-								<textarea name="content" id='View_conment'
+								<div id="reply_info">댓글 작성  | 작성자 : ${logName}</div>
+								<textarea name="content" id='View_conment' maxlength="99"
 									style="width: 100%; height: 120px; font-size:18px; border:none; border-radius: 15px;" placeholder=" 댓글 입력" ></textarea>
 								<input type="submit" value="등록" id="replybtn" />						
 						</form>
@@ -297,7 +317,8 @@ $(function(){
 				<form method="get" id="messageForm">			
 					<input type="text" name="messagecontent" id="messagecontent" maxlength="100" />					
 					<input type="hidden" name ="username" id="username" value="${vo.username}" maxlength="100" />
-					<input type="button" value="전송" id="messagebtn"/>				
+					<button id="messagebtn" class='msg_send_btn' type='button' title='전송' style="background-color: #97df93;border: medium none;border-radius: 50%;position: relative;left:0px;top:0px;color: #fff;font-size: 17px;">
+					<i class='fa fa-paper-plane-o' aria-hidden='true'></i></button>				
 					
 				</form>
 				
