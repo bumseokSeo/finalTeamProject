@@ -28,7 +28,7 @@
 		<div class="info_search">
 			 <form action="/board/walk/walkSearch" id="searchFrmW">
 				<select name="searchKey">
-					<option value="" selected="selected">전체</option>
+					<option value="">전체</option>
 					<option value="title">제목</option>
 					<option value="content">내용</option>
 				</select>
@@ -62,7 +62,7 @@ $(document).ready(function(){
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 		console.log(pn);
-		if(pn='SubMenuSelect'&& $("#UserwalkShow").css('display')=='block'){
+		if(pn='SubMenuSelect'&& $("#UserWalkShow").css('display')=='block'){
 			url = '/board/walk/walkLists';
 			param = {
 				"startNum" : startNum 
@@ -89,8 +89,11 @@ $(document).ready(function(){
 				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlW += "<li>"+data[i].boardno+"</li>";
-					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtmlW += "<li>"+data[i].username+"</li>";
+					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					if(data[i].reviewcnt != 0){
+						addListHtmlW += " [" + data[i].reviewcnt+"]";
+					}
+					addListHtmlW += "</a></li><li>"+data[i].username+"</li>";
 					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
 						addListHtmlW += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 					}else{
@@ -156,8 +159,11 @@ $('#nextViewW').click(function(){
 				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlW += "<li>"+data[i].boardno+"</li>";
-					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtmlW += "<li>"+data[i].username+"</li>";
+					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					if(data[i].reviewcnt != 0){
+						addListHtmlW += " [" + data[i].reviewcnt+"]";
+					}
+					addListHtmlW += "</a></li><li>"+data[i].username+"</li>";
 					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
 						addListHtmlW += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 					}else{
@@ -228,8 +234,11 @@ $('#prevViewW').click(function(){
 			
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlW += "<li>"+data[i].boardno+"</li>";
-				addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-				addListHtmlW += "<li>"+data[i].username+"</li>";
+				addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+				if(data[i].reviewcnt != 0){
+					addListHtmlW += " [" + data[i].reviewcnt+"]";
+				}
+				addListHtmlW += "</a></li><li>"+data[i].username+"</li>";
 				if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
 					addListHtmlW += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 				}else{

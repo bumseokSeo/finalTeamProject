@@ -89,8 +89,11 @@ $(document).ready(function(){
 				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlI += "<li>"+data[i].boardno+"</li>";
-					addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtmlI += "<li>"+data[i].username+"</li>"
+					addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					if(data[i].reviewcnt != 0){
+						addListHtmlI += " [" + data[i].reviewcnt+"]";
+					}
+					addListHtmlI += "</a></li><li>"+data[i].username+"</li>"
 					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
 						addListHtmlI += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 					}else{
@@ -156,8 +159,11 @@ $('#nextViewI').click(function(){
 				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlI += "<li>"+data[i].boardno+"</li>";
-					addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-					addListHtmlI += "<li>"+data[i].username+"</li>"
+					addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					if(data[i].reviewcnt != 0){
+						addListHtmlI += " [" + data[i].reviewcnt+"]";
+					}
+					addListHtmlI += "</a></li><li>"+data[i].username+"</li>"
 					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
 						addListHtmlI += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 					}else{
@@ -228,8 +234,11 @@ $('#prevViewI').click(function(){
 			
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlI += "<li>"+data[i].boardno+"</li>";
-				addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
-				addListHtmlI += "<li>"+data[i].username+"</li>"
+				addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+				if(data[i].reviewcnt != 0){
+					addListHtmlI += " [" + data[i].reviewcnt+"]";
+				}
+				addListHtmlI += "</a></li><li>"+data[i].username+"</li>"
 				if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
 					addListHtmlI += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 				}else{
