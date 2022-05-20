@@ -91,11 +91,20 @@ $(document).ready(function(){
 				var year = date.getFullYear();
 				var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
 				var day = new String(('0' + date.getDate()).slice(-2));
-				
+				var logName = "${logName}";
+				console.log(logName);
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlSU += "<li>"+data[i].suggestno+"</li>";
 					if(data[i].secret=="N" && logLevel!=1){
-						addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
+						if(logName==data[i].username){
+							addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+							if(data[i].reviewcnt != 0){
+								addListHtmlSU += " [" + data[i].reviewcnt+"]";
+							}
+							addListHtmlSU += "</a></li>";
+						}else{
+							addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
+						}
 					}else{
 						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
 						if(data[i].reviewcnt != 0){

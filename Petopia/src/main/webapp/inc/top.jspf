@@ -54,7 +54,7 @@
 			$(this).slideUp(300);
 		  });
 		 
-		  
+		  $("input").attr("maxlength", 20);
 		  MessageReload();
 	});
 	

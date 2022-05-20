@@ -87,3 +87,10 @@
 .delCheck{
 	display: none;
 }
+
+input[type='password']{
+	font-family: serif;
+}
+input[type='password']::placeholder{
+	font-family: 'jua';
+}

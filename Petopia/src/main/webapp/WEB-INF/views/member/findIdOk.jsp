@@ -26,14 +26,12 @@
 			
 		</div>
 		<div class="findIdBottom">
-			<div>
+			<div style="margin-bottom: 50px;" >
 				<a href="/member/resetPwd" title="비밀번호 찾기" >비밀번호 찾기</a>
 			</div>
-			<div>
+			<div style="margin-bottom: 50px;" >
 				<a href="/member/login" title="로그인">로그인</a>
 			</div>
 		</div>
 	</div>
 </div>
-© 2022 GitHub, Inc.
-Term

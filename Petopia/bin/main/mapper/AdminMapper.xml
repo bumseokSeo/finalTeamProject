@@ -154,32 +154,27 @@
 	<select id="dogAdoptCnt" resultType="int">
 		select count(b.boardno) cnt from board b 
 		join adopt ad on b.boardno = ad.boardno
-		join animalinfo an on ad.breed = an.breed
-		where an.category in ('강아지')
+		where ad.category in ('강아지')
 	</select>
 	<select id="catAdoptCnt" resultType="int">
 		select count(b.boardno) cnt from board b 
 		join adopt ad on b.boardno = ad.boardno
-		join animalinfo an on ad.breed = an.breed
-		where an.category in ('고양이')
+		where ad.category in ('고양이')
 	</select>
 	<select id="reptileAdoptCnt" resultType="int">
 		select count(b.boardno) cnt from board b 
 		join adopt ad on b.boardno = ad.boardno
-		join animalinfo an on ad.breed = an.breed
-		where an.category in ('파충류,양서류')
+		where ad.category in ('파충류,양서류')
 	</select>
 	<select id="birdAdoptCnt" resultType="int">
 		select count(b.boardno) cnt from board b 
 		join adopt ad on b.boardno = ad.boardno
-		join animalinfo an on ad.breed = an.breed
-		where an.category in ('조류')
+		where ad.category in ('조류')
 	</select>
 	<select id="etcAdoptCnt" resultType="int">
 		select count(b.boardno) cnt from board b 
 		join adopt ad on b.boardno = ad.boardno
-		join animalinfo an on ad.breed = an.breed
-		where not an.category in ('강아지', '고양이', '파충류,양서류', '조류')
+		where not ad.category in ('강아지', '고양이', '파충류,양서류', '조류')
 	</select>
 	
 	
