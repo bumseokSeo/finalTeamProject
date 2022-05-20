@@ -102,6 +102,26 @@
 	right:10px;
 	top:-50px;
 }
+.precaution{
+	width:80%;
+	margin: 0px auto;
+	border:1px solid;
+	margin-top: 50px;
+	
+}
+.precautionTop{
+	width:100%;
+	border-bottom: 1px solid;
+	background-color: #FFBB44;
+	text-align: center;
+}
+.precautionBody{
+	
+}
+
+
+
+
 /*리플 */
 #replyList>ul{
 	padding-left:0;
