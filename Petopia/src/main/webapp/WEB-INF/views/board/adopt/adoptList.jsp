@@ -66,10 +66,13 @@ $(document).ready(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
-					addListHtmlD += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
-					addListHtmlD += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
-					addListHtmlD += "<label class='adopt_text'>"+data[i].username+"</label><label class='adopt_text'>"+data[i].writedate+"</label></div></div></div>";
-
+					addListHtmlD += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
+					addListHtmlD += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='adoptimg' src='"+data[i].filename1+"'></a></div>";
+					addListHtmlD += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlD += "<h5 style='font-weight:bold; text-align:center; margin-bottom:0px;'>"+data[i].breed+"</h5>";
+					addListHtmlD += "<div class='card-body'><span style='float:left;'>"+data[i].category+"</span><p class='card-text text-end'>"+data[i].username+"</p>";
+					addListHtmlD += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
+					addListHtmlD += "</div></div>";
 				}
 				if(data.length<9){
 					$("#nextViewD").empty();
