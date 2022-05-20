@@ -25,7 +25,7 @@
 </head>
 <body>
 <div id="notice-wrapper"><!--  전체 틀  -->
-<h1>건의 작성</h1>
+<h1>건의글 수정</h1>
 <hr/>
 	<form method="post" action="/board/BoardWriteOk" id="noticeFrm" enctype="multipart/form-data">
 			<select name="secret" class="select01">
@@ -33,9 +33,10 @@
 				<option value="N">비공개</option>
 			</select>
   	  	<ul>
+  	  		<li><input type="hidden" name="boardno" value="${vo.boardno}"/></li>
   	  		<li><input type="hidden" name="boardtype" value="suggest"/></li>
-			<li><input type="text" name="title" id="title" class="input01" placeholder="제목을 입력해주세요"/></li>
-			<li><textarea id="content" name="content"></textarea> </li>
+			<li><input type="text" name="title" id="title" class="input01" placeholder="제목을 입력해주세요" value="${vo.title}"/></li>
+			<li><textarea id="content" name="content">${vo.content}</textarea> </li>
 				<li style="height:70px;"><input type='submit' value='등록' id="reviewsubmit" class="button01" style="margin-right:20px;"/></li>
 		</ul>
 	</form>

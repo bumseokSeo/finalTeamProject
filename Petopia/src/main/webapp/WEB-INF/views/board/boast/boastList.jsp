@@ -94,7 +94,6 @@ $(document).ready(function(){
 $('#nextViewB').click(function(){
 		var startNum = parseInt($("#pViewB").text());
 		var addListHtmlB = "";
-		 console.log(startNum); 
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -105,7 +104,6 @@ $('#nextViewB').click(function(){
 		var pn2 = pn.substring(pn.lastIndexOf('Search'));
 		if(pn=='SubMenuSelect'){
 			url = '/board/boast/boastLists';
-			console.log("다음페이지")
 			param = {
 				"startNum" : startNum*12+1
 			};
@@ -145,7 +143,6 @@ $('#nextViewB').click(function(){
 				$("#pViewB").empty();
 				$("#pViewB").append(startNum+1);
 				$("#prevViewB").append("◀");
-				/* console.log(addListHtmlB); */
 			}
 		});
 	   
@@ -165,7 +162,6 @@ $('#prevViewB').click(function(){
 	var pn2 = pn.substring(pn.lastIndexOf('Search'));
 	if(pn=='SubMenuSelect'){
 		url = '/board/boast/boastLists';
-		console.log("이전페이지")
 		param = {
 			"startNum" : (startNum-1)*12-12
 		};
@@ -206,7 +202,6 @@ $('#prevViewB').click(function(){
 			if(parseInt($("#pViewB").text())==1){
 				$("#prevViewB").empty();
 			} 
-			/* console.log(addListHtmlB); */
 		}
 	});
 });

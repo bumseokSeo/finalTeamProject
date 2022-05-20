@@ -35,11 +35,12 @@
 				<option value="조류">조류</option>
 				<option value="기타동물">기타동물</option>
 			</select>
-			<input type="text" name="breed" placeholder="종을 입력해주세요" class="input03"/>
+			<input type="text" name="breed" placeholder="종을 입력해주세요" class="input03" value="${vo.breed}"/>
   	  	<ul>
-  	  		<li><input type="hidden" name="boardtype" value="${type}"/></li>
-			<li><input type="text" name="title" id="title" class="input01" placeholder="제목을 입력해주세요"/></li>
-			<li><textarea id="content" name="content"></textarea> </li>
+  	  		<li><input type="hidden" name="boardno" value="${vo.boardno}"/></li>
+  	  		<li><input type="hidden" name="boardtype" value="adopt"/></li>
+			<li><input type="text" name="title" id="title" class="input01" placeholder="제목을 입력해주세요" value="${vo.title}"/></li>
+			<li><textarea id="content" name="content">${vo.content}</textarea> </li>
 				<li style="height:70px;"><input type='submit' value='등록' id="reviewsubmit" class="button01" style="margin-right:20px;"/></li>
 		</ul>
 	</form>

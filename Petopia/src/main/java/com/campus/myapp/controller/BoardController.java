@@ -78,7 +78,6 @@ public class BoardController {
 	@ResponseBody
 	@GetMapping("/board/notice/noticeSearch")
 	public ModelAndView Nsearch(String searchKey, String searchWord, String type) {
-		System.out.println("검색시작");
 		ModelAndView mav = new ModelAndView();
 		//게시판 타입
 		mav.addObject("type", type);
@@ -88,7 +87,6 @@ public class BoardController {
 	//나눔
 	@GetMapping("/board/share/shareSearch")
 	public ModelAndView Ssearch(String searchKey, String searchWord, String type) {
-		System.out.println("검색시작");
 		ModelAndView mav = new ModelAndView();
 		//게시판 타입
 		mav.addObject("type", type);
@@ -98,7 +96,6 @@ public class BoardController {
 	//정보
 	@GetMapping("/board/info/infoSearch")
 	public ModelAndView Isearch(String searchKey, String searchWord, String type) {
-		System.out.println("검색시작");
 		ModelAndView mav = new ModelAndView();
 		//게시판 타입
 		mav.addObject("type", type);
@@ -108,7 +105,6 @@ public class BoardController {
 	//산책
 	@GetMapping("/board/walk/walkSearch")
 	public ModelAndView Wsearch(String searchKey, String searchWord, String type) {
-		System.out.println("검색시작");
 		ModelAndView mav = new ModelAndView();
 		//게시판 타입
 		mav.addObject("type", type);
@@ -118,7 +114,6 @@ public class BoardController {
 	//자랑
 	@GetMapping("/board/boast/boastSearch")
 	public ModelAndView Bsearch(String searchKey, String searchWord, String type) {
-		System.out.println("검색시작");
 		ModelAndView mav = new ModelAndView();
 		//게시판 타입
 		mav.addObject("type", type);
@@ -128,11 +123,17 @@ public class BoardController {
 	//건의
 	@GetMapping("/board/suggest/suggestSearch")
 	public ModelAndView search(String searchKey, String searchWord, String type) {
-		System.out.println("검색시작");
 		ModelAndView mav = new ModelAndView();
 		//게시판 타입
 		mav.addObject("type", type);
 		mav.setViewName("/board/SubMenuSelect");
+		return mav;
+	}
+	//입양
+	@GetMapping("/board/adopt/adoptSearch")
+	public ModelAndView ADsearch(String searchKey, String searchWord) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/board/adopt/adoptList");
 		return mav;
 	}
 	
@@ -259,7 +260,6 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewAD(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 12;
-
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "adopt");
 	}
 	
@@ -336,7 +336,6 @@ public class BoardController {
 	//글 쓰기(공통)
 	@PostMapping("/board/BoardWriteOk")
 	public ResponseEntity<String> boardWriteOk(BoardVO vo, HttpServletRequest request, String type) {
-		System.out.println("BoardWrite");
 		vo.setUserid((String)request.getSession().getAttribute("logId"));//아이디 등록
 	
 		ResponseEntity<String> entity = null;
@@ -344,7 +343,6 @@ public class BoardController {
 		headers.setContentType(new MediaType("text","html", Charset.forName("UTF-8")));
 		
 		String path = request.getSession().getServletContext().getRealPath("/upload/board/"); // 파일업로드를 위한 업로드 위치의 절대주소
-		System.out.println("path -> "+path);
 		
 		try {
 			//DB등록
@@ -359,7 +357,6 @@ public class BoardController {
 			    result = imgTag.substring(imgTag.indexOf("src=")+5,(imgTag.substring(imgTag.indexOf("src=")).indexOf("style")+(imgTag.indexOf("src=")-2)));
 			}			
 			vo.setFilename1(result);
-			System.out.println(result);
 			
 			//게시판 회귀 선별조건
 			vo.setBoardno(service.BoardNum()+1); // 번호 매기도록 하는것.
@@ -423,14 +420,11 @@ public class BoardController {
 		@GetMapping("/board/boardView")
 		public ModelAndView boardView(int boardno, String user, HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
-			System.out.println("조회수 증가");
 			service.hitCount(boardno); //조회수 증가
-			mav.addObject("vo", service.BoardView(boardno));
+			String BF = service.getType(boardno);
+			mav.addObject("vo", service.BoardView(boardno,BF));
 			user = ((String)request.getSession().getAttribute("logId"));
 			mav.addObject("user", user);
-			
-			String BF = service.getType(boardno);
-			System.out.println(BF);
 
 			mav.setViewName("/board/"+BF+"/"+BF+"View");
 			return mav;
@@ -438,10 +432,10 @@ public class BoardController {
 		
 		//글 수정
 		@GetMapping("/board/boardEdit")
-		public ModelAndView BoardEdit(int boardno, String type) {
+		public ModelAndView BoardEdit(int boardno, @RequestParam("type")String type) {
 			
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", service.BoardView(boardno));
+			mav.addObject("vo", service.BoardView(boardno, type));
 			mav.addObject("type",type);
 			if(type.equals("suggest")) {
 			mav.setViewName("/board/suggest/suggestEdit");
@@ -456,7 +450,6 @@ public class BoardController {
 		//수정(DB)
 		@PostMapping("/board/boardEditOk")
 		public ResponseEntity<String> reviewEditOk(BoardVO vo, HttpSession session, HttpServletRequest req) {
-			System.out.println("BoardEdit");
 			vo.setUserid((String)req.getSession().getAttribute("logId"));//아이디 등록
 		
 			ResponseEntity<String> entity = null;
@@ -464,7 +457,6 @@ public class BoardController {
 			headers.setContentType(new MediaType("text","html", Charset.forName("UTF-8")));
 			
 			String path = req.getSession().getServletContext().getRealPath("/upload/board/"); // 파일업로드를 위한 업로드 위치의 절대주소
-			System.out.println("path -> "+path);
 			try {
 				//DB등록
 				Pattern pattern  =  Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
@@ -478,14 +470,11 @@ public class BoardController {
 				    result = imgTag.substring(imgTag.indexOf("src=")+5,(imgTag.substring(imgTag.indexOf("src=")).indexOf("style")+(imgTag.indexOf("src=")-2)));
 				}			
 				vo.setFilename1(result);
-				System.out.println(result);
 				
 				//게시판 회귀 선별조건
 				String type = service.getType(vo.getBoardno());
-				System.out.println(type);
 				
 				service.BoardUpdate(vo);
-				System.out.println(type);
 				
 				
 				String msg = "<script>location.href='/board/boardView?boardno="+vo.getBoardno()+"';</script>";
@@ -509,7 +498,6 @@ public class BoardController {
 			String path = session.getServletContext().getRealPath("/upload/board/");
 			
 			String boardtype= service.getType(boardno);
-			System.out.println(boardtype);
 			ResponseEntity<String> entity = null;
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Content-Type", "text/html; charset=utf-8");

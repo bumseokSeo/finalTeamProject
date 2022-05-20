@@ -9,14 +9,14 @@
 	</div>
 	<div class="Menu_containerSU">
 		<ul class="List_menu_FSU" id="List_menu_FSU">
-			<li>게시물 번호</li>
+			<li>번호</li>
 			<li>제목</li>
 			<li>작성자</li>
-			<li>날짜</li>
-			<li>조회수</li>
+			<li>작성일</li>
+			<li>조회</li>
 
 		</ul><!-- 게시물 -->
-		</div>
+		
 		 <div class="paging">
            <b id="prevViewSU"> ◀ </b>
            <b id="pViewSU"></b>
@@ -25,20 +25,20 @@
         </div>
     
        <div class="Suggest_btn"><a href="/board/boardWrite?type=suggest"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
-	<br/><br/><br/>
-	<div class="Suggest_search">
-		 <form action="/board/suggest/suggestSearch?type=suggest" id="searchFrmSU">
-			<select name="searchKey">
-				<option value="title" selected="selected">제목</option>
-				<option value="content">내용</option>
-				<option value="username">작성자</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWordSU"/>
-			<input type="hidden" name="type" value="suggest"/>
-			<input type="submit" value="검색"/>
-		</form>
+		<br/><br/><br/>
+		<div class="Suggest_search">
+			 <form action="/board/suggest/suggestSearch?type=suggest" id="searchFrmSU">
+				<select name="searchKey">
+					<option value="title" selected="selected">제목</option>
+					<option value="content">내용</option>
+					<option value="username">작성자</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWordSU"/>
+				<input type="hidden" name="type" value="suggest"/>
+				<input type="submit" value="검색"/>
+			</form>
+		</div>
 	</div>
-	
 </div>
 <br/>
 
@@ -86,6 +86,7 @@ $(document).ready(function(){
 			dataType : 'json',
 			data :param,
 			success : function(data){
+				var logLevel = "${logLevel}";
 				var date = new Date();
 				var year = date.getFullYear();
 				var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
@@ -93,13 +94,22 @@ $(document).ready(function(){
 				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlSU += "<li>"+data[i].suggestno+"</li>";
-					if(data[i].secret=="N"){
-					addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
+					if(data[i].secret=="N" && logLevel!=1){
+						addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
 					}else{
-					addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+						if(data[i].reviewcnt != 0){
+							addListHtmlSU += " [" + data[i].reviewcnt+"]";
+						}
+						addListHtmlSU += "</a></li>";
 					}
-					addListHtmlSU += "<li>"+data[i].username+"</li>"
-					addListHtmlSU += "<li>"+data[i].writedate+"</li>";
+					addListHtmlSU += "<li>"+data[i].username+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtmlSU += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+						
+					}else{
+						addListHtmlSU += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+					}
 					addListHtmlSU += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
@@ -123,7 +133,6 @@ $('#nextViewSU').click(function(){
 					addListHtmlSUpo += "<li>작성자</li>";
 					addListHtmlSUpo += "<li>날짜</li>";
 					addListHtmlSUpo += "<li>조회수</li>";
-		 console.log(startNum); 
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -134,7 +143,6 @@ $('#nextViewSU').click(function(){
 		var pn2 = pn.substring(pn.lastIndexOf('Search'));
 		if(pn=='SubMenuSelect'){
 			url = '/board/suggest/suggestLists';
-			console.log("다음페이지")
 			param = {
 				"startNum" : startNum*18+1
 			};
@@ -157,6 +165,7 @@ $('#nextViewSU').click(function(){
 			dataType : 'json',
 			data :param,
 			success : function(data){
+				var logLevel = "${logLevel}";
 				var date = new Date();
 				var year = date.getFullYear();
 				var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
@@ -164,13 +173,22 @@ $('#nextViewSU').click(function(){
 				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlSU += "<li>"+data[i].suggestno+"</li>";
-					if(data[i].secret=="N"){
-					addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
+					if(data[i].secret=="N" && logLevel!=1){
+						addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
 					}else{
-					addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+						if(data[i].reviewcnt != 0){
+							addListHtmlSU += " [" + data[i].reviewcnt+"]";
+						}
+						addListHtmlSU += "</a></li>";
 					}
-					addListHtmlSU += "<li>"+data[i].username+"</li>"
-					addListHtmlSU += "<li>"+data[i].writedate+"</li>";
+					addListHtmlSU += "<li>"+data[i].username+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtmlSU += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+						
+					}else{
+						addListHtmlSU += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+					}
 					addListHtmlSU += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
@@ -183,7 +201,6 @@ $('#nextViewSU').click(function(){
 				$("#pViewSU").empty();
 				$("#pViewSU").append(startNum+1);
 				$("#prevViewSU").append("◀");
-				/* console.log(addListHtmlSU); */
 			}
 		});
 	   
@@ -199,7 +216,6 @@ $('#prevViewSU').click(function(){
 					addListHtmlSUpo += "<li>작성자</li>";
 					addListHtmlSUpo += "<li>날짜</li>";
 					addListHtmlSUpo += "<li>조회수</li>";
-	 console.log(startNum); 
 	var url;
 	var param;
 	const params = new URL(window.location.href).searchParams;
@@ -210,7 +226,6 @@ $('#prevViewSU').click(function(){
 	var pn2 = pn.substring(pn.lastIndexOf('Search'));
 	if(pn=='SubMenuSelect'){
 		url = '/board/suggest/suggestLists';
-		console.log("이전페이지")
 		param = {
 			"startNum" : startNum*18-18
 		};
@@ -233,6 +248,7 @@ $('#prevViewSU').click(function(){
 		dataType : 'json',
 		data :param,
 		success : function(data){
+			var logLevel = "${logLevel}";
 			var date = new Date();
 			var year = date.getFullYear();
 			var month = new String(('0' + (date.getMonth() + 1)).slice(-2));
@@ -240,13 +256,22 @@ $('#prevViewSU').click(function(){
 			
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlSU += "<li>"+data[i].suggestno+"</li>";
-				if(data[i].secret=="N"){
-				addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
+				if(data[i].secret=="N" && logLevel!=1){
+					addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
 				}else{
-				addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+					addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					if(data[i].reviewcnt != 0){
+						addListHtmlSU += " [" + data[i].reviewcnt+"]";
+					}
+					addListHtmlSU += "</a></li>";
 				}
-				addListHtmlSU += "<li>"+data[i].username+"</li>"
-				addListHtmlSU += "<li>"+data[i].writedate+"</li>";
+				addListHtmlSU += "<li>"+data[i].username+"</li>";
+				if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+					addListHtmlSU += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+					
+				}else{
+					addListHtmlSU += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+				}
 				addListHtmlSU += "<li>"+data[i].hit+"</li>";
 			}
 			$("#nextViewSU").empty();
@@ -260,7 +285,6 @@ $('#prevViewSU').click(function(){
 			if(parseInt($("#pViewSU").text())==1){
 				$("#prevViewSU").empty();
 			} 
-			/* console.log(addListHtmlSU); */
 		}
 	});
 });

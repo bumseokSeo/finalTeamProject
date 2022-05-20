@@ -126,7 +126,6 @@ $('#nextViewI').click(function(){
 					addListHtmlIpo += "<li>작성자</li>";
 					addListHtmlIpo += "<li>작성일</li>";
 					addListHtmlIpo += "<li>조회</li>";
-		 console.log(startNum); 
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -137,7 +136,6 @@ $('#nextViewI').click(function(){
 		var pn2 = pn.substring(pn.lastIndexOf('Search'));
 		if(pn=='SubMenuSelect'){
 			url = '/board/info/infoLists';
-			console.log("다음페이지")
 			param = {
 				"startNum" : startNum*18+1
 			};
@@ -190,7 +188,6 @@ $('#nextViewI').click(function(){
 				$("#pViewI").empty();
 				$("#pViewI").append(startNum+1);
 				$("#prevViewI").append("◀");
-				/* console.log(addListHtmlI); */
 			}
 		});
 	   
@@ -216,7 +213,6 @@ $('#prevViewI').click(function(){
 	var pn2 = pn.substring(pn.lastIndexOf('Search'));
 	if(pn=='SubMenuSelect'){
 		url = '/board/info/infoLists';
-		console.log("이전페이지")
 		param = {
 			"startNum" : (startNum-1)*18-18
 		};
@@ -270,7 +266,6 @@ $('#prevViewI').click(function(){
 			if(parseInt($("#pViewI").text())==1){
 				$("#prevViewI").empty();
 			} 
-			/* console.log(addListHtmlI); */
 		}
 	});
    

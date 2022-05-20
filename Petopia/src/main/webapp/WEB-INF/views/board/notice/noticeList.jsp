@@ -15,7 +15,7 @@
 			<li>조회</li>
 
 		</ul><!-- 게시물 -->
-		</div>
+		
 		 <div class="paging">
            <b id="prevView"> ◀ </b>
            <b id="pView"></b>
@@ -23,19 +23,19 @@
             
         </div>
     
-	<br/><br/><br/>
-	<div class="Share_search">
-		 <form action="/board/notice/noticeSearch?type=notice" id="searchFrm">
-			<select name="searchKey">
-				<option value="title">제목</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWord"/>
-			<input type="hidden" name="type" value="notice"/>
-			<input type="submit" value="검색"/>
-		</form>
+		<br/><br/><br/>
+		<div class="Share_search">
+			 <form action="/board/notice/noticeSearch?type=notice" id="searchFrm">
+				<select name="searchKey">
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWord"/>
+				<input type="hidden" name="type" value="notice"/>
+				<input type="submit" value="검색"/>
+			</form>
+		</div>
 	</div>
-	
 </div>
 <br/>
 
@@ -59,7 +59,6 @@ $(document).ready(function(){
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 		var pn2 = pn.substring(pn.lastIndexOf('Search'))
-		console.log(pn2);
 		if(pn=='noticeSearch'){
 			url = '/board/notice/searchLists';
 			param = {
@@ -141,13 +140,11 @@ $('#nextView').click(function(){
 			};
 		}else if(pn=='SubMenuSelect'){
 			url = '/board/notice/noticeLists';
-			console.log("다음페이지")
 			param = {
 				"startNum" : startNum*18+1
 			};
 		}else if(pn2 =='Search'){
 			url = '/board/notice/noticeLists';
-			console.log("다음페이지")
 			param = {
 				"startNum" : startNum*18+1
 			};
@@ -219,12 +216,10 @@ $('#prevView').click(function(){
 		};
 	}else if(pn=='SubMenuSelect'){
 		url = '/board/notice/noticeLists';
-		console.log("이전페이지")
 		param = {
 			"startNum" : (startNum-1)*18-18
 		};
 	}else if(pn2 =='Search'){
-		console.log("이전페이지")
 		url = '/board/notice/noticeLists';
 		param = {
 			"startNum" : (startNum-1)*18-18
@@ -267,7 +262,6 @@ $('#prevView').click(function(){
 			if(parseInt($("#pView").text())==1){
 				$("#prevView").empty();
 			} 
-			/* console.log(addListHtml); */
 		}
 	});
 });

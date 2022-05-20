@@ -9,7 +9,7 @@
 	</div>
 		<div class="Menu_containerD">
 			<div class="row" id="rowAdopt"></div>
-		</div>
+		
 		 <div class="paging" style="width:100%; text-align: center; font-size: 35px;">
            <b id="prevViewD" > ◀ </b>
            <b id="pViewD" ></b>
@@ -18,18 +18,18 @@
         </div>
     
        <div class="Adopt_btn"><a href="/board/boardWrite?type=adopt"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
-	<br/><br/><br/>
-	<div class="Adopt_search">
-		 <form action="/board/adopt/adoptSearch" id="searchFrmD">
-			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
-				<option value="title">제목</option>
-				<option value="username">글쓴이</option>
-				<option value="content">내용</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWordD"/>
-			<input type="submit" value="검색"/>
-		</form>
+		<br/><br/><br/>
+		<div class="Adopt_search">
+			 <form action="/board/adopt/adoptSearch" id="searchFrmD">
+				<select name="searchKey">
+					<option value="title" selected="selected">제목</option>
+					<option value="username">글쓴이</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWordD"/>
+				<input type="submit" value="검색"/>
+			</form>
+		</div>
 	</div>
 	
 </div>
