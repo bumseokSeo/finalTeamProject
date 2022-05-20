@@ -27,7 +27,7 @@
        <div class="info_btn"><a href="/board/boardWrite?type=info"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 	<br/><br/><br/>
 	<div class="info_search">
-		 <form action="/board/info/infoSearch" id="searchFrmI">
+		 <form action="/board/info/infoSearch?type=info" id="searchFrmI">
 			<select name="searchKey">
 				<option value="" selected="selected">전체</option>
 				<option value="title">제목</option>
@@ -54,7 +54,6 @@ $("#searchFrmI").submit(function() {
 $(document).ready(function(){
 		var startNum = 0; 
 		var addListHtmlI = "";
-		 console.log(startNum); 
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -62,20 +61,24 @@ $(document).ready(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		console.log(pn);
-		if(pn='SubMenuSelect'&& $("#UserInfoShow").css('display')=='block'){
+		var pn2 = pn.substring(pn.lastIndexOf('Search'))
+		if(pn=='SubMenuSelect'){
 			url = '/board/info/infoLists';
 			param = {
 				"startNum" : startNum 
 			};
-		}else if(pn='infoSearch'){
+		}else if(pn=='infoSearch'){
 			url = '/board/info/searchLists';
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
+		}else if(pn2 =='Search'){
+			url = '/board/info/infoLists';
+			param = {
+				"startNum" : startNum 
+			};
 		}
 		$.ajax({
 			url : url,
@@ -129,20 +132,25 @@ $('#nextViewI').click(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		if(pn='SubMenuSelect'&& $("#UserInfoShow").css('display')=='block'){
+		var pn2 = pn.substring(pn.lastIndexOf('Search'));
+		if(pn=='SubMenuSelect'){
 			url = '/board/info/infoLists';
 			console.log("다음페이지")
 			param = {
-				"startNum" : startNum*19+1
+				"startNum" : startNum*18+1
 			};
-		}else if(pn='infoSearch'){
+		}else if(pn=='infoSearch'){
 			url = '/board/info/searchLists';
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
+		}else if(pn2 =='Search'){
+			url = '/board/info/infoLists';
+			param = {
+				"startNum" : startNum*18+1
+			};
 		}
 		$.ajax({
 			url : url,
@@ -193,7 +201,6 @@ $('#prevViewI').click(function(){
 				addListHtmlIpo += "<li>작성자</li>";
 				addListHtmlIpo += "<li>작성일</li>";
 				addListHtmlIpo += "<li>조회</li>";
-	 console.log(startNum); 
 	var url;
 	var param;
 	const params = new URL(window.location.href).searchParams;
@@ -201,20 +208,25 @@ $('#prevViewI').click(function(){
 	var word = params.get('searchWord');
 	var pathname = window.location.pathname;
 	var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-	if(pn='SubMenuSelect' && $("#UserInfoShow").css('display')=='block'){
+	var pn2 = pn.substring(pn.lastIndexOf('Search'));
+	if(pn=='SubMenuSelect'){
 		url = '/board/info/infoLists';
 		console.log("이전페이지")
 		param = {
-			"startNum" : (startNum-1)*19-19
+			"startNum" : (startNum-1)*18-18
 		};
-	}else if(pn='infoSearch'){
+	}else if(pn=='infoSearch'){
 		url = '/board/info/searchLists';
 		param = {
 			"startNum" : startNum ,
 			"searchKey" : key,
 			"searchWord" : word
 		};
-		console.log(startNum);
+	}else if(pn2 =='Search'){
+		url = '/board/info/infoLists';
+		param = {
+			"startNum" : startNum*18-18
+		};
 	}
 	$.ajax({
 		url : url,

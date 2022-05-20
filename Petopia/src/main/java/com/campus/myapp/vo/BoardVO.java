@@ -14,9 +14,33 @@ public class BoardVO {
 	
 	private String writetime;
 	
+	private int suggestno;
+	private String secret;
+	
+	private int adoptno;
 	private String category;
 	private String breed;
 	
+	
+	public int getSuggestno() {
+		return suggestno;
+	}
+	public void setSuggestno(int suggestno) {
+		this.suggestno = suggestno;
+	}
+
+	public String getSecret() {
+		return secret;
+	}
+	public void setSecret(String secret) {
+		this.secret = secret;
+	}
+	public int getAdoptno() {
+		return adoptno;
+	}
+	public void setAdoptno(int adoptno) {
+		this.adoptno = adoptno;
+	}
 	public int getBoardno() {
 		return boardno;
 	}

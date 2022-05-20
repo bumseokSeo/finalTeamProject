@@ -22,6 +22,16 @@ public class BoardServiceImp implements BoardService{
 	}
 	
 	@Override
+	public int BoardInsertSuggest(BoardVO vo) {
+		return dao.BoardInsertSuggest(vo);
+	}
+
+	@Override
+	public int BoardInsertAdopt(BoardVO vo) {
+		return dao.BoardInsertAdopt(vo);
+	}
+	
+	@Override
 	public BoardVO BoardSelect(int boardno) {
 		return dao.BoardSelect(boardno);
 	}
@@ -44,6 +54,11 @@ public class BoardServiceImp implements BoardService{
 	@Override
 	public int BoardNum(){
 		return dao.BoardNum();
+	}
+	
+	@Override
+	public int SuggestNum() {
+		return dao.SuggestNum();
 	}
 	
 	@Override

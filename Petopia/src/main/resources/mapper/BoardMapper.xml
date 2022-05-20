@@ -6,13 +6,13 @@
 <mapper namespace="com.campus.myapp.dao.BoardDAO">
   	<!-- 글등록 -->
   	<insert id="BoardInsert">
-  	INSERT INTO board(userid, title, content,boardtype,filename1)
+  	INSERT INTO board(userid, title, content, boardtype, filename1)
   	VALUES(#{userid}, #{title}, #{content}, #{boardtype}, #{filename1})
   	</insert>
   	<!-- 건의게시판 글등록 -->
   	<insert id="BoardInsertSuggest">
-  	INSERT INTO suggest(show)
-  	VALUES(#{show})
+  	INSERT INTO suggest(boardno, secret)
+  	VALUES (#{boardno}, #{secret})
   	</insert>
   	<!-- 입양게시판 글등록 -->
   	<insert id="BoardInsertAdopt">
@@ -25,8 +25,32 @@
   		   date_format(A.writedate, '%Y-%m-%d') writedate,
   		   date_format(A.writedate, '%H:%i') writetime,
   		   A.filename1, B.profileimage, B.userlevel, B.username
+  		   <choose>
+	  	<when test="param1.equals('suggest')">
+	            	,C.secret, C.suggestno
+       	</when>
+       	<when test="param1.equals('adopt')">
+       	,D.category, D.breed, D.adoptno
+       </when>
+    </choose>
   	FROM   board A, member B
-  	WHERE  A.userid=B.userid 
+  	<choose>
+	  	<when test="param1.equals('suggest')">
+	            	,suggest C
+       	</when>
+       	<when test="param1.equals('adopt')">
+       				,adopt D
+       </when>
+    </choose>
+  	WHERE  A.userid=B.userid
+  	<choose>
+	  	<when test="param1.equals('suggest')">
+	            	AND   A.boardno=C.boardno
+       </when>
+       <when test="param1.equals('adopt')">
+	            	AND   A.boardno=D.boardno
+       </when>
+    </choose>
 	AND    A.boardtype=#{param1}
 	ORDER by boardno desc 
 	LIMIT 	 #{param2.start}, #{param2.end}

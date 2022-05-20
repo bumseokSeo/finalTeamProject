@@ -21,7 +21,7 @@
        <div class="Boast_btn"><a href="/board/boardWrite?type=boast"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 	<br/><br/><br/>
 	<div class="Boast_search">
-		 <form action="/board/boast/boastSearch" id="searchFrmB">
+		 <form action="/board/notice/noticeSearch" id="searchFrmB">
 			<select name="searchKey">
 				<option value="" selected="selected">전체</option>
 				<option value="title">제목</option>
@@ -40,7 +40,6 @@
 $(document).ready(function(){
 		var startNum = 0; 
 		var addListHtmlB = "";
-		 console.log("자랑"); 
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -48,20 +47,24 @@ $(document).ready(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		console.log(pn);
-		if(pn='SubMenuSelect'){
+		var pn2 = pn.substring(pn.lastIndexOf('Search'));
+		if(pn=='SubMenuSelect'){
 			url = '/board/boast/boastLists';
 			param = {
 				"startNum" : startNum
 			};
-		}else if(pn='boastSearch'){
+		}else if(pn=='boastSearch'){
 			url = '/board/boast/searchLists';
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
+		}else if(pn2 =='Search'){
+			url = '/board/boast/boastLists';
+			param = {
+				"startNum" : startNum 
+			};
 		}
 		$.ajax({
 			url : url,
@@ -97,11 +100,12 @@ $('#nextViewB').click(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		if(pn='SubMenuSelect' && $("#UserBoastShow").css('display')=='block'){
+		var pn2 = pn.substring(pn.lastIndexOf('Search'));
+		if(pn='SubMenuSelect'){
 			url = '/board/boast/boastLists';
 			console.log("다음페이지")
 			param = {
-				"startNum" : startNum*8+1
+				"startNum" : startNum*12+1
 			};
 		}else if(pn='boastSearch'){
 			url = '/board/boast/boastLists';
@@ -110,7 +114,11 @@ $('#nextViewB').click(function(){
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
+		}else if(pn2 =='Search'){
+			url = '/board/boast/boastLists';
+			param = {
+				"startNum" : startNum*12+1
+			};
 		}
 		$.ajax({
 			url : url,
@@ -149,20 +157,25 @@ $('#prevViewB').click(function(){
 	var word = params.get('searchWord');
 	var pathname = window.location.pathname;
 	var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-	if(pn='SubMenuSelect' && $("#UserBoastShow").css('display')=='block'){
+	var pn2 = pn.substring(pn.lastIndexOf('Search'));
+	if(pn=='SubMenuSelect'){
 		url = '/board/boast/boastLists';
 		console.log("이전페이지")
 		param = {
-			"startNum" : (startNum-1)*8-8
+			"startNum" : (startNum-1)*12-12
 		};
-	}else if(pn='boastSearch'){
+	}else if(pn=='boastSearch'){
 		url = '/board/boast/searchLists';
 		param = {
 			"startNum" : startNum ,
 			"searchKey" : key,
 			"searchWord" : word
 		};
-		console.log(startNum);
+	}else if(pn2 =='Search'){
+		url = '/board/boast/boastLists';
+		param = {
+			"startNum" : startNum*12-12
+		};
 	}
 	$.ajax({
 		url : url,

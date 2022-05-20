@@ -40,7 +40,6 @@
 $(document).ready(function(){
 		var startNum = 0; 
 		var addListHtmlS = "";
-		 console.log("나눔"); 
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -48,7 +47,7 @@ $(document).ready(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		console.log(pn);
+		var pn2 = pn.substring(pn.lastIndexOf('Search'));
 		if(pn='SubMenuSelect'){
 			url = '/board/share/shareLists';
 			param = {
@@ -61,7 +60,11 @@ $(document).ready(function(){
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
+		}else if(pn2 =='Search'){
+			url = '/board/share/shareLists';
+			param = {
+				"startNum" : startNum
+			};
 		}
 		$.ajax({
 			url : url,
@@ -99,7 +102,8 @@ $('#nextViewS').click(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		if(pn='SubMenuSelect' && $("#UserShareShow").css('display')=='block'){
+		var pn2 = pn.substring(pn.lastIndexOf('Search'));
+		if(pn=='SubMenuSelect'){
 			url = '/board/share/shareLists';
 			console.log("다음페이지")
 			param = {
@@ -112,7 +116,11 @@ $('#nextViewS').click(function(){
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
+		}else if(pn2 =='Search'){
+			url = '/board/share/shareLists';
+			param = {
+				"startNum" : startNum*12+1
+			};
 		}
 		$.ajax({
 			url : url,
@@ -153,7 +161,8 @@ $('#prevViewS').click(function(){
 	var word = params.get('searchWord');
 	var pathname = window.location.pathname;
 	var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-	if(pn='SubMenuSelect' && $("#UserShareShow").css('display')=='block'){
+	var pn2 = pn.substring(pn.lastIndexOf('Search'));
+	if(pn='SubMenuSelect'){
 		url = '/board/share/shareLists';
 		console.log("이전페이지")
 		param = {
@@ -166,7 +175,11 @@ $('#prevViewS').click(function(){
 			"searchKey" : key,
 			"searchWord" : word
 		};
-		console.log(startNum);
+	}else if(pn2 =='Search'){
+		url = '/board/share/shareLists';
+		param = {
+			"startNum" : startNum*12
+		};
 	}
 	$.ajax({
 		url : url,

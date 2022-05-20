@@ -9,6 +9,10 @@ import com.campus.myapp.vo.PagingVO2;
 public interface BoardService {
 	//글 등록
 	public int BoardInsert(BoardVO vo);
+	//건의 등록
+	public int BoardInsertSuggest(BoardVO vo);
+	//입양 등록
+	public int BoardInsertAdopt(BoardVO vo);
 	//글 한개 선택하기(글보기)
 	public BoardVO BoardSelect(int boardno);
 	//글 선택(리스트)
@@ -19,6 +23,7 @@ public interface BoardService {
 	public void hitCount(int boardno);
 	
 	public int BoardNum();
+	public int SuggestNum();
 	
 	//글수정
 	public int BoardUpdate(BoardVO vo);
