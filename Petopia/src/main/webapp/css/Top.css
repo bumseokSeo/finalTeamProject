@@ -8,6 +8,8 @@
     list-style-type:none;
 }
 
+
+
 body{
 	height: auto;
 	min-height: 100vh;
@@ -154,6 +156,8 @@ a:link, a:visited {
 	position: absolute;
 	bottom: 0px;
 	margin-top: 50px;
+	position: absolute;
+	bottom: 0;
 }
 .bottomlogo{
 	width:20%;

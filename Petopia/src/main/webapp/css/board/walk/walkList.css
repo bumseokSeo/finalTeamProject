@@ -36,8 +36,7 @@
 }
 
 .Menu_container{
-	height: auto;
-	min-height: 10vh;
+	height:auto;
 	overflow:hidden;
 	padding-top:20px;
 }
