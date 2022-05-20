@@ -24,20 +24,20 @@
         </div>
     
        <div class="info_btn"><a href="/board/boardWrite?type=walk"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
-	<br/><br/><br/>
-	<div class="info_search">
-		 <form action="/board/walk/walkSearch?type=walk" id="searchFrmW">
-			<select name="searchKey">
-				<option value="title" selected="selected">제목</option>
-				<option value="content">내용</option>
-				<option value="username">작성자</option>
-			</select>
-			<input type="text" name="searchWord" id="searchWordW"/>
-			<input type="hidden" name="type" value="walk"/>
-			<input type="submit" value="검색"/>
-		</form>
+		<br/><br/><br/>
+		<div class="info_search">
+			 <form action="/board/walk/walkSearch?type=walk" id="searchFrmW">
+				<select name="searchKey">
+					<option value="title" selected="selected">제목</option>
+					<option value="content">내용</option>
+					<option value="username">작성자</option>
+				</select>
+				<input type="text" name="searchWord" id="searchWordW"/>
+				<input type="hidden" name="type" value="walk"/>
+				<input type="submit" value="검색"/>
+			</form>
+		</div>
 	</div>
-</div>
 </div>
 <br/>
 
@@ -136,7 +136,6 @@ $('#nextViewW').click(function(){
 		var pn2 = pn.substring(pn.lastIndexOf('Search'));
 		if(pn=='SubMenuSelect'){
 			url = '/board/walk/walkLists';
-			console.log("다음페이지")
 			param = {
 				"startNum" : startNum*18+1
 			};
@@ -189,7 +188,6 @@ $('#nextViewW').click(function(){
 				$("#pViewW").empty();
 				$("#pViewW").append(startNum+1);
 				$("#prevViewW").append("◀");
-				/* console.log(addListHtmlW); */
 			}
 		});
 	   
@@ -215,7 +213,6 @@ $('#prevViewW').click(function(){
 	var pn2 = pn.substring(pn.lastIndexOf('Search'));
 	if(pn=='SubMenuSelect'){
 		url = '/board/walk/walkLists';
-		console.log("이전페이지")
 		param = {
 			"startNum" : (startNum-1)*18-18
 		};
@@ -269,7 +266,6 @@ $('#prevViewW').click(function(){
 			if(parseInt($("#pViewW").text())==1){
 				$("#prevViewW").empty();
 			} 
-			/* console.log(addListHtmlW); */
 		}
 	});
    

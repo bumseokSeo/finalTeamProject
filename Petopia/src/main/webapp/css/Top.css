@@ -8,11 +8,14 @@
     list-style-type:none;
 }
 
-.container{
+body{
 	height: auto;
-	min-height: 62.9vh;
-	overflow:hidden;
+	min-height: 100vh;
+	overflow:auto;
+	padding-bottom: 150px;
+	position: relative;
 }
+
 a:link, a:visited {
 	text-decoration: none;
 	color: black;
@@ -148,7 +151,8 @@ a:link, a:visited {
 	height:150px;
 	border:2px solid rgba(189,189,189,0.5);
 	background-color: rgba(132,144,22,0.5);
-	position: relative;
+	position: absolute;
+	bottom: 0px;
 	margin-top: 50px;
 }
 .bottomlogo{
