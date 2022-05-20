@@ -90,26 +90,15 @@ public class BoardServiceImp implements BoardService{
 	public int BoardUpdate(BoardVO vo) {
 		return dao.BoardUpdate(vo);
 	}
+	
+	@Override
+	public int BoardAdUpdate(BoardVO vo) {
+		return dao.BoardAdUpdate(vo);
+	}
 
 	@Override
 	public int BoardFileUpdate(BoardVO vo) {
 		return dao.BoardFileUpdate(vo);
-	}
-
-	//Share Board
-	@Override
-	public List<BoardVO> shareSelectList(PagingVO pvo, BoardVO vo) {
-		return dao.shareSelectList(pvo,vo);
-	}
-
-	@Override
-	public int shareInsert(BoardVO vo) {
-		return dao.shareInsert(vo);
-	}
-
-	@Override
-	public int shareTotalRecord(PagingVO pvo, BoardVO vo) {
-		return dao.shareTotalRecord(pvo,vo);
 	}
 
 	@Override

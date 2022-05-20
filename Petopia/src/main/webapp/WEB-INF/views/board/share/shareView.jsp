@@ -283,10 +283,12 @@ $(function(){
   	  	</div>
   	 </div>
   	  	<div class="View_content">${vo.content}</div>
+  	  	<div class="View_vote">
   	  	<form id="likeup">
   	  	<input type="hidden" name="boardno" value="${vo.boardno}"/>
   	  	<button class="likebutton"><p>"좋아요!"</p><small id="likeCnt">${vo.likes}♥</small></button>
   	  	</form>
+  	  	</div>
   	  	<div class="View_bottommenu">
   	  		<c:if test="${logId == vo.userid}">
   	  		<p style="float: right;">

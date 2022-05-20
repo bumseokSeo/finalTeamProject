@@ -483,13 +483,15 @@ public class BoardController {
 				}			
 				vo.setFilename1(result);
 				
-				//게시판 회귀 선별조건
+				//게시판 선별
 				String type = service.getType(vo.getBoardno());
-				
 				service.BoardUpdate(vo);
 				
-				
-				String msg = "<script>location.href='/board/boardView?boardno="+vo.getBoardno()+"';</script>";
+				if(type.equals("adopt")) {
+					service.BoardAdUpdate(vo);
+				}
+				String msg = "<script>alert('글이 수정되었습니다');";
+				msg = "<script>location.href='/board/boardView?boardno="+vo.getBoardno()+"';</script>";
 				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 				
 				

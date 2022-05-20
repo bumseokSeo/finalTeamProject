@@ -115,7 +115,7 @@
     WHERE boardno=#{param1}
     </select>
   	<select id="BoardView" resultType="com.campus.myapp.vo.BoardVO">
-	    SELECT A.boardno, A.title, A.hit, A.writedate, A.content, A.userid, A.filename1, A.boardtype,
+	    SELECT A.boardno, A.title, A.hit, A.writedate, A.content, A.userid, A.filename1, A.boardtype,A.likes,
 	   		   B.profileimage, B.userlevel, B.username
 	   		    <choose>
 		  			<when test="param2.equals('suggest')">
@@ -148,6 +148,10 @@
     <!-- 글 수정 -->
     <update id="BoardUpdate">
   		UPDATE  board SET title=#{title}, content=#{content}, filename1=#{filename1}
+		WHERE boardno=#{boardno}
+  	</update>
+  	<update id="BoardAdUpdate">
+  		UPDATE  adopt SET category=#{category}, breed=#{breed}
 		WHERE boardno=#{boardno}
   	</update>
   	<select id="getFileName" resultType="com.campus.myapp.vo.BoardVO">

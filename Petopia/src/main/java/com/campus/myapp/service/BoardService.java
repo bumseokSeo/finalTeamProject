@@ -31,6 +31,7 @@ public interface BoardService {
 	
 	//글수정
 	public int BoardUpdate(BoardVO vo);
+	public int BoardAdUpdate(BoardVO vo);
 	public int BoardFileUpdate(BoardVO vo);
 	//파일명 선택
 	public BoardVO getFileName(int boardno);
@@ -41,11 +42,6 @@ public interface BoardService {
 	public String getType(int boardno);
 	
 	public int BoardtotalRecord(PagingVO pVO, String boardtype);
-
-	// Share Board
-	public int shareInsert(BoardVO vo);
-	public List<BoardVO> shareSelectList(PagingVO pvo, BoardVO vo);
-	public int shareTotalRecord(PagingVO pvo, BoardVO vo);
 	
 	public int myWriteCnt(String userid);
 	public int myReviewCnt(String userid);
