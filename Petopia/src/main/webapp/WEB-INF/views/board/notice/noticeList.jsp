@@ -27,7 +27,6 @@
 	<div class="Share_search">
 		 <form action="/board/notice/noticeSearch?type=notice" id="searchFrm">
 			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
 				<option value="title">제목</option>
 				<option value="content">내용</option>
 			</select>

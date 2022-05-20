@@ -27,11 +27,11 @@
        <div class="Suggest_btn"><a href="/board/boardWrite?type=suggest"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 	<br/><br/><br/>
 	<div class="Suggest_search">
-		 <form action="/board/notice/noticeSearch" id="searchFrmSU">
+		 <form action="/board/suggest/suggestSearch?type=suggest" id="searchFrmSU">
 			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
-				<option value="title">제목</option>
+				<option value="title" selected="selected">제목</option>
 				<option value="content">내용</option>
+				<option value="username">작성자</option>
 			</select>
 			<input type="text" name="searchWord" id="searchWordSU"/>
 			<input type="hidden" name="type" value="suggest"/>
@@ -67,7 +67,7 @@ $(document).ready(function(){
 			param = {
 				"startNum" : startNum 
 			};
-		}else if(pn='suggestSearch'){
+		}else if(pn=='suggestSearch'){
 			url = '/board/suggest/searchLists';
 			param = {
 				"startNum" : startNum ,
@@ -141,13 +141,13 @@ $('#nextViewSU').click(function(){
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 		var pn2 = pn.substring(pn.lastIndexOf('Search'));
-		if(pn='SubMenuSelect'){
+		if(pn=='SubMenuSelect'){
 			url = '/board/suggest/suggestLists';
 			console.log("다음페이지")
 			param = {
 				"startNum" : startNum*18+1
 			};
-		}else if(pn='suggestSearch'){
+		}else if(pn=='suggestSearch'){
 			url = '/board/suggest/searchLists';
 			param = {
 				"startNum" : startNum ,
@@ -226,13 +226,13 @@ $('#prevViewSU').click(function(){
 	var pathname = window.location.pathname;
 	var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 	var pn2 = pn.substring(pn.lastIndexOf('Search'));
-	if(pn='SubMenuSelect'){
+	if(pn=='SubMenuSelect'){
 		url = '/board/suggest/suggestLists';
 		console.log("이전페이지")
 		param = {
 			"startNum" : startNum*18-18
 		};
-	}else if(pn='suggestSearch'){
+	}else if(pn=='suggestSearch'){
 		url = '/board/suggest/searchLists';
 		param = {
 			"startNum" : startNum ,

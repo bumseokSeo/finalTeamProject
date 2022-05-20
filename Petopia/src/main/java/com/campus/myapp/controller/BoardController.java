@@ -143,7 +143,6 @@ public class BoardController {
 		pvo.setStart(Integer.parseInt(startNum));
 		pvo.setEnd(19);
 		List<BoardVO> arr=service.BoardSelectList("notice", pvo);
-		System.out.println(arr);
 		return arr;
 	}
 		

@@ -28,9 +28,9 @@
 	<div class="info_search">
 		 <form action="/board/info/infoSearch?type=info" id="searchFrmI">
 			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
-				<option value="title">제목</option>
-				<option value="content">내용</option>
+				<option value="title" selected="selected">제목</option>
+					<option value="content">내용</option>
+					<option value="username">작성자</option>
 			</select>
 			<input type="text" name="searchWord" id="searchWordI"/>
 			<input type="hidden" name="type" value="info"/>

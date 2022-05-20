@@ -20,14 +20,14 @@
        <div class="Boast_btn"><a href="/board/boardWrite?type=boast"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
 	<br/><br/><br/>
 	<div class="Boast_search">
-		 <form action="/board/notice/noticeSearch" id="searchFrmB">
+		 <form action="/board/boast/boastSearch?type=boast" id="searchFrmB">
 			<select name="searchKey">
-				<option value="" selected="selected">전체</option>
-				<option value="title">제목</option>
+				<option value="title" selected="selected">제목</option>
 				<option value="content">내용</option>
+				<option value="username">작성자</option>
 			</select>
 			<input type="text" name="searchWord" id="searchWordB"/>
-			<input type="hidden" name="type" value="Boast"/>
+			<input type="hidden" name="type" value="boast"/>
 			<input type="submit" value="검색"/>
 		</form>
 	</div>
@@ -103,13 +103,13 @@ $('#nextViewB').click(function(){
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 		var pn2 = pn.substring(pn.lastIndexOf('Search'));
-		if(pn='SubMenuSelect'){
+		if(pn=='SubMenuSelect'){
 			url = '/board/boast/boastLists';
 			console.log("다음페이지")
 			param = {
 				"startNum" : startNum*12+1
 			};
-		}else if(pn='boastSearch'){
+		}else if(pn=='boastSearch'){
 			url = '/board/boast/boastLists';
 			param = {
 				"startNum" : startNum ,
