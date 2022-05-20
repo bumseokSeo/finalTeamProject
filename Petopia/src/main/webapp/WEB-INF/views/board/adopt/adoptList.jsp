@@ -74,7 +74,7 @@ $(document).ready(function(){
 					addListHtmlD += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlD += "</div></div>";
 				}
-				if(data.length<9){
+				if(data.length<12){
 					$("#nextViewD").empty();
 				} 
 				if(startNum=1){
@@ -125,7 +125,7 @@ $('#nextViewD').click(function(){
 					addListHtmlD += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlD += "</div></div>";
 				}
-				if(data.length<8){
+				if(data.length<12){
 					$("#nextViewD").empty();
 				} 
 				$("#prevViewD").empty();

@@ -250,7 +250,7 @@ public class BoardController {
 	@RequestMapping(value="/board/adopt/adoptListMethod")
 	public List<BoardVO> AdoptPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
 		pvo.setStart(Integer.parseInt(startNum));
-		pvo.setEnd(8);
+		pvo.setEnd(12);
 		List<BoardVO> lst= service.BoardSelectList("adopt", pvo);
 		return lst;
 	}
