@@ -162,7 +162,7 @@ public class AdminController {
 			}
 			
 			service.animalInfoInsert(vo);
-			String msg = "<script>alert('반려동물정보가 등록되었습니다.'); location.href='/admin/admin_animalInfo';</script>";
+			String msg = "<script>alert('반려동물정보가 등록되었습니다.'); location.href='/admin/admin_animalInfo?searchKey=all';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 			
 		} catch(Exception e) {
@@ -178,9 +178,12 @@ public class AdminController {
 	}
 	// 파일지우기
 	public void fileDelete(String p, String f) {
+		
 		if(f != null) {
 			File file = new File(p, f);
-			file.delete();
+			if(file != null && file.exists()) {
+				file.delete();
+			}
 		}
 	}
 	

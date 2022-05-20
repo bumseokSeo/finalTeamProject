@@ -46,21 +46,28 @@ $(document).ready(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
+<<<<<<< HEAD
 		if(pn='adoptList'){
+=======
+		console.log(pn);
+		if(pn=='adoptList'){
+>>>>>>> refs/heads/CHK
 			url = '/board/adopt/adoptListMethod';
 			param = {
 				"startNum" : startNum
 			};
-		}else if(pn='adoptSearch'){
+		}else if(pn=='adoptSearch'){
 			url = '/board/adopt/searchLists';
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
 				"searchWord" : word
 			};
+<<<<<<< HEAD
 			
+=======
+>>>>>>> refs/heads/CHK
 		}
-		console.log(pn,url);
 		$.ajax({
 			url : url,
 			type : 'POST',
@@ -68,6 +75,7 @@ $(document).ready(function(){
 			data :param,
 			success : function(data){
 				for (var i = 0; i < data.length; i++) {
+<<<<<<< HEAD
 					addListHtmlD += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 					addListHtmlD += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 					addListHtmlD += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
@@ -75,8 +83,17 @@ $(document).ready(function(){
 					addListHtmlD += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlD += "</div></div>";
 			    
+=======
+					addListHtmlD += "<div class='PostArea'><div class='PostImg_Area'><a href='/board/boardView?boardno="+data[i].boardno+"'><img src='"+data[i].filename1+"'></a></div>";
+					addListHtmlD += "<div class='Post_body'><div class='Post_body_title'>"+data[i].title+"</div><div class='Post_body_content'>";
+					addListHtmlD += "<label class='adopt_text'>"+data[i].username+"</label><label class='adopt_text'>"+data[i].writedate+"</label></div></div></div>";
+>>>>>>> refs/heads/CHK
 				}
+<<<<<<< HEAD
 				if(data.length<12){
+=======
+				if(data.length<9){
+>>>>>>> refs/heads/CHK
 					$("#nextViewD").empty();
 				} 
 				if(startNum=1){
@@ -99,20 +116,19 @@ $('#nextViewD').click(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		if(pn='adoptList'){
+		if(pn=='adoptList'){
 			url = '/board/adopt/adoptListMethod';
 			console.log("다음페이지")
 			param = {
 				"startNum" : startNum*12+1
 			};
-		}else if(pn='adoptSearch'){
+		}else if(pn=='adoptSearch'){
 			url = '/board/adopt/adoptListMethod';
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
 		}
 		$.ajax({
 			url : url,
@@ -154,20 +170,19 @@ $('#prevViewD').click(function(){
 	var word = params.get('searchWord');
 	var pathname = window.location.pathname;
 	var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-	if(pn='adoptList'){
+	if(pn=='adoptList'){
 		url = '/board/adopt/adoptListMethod';
 		console.log("이전페이지")
 		param = {
 			"startNum" : (startNum-1)*12-12
 		};
-	}else if(pn='adoptSearch'){
+	}else if(pn=='adoptSearch'){
 		url = '/board/adopt/searchLists';
 		param = {
 			"startNum" : startNum ,
 			"searchKey" : key,
 			"searchWord" : word
 		};
-		console.log(startNum);
 	}
 	$.ajax({
 		url : url,
