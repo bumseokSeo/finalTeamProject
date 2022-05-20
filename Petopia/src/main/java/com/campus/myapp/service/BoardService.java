@@ -21,6 +21,10 @@ public interface BoardService {
 	public List<BoardVO> boardSearch(String searchKey, String string, int start, int end, String boardtype);
 	//조회수 증가
 	public void hitCount(int boardno);
+	//추천수 증가
+	public void LikeCountUP(int boardno);
+	//추천수 읽기
+	public int LikeCnt(int boardno);
 	
 	public int BoardNum();
 	public int SuggestNum();

@@ -97,6 +97,22 @@
 	margin-top:10px;
 	top:10px;
 }
+
+.likebutton{
+	display:inline-block;
+	border:1px solid grey;
+	text-align: center;
+	border-radius: 5px;
+	padding: 0.5rem 1.3rem;
+	position: relative;
+	background-color: rgba(0,0,0,0);
+}
+
+.View_vote{
+	text-align:center;
+	max-width:100%;
+	clear:both;
+}
 #chatBtn{
 	position: absolute;
 	right:10px;

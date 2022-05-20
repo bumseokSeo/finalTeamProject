@@ -359,8 +359,11 @@ public class BoardController {
 			vo.setFilename1(result);
 			
 			//게시판 회귀 선별조건
-			vo.setBoardno(service.BoardNum()+1); // 번호 매기도록 하는것.
-			
+			try {
+			vo.setBoardno(service.BoardNum()+1);// 번호 매기도록 하는것.
+			}catch(Exception E){
+				vo.setBoardno(1);
+			}
 			vo.setBoardtype(vo.getBoardtype());
 			
 			
@@ -428,6 +431,15 @@ public class BoardController {
 
 			mav.setViewName("/board/"+BF+"/"+BF+"View");
 			return mav;
+		}
+		
+		//추천누르기
+		@ResponseBody
+		@PostMapping("/board/boardLike")
+		public int LikeCnt(int boardno) {
+			service.LikeCountUP(boardno);
+			int LCnt = service.LikeCnt(boardno);
+			return LCnt;
 		}
 		
 		//글 수정
@@ -514,9 +526,13 @@ public class BoardController {
 				
 				// 3. 파일 삭제
 				fileDelete(path, dbFileVO.getFilename1());
+				
 				String msg = "<script>alert('글이 삭제되었습니다');";
+				if(boardtype.equals("adopt")) {
+					  msg += "location.href='/board/adopt/adoptList';</script>";
+				}else {
 					   msg += "location.href='/board/SubMenuSelect?type="+boardtype+"';</script>";
-						
+				}
 
 				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 				

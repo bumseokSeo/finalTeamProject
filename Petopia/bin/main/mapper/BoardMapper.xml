@@ -105,6 +105,15 @@
   	<update id="hitCount">
     UPDATE board SET hit = hit+1 WHERE boardno=#{param1}
     </update>
+    <!--  추천 증가 -->
+    <update id="LikeCountUP">
+    UPDATE board SET likes = likes+1 WHERE boardno=#{param1}
+    </update>
+    <!--  추천 읽기 -->
+    <select id="LikeCnt" resultType="int">
+    SELECT likes FROM board 
+    WHERE boardno=#{param1}
+    </select>
   	<select id="BoardView" resultType="com.campus.myapp.vo.BoardVO">
 	    SELECT A.boardno, A.title, A.hit, A.writedate, A.content, A.userid, A.filename1, A.boardtype,
 	   		   B.profileimage, B.userlevel, B.username

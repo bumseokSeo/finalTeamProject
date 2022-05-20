@@ -112,6 +112,25 @@ $(function(){
 			});
 		}
 	});
+	$(".likebutton").click(function(){
+		event.preventDefault();
+		var addlike = "";
+		let params3 = $("#likeup").serialize();
+		$.ajax({
+			url:'/board/boardLike',
+			data:params3,
+			type:'post',
+			success:function(vo){
+				console.log("좋아요증가");
+				addlike = vo+"♥";
+				$("#likeCnt").empty();
+				$("#likeCnt").html(addlike);
+			},error:function(e){
+				console.log(e.responseText);
+			}
+		});
+		
+	});
 	replyListAll();
 	
 });
@@ -148,6 +167,12 @@ $(function(){
   	  	</div>
   	 </div>
   	  	<div class="View_content">${vo.content}</div>
+  	  	<div class="View_vote">
+  	  	<form id="likeup">
+  	  	<input type="hidden" name="boardno" value="${vo.boardno}"/>
+  	  	<button class="likebutton"><p>"좋아요!"</p><small id="likeCnt">${vo.likes}♥</small></button>
+  	  	</form>
+  	  	</div>
   	  	<div class="View_bottommenu">
   	  		<c:if test="${logId == vo.userid}">
   	  		<p style="float: right;">
