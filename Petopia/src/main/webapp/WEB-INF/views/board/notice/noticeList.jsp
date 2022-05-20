@@ -2,6 +2,45 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="/css/board/notice/noticeList.css" type="text/css"/>
+
+<div class="container">
+	<div class="Menu_Bar_A">
+		<h1 class="Menu_title">공지사항</h1>
+		<div class="Menu_img">이미지 들어갈것</div>
+	</div>
+	<div class="Menu_container">
+		<ul class="List_menu_F" id="List_menu_F">
+			<li>번호</li>
+			<li>제목</li>
+			<li>작성일</li>
+			<li>조회</li>
+
+		</ul><!-- 게시물 -->
+		</div>
+		 <div class="paging">
+           <b id="prevView"> ◀ </b>
+           <b id="pView"></b>
+           <b id="nextView" > ▶ </b>
+            
+        </div>
+    
+	<br/><br/><br/>
+	<div class="Share_search">
+		 <form action="/board/notice/noticeSearch?type=notice" id="searchFrm">
+			<select name="searchKey">
+				<option value="" selected="selected">전체</option>
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+			</select>
+			<input type="text" name="searchWord" id="searchWord"/>
+			<input type="hidden" name="type" value="notice"/>
+			<input type="submit" value="검색"/>
+		</form>
+	</div>
+	
+</div>
+<br/>
+
 <script>
 $("#searchFrm").submit(function() {
    if ($("#searchWord").val() == "") {
@@ -11,10 +50,9 @@ $("#searchFrm").submit(function() {
    
 });
 	
-window.onload=function(){
+$(document).ready(function(){
 		var startNum = 0; 
 		var addListHtml = "";
-		
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -22,20 +60,25 @@ window.onload=function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		console.log(pn);
-		if(pn='SubMenuSelect'&& $("#UserNoticeShow").css('display')=='block'){
-			url = '/board/notice/noticeLists';
-			param = {
-				"startNum" : startNum 
-			};
-		}else if(pn='noticeSearch'){
+		var pn2 = pn.substring(pn.lastIndexOf('Search'))
+		console.log(pn2);
+		if(pn=='noticeSearch'){
 			url = '/board/notice/searchLists';
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
+		}else if(pn=='SubMenuSelect'){
+			url = '/board/notice/noticeLists';
+			param = {
+				"startNum" : startNum 
+			};
+		}else if(pn2 =='Search'){
+			url = '/board/notice/noticeLists';
+			param = {
+				"startNum" : startNum 
+			};
 		}
 		$.ajax({
 			url : url,
@@ -73,7 +116,7 @@ window.onload=function(){
 				$("#pView").append(startNum);
 			}
 		});
-}
+});
 
 $('#nextView').click(function(){
 		var startNum = parseInt($("#pView").text());
@@ -83,7 +126,6 @@ $('#nextView').click(function(){
 					addListHtmlpo += "<li>제목</li>";
 					addListHtmlpo += "<li>작성일</li>";
 					addListHtmlpo += "<li>조회</li>";
-		 console.log(startNum); 
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -91,20 +133,26 @@ $('#nextView').click(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		if(pn='SubMenuSelect'&& $("#UserNoticeShow").css('display')=='block'){
-			url = '/board/notice/noticeLists';
-			console.log("다음페이지")
-			param = {
-				"startNum" : startNum*19+1
-			};
-		}else if(pn='noticeSearch'){
+		var pn2 = pn.substring(pn.lastIndexOf('Search'))
+		if(pn=='noticeSearch'){
 			url = '/board/notice/searchLists';
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
+		}else if(pn=='SubMenuSelect'){
+			url = '/board/notice/noticeLists';
+			console.log("다음페이지")
+			param = {
+				"startNum" : startNum*18+1
+			};
+		}else if(pn2 =='Search'){
+			url = '/board/notice/noticeLists';
+			console.log("다음페이지")
+			param = {
+				"startNum" : startNum*18+1
+			};
 		}
 		$.ajax({
 			url : url,
@@ -142,7 +190,6 @@ $('#nextView').click(function(){
 				$("#pView").empty();
 				$("#pView").append(startNum+1);
 				$("#prevView").append("◀");
-				/* console.log(addListHtml); */
 			}
 		});
 	   
@@ -157,7 +204,6 @@ $('#prevView').click(function(){
 				addListHtmlpo += "<li>제목</li>";
 				addListHtmlpo += "<li>작성일</li>";
 				addListHtmlpo += "<li>조회</li>";
-	 console.log(startNum); 
 	var url;
 	var param;
 	const params = new URL(window.location.href).searchParams;
@@ -165,20 +211,26 @@ $('#prevView').click(function(){
 	var word = params.get('searchWord');
 	var pathname = window.location.pathname;
 	var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-	if(pn='SubMenuSelect' && $("#UserNoticeShow").css('display')=='block'){
-		url = '/board/notice/noticeLists';
-		console.log("이전페이지")
-		param = {
-			"startNum" : (startNum-1)*19-19
-		};
-	}else if(pn='noticeSearch'){
+	var pn2 = pn.substring(pn.lastIndexOf('Search'))
+	if(pn=='noticeSearch'){
 		url = '/board/notice/searchLists';
 		param = {
 			"startNum" : startNum ,
 			"searchKey" : key,
 			"searchWord" : word
 		};
-		console.log(startNum);
+	}else if(pn=='SubMenuSelect'){
+		url = '/board/notice/noticeLists';
+		console.log("이전페이지")
+		param = {
+			"startNum" : (startNum-1)*18-18
+		};
+	}else if(pn2 =='Search'){
+		console.log("이전페이지")
+		url = '/board/notice/noticeLists';
+		param = {
+			"startNum" : (startNum-1)*18-18
+		};
 	}
 	$.ajax({
 		url : url,
@@ -222,40 +274,3 @@ $('#prevView').click(function(){
 	});
 });
 </script>
-
-<div class="container">
-	<div class="Menu_Bar_A">
-		<h1 class="Menu_title">공지사항</h1>
-	</div>
-	<div class="Menu_container">
-		<ul class="List_menu_F" id="List_menu_F">
-			<li>번호</li>
-			<li>제목</li>
-			<li>작성일</li>
-			<li>조회</li>
-
-		</ul><!-- 게시물 -->
-		
-		 <div class="paging">
-           <b id="prevView"> ◀ </b>
-           <b id="pView"></b>
-           <b id="nextView" > ▶ </b>
-            
-        </div>
-    
-		<br/><br/><br/>
-		<div class="Share_search">
-			 <form action="/board/notice/noticeSearch" id="searchFrm">
-				<select name="searchKey">
-					<option value="" selected="selected">전체</option>
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-				</select>
-				<input type="text" name="searchWord" id="searchWord"/>
-				<input type="hidden" name="type" value="notice"/>
-				<input type="submit" value="검색"/>
-			</form>
-		</div>
-	</div>
-</div>
-<br/>
