@@ -24,13 +24,13 @@ $(function(){
 					tag +="<div class='reply_date'>"+vo.writedate+"</div>";
 
 					if(vo.userid == '${logId}'){
-					tag +="<input type='button' value='수정' class='reply_modi'/><input type='button' value='삭제' title='"+vo.replyno+"' class='reply_del'/>";
+					tag +="<input type='button' value='수정' class='reply_modi' /><input type='button' value='삭제' title='"+vo.replyno+"' class='reply_del'/>";
 					}
 					tag+="</div>";
 					if(vo.userid == '${logId}'){   // user_id
 						tag += "<div class='content_modify' style='display:none'><form method='post'>";
 						tag += "<input type='hidden' name='replyno' value='"+vo.replyno+"'/>";
-						tag += "<textarea name='content' class='content_modi'>"+vo.content+"</textarea>";
+						tag += "<textarea name='content' class='content_modi' id='content_modi'>"+vo.content+"</textarea>";
 						tag += "<input type='submit' value='수정' class='modi_button'/></form></div>";
 					}	
 					tag +="<div class='reply_con'>"+vo.content+"</div></div></div></li>";
@@ -181,21 +181,28 @@ $(function(){
 		$(this).parent().next().css("display","block");
 	});
 
-    $(document).on('submit','#replyList form',function(){
+	$(document).on('submit','#replyList form',function(){
         event.preventDefault();
         let params2 = $(this).serialize();
-        let url2 = '/reply/replyEditOk';
-        $.ajax({
-            url : url2,
-            data : params2,
-            type : 'POST',
-            success : function(result){
-                
-                replyListAll();
-            }, error : function(e){
-                console.log('수정에러');
-            }
-        });
+        if($("#content_modi").val()==""){
+        	alert("댓글을 입력후 수정하세요.");
+        	replyListAll();
+        	return false;
+		}else{
+			let url2 = '/reply/replyEditOk';
+	        $.ajax({
+	            url : url2,
+	            data : params2,
+	            type : 'POST',
+	            success : function(result){
+	                
+	                replyListAll();
+	            }, error : function(e){
+	                console.log('수정에러');
+	            }
+	        });
+		}
+        
     });
 	$(document).on('click','#replyList input[value="삭제"]',function(){
 		if(confirm('댓글을 삭제하시겠습니까?')){
