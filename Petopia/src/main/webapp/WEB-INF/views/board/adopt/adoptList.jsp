@@ -5,7 +5,6 @@
 <div class="container">
 	<div class="Menu_Bar_AD">
 		<h1 class="Menu_titleD">입양게시판</h1>
-		<div class="Menu_img">이미지 들어갈것</div>
 	</div>
 		<div class="Menu_containerD">
 			<div class="row" id="rowAdopt"></div>
