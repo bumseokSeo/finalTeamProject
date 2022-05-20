@@ -31,7 +31,7 @@ public class ShopReviewController {
 	@PostMapping("writeOk")
 	public int writeOk(@RequestParam("filename") MultipartFile filename, ShopReviewVO vo, HttpSession session) {
 		vo.setUserid((String) session.getAttribute("logId"));
-		String path = session.getServletContext().getRealPath("/upload/review");
+		String path = session.getServletContext().getRealPath("/upload");
 		try {
 			if(!filename.isEmpty()) {
 				filename.transferTo(new File(path+"/"+filename.getOriginalFilename()));
@@ -54,7 +54,7 @@ public class ShopReviewController {
 	@PostMapping("editOk")
 	public int updateReview(@RequestParam("filename") MultipartFile filename,ShopReviewVO vo, HttpSession session) {
 		vo.setUserid((String)session.getAttribute("logId"));
-		String path = session.getServletContext().getRealPath("/upload/review");
+		String path = session.getServletContext().getRealPath("/upload");
 
 		try {
 			if(vo.getDeleteFile()!=null && vo.getDeleteFile()!="") {
@@ -80,7 +80,7 @@ public class ShopReviewController {
 	public int deleteReview(int reviewno, HttpSession session) {
 		String filename =  service.selectFile(reviewno);
 		
-		String path = session.getServletContext().getRealPath("/upload/review");
+		String path = session.getServletContext().getRealPath("/upload");
 		if(filename!=null) {
 			File f = new File(path,filename);
 			if(f!=null && f.exists()) {
