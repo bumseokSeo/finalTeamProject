@@ -16,16 +16,15 @@
   	</insert>
   	<!-- 입양게시판 글등록 -->
   	<insert id="BoardInsertAdopt">
-  	INSERT INTO adopt(category, breed)
-  	VALUES(#{category},#{breed})
+  	INSERT INTO adopt(boardno, category, breed)
+  	VALUES(#{boardno},#{category},#{breed})
   	</insert>
   	<!--  글목록 불러오기 -->
   	<select id="BoardSelectList" resultType="com.campus.myapp.vo.BoardVO">
-  	SELECT A.boardno, A.title, A.userid, A.content, A.hit, 
-  		   date_format(A.writedate, '%Y-%m-%d') writedate,
-  		   date_format(A.writedate, '%H:%i') writetime,
-  		   A.filename1, B.profileimage, B.userlevel, B.username
-  		   <choose>
+  	SELECT A.boardno, A.title, A.userid, A.content, A.hit, A.writedate,
+  		   A.filename1, B.profileimage, B.userlevel, B.username,
+  		   (select count(reply.replyno) from reply where A.boardno=reply.boardno) as reviewcnt
+  	<choose>
 	  	<when test="param1.equals('suggest')">
 	            	,C.secret, C.suggestno
        	</when>
@@ -67,7 +66,7 @@
   	WHERE boardno = #{param1}
   	</select>
   	<select id="boardSearch" resultType="BoardVO">
-      SELECT   A.boardno, A.title, A.userid, A.writedate, A.hit, B.profileimage, B.username
+      SELECT   A.boardno, A.title, A.userid, A.writedate, A.filename1, A.hit, B.profileimage, B.username
       FROM     board A, member B
       WHERE    A.userid=B.userid 
       AND      A.boardtype=#{param5}
