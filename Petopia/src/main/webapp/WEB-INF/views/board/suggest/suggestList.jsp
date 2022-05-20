@@ -5,7 +5,7 @@
 
 <div class="container">
 	<div class="Menu_Bar_ASU">
-		<h1 class="Menu_titleSU">건의 사항</h1>
+		<h1 class="Menu_titleSU">건의 할래요</h1>
 	</div>
 	<div class="Menu_containerSU">
 		<ul class="List_menu_FSU" id="List_menu_FSU">
