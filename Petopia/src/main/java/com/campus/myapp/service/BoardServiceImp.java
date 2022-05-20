@@ -52,6 +52,16 @@ public class BoardServiceImp implements BoardService{
 	}
 	
 	@Override
+	public void LikeCountUP(int boardno) {
+		dao.LikeCountUP(boardno);
+	}
+	
+	@Override
+	public int LikeCnt(int boardno) {
+		return dao.LikeCnt(boardno);
+	}
+	
+	@Override
 	public int BoardNum(){
 		return dao.BoardNum();
 	}

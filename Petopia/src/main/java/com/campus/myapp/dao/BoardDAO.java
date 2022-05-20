@@ -25,6 +25,8 @@ public interface BoardDAO {
 	public List<BoardVO> BoardSelectList(String boardtype, PagingVO pVO);
 	//조회수 증가
 	public void hitCount(int boardno);
+	public void LikeCountUP(int boardno);
+	public int LikeCnt(int boardno);
 
 	
 	public int BoardNum();
