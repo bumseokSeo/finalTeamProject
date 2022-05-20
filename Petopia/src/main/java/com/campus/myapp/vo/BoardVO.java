@@ -20,6 +20,8 @@ public class BoardVO {
 	private String profileimage;
 	private int userlevel;
 	
+	private int reviewcnt;
+	
 	public int getBoardno() {
 		return boardno;
 	}
@@ -115,6 +117,12 @@ public class BoardVO {
 	}
 	public void setUserlevel(int userlevel) {
 		this.userlevel = userlevel;
+	}
+	public int getReviewcnt() {
+		return reviewcnt;
+	}
+	public void setReviewcnt(int reviewcnt) {
+		this.reviewcnt = reviewcnt;
 	}
 	
 	

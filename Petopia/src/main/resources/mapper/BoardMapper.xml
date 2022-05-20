@@ -12,7 +12,8 @@
   	<!--  글목록 불러오기 -->
   	<select id="BoardSelectList" resultType="com.campus.myapp.vo.BoardVO">
   	SELECT A.boardno, A.title, A.userid, A.content, A.hit, A.writedate,
-  		   A.filename1, B.profileimage, B.userlevel, B.username
+  		   A.filename1, B.profileimage, B.userlevel, B.username, 
+  		   (select count(reply.replyno) from reply where A.boardno=reply.boardno) as reviewcnt
   	FROM   board A, member B
   	WHERE  A.boardtype=#{param1} 
 	AND    A.userid=B.userid
@@ -25,7 +26,8 @@
     </select>
   	<!--  글 1개 선택 -->
   	<select id="BoardSelect" resultType="com.campus.myapp.vo.BoardVO">
-  	SELECT b.boardno, b.title, b.userid, b.content, b.hit, b.writedate, m.username, m.profileimage, m.userlevel
+  	SELECT b.boardno, b.title, b.userid, b.content, b.hit, b.writedate, m.username, m.profileimage, m.userlevel,
+  	(select count(reply.replyno) from reply where A.boardno=reply.boardno) as reviewcnt
   	FROM board b join member m on b.userid=m.userid
   	WHERE boardno = #{param1}
   	</select>
