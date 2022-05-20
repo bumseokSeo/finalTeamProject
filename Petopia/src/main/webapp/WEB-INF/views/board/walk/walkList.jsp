@@ -24,20 +24,20 @@
         </div>
     
        <div class="info_btn"><a href="/board/boardWrite?type=walk"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
-		<br/><br/><br/>
-		<div class="info_search">
-			 <form action="/board/walk/walkSearch" id="searchFrmW">
-				<select name="searchKey">
-					<option value="">전체</option>
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-				</select>
-				<input type="text" name="searchWord" id="searchWordW"/>
-				<input type="hidden" name="type" value="walk"/>
-				<input type="submit" value="검색"/>
-			</form>
-		</div>
+	<br/><br/><br/>
+	<div class="info_search">
+		 <form action="/board/notice/noticeSearch" id="searchFrmW">
+			<select name="searchKey">
+				<option value="" selected="selected">전체</option>
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+			</select>
+			<input type="text" name="searchWord" id="searchWordW"/>
+			<input type="hidden" name="type" value="walk"/>
+			<input type="submit" value="검색"/>
+		</form>
 	</div>
+</div>
 </div>
 <br/>
 
@@ -53,7 +53,6 @@ $("#searchFrmW").submit(function() {
 $(document).ready(function(){
 		var startNum = 0; 
 		var addListHtmlW = "";
-		 console.log(startNum); 
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -61,20 +60,24 @@ $(document).ready(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		console.log(pn);
-		if(pn='SubMenuSelect'&& $("#UserWalkShow").css('display')=='block'){
+		var pn2 = pn.substring(pn.lastIndexOf('Search'));
+		if(pn=='SubMenuSelect'){
 			url = '/board/walk/walkLists';
 			param = {
 				"startNum" : startNum 
 			};
-		}else if(pn='walkSearch'){
+		}else if(pn=='walkSearch'){
 			url = '/board/walk/searchLists';
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
+		}else if(pn2 =='Search'){
+			url = '/board/walk/walkLists';
+			param = {
+				"startNum" : startNum
+			};
 		}
 		$.ajax({
 			url : url,
@@ -121,9 +124,8 @@ $('#nextViewW').click(function(){
 					addListHtmlWpo += "<li>번호</li>";
 					addListHtmlWpo += "<li>제목</li>";
 					addListHtmlWpo += "<li>작성자</li>";
-					addListHtmlWpo += "<li>작성일</li>";
-					addListHtmlWpo += "<li>조회</li>";
-		 console.log(startNum); 
+					addListHtmlWpo += "<li>날짜</li>";
+					addListHtmlWpo += "<li>조회수</li>";
 		var url;
 		var param;
 		const params = new URL(window.location.href).searchParams;
@@ -131,20 +133,25 @@ $('#nextViewW').click(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		if(pn='SubMenuSelect'&& $("#UserwalkShow").css('display')=='block'){
+		var pn2 = pn.substring(pn.lastIndexOf('Search'));
+		if(pn=='SubMenuSelect'){
 			url = '/board/walk/walkLists';
 			console.log("다음페이지")
 			param = {
-				"startNum" : startNum*19+1
+				"startNum" : startNum*18+1
 			};
-		}else if(pn='walkSearch'){
+		}else if(pn=='walkSearch'){
 			url = '/board/walk/searchLists';
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
+		}else if(pn2 =='Search'){
+			url = '/board/walk/walkLists';
+			param = {
+				"startNum" : startNum*18+1
+			};
 		}
 		$.ajax({
 			url : url,
@@ -196,9 +203,8 @@ $('#prevViewW').click(function(){
 				addListHtmlWpo += "<li>번호</li>";
 				addListHtmlWpo += "<li>제목</li>";
 				addListHtmlWpo += "<li>작성자</li>";
-				addListHtmlWpo += "<li>작성일</li>";
-				addListHtmlWpo += "<li>조회</li>";
-	 console.log(startNum); 
+				addListHtmlWpo += "<li>날짜</li>";
+				addListHtmlWpo += "<li>조회수</li>";
 	var url;
 	var param;
 	const params = new URL(window.location.href).searchParams;
@@ -206,11 +212,12 @@ $('#prevViewW').click(function(){
 	var word = params.get('searchWord');
 	var pathname = window.location.pathname;
 	var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-	if(pn='SubMenuSelect' && $("#UserwalkShow").css('display')=='block'){
+	var pn2 = pn.substring(pn.lastIndexOf('Search'));
+	if(pn=='SubMenuSelect'){
 		url = '/board/walk/walkLists';
 		console.log("이전페이지")
 		param = {
-			"startNum" : (startNum-1)*19-19
+			"startNum" : (startNum-1)*18-18
 		};
 	}else if(pn='walkSearch'){
 		url = '/board/walk/searchLists';
@@ -219,7 +226,11 @@ $('#prevViewW').click(function(){
 			"searchKey" : key,
 			"searchWord" : word
 		};
-		console.log(startNum);
+	}else if(pn2 =='Search'){
+		url = '/board/walk/walkLists';
+		param = {
+			"startNum" : startNum*18-18
+		};
 	}
 	$.ajax({
 		url : url,
