@@ -97,9 +97,17 @@
     UPDATE board SET hit = hit+1 WHERE boardno=#{param1}
     </update>
   	<select id="BoardView" resultType="com.campus.myapp.vo.BoardVO">
-	    SELECT A.boardno, A.title, A.hit, A.writedate, A.content, A.userid, A.filename1,
-	   		   B.profileimage, B.userlevel, B.username
-	    FROM   board A, member B
+	    SELECT A.boardno, A.title, A.hit, A.writedate, A.content, A.userid, A.filename1, A.boardtype
+	   		   B.profileimage, B.userlevel, B.username,
+	   		    <choose>
+		  			<when test="A.boardtype.equals('suggest')">
+		            	,C.secret, C.suggestno
+	       			</when>
+	       			<when test="A.boardtype.equals('adopt')">
+	      		 		,D.category, D.breed, D.adoptno
+	      			 </when>
+  			    </choose>
+	    FROM   board A, member B, suggest C, adopt D
 	    WHERE  A.userid=B.userid 
 	    AND    A.boardno=${param1}
     </select>

@@ -443,7 +443,13 @@ public class BoardController {
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("vo", service.BoardView(boardno));
 			mav.addObject("type",type);
+			if(type.equals("suggest")) {
+			mav.setViewName("/board/suggest/suggestEdit");
+			}else if(type.equals("adopt")) {
+			mav.setViewName("/board/adopt/adoptEdit");
+			}else {
 			mav.setViewName("/board/boardEdit");
+			}
 			return mav;
 		}
 	
