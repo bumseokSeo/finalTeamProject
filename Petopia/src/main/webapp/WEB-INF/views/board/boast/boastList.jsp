@@ -18,20 +18,20 @@
         </div>
     
        <div class="Boast_btn"><a href="/board/boardWrite?type=boast"><i class="fa-solid fa-paw"></i>글쓰기</a></div>
-		<br/><br/><br/>
-		<div class="Boast_search">
-			 <form action="/board/boast/boastSearch" id="searchFrmB">
-				<select name="searchKey">
-					<option value="" selected="selected">전체</option>
-					<option value="title">제목</option>
-					<option value="content">내용</option>
-				</select>
-				<input type="text" name="searchWord" id="searchWordB"/>
-				<input type="hidden" name="type" value="Boast"/>
-				<input type="submit" value="검색"/>
-			</form>
-		</div>
+	<br/><br/><br/>
+	<div class="Boast_search">
+		 <form action="/board/notice/noticeSearch" id="searchFrmB">
+			<select name="searchKey">
+				<option value="" selected="selected">전체</option>
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+			</select>
+			<input type="text" name="searchWord" id="searchWordB"/>
+			<input type="hidden" name="type" value="Boast"/>
+			<input type="submit" value="검색"/>
+		</form>
 	</div>
+</div>
 </div>
 <br/>
 
@@ -46,17 +46,23 @@ $(document).ready(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		if(pn='SubMenuSelect'){
+		var pn2 = pn.substring(pn.lastIndexOf('Search'));
+		if(pn=='SubMenuSelect'){
 			url = '/board/boast/boastLists';
 			param = {
 				"startNum" : startNum
 			};
-		}else if(pn='boastSearch'){
+		}else if(pn=='boastSearch'){
 			url = '/board/boast/searchLists';
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
 				"searchWord" : word
+			};
+		}else if(pn2 =='Search'){
+			url = '/board/boast/boastLists';
+			param = {
+				"startNum" : startNum 
 			};
 		}
 		$.ajax({
@@ -96,7 +102,8 @@ $('#nextViewB').click(function(){
 		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-		if(pn='SubMenuSelect' && $("#UserBoastShow").css('display')=='block'){
+		var pn2 = pn.substring(pn.lastIndexOf('Search'));
+		if(pn='SubMenuSelect'){
 			url = '/board/boast/boastLists';
 			console.log("다음페이지")
 			param = {
@@ -109,7 +116,11 @@ $('#nextViewB').click(function(){
 				"searchKey" : key,
 				"searchWord" : word
 			};
-			console.log(startNum);
+		}else if(pn2 =='Search'){
+			url = '/board/boast/boastLists';
+			param = {
+				"startNum" : startNum*12+1
+			};
 		}
 		$.ajax({
 			url : url,
@@ -151,20 +162,25 @@ $('#prevViewB').click(function(){
 	var word = params.get('searchWord');
 	var pathname = window.location.pathname;
 	var pn = pathname.substring(pathname.lastIndexOf('/')+1);
-	if(pn='SubMenuSelect' && $("#UserBoastShow").css('display')=='block'){
+	var pn2 = pn.substring(pn.lastIndexOf('Search'));
+	if(pn=='SubMenuSelect'){
 		url = '/board/boast/boastLists';
 		console.log("이전페이지")
 		param = {
 			"startNum" : (startNum-1)*12-12
 		};
-	}else if(pn='boastSearch'){
+	}else if(pn=='boastSearch'){
 		url = '/board/boast/searchLists';
 		param = {
 			"startNum" : startNum ,
 			"searchKey" : key,
 			"searchWord" : word
 		};
-		console.log(startNum);
+	}else if(pn2 =='Search'){
+		url = '/board/boast/boastLists';
+		param = {
+			"startNum" : startNum*12-12
+		};
 	}
 	$.ajax({
 		url : url,

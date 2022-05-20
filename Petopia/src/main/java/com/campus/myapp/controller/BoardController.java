@@ -74,7 +74,59 @@ public class BoardController {
 	// 게시판 페이징 모음
 	
 	// 검색 기능
+	//공지
+	@ResponseBody
 	@GetMapping("/board/notice/noticeSearch")
+	public ModelAndView Nsearch(String searchKey, String searchWord, String type) {
+		System.out.println("검색시작");
+		ModelAndView mav = new ModelAndView();
+		//게시판 타입
+		mav.addObject("type", type);
+		mav.setViewName("/board/SubMenuSelect");
+		return mav;
+	}
+	//나눔
+	@GetMapping("/board/share/shareSearch")
+	public ModelAndView Ssearch(String searchKey, String searchWord, String type) {
+		System.out.println("검색시작");
+		ModelAndView mav = new ModelAndView();
+		//게시판 타입
+		mav.addObject("type", type);
+		mav.setViewName("/board/SubMenuSelect");
+		return mav;
+	}
+	//정보
+	@GetMapping("/board/info/infoSearch")
+	public ModelAndView Isearch(String searchKey, String searchWord, String type) {
+		System.out.println("검색시작");
+		ModelAndView mav = new ModelAndView();
+		//게시판 타입
+		mav.addObject("type", type);
+		mav.setViewName("/board/SubMenuSelect");
+		return mav;
+	}
+	//산책
+	@GetMapping("/board/walk/walkSearch")
+	public ModelAndView Wsearch(String searchKey, String searchWord, String type) {
+		System.out.println("검색시작");
+		ModelAndView mav = new ModelAndView();
+		//게시판 타입
+		mav.addObject("type", type);
+		mav.setViewName("/board/SubMenuSelect");
+		return mav;
+	}
+	//자랑
+	@GetMapping("/board/boast/boastSearch")
+	public ModelAndView Bsearch(String searchKey, String searchWord, String type) {
+		System.out.println("검색시작");
+		ModelAndView mav = new ModelAndView();
+		//게시판 타입
+		mav.addObject("type", type);
+		mav.setViewName("/board/SubMenuSelect");
+		return mav;
+	}
+	//건의
+	@GetMapping("/board/suggest/suggestSearch")
 	public ModelAndView search(String searchKey, String searchWord, String type) {
 		System.out.println("검색시작");
 		ModelAndView mav = new ModelAndView();
@@ -90,7 +142,9 @@ public class BoardController {
 	public List<BoardVO> NoticePaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{	
 		pvo.setStart(Integer.parseInt(startNum));
 		pvo.setEnd(19);
-		return service.BoardSelectList("notice", pvo);
+		List<BoardVO> arr=service.BoardSelectList("notice", pvo);
+		System.out.println(arr);
+		return arr;
 	}
 		
 	@ResponseBody // Ajax
@@ -196,11 +250,8 @@ public class BoardController {
 	@RequestMapping(value="/board/adopt/adoptListMethod")
 	public List<BoardVO> AdoptPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
 		pvo.setStart(Integer.parseInt(startNum));
-		pvo.setEnd(12);
-		List<BoardVO>  lst= service.BoardSelectList("adopt", pvo);
-		for(BoardVO vo  : lst) {
-			System.out.println(vo.getFilename1());
-		}
+		pvo.setEnd(8);
+		List<BoardVO> lst= service.BoardSelectList("adopt", pvo);
 		return lst;
 	}
 		
@@ -222,8 +273,15 @@ public class BoardController {
 		ModelAndView mav = new ModelAndView();
 		
 		mav.addObject("type",type);
-		return mav;
 		
+		if(type.equals("suggest")) {
+			mav.setViewName("/board/suggest/suggestWrite");
+		}
+		if(type.equals("adopt")) {
+			mav.setViewName("/board/adopt/adoptWrite");
+		}
+		
+		return mav;
 	}
 	
 	//글쓰기 이미지 업로드
@@ -231,7 +289,7 @@ public class BoardController {
 	@RequestMapping("/board/ckeditorImageUpload")
 	public void fileUpload(MultipartFile upload,HttpServletRequest req, HttpServletResponse res) { 
 		
-		String uploadPath = req.getSession().getServletContext().getRealPath("/upload/");
+		String uploadPath = req.getSession().getServletContext().getRealPath("/upload/board/");
 		
 		OutputStream out = null;
         PrintWriter printWriter = null;
@@ -257,7 +315,7 @@ public class BoardController {
             // ckEditor 로 전송
             printWriter = res.getWriter();
             String callback = req.getParameter("CKEditorFuncNum");
-            String fileUrl = "/upload/" + uuid + "." + extension;
+            String fileUrl = "/upload/board/" + uuid + "." + extension;
 
             printWriter.println("<script type='text/javascript'>"
                     + "window.parent.CKEDITOR.tools.callFunction("
@@ -286,7 +344,7 @@ public class BoardController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(new MediaType("text","html", Charset.forName("UTF-8")));
 		
-		String path = request.getSession().getServletContext().getRealPath("/upload/"); // 파일업로드를 위한 업로드 위치의 절대주소
+		String path = request.getSession().getServletContext().getRealPath("/upload/board/"); // 파일업로드를 위한 업로드 위치의 절대주소
 		System.out.println("path -> "+path);
 		
 		try {
@@ -312,6 +370,8 @@ public class BoardController {
 			
 			
 			service.BoardInsert(vo);
+			
+			
 		
 			if(vo.getBoardtype().equals("notice")) {
 			String msg = "<script>alert('공지사항 등록완료');location.href='/board/SubMenuSelect?type=notice';</script>";
@@ -334,10 +394,12 @@ public class BoardController {
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
 			if(vo.getBoardtype().equals("suggest")) {
+			service.BoardInsertSuggest(vo);
 			String msg = "<script>alert('건의게시판 등록완료');location.href='/board/SubMenuSelect?type=suggest';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
 			if(vo.getBoardtype().equals("adopt")) {
+			service.BoardInsertAdopt(vo);
 			String msg = "<script>alert('입양게시판 등록완료');location.href='/board/adopt/adoptList';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
@@ -396,7 +458,7 @@ public class BoardController {
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(new MediaType("text","html", Charset.forName("UTF-8")));
 			
-			String path = req.getSession().getServletContext().getRealPath("/upload/"); // 파일업로드를 위한 업로드 위치의 절대주소
+			String path = req.getSession().getServletContext().getRealPath("/upload/board/"); // 파일업로드를 위한 업로드 위치의 절대주소
 			System.out.println("path -> "+path);
 			try {
 				//DB등록
@@ -439,7 +501,7 @@ public class BoardController {
 			
 			String userid = (String)session.getAttribute("logId");
 			
-			String path = session.getServletContext().getRealPath("/upload");
+			String path = session.getServletContext().getRealPath("/upload/board/");
 			
 			String boardtype= service.getType(boardno);
 			System.out.println(boardtype);
