@@ -334,14 +334,13 @@
 	
 	
 	<select id="adoptList" resultType="com.campus.myapp.vo.BoardVO">
-		select an.category, b.boardno, ad.breed, b.title, b.userid, b.hit, b.likes, b.writedate from board b
-		join adopt ad on b.boardno = ad.boardno
-		join animalinfo an on ad.breed = an.breed 
+		select ad.category, b.boardno, ad.breed, b.title, b.userid, b.hit, b.likes, b.writedate from board b
+		join adopt ad on b.boardno = ad.boardno 
 		where b.boardtype in ('adopt')
 		<if test='searchKey == "all" and searchWord == null'>
 		</if>
 		<if test='searchKey != "all" and searchWord == null'>
-			and an.category like '${searchKey}'
+			and ad.category like '${searchKey}'
 		</if>
 		<if test='searchKey != "all" and searchWord != null'>
 			and  an.category like '${searchKey}' and 
