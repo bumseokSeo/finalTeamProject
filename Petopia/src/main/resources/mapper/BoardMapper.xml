@@ -122,4 +122,15 @@
  	<select id="getType" resultType="String">
  		select boardtype from board where boardno=${param1}
  	</select>
+ 	
+ 	<select id="myWriteCnt" resultType="int">
+		select count(boardno) cnt from board
+		where userid=#{userid}
+	</select>
+	<select id="myReviewCnt" resultType="int">
+		select count(replyno) cnt from reply
+		where userid=#{userid}
+	</select>
+	
+	
 </mapper>
