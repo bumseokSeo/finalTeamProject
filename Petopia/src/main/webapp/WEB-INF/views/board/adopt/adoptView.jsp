@@ -264,7 +264,10 @@ $(function(){
 				<a href="javascript:delCheck()" id="Del_AA">삭제</a>
 			</p>
   	  	</div>
+  	  	<br/><br/>
+  	  	
   	  	<hr/>
+  	  	
   	  <div class="reply">
         	<br/>
 			<b>댓글</b>

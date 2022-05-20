@@ -50,7 +50,11 @@ window.onload=function(){
 				
 				for (var i = 0; i < data.length; i++) {
 					addListHtml += "<li>"+data[i].boardno+"</li>";
-					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					if(data[i].reviewcnt != 0){
+						addListHtml += " [" + data[i].reviewcnt+"]";
+					}
+					addListHtml += "</a></li>";
 					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
 						addListHtml += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 						
@@ -115,7 +119,11 @@ $('#nextView').click(function(){
 				
 				for (var i = 0; i < data.length; i++) {
 					addListHtml += "<li>"+data[i].boardno+"</li>";
-					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+					addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					if(data[i].reviewcnt != 0){
+						addListHtml += " [" + data[i].reviewcnt+"]";
+					}
+					addListHtml += "</a></li>";
 					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
 						addListHtml += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 						
@@ -185,7 +193,11 @@ $('#prevView').click(function(){
 			
 			for (var i = 0; i < data.length; i++) {
 				addListHtml += "<li>"+data[i].boardno+"</li>";
-				addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+				addListHtml += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+				if(data[i].reviewcnt != 0){
+					addListHtml += " [" + data[i].reviewcnt+"]";
+				}
+				addListHtml += "</a></li>";
 				if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
 					addListHtml += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 					
