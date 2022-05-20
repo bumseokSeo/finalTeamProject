@@ -16,8 +16,8 @@
   	</insert>
   	<!-- 입양게시판 글등록 -->
   	<insert id="BoardInsertAdopt">
-  	INSERT INTO adopt(category, breed)
-  	VALUES(#{category},#{breed})
+  	INSERT INTO adopt(boardno, category, breed)
+  	VALUES(#{boardno},#{category},#{breed})
   	</insert>
   	<!--  글목록 불러오기 -->
   	<select id="BoardSelectList" resultType="com.campus.myapp.vo.BoardVO">
