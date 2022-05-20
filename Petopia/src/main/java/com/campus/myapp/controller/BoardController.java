@@ -129,6 +129,13 @@ public class BoardController {
 		mav.setViewName("/board/SubMenuSelect");
 		return mav;
 	}
+	//입양
+	@GetMapping("/board/adopt/adoptSearch")
+	public ModelAndView ADsearch(String searchKey, String searchWord) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/board/adopt/adoptList");
+		return mav;
+	}
 	
 	//notice
 	@ResponseBody
@@ -243,7 +250,7 @@ public class BoardController {
 	@RequestMapping(value="/board/adopt/adoptListMethod")
 	public List<BoardVO> AdoptPaging(PagingVO pvo, Model model, @RequestParam(value="startNum", required=false)String startNum) throws Exception{
 		pvo.setStart(Integer.parseInt(startNum));
-		pvo.setEnd(8);
+		pvo.setEnd(12);
 		List<BoardVO> lst= service.BoardSelectList("adopt", pvo);
 		return lst;
 	}
@@ -253,7 +260,6 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewAD(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 12;
-
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "adopt");
 	}
 	
@@ -415,11 +421,10 @@ public class BoardController {
 		public ModelAndView boardView(int boardno, String user, HttpServletRequest request) {
 			ModelAndView mav = new ModelAndView();
 			service.hitCount(boardno); //조회수 증가
-			mav.addObject("vo", service.BoardView(boardno));
+			String BF = service.getType(boardno);
+			mav.addObject("vo", service.BoardView(boardno,BF));
 			user = ((String)request.getSession().getAttribute("logId"));
 			mav.addObject("user", user);
-			
-			String BF = service.getType(boardno);
 
 			mav.setViewName("/board/"+BF+"/"+BF+"View");
 			return mav;
@@ -427,12 +432,18 @@ public class BoardController {
 		
 		//글 수정
 		@GetMapping("/board/boardEdit")
-		public ModelAndView BoardEdit(int boardno, String type) {
+		public ModelAndView BoardEdit(int boardno, @RequestParam("type")String type) {
 			
 			ModelAndView mav = new ModelAndView();
-			mav.addObject("vo", service.BoardView(boardno));
+			mav.addObject("vo", service.BoardView(boardno, type));
 			mav.addObject("type",type);
+			if(type.equals("suggest")) {
+			mav.setViewName("/board/suggest/suggestEdit");
+			}else if(type.equals("adopt")) {
+			mav.setViewName("/board/adopt/adoptEdit");
+			}else {
 			mav.setViewName("/board/boardEdit");
+			}
 			return mav;
 		}
 	

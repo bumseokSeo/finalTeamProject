@@ -32,7 +32,7 @@ public interface BoardDAO {
 	public int SuggestNum();
 	
 	//글보기
-	public BoardVO BoardView(int boardno);
+	public BoardVO BoardView(int boardno, String type);
 	
 	//페이징
 	public int BoardtotalRecord(PagingVO pVO, String boardtype);

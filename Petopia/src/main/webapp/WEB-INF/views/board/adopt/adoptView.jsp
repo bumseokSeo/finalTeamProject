@@ -277,7 +277,7 @@ $(function(){
   	  	<div class="View_bottommenu">
   	  		<c:if test="${logId == vo.userid}">
   	  		<p style="float: right;">
-				<a href="/board/boardEdit?type=notice&boardno=${vo.boardno}" id="modi_AA">수정</a> 
+				<a href="/board/boardEdit?type=adopt&boardno=${vo.boardno}" id="modi_AA">수정</a> 
 				<a href="javascript:delCheck()" id="Del_AA">삭제</a>
 			</p>
 			</c:if>
