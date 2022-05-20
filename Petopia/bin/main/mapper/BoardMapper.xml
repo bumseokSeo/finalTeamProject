@@ -11,15 +11,12 @@
   	</insert>
   	<!--  글목록 불러오기 -->
   	<select id="BoardSelectList" resultType="com.campus.myapp.vo.BoardVO">
-  	SELECT A.boardno, A.title, A.userid, A.content, A.hit, A.writedate, A.boardtype, 
+  	SELECT A.boardno, A.title, A.userid, A.content, A.hit, A.writedate,
   		   A.filename1, B.profileimage, B.userlevel, B.username, 
   		   (select count(reply.replyno) from reply where A.boardno=reply.boardno) as reviewcnt
   	FROM   board A, member B
-  	WHERE
-  	<if test='param1 == "adopt"'>
-  	A.boardtype=#{param1} AND 
-  	</if>
-  	A.userid=B.userid
+  	WHERE  A.boardtype=#{param1} 
+	AND    A.userid=B.userid
 	ORDER by boardno desc 
 	LIMIT 	 #{param2.start}, #{param2.end}
   	</select>
