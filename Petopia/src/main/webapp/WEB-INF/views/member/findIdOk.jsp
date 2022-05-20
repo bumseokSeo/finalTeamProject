@@ -35,5 +35,3 @@
 		</div>
 	</div>
 </div>
-© 2022 GitHub, Inc.
-Term
