@@ -1,10 +1,4 @@
 @charset "UTF-8";
-.container{
-	height: auto;
-	min-height: 100vh;
-	overflow:hidden;
-}
-
 /*List*/
 .Menu_titleD{
 	margin:40px 47px;

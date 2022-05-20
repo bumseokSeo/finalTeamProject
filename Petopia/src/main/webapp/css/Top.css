@@ -7,11 +7,12 @@
 	box-sizing: border-box;
     list-style-type:none;
 }
-
-.container{
+body{
 	height: auto;
 	min-height: 100vh;
-	overflow:hidden;
+	overflow:auto;
+	padding-bottom: 150px;
+	position: relative;
 }
 a:link, a:visited {
 	text-decoration: none;
@@ -150,6 +151,8 @@ a:link, a:visited {
 	background-color: rgba(132,144,22,0.5);
 	position: relative;
 	margin-top: 50px;
+	position: absolute;
+	bottom: 0;
 }
 .bottomlogo{
 	width:20%;
