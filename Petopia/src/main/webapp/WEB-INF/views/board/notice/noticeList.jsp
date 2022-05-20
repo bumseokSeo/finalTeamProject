@@ -6,7 +6,6 @@
 <div class="container">
 	<div class="Menu_Bar_A">
 		<h1 class="Menu_title">공지사항</h1>
-		<div class="Menu_img">이미지 들어갈것</div>
 	</div>
 	<div class="Menu_container">
 		<ul class="List_menu_F" id="List_menu_F">
@@ -98,6 +97,7 @@ $(document).ready(function(){
 						addListHtml += " [" + data[i].reviewcnt+"]";
 					}
 					addListHtml += "</a></li>";
+					console.log(data[i].writedate)
 					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
 						addListHtml += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
 						

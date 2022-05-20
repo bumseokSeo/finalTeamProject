@@ -91,6 +91,7 @@ $(document).ready(function(){
 				var day = new String(('0' + date.getDate()).slice(-2));
 				
 				for (var i = 0; i < data.length; i++) {
+					console.log(data[i]);
 					addListHtmlI += "<li>"+data[i].boardno+"</li>";
 					addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
 					if(data[i].reviewcnt != 0){

@@ -6,15 +6,14 @@
 <div class="container">
 	<div class="Menu_Bar_ASU">
 		<h1 class="Menu_titleSU">건의 사항</h1>
-		<div class="Menu_img">이미지 들어갈것</div>
 	</div>
 	<div class="Menu_containerSU">
 		<ul class="List_menu_FSU" id="List_menu_FSU">
-			<li>게시물 번호</li>
+			<li>번호</li>
 			<li>제목</li>
 			<li>작성자</li>
-			<li>날짜</li>
-			<li>조회수</li>
+			<li>작성일</li>
+			<li>조회</li>
 
 		</ul><!-- 게시물 -->
 		</div>
@@ -95,12 +94,21 @@ $(document).ready(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlSU += "<li>"+data[i].suggestno+"</li>";
 					if(data[i].secret=="N"){
-					addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
+						addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
 					}else{
-					addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+						if(data[i].reviewcnt != 0){
+							addListHtmlSU += " [" + data[i].reviewcnt+"]";
+						}
+						addListHtmlSU += "</a></li>";
 					}
-					addListHtmlSU += "<li>"+data[i].username+"</li>"
-					addListHtmlSU += "<li>"+data[i].writedate+"</li>";
+					addListHtmlSU += "<li>"+data[i].username+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtmlSU += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+						
+					}else{
+						addListHtmlSU += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+					}
 					addListHtmlSU += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
@@ -166,12 +174,21 @@ $('#nextViewSU').click(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlSU += "<li>"+data[i].suggestno+"</li>";
 					if(data[i].secret=="N"){
-					addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
+						addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
 					}else{
-					addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+						if(data[i].reviewcnt != 0){
+							addListHtmlSU += " [" + data[i].reviewcnt+"]";
+						}
+						addListHtmlSU += "</a></li>";
 					}
-					addListHtmlSU += "<li>"+data[i].username+"</li>"
-					addListHtmlSU += "<li>"+data[i].writedate+"</li>";
+					addListHtmlSU += "<li>"+data[i].username+"</li>";
+					if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+						addListHtmlSU += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+						
+					}else{
+						addListHtmlSU += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+					}
 					addListHtmlSU += "<li>"+data[i].hit+"</li>";
 				}
 				if(data.length<19){
@@ -242,12 +259,21 @@ $('#prevViewSU').click(function(){
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlSU += "<li>"+data[i].suggestno+"</li>";
 				if(data[i].secret=="N"){
-				addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
+					addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
 				}else{
-				addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title+"</a></li>";
+					addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					if(data[i].reviewcnt != 0){
+						addListHtmlSU += " [" + data[i].reviewcnt+"]";
+					}
+					addListHtmlSU += "</a></li>";
 				}
-				addListHtmlSU += "<li>"+data[i].username+"</li>"
-				addListHtmlSU += "<li>"+data[i].writedate+"</li>";
+				addListHtmlSU += "<li>"+data[i].username+"</li>";
+				if(data[i].writedate.startsWith(year+"-"+month+"-"+day)){
+					addListHtmlSU += "<li>"+data[i].writedate.substr(-8, 5)+"</li>";
+					
+				}else{
+					addListHtmlSU += "<li>"+data[i].writedate.substr(0, 10)+"</li>";
+				}
 				addListHtmlSU += "<li>"+data[i].hit+"</li>";
 			}
 			$("#nextViewSU").empty();
