@@ -68,7 +68,17 @@
   	<select id="boardSearch" resultType="BoardVO">
       SELECT   A.boardno, A.title, A.userid, A.writedate, A.filename1, A.hit, B.profileimage, B.username
       FROM     board A, member B
-      WHERE    A.userid=B.userid 
+      <choose>
+	  	<when test="param5.equals('adopt')">
+	            , adopt D
+       	</when>
+    </choose>
+      WHERE    A.userid=B.userid
+       <choose>
+	  	<when test="param5.equals('adopt')">
+	            AND A.boardno=D.boardno
+       	</when>
+    </choose>
       AND      A.boardtype=#{param5}
       <choose>
          <when test="param1.equals('title')">
@@ -96,10 +106,34 @@
     UPDATE board SET hit = hit+1 WHERE boardno=#{param1}
     </update>
   	<select id="BoardView" resultType="com.campus.myapp.vo.BoardVO">
-	    SELECT A.boardno, A.title, A.hit, A.writedate, A.content, A.userid, A.filename1,
+	    SELECT A.boardno, A.title, A.hit, A.writedate, A.content, A.userid, A.filename1, A.boardtype,
 	   		   B.profileimage, B.userlevel, B.username
+	   		    <choose>
+		  			<when test="param2.equals('suggest')">
+		            	,C.secret, C.suggestno
+	       			</when>
+	       			<when test="param2.equals('adopt')">
+	      		 		,D.category, D.breed, D.adoptno
+	      			 </when>
+  			    </choose>
 	    FROM   board A, member B
+	    <choose>
+		  			<when test="param2.equals('suggest')">
+		            	,suggest C
+	       			</when>
+	       			<when test="param2.equals('adopt')">
+	      		 		,adopt D
+	      			 </when>
+  			    </choose>
 	    WHERE  A.userid=B.userid 
+	    		<choose>
+		  			<when test="param2.equals('suggest')">
+		            	AND   A.boardno=C.boardno
+	       			</when>
+	       			<when test="param2.equals('adopt')">
+	      		 		AND   A.boardno=D.boardno
+	      			 </when>
+  			    </choose>
 	    AND    A.boardno=${param1}
     </select>
     <!-- 글 수정 -->

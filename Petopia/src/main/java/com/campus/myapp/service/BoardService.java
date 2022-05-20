@@ -32,7 +32,7 @@ public interface BoardService {
 	public BoardVO getFileName(int boardno);
 	//글삭제
 	public int boardDelete(int boardno, String userid);
-	public BoardVO BoardView(int boardno);
+	public BoardVO BoardView(int boardno, String type);
 	
 	public String getType(int boardno);
 	
