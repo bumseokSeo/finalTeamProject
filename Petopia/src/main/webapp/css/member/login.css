@@ -1,5 +1,9 @@
 @charset "UTF-8";
-
+.container{
+	height: auto;
+	min-height: 100vh;
+	overflow:hidden;
+}
 #login_form{
 	margin: 0 auto;
 	width: 550px;
