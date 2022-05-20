@@ -166,12 +166,14 @@ public class MemberController {
 						}
 							
 						vo.setProfileimage(orgFileName);
+						session.setAttribute("logImg", vo.getProfileimage());
 					}
 			}
 				
 			//db등록
 			service.memberUpdate(vo);
-			session.setAttribute("logImg", vo.getProfileimage());
+			
+			session.setAttribute("logName", vo.getUsername());
 			//레코드 추가 성공
 			String msg = "<script>alert('프로필이 수정되었습니다.'); location.href='/';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);

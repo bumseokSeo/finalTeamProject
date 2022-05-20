@@ -2,10 +2,12 @@ package com.campus.myapp.controller;
 
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,14 +33,17 @@ public class ShopReviewController {
 		vo.setUserid((String) session.getAttribute("logId"));
 		String path = session.getServletContext().getRealPath("/upload/review");
 		try {
+			UUID uuid = UUID.randomUUID();
+            String extension = FilenameUtils.getExtension(filename.getOriginalFilename());
+            String imgPath = uuid + "." + extension;
+            
 			if(!filename.isEmpty()) {
-				filename.transferTo(new File(path+"/"+filename.getOriginalFilename()));
-				vo.setFilename1(filename.getOriginalFilename());
+				filename.transferTo(new File(path+"/"+imgPath));
+				vo.setFilename1(imgPath);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		
 		return service.insertReview(vo);
 	}
 	
@@ -55,17 +60,23 @@ public class ShopReviewController {
 		String path = session.getServletContext().getRealPath("/upload/review");
 
 		try {
+			UUID uuid = UUID.randomUUID();
+		    String extension = FilenameUtils.getExtension(filename.getOriginalFilename());
+		    String imgPath = uuid + "." + extension;
+		    
 			if(vo.getDeleteFile()!=null && vo.getDeleteFile()!="") {
 				vo.setFilename1(null);
-				File f = new File(path,vo.getDeleteFile());
+				File f = new File(imgPath,vo.getDeleteFile());
+				System.out.println(f);
 				if(f!=null && f.exists()) {
 					f.delete();
 				}
 			}
 			if(!filename.isEmpty()) {
 				String fname =  service.selectFile(vo.getReviewno());
-				filename.transferTo(new File(path+"/"+filename.getOriginalFilename()));
-				vo.setFilename1(filename.getOriginalFilename());
+				
+				filename.transferTo(new File(path+"/"+imgPath));
+				vo.setFilename1(imgPath);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -87,4 +98,5 @@ public class ShopReviewController {
 		}
 		return service.deleteReview(reviewno, (String)session.getAttribute("logId"));
 	}
+	
 }
