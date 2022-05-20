@@ -267,7 +267,7 @@ function selectReview(sid) {
 						`<span style="color:#696969">   ` + shop.writedate + `</span>` +
 						`<div><span style="font-size:1.2em;margin:5px;">` + shop.shopreview + `</span><br/>`;
 					if(shop.filename1!=null){
-						str+=`<img src="/upload/`+shop.filename1+`" style="width:100%"/></div></div>`;
+						str+=`<img src="/upload/review`+shop.filename1+`" style="width:100%"/></div></div>`;
 					}
 					str += `</div></div>`;
 
