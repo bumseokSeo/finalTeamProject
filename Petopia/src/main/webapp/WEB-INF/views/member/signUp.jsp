@@ -429,6 +429,7 @@ $(document).ready(function(){
 	
 	$(".agree_box>div[class='moreText']").eq(1).load("/txt/PrivacyPolicy.txt");
 	
+	
 });
 
 

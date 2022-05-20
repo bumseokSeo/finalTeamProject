@@ -62,8 +62,8 @@ public class BoardServiceImp implements BoardService{
 	}
 	
 	@Override
-	public BoardVO BoardView(int boardno) {
-		return dao.BoardView(boardno);
+	public BoardVO BoardView(int boardno, String type) {
+		return dao.BoardView(boardno, type);
 	}
 	
 	@Override
