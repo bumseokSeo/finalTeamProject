@@ -227,8 +227,12 @@ $(function(){
 			data:params3,
 			type:'post',
 			success:function(vo){
-				console.log("좋아요증가");
-				addlike = vo+"♥";
+				addlike = vo.likeno+"♥";
+				if(vo.cnt==0){
+					alert("글을 추천했습니다!");
+				}else{
+					alert("글 추천을 취소했습니다!");
+				}
 				$("#likeCnt").empty();
 				$("#likeCnt").html(addlike);
 			},error:function(e){
@@ -302,7 +306,7 @@ $(function(){
 							<input type="hidden" name="boardno" value="${vo.boardno}"/>
 								<div id="reply_info">댓글 작성  | 작성자 : ${logName}</div>
 								<textarea name="content" id='View_conment' maxlength="99"
-									style="width: 100%; height: 120px; font-size:18px; border:none; border-radius: 15px;" placeholder=" 댓글 입력" ></textarea>
+									placeholder=" 댓글 입력" ></textarea>
 								<input type="submit" value="등록" id="replybtn" />						
 						</form>
 					</div>

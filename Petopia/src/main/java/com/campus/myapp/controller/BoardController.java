@@ -7,6 +7,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,6 +61,7 @@ public class BoardController {
 		//게시판 타입
 		mav.addObject("type", type);
 		mav.addObject("vo", vo);
+		mav.addObject("likes", service.LikeCnt(vo.getBoardno()));
 		mav.setViewName("board/SubMenuSelect");
 		return mav;
 	}
@@ -436,10 +439,21 @@ public class BoardController {
 		//추천누르기
 		@ResponseBody
 		@PostMapping("/board/boardLike")
-		public int LikeCnt(int boardno) {
-			service.LikeCountUP(boardno);
-			int LCnt = service.LikeCnt(boardno);
-			return LCnt;
+		public Map<String, Object> LikeCnt(@RequestParam("boardno")int boardno, HttpSession session) {
+			BoardVO vo = new BoardVO();
+			vo.setUserid((String)session.getAttribute("logId"));
+			
+			int LCheck = service.LikeCheck(boardno,(String)session.getAttribute("logId"));
+			if(LCheck==0) {
+				service.LikeInsert(boardno,(String)session.getAttribute("logId"));
+			}else {
+				service.LikeDelete(boardno,(String)session.getAttribute("logId"));
+			}
+			service.LikeModi(boardno,service.LikeCnt(boardno));
+			Map<String, Object> LikeW = new HashMap<String, Object>();
+			LikeW.put("cnt", LCheck);
+			LikeW.put("likeno", service.LikeCnt(boardno));
+			return LikeW;
 		}
 		
 		//글 수정
