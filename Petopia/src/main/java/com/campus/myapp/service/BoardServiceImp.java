@@ -52,13 +52,28 @@ public class BoardServiceImp implements BoardService{
 	}
 	
 	@Override
-	public void LikeCountUP(int boardno) {
-		dao.LikeCountUP(boardno);
+	public void LikeInsert(int boardno, String userid) {
+		dao.LikeInsert(boardno, userid);
+	}
+	
+	@Override
+	public void LikeDelete(int boardno, String userid) {
+		dao.LikeDelete(boardno,userid);
+	}
+	
+	@Override
+	public int LikeCheck(int boardno,String userid) {
+		return dao.LikeCheck(boardno, userid);
 	}
 	
 	@Override
 	public int LikeCnt(int boardno) {
 		return dao.LikeCnt(boardno);
+	}
+	
+	@Override
+	public int LikeModi(int boardno,int likes) {
+		return dao.LikeModi(boardno,likes);
 	}
 	
 	@Override

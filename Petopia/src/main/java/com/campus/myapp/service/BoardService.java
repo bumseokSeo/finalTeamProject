@@ -22,9 +22,11 @@ public interface BoardService {
 	//조회수 증가
 	public void hitCount(int boardno);
 	//추천수 증가
-	public void LikeCountUP(int boardno);
-	//추천수 읽기
+	public void LikeInsert(int boardno, String userid);
+	public void LikeDelete(int boardno, String userid);
+	public int LikeCheck(int boardno,String userid);
 	public int LikeCnt(int boardno);
+	public int LikeModi(int boardno,int likes);
 	
 	public int BoardNum();
 	public int SuggestNum();

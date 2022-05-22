@@ -168,6 +168,21 @@
 	z-index:50;
 }
 
+#View_conment{
+	width: 100%; 
+
+	font-size:18px; 
+	border:none; 
+	border-radius: 15px; 
+	padding: 5px;
+	resize: none;
+}
+
+#View_conment::placeholder{
+	padding:5px;
+	font-size: 1rem;
+}
+
 .reply_area{
 position:relative;
 width:100%;
