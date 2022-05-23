@@ -32,7 +32,7 @@
   	  	<ul>
   	  		<li><input type="hidden" name="boardtype" value="${type}"/></li>
 			<li><input type="text" name="title" id="title" class="input01" placeholder="제목을 입력해주세요"/></li>
-			<li><textarea id="content" name="content"></textarea> </li>
+			<li><textarea id="content" name="content" placeholder="내용을 입력해주세요"></textarea> </li>
 				<li style="height:70px;"><input type='submit' value='등록' id="reviewsubmit" class="button01" style="margin-right:20px;"/></li>
 		</ul>
 	</form>

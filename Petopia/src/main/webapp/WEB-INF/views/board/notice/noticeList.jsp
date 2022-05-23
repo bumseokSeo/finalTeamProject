@@ -141,12 +141,12 @@ $('#nextView').click(function(){
 		}else if(pn=='SubMenuSelect'){
 			url = '/board/notice/noticeLists';
 			param = {
-				"startNum" : startNum*19+1
+				"startNum" : startNum*19
 			};
 		}else if(pn2 =='Search'){
 			url = '/board/notice/noticeLists';
 			param = {
-				"startNum" : startNum*19+1
+				"startNum" : startNum*19
 			};
 		}
 		$.ajax({
