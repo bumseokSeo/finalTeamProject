@@ -141,7 +141,7 @@ $('#nextViewW').click(function(){
 		if(pn=='SubMenuSelect'){
 			url = '/board/walk/walkLists';
 			param = {
-				"startNum" : startNum*19+1
+				"startNum" : startNum*19
 			};
 		}else if(pn=='walkSearch'){
 			url = '/board/walk/searchLists';
@@ -153,7 +153,7 @@ $('#nextViewW').click(function(){
 		}else if(pn2 =='Search'){
 			url = '/board/walk/walkLists';
 			param = {
-				"startNum" : startNum*19+1
+				"startNum" : startNum*19
 			};
 		}
 		$.ajax({
