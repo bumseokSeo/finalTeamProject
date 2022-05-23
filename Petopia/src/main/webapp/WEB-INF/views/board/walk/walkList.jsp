@@ -17,9 +17,9 @@
 		</ul><!-- 게시물 -->
 		
 		 <div class="paging">
-           <b id="prevViewW"> ◀ </b>
+           <b id="prevViewW">  </b>
            <b id="pViewW"></b>
-           <b id="nextViewW" > ▶ </b>
+           <b id="nextViewW" > > </b>
             
         </div>
     
@@ -141,7 +141,7 @@ $('#nextViewW').click(function(){
 		if(pn=='SubMenuSelect'){
 			url = '/board/walk/walkLists';
 			param = {
-				"startNum" : startNum*18+1
+				"startNum" : startNum*19+1
 			};
 		}else if(pn=='walkSearch'){
 			url = '/board/walk/searchLists';
@@ -153,7 +153,7 @@ $('#nextViewW').click(function(){
 		}else if(pn2 =='Search'){
 			url = '/board/walk/walkLists';
 			param = {
-				"startNum" : startNum*18+1
+				"startNum" : startNum*19+1
 			};
 		}
 		$.ajax({
@@ -195,7 +195,7 @@ $('#nextViewW').click(function(){
 				$("#List_menu_FW").append(addListHtmlW);
 				$("#pViewW").empty();
 				$("#pViewW").append(startNum+1);
-				$("#prevViewW").append("◀");
+				$("#prevViewW").append("<");
 			}
 		});
 	   
@@ -222,7 +222,7 @@ $('#prevViewW').click(function(){
 	if(pn=='SubMenuSelect'){
 		url = '/board/walk/walkLists';
 		param = {
-			"startNum" : (startNum-1)*18-18
+			"startNum" : (startNum-1)*19-19
 		};
 	}else if(pn='walkSearch'){
 		url = '/board/walk/searchLists';
@@ -234,7 +234,7 @@ $('#prevViewW').click(function(){
 	}else if(pn2 =='Search'){
 		url = '/board/walk/walkLists';
 		param = {
-			"startNum" : startNum*18-18
+			"startNum" : startNum*19-19
 		};
 	}
 	$.ajax({
@@ -268,7 +268,7 @@ $('#prevViewW').click(function(){
 				addListHtmlW += "<li>"+data[i].hit+"</li>";
 			}
 			$("#nextViewW").empty();
-			$("#nextViewW").append("▶");
+			$("#nextViewW").append(">");
 			$("#List_menu_FW").empty();
 			$("#List_menu_FW").append(addListHtmlWpo);
 			$("#List_menu_FW").append(addListHtmlW);

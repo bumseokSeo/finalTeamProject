@@ -17,9 +17,9 @@
 		</ul><!-- 게시물 -->
 		
 		 <div class="paging">
-           <b id="prevViewI" > ◀ </b>
+           <b id="prevViewI">  </b>
            <b id="pViewI" ></b>
-           <b id="nextViewI" > ▶ </b>
+           <b id="nextViewI" > > </b>
             
         </div>
     
@@ -195,7 +195,7 @@ $('#nextViewI').click(function(){
 				$("#List_menu_FI").append(addListHtmlI);
 				$("#pViewI").empty();
 				$("#pViewI").append(startNum+1);
-				$("#prevViewI").append("◀");
+				$("#prevViewI").append("<");
 			}
 		});
 	   
@@ -268,7 +268,7 @@ $('#prevViewI').click(function(){
 				addListHtmlI += "<li>"+data[i].hit+"</li>";
 			}
 			$("#nextViewI").empty();
-			$("#nextViewI").append("▶");
+			$("#nextViewI").append(">");
 			$("#List_menu_FI").empty();
 			$("#List_menu_FI").append(addListHtmlIpo);
 			$("#List_menu_FI").append(addListHtmlI);

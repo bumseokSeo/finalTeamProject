@@ -9,8 +9,9 @@
 		 return false;
 	 }
 	 
-	 if($("#content").val()==''){
+	 if(CKEDITOR.instances.content.getData()==''|| CKEDITOR.instances.content.getData().length ==0){
 		 alert("본문을 입력해주세요");
+		 $("#content").focus();
 		 return false;
 	 }
 	 });

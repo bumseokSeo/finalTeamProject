@@ -11,9 +11,9 @@
 		<div class="row" id="rowShare"></div>
 	
 		 <div class="paging">
-           <b id="prevViewS"> ◀ </b>
+           <b id="prevViewS">  </b>
            <b id="pViewS"></b>
-           <b id="nextViewS"> ▶ </b>
+           <b id="nextViewS"> > </b>
             
         </div>
     
@@ -152,7 +152,7 @@ $('#nextViewS').click(function(){
 				$("#rowShare").append(addListHtmlS);
 				$("#pViewS").empty();
 				$("#pViewS").append(startNum+1);
-				$("#prevViewS").append("◀");
+				$("#prevViewS").append("<");
 				/* console.log(addListHtmlS); */
 			}
 		});
@@ -209,7 +209,7 @@ $('#prevViewS').click(function(){
 				addListHtmlS += "</div></div>";
 			}
 			$("#nextViewS").empty();
-			$("#nextViewS").append("▶");
+			$("#nextViewS").append(">");
 			$("#rowShare").empty();
 			$("#rowShare").append(addListHtmlS);
 			$("#pViewS").empty();
