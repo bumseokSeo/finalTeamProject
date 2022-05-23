@@ -57,25 +57,24 @@ a:hover{
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-#adoptList>li:nth-child(9n+1){
+#adoptList>li:nth-child(8n+1){
 	padding-left: 15px;
 }
-#adoptList>li:nth-child(9n+2){
+#adoptList>li:nth-child(8n+2){
 	width: 9%;
 }
-#adoptList>li:nth-child(9n+4){
-	width: 20%;
+#adoptList>li:nth-child(8n+4){
+	width: 27%;
 }
-#adoptList>li:nth-child(9n+3),
-#adoptList>li:nth-child(9n+6),
-#adoptList>li:nth-child(9n+7){
+#adoptList>li:nth-child(8n+3),
+#adoptList>li:nth-child(8n+6){
 	width: 7%;
 }
-#adoptList>li:nth-child(9n+8){
+#adoptList>li:nth-child(8n+7){
 	width: 20%;
 }
 
-#adoptList>li:nth-child(n+1):nth-child(-n+9) {
+#adoptList>li:nth-child(n+1):nth-child(-n+8) {
 	border-bottom: 3px solid #ddd;
 	background-color: rgba(205, 188, 171, 0.5);
 	font-weight: bold;

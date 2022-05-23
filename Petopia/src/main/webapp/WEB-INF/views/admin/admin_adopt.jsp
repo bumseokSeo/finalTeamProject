@@ -68,7 +68,6 @@ function adoptDelChk(boardno){
 			<li>제목</li>
 			<li>아이디</li>
 			<li>조회수</li>
-			<li>좋아요</li>
 			<li>작성일</li>
 			<li>관리</li>
 			
@@ -79,7 +78,6 @@ function adoptDelChk(boardno){
 				<li><a href="/board/boardView?boardno=${vo.boardno}">${vo.title }</a></li>
 				<li>${vo.userid }</li>
 				<li>${vo.hit }</li>
-				<li>${vo.likes }</li>
 				<li>${vo.writedate }</li>
 				<li><a class="delBtn" href="javascript:adoptDelChk('${vo.boardno}')">삭제</a></li>
 			</c:forEach>

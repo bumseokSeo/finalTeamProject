@@ -22,8 +22,8 @@
 			 <form action="/board/adopt/adoptSearch" id="searchFrmD">
 				<select name="searchKey" id="SKey">
 					<option value="title" selected="selected">제목</option>
-					<option value="username">글쓴이</option>
 					<option value="content">내용</option>
+					<option value="username">작성자</option>
 				</select>
 				<input type="text" name="searchWord" id="searchWordD"/>
 				<input type="submit" value="검색"/>

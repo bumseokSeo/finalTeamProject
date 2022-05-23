@@ -19,9 +19,8 @@ public class MasterInterceptor implements HandlerInterceptor {
 		//true -> 정상처리
 		
 		HttpSession session = request.getSession();//세션객체
-		String logId = (String) session.getAttribute("logId");//로그인 상태
-		
-		if(logId.equals("admin") ) {//로그인 계정이 관리자인 경우
+		Integer logLevel = (Integer) session.getAttribute("logLevel");//로그인 상태
+		if(logLevel == 1 ) {//로그인 계정이 관리자인 경우
 			return true;
 		}
 		

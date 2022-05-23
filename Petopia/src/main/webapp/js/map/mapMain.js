@@ -83,7 +83,7 @@ function placesSearchOk(data, status) {
 		//정상적으로 검색이 완료됐을 때 (검색목록과 마커 표출)
 		displayPlaces(data);
 	} else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-		alert("검색 결과가 존재하지 않습니다.")
+		alert("검색 결과가 존재하지 않습니다.");
 		return;
 	} else if (status === kakao.maps.services.Status.ERROR) {
 		alert("검색 결과 중 오류가 발생했습니다.");
@@ -431,5 +431,3 @@ function displayInfowindow(marker, title) {
     infowindow.setContent(content);
     infowindow.open(map, marker);
 }
-
- 
