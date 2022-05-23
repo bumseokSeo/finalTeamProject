@@ -6,8 +6,8 @@
 <mapper namespace="com.campus.myapp.dao.BoardDAO">
   	<!-- 글등록 -->
   	<insert id="BoardInsert">
-  	INSERT INTO board(userid, title, content, boardtype, filename1)
-  	VALUES(#{userid}, #{title}, #{content}, #{boardtype}, #{filename1})
+  	INSERT INTO board(boardno,userid, title, content, boardtype, filename1)
+  	VALUES(#{boardno},#{userid}, #{title}, #{content}, #{boardtype}, #{filename1})
   	</insert>
   	<!-- 건의게시판 글등록 -->
   	<insert id="BoardInsertSuggest">

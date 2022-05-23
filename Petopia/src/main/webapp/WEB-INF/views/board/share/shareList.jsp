@@ -11,9 +11,9 @@
 		<div class="row" id="rowShare"></div>
 	
 		 <div class="paging">
-           <b id="prevViewS"> ◀ </b>
+           <b id="prevViewS">  </b>
            <b id="pViewS"></b>
-           <b id="nextViewS"> ▶ </b>
+           <b id="nextViewS"> > </b>
             
         </div>
     
@@ -76,7 +76,7 @@ $(document).ready(function(){
 					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 					addListHtmlS += "<h4 class='card-title text-center'>";
 					if(data[i].likes>10){
-					addListHtmlS +=	"<strong>★</strong>";
+					addListHtmlS +=	"<strong>★ </strong>";
 					}
 					addListHtmlS += data[i].title+"</h4>";
 					addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
@@ -137,7 +137,7 @@ $('#nextViewS').click(function(){
 					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 					addListHtmlS += "<h4 class='card-title text-center'>";
 					if(data[i].likes>10){
-					addListHtmlS +=	"<strong>★</strong>";
+					addListHtmlS +=	"<strong>★ </strong>";
 					}
 					addListHtmlS += data[i].title+"</h4>";
 					addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
@@ -152,7 +152,7 @@ $('#nextViewS').click(function(){
 				$("#rowShare").append(addListHtmlS);
 				$("#pViewS").empty();
 				$("#pViewS").append(startNum+1);
-				$("#prevViewS").append("◀");
+				$("#prevViewS").append("<");
 				/* console.log(addListHtmlS); */
 			}
 		});
@@ -201,7 +201,7 @@ $('#prevViewS').click(function(){
 				addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 				addListHtmlS += "<h4 class='card-title text-center'>";
 				if(data[i].likes>10){
-				addListHtmlS +=	"<strong>★</strong>";
+				addListHtmlS +=	"<strong>★ </strong>";
 				}
 				addListHtmlS += data[i].title+"</h4>";
 				addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
@@ -209,7 +209,7 @@ $('#prevViewS').click(function(){
 				addListHtmlS += "</div></div>";
 			}
 			$("#nextViewS").empty();
-			$("#nextViewS").append("▶");
+			$("#nextViewS").append(">");
 			$("#rowShare").empty();
 			$("#rowShare").append(addListHtmlS);
 			$("#pViewS").empty();

@@ -17,9 +17,9 @@
 		</ul><!-- 게시물 -->
 		
 		 <div class="paging">
-           <b id="prevViewI"> ◀ </b>
-           <b id="pViewI"></b>
-           <b id="nextViewI" > ▶ </b>
+           <b id="prevViewI">  </b>
+           <b id="pViewI" ></b>
+           <b id="nextViewI" > > </b>
             
         </div>
     
@@ -94,7 +94,7 @@ $(document).ready(function(){
 					addListHtmlI += "<li>"+data[i].boardno+"</li>";
 					addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
 					if(data[i].likes>10){
-						addListHtmlI +="<strong>★</strong>";
+						addListHtmlI +="<strong>★ </strong>";
 					}
 					addListHtmlI += data[i].title;
 					if(data[i].reviewcnt != 0){
@@ -141,7 +141,7 @@ $('#nextViewI').click(function(){
 		if(pn=='SubMenuSelect'){
 			url = '/board/info/infoLists';
 			param = {
-				"startNum" : startNum*18+1
+				"startNum" : startNum*19+1
 			};
 		}else if(pn=='infoSearch'){
 			url = '/board/info/searchLists';
@@ -153,7 +153,7 @@ $('#nextViewI').click(function(){
 		}else if(pn2 =='Search'){
 			url = '/board/info/infoLists';
 			param = {
-				"startNum" : startNum*18+1
+				"startNum" : startNum*19+1
 			};
 		}
 		$.ajax({
@@ -171,7 +171,7 @@ $('#nextViewI').click(function(){
 					addListHtmlI += "<li>"+data[i].boardno+"</li>";
 					addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
 					if(data[i].likes>10){
-						addListHtmlI +="<strong>★</strong>";
+						addListHtmlI +="<strong>★ </strong>";
 					}
 					addListHtmlI += data[i].title;
 					if(data[i].reviewcnt != 0){
@@ -195,7 +195,7 @@ $('#nextViewI').click(function(){
 				$("#List_menu_FI").append(addListHtmlI);
 				$("#pViewI").empty();
 				$("#pViewI").append(startNum+1);
-				$("#prevViewI").append("◀");
+				$("#prevViewI").append("<");
 			}
 		});
 	   
@@ -222,7 +222,7 @@ $('#prevViewI').click(function(){
 	if(pn=='SubMenuSelect'){
 		url = '/board/info/infoLists';
 		param = {
-			"startNum" : (startNum-1)*18-18
+			"startNum" : (startNum-1)*19-19
 		};
 	}else if(pn=='infoSearch'){
 		url = '/board/info/searchLists';
@@ -234,7 +234,7 @@ $('#prevViewI').click(function(){
 	}else if(pn2 =='Search'){
 		url = '/board/info/infoLists';
 		param = {
-			"startNum" : startNum*18-18
+			"startNum" : startNum*19-19
 		};
 	}
 	$.ajax({
@@ -252,7 +252,7 @@ $('#prevViewI').click(function(){
 				addListHtmlI += "<li>"+data[i].boardno+"</li>";
 				addListHtmlI += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
 				if(data[i].likes>10){
-					addListHtmlI +="<strong>★</strong>";
+					addListHtmlI +="<strong>★ </strong>";
 				}
 				addListHtmlI += data[i].title;
 				if(data[i].reviewcnt != 0){
@@ -268,7 +268,7 @@ $('#prevViewI').click(function(){
 				addListHtmlI += "<li>"+data[i].hit+"</li>";
 			}
 			$("#nextViewI").empty();
-			$("#nextViewI").append("▶");
+			$("#nextViewI").append(">");
 			$("#List_menu_FI").empty();
 			$("#List_menu_FI").append(addListHtmlIpo);
 			$("#List_menu_FI").append(addListHtmlI);
