@@ -18,9 +18,9 @@
 		</ul><!-- 게시물 -->
 		
 		 <div class="paging">
-           <b id="prevViewSU"> ◀ </b>
+           <b id="prevViewSU">  </b>
            <b id="pViewSU"></b>
-           <b id="nextViewSU" > ▶ </b>
+           <b id="nextViewSU" > > </b>
             
         </div>
     
@@ -99,7 +99,7 @@ $(document).ready(function(){
 						if(logName==data[i].username){
 							addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
 							if(data[i].likes>10){
-								addListHtmlSU +="<strong>★</strong>";
+								addListHtmlSU +="<strong>★ </strong>";
 							}
 							addListHtmlSU += data[i].title;
 							if(data[i].reviewcnt != 0){
@@ -112,7 +112,7 @@ $(document).ready(function(){
 					}else{
 						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
 						if(data[i].likes>10){
-							addListHtmlSU +="<strong>★</strong>";
+							addListHtmlSU +="<strong>★ </strong>";
 						}
 						addListHtmlSU += data[i].title;
 						if(data[i].reviewcnt != 0){
@@ -161,7 +161,7 @@ $('#nextViewSU').click(function(){
 		if(pn=='SubMenuSelect'){
 			url = '/board/suggest/suggestLists';
 			param = {
-				"startNum" : startNum*18+1
+				"startNum" : startNum*19+1
 			};
 		}else if(pn=='suggestSearch'){
 			url = '/board/suggest/searchLists';
@@ -173,7 +173,7 @@ $('#nextViewSU').click(function(){
 		}else if(pn2 =='Search'){
 			url = '/board/suggest/suggestLists';
 			param = {
-				"startNum" : startNum*18+1
+				"startNum" : startNum*19+1
 			};
 		}
 		$.ajax({
@@ -195,7 +195,7 @@ $('#nextViewSU').click(function(){
 					}else{
 						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
 						if(data[i].likes>10){
-							addListHtmlSU +="<strong>★</strong>";
+							addListHtmlSU +="<strong>★ </strong>";
 						}
 						addListHtmlSU += data[i].title;
 						if(data[i].reviewcnt != 0){
@@ -221,7 +221,7 @@ $('#nextViewSU').click(function(){
 				$("#List_menu_FSU").append(addListHtmlSU);
 				$("#pViewSU").empty();
 				$("#pViewSU").append(startNum+1);
-				$("#prevViewSU").append("◀");
+				$("#prevViewSU").append("<");
 			}
 		});
 	   
@@ -248,7 +248,7 @@ $('#prevViewSU').click(function(){
 	if(pn=='SubMenuSelect'){
 		url = '/board/suggest/suggestLists';
 		param = {
-			"startNum" : startNum*18-18
+			"startNum" : startNum*19-19
 		};
 	}else if(pn=='suggestSearch'){
 		url = '/board/suggest/searchLists';
@@ -260,7 +260,7 @@ $('#prevViewSU').click(function(){
 	}else if(pn2 =='Search'){
 		url = '/board/suggest/suggestLists';
 		param = {
-			"startNum" : startNum*18-18
+			"startNum" : startNum*19-19
 		};
 	}
 	$.ajax({
@@ -300,7 +300,7 @@ $('#prevViewSU').click(function(){
 				addListHtmlSU += "<li>"+data[i].hit+"</li>";
 			}
 			$("#nextViewSU").empty();
-			$("#nextViewSU").append("▶");
+			$("#nextViewSU").append(">");
 			$("#List_menu_FSU").empty();
 			$("#List_menu_FSU").append(addListHtmlSUpo);
 			$("#List_menu_FSU").append(addListHtmlSU);

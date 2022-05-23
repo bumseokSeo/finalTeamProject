@@ -10,9 +10,9 @@
 			<div class="row" id="rowAdopt"></div>
 		
 		 <div class="paging" style="width:100%; text-align: center; font-size: 35px;">
-           <b id="prevViewD" > ◀ </b>
+           <b id="prevViewD" >  </b>
            <b id="pViewD" ></b>
-           <b id="nextViewD" > ▶ </b>
+           <b id="nextViewD" > > </b>
             
         </div>
     
@@ -133,7 +133,7 @@ $('#nextViewD').click(function(){
 				$("#rowAdopt").append(addListHtmlD);
 				$("#pViewD").empty();
 				$("#pViewD").append(startNum+1);
-				$("#prevViewD").append("◀");
+				$("#prevViewD").append("<");
 				/* console.log(addListHtmlD); */
 			}
 		});
@@ -180,7 +180,7 @@ $('#prevViewD').click(function(){
 				addListHtmlD += "</div></div>";
 			}
 			$("#nextViewD").empty();
-			$("#nextViewD").append("▶");
+			$("#nextViewD").append(">");
 			$("#rowAdopt").empty();
 			$("#rowAdopt").append(addListHtmlD);
 			$("#pViewD").empty();
