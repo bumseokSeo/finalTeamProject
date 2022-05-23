@@ -55,19 +55,20 @@ public class ShopReviewController {
 	
 	//리뷰 수정
 	@PostMapping("editOk")
-	public int updateReview(@RequestParam("filename") MultipartFile filename,ShopReviewVO vo, HttpSession session) {
+	public int updateReview(@RequestParam(value="filename", required=false) MultipartFile filename,ShopReviewVO vo, HttpSession session) {
 		vo.setUserid((String)session.getAttribute("logId"));
 		String path = session.getServletContext().getRealPath("/upload/review");
 
-		try {
+	   	try {
+	   		if(filename!=null) {
 			UUID uuid = UUID.randomUUID();
 		    String extension = FilenameUtils.getExtension(filename.getOriginalFilename());
 		    String imgPath = uuid + "." + extension;
 		    
 			if(vo.getDeleteFile()!=null && vo.getDeleteFile()!="") {
 				vo.setFilename1(null);
-				File f = new File(imgPath,vo.getDeleteFile());
-				System.out.println(f);
+				File f = new File(path,vo.getDeleteFile());
+				//System.out.println(f);
 				if(f!=null && f.exists()) {
 					f.delete();
 				}
@@ -78,6 +79,7 @@ public class ShopReviewController {
 				filename.transferTo(new File(path+"/"+imgPath));
 				vo.setFilename1(imgPath);
 			}
+	   		}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
