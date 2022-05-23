@@ -159,6 +159,7 @@
 	height:28px;
 }
 
-.container>div>ul>li>a>strong{
-	color:yellow;
+/*추천 별*/
+.container>div>ul>li>a>strong{ 
+	color: rgb(255, 165, 0);
 }

@@ -76,7 +76,7 @@ $(document).ready(function(){
 					addListHtmlB += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 					addListHtmlB += "<h4 class='card-title text-center'>";
 					if(data[i].likes>10){
-					addListHtmlB +=	"<strong>★</strong>";
+					addListHtmlB +=	"<strong>★ </strong>";
 					}
 					addListHtmlB += data[i].title+"</h4>";
 					addListHtmlB += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
@@ -135,7 +135,7 @@ $('#nextViewB').click(function(){
 					addListHtmlB += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 					addListHtmlB += "<h4 class='card-title text-center'>";
 					if(data[i].likes>10){
-					addListHtmlB +=	"<strong>★</strong>";
+					addListHtmlB +=	"<strong>★ </strong>";
 					}
 					addListHtmlB += data[i].title+"</h4>";
 					addListHtmlB += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
@@ -197,7 +197,7 @@ $('#prevViewB').click(function(){
 				addListHtmlB += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 				addListHtmlB += "<h4 class='card-title text-center'>";
 				if(data[i].likes>10){
-				addListHtmlB +=	"<strong>★</strong>";
+				addListHtmlB +=	"<strong>★ </strong>";
 				}
 				addListHtmlB += data[i].title+"</h4>";
 				addListHtmlB += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";

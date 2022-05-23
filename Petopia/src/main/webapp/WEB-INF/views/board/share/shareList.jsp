@@ -76,7 +76,7 @@ $(document).ready(function(){
 					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 					addListHtmlS += "<h4 class='card-title text-center'>";
 					if(data[i].likes>10){
-					addListHtmlS +=	"<strong>★</strong>";
+					addListHtmlS +=	"<strong>★ </strong>";
 					}
 					addListHtmlS += data[i].title+"</h4>";
 					addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
@@ -137,7 +137,7 @@ $('#nextViewS').click(function(){
 					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 					addListHtmlS += "<h4 class='card-title text-center'>";
 					if(data[i].likes>10){
-					addListHtmlS +=	"<strong>★</strong>";
+					addListHtmlS +=	"<strong>★ </strong>";
 					}
 					addListHtmlS += data[i].title+"</h4>";
 					addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
@@ -201,7 +201,7 @@ $('#prevViewS').click(function(){
 				addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
 				addListHtmlS += "<h4 class='card-title text-center'>";
 				if(data[i].likes>10){
-				addListHtmlS +=	"<strong>★</strong>";
+				addListHtmlS +=	"<strong>★ </strong>";
 				}
 				addListHtmlS += data[i].title+"</h4>";
 				addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";

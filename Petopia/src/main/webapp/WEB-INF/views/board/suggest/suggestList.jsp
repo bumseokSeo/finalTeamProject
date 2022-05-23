@@ -99,7 +99,7 @@ $(document).ready(function(){
 						if(logName==data[i].username){
 							addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
 							if(data[i].likes>10){
-								addListHtmlSU +="<strong>★</strong>";
+								addListHtmlSU +="<strong>★ </strong>";
 							}
 							addListHtmlSU += data[i].title;
 							if(data[i].reviewcnt != 0){
@@ -112,7 +112,7 @@ $(document).ready(function(){
 					}else{
 						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
 						if(data[i].likes>10){
-							addListHtmlSU +="<strong>★</strong>";
+							addListHtmlSU +="<strong>★ </strong>";
 						}
 						addListHtmlSU += data[i].title;
 						if(data[i].reviewcnt != 0){
@@ -195,7 +195,7 @@ $('#nextViewSU').click(function(){
 					}else{
 						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
 						if(data[i].likes>10){
-							addListHtmlSU +="<strong>★</strong>";
+							addListHtmlSU +="<strong>★ </strong>";
 						}
 						addListHtmlSU += data[i].title;
 						if(data[i].reviewcnt != 0){
