@@ -26,7 +26,7 @@
 		<br/><br/><br/>
 		<div class="Share_search">
 			 <form action="/board/notice/noticeSearch?type=notice" id="searchFrm">
-				<select name="searchKey">
+				<select name="searchKey" id="SKey">
 					<option value="title">제목</option>
 					<option value="content">내용</option>
 				</select>

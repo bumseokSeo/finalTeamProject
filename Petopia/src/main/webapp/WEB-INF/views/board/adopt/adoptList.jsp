@@ -20,7 +20,7 @@
 		<br/><br/><br/>
 		<div class="Adopt_search">
 			 <form action="/board/adopt/adoptSearch" id="searchFrmD">
-				<select name="searchKey">
+				<select name="searchKey" id="SKey">
 					<option value="title" selected="selected">제목</option>
 					<option value="username">글쓴이</option>
 					<option value="content">내용</option>

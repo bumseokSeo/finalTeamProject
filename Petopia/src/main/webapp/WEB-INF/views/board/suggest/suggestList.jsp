@@ -28,7 +28,7 @@
 		<br/><br/><br/>
 		<div class="Suggest_search">
 			 <form action="/board/suggest/suggestSearch?type=suggest" id="searchFrmSU">
-				<select name="searchKey">
+				<select name="searchKey" id="SKey">
 					<option value="title" selected="selected">제목</option>
 					<option value="content">내용</option>
 					<option value="username">작성자</option>
@@ -97,7 +97,11 @@ $(document).ready(function(){
 					addListHtmlSU += "<li>"+data[i].suggestno+"</li>";
 					if(data[i].secret=="N" && logLevel!=1){
 						if(logName==data[i].username){
-							addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+							addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
+							if(data[i].likes>10){
+								addListHtmlSU +="<strong>★</strong>";
+							}
+							addListHtmlSU += data[i].title;
 							if(data[i].reviewcnt != 0){
 								addListHtmlSU += " [" + data[i].reviewcnt+"]";
 							}
@@ -106,7 +110,11 @@ $(document).ready(function(){
 							addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
 						}
 					}else{
-						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
+						if(data[i].likes>10){
+							addListHtmlSU +="<strong>★</strong>";
+						}
+						addListHtmlSU += data[i].title;
 						if(data[i].reviewcnt != 0){
 							addListHtmlSU += " [" + data[i].reviewcnt+"]";
 						}
@@ -185,7 +193,11 @@ $('#nextViewSU').click(function(){
 					if(data[i].secret=="N" && logLevel!=1){
 						addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
 					}else{
-						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+						addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
+						if(data[i].likes>10){
+							addListHtmlSU +="<strong>★</strong>";
+						}
+						addListHtmlSU += data[i].title;
 						if(data[i].reviewcnt != 0){
 							addListHtmlSU += " [" + data[i].reviewcnt+"]";
 						}
@@ -268,7 +280,11 @@ $('#prevViewSU').click(function(){
 				if(data[i].secret=="N" && logLevel!=1){
 					addListHtmlSU += "<li style='color:grey;'>비공개 글 입니다.</li>";
 				}else{
-					addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					addListHtmlSU += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
+					if(data[i].likes>10){
+						addListHtmlSU +="<strong>★</strong>";
+					}
+					addListHtmlSU += data[i].title;
 					if(data[i].reviewcnt != 0){
 						addListHtmlSU += " [" + data[i].reviewcnt+"]";
 					}
