@@ -161,7 +161,7 @@ $('#nextViewSU').click(function(){
 		if(pn=='SubMenuSelect'){
 			url = '/board/suggest/suggestLists';
 			param = {
-				"startNum" : startNum*19+1
+				"startNum" : startNum*19
 			};
 		}else if(pn=='suggestSearch'){
 			url = '/board/suggest/searchLists';
@@ -173,7 +173,7 @@ $('#nextViewSU').click(function(){
 		}else if(pn2 =='Search'){
 			url = '/board/suggest/suggestLists';
 			param = {
-				"startNum" : startNum*19+1
+				"startNum" : startNum*19
 			};
 		}
 		$.ajax({

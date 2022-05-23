@@ -109,7 +109,7 @@ $('#nextViewB').click(function(){
 		if(pn=='SubMenuSelect'){
 			url = '/board/boast/boastLists';
 			param = {
-				"startNum" : startNum*12+1
+				"startNum" : startNum*12
 			};
 		}else if(pn=='boastSearch'){
 			url = '/board/boast/boastLists';
@@ -121,7 +121,7 @@ $('#nextViewB').click(function(){
 		}else if(pn2 =='Search'){
 			url = '/board/boast/boastLists';
 			param = {
-				"startNum" : startNum*12+1
+				"startNum" : startNum*12
 			};
 		}
 		$.ajax({
