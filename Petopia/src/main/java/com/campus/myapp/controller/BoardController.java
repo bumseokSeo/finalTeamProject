@@ -361,16 +361,14 @@ public class BoardController {
 			}			
 			vo.setFilename1(result);
 			
-			//게시판 회귀 선별조건
+			//게시판 회귀 선별조건 
 			try {
 			vo.setBoardno(service.BoardNum()+1);// 번호 매기도록 하는것.
 			}catch(Exception E){
 				vo.setBoardno(1);
 			}
 			vo.setBoardtype(vo.getBoardtype());
-			
-			
-			
+	
 			service.BoardInsert(vo);
 			
 			
@@ -397,6 +395,7 @@ public class BoardController {
 			}
 			if(vo.getBoardtype().equals("suggest")) {
 			service.BoardInsertSuggest(vo);
+	
 			String msg = "<script>alert('건의게시판 등록완료');location.href='/board/SubMenuSelect?type=suggest';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 			}
