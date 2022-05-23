@@ -55,6 +55,7 @@
 		  });
 		 
 		  $("input").attr("maxlength", 20);
+		  $("input[name='title']").attr("maxlength", 100);
 		  MessageReload();
 	});
 	
