@@ -101,7 +101,7 @@ $('#nextViewD').click(function(){
 			url = '/board/adopt/adoptListMethod';
 			console.log("다음페이지")
 			param = {
-				"startNum" : startNum*12+1
+				"startNum" : startNum*12
 			};
 		}else if(pn=='adoptSearch'){
 			url = '/board/adopt/adoptListMethod';

@@ -111,7 +111,7 @@ $('#nextViewS').click(function(){
 			url = '/board/share/shareLists';
 			console.log("다음페이지")
 			param = {
-				"startNum" : startNum*12+1
+				"startNum" : startNum*12
 			};
 		}else if(pn=='shareSearch'){
 			url = '/board/share/shareLists';
@@ -123,7 +123,7 @@ $('#nextViewS').click(function(){
 		}else if(pn2 =='Search'){
 			url = '/board/share/shareLists';
 			param = {
-				"startNum" : startNum*12+1
+				"startNum" : startNum*12
 			};
 		}
 		$.ajax({
