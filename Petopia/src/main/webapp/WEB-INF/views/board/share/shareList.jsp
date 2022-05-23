@@ -21,7 +21,7 @@
 		<br/><br/><br/>
 		<div class="Share_search">
 			 <form action="/board/share/shareSearch?type=share" id="searchFrmS">
-				<select name="searchKey">
+				<select name="searchKey" id="SKey">
 					<option value="title" selected="selected">제목</option>
 					<option value="content">내용</option>
 					<option value="username">작성자</option>
@@ -74,7 +74,11 @@ $(document).ready(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-					addListHtmlS += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlS += "<h4 class='card-title text-center'>";
+					if(data[i].likes>10){
+					addListHtmlS +=	"<strong>★</strong>";
+					}
+					addListHtmlS += data[i].title+"</h4>";
 					addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
 					addListHtmlS += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlS += "</div></div>";
@@ -131,7 +135,11 @@ $('#nextViewS').click(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 					addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-					addListHtmlS += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlS += "<h4 class='card-title text-center'>";
+					if(data[i].likes>10){
+					addListHtmlS +=	"<strong>★</strong>";
+					}
+					addListHtmlS += data[i].title+"</h4>";
 					addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
 					addListHtmlS += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlS += "</div></div>";
@@ -191,7 +199,11 @@ $('#prevViewS').click(function(){
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlS += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 				addListHtmlS += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-				addListHtmlS += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+				addListHtmlS += "<h4 class='card-title text-center'>";
+				if(data[i].likes>10){
+				addListHtmlS +=	"<strong>★</strong>";
+				}
+				addListHtmlS += data[i].title+"</h4>";
 				addListHtmlS += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
 				addListHtmlS += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 				addListHtmlS += "</div></div>";

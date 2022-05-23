@@ -14,7 +14,7 @@
 		from shopreview a  
 		right outer join shop b on a.shopid = b.shopid
 		where b.shopid=${param1}
-		order by a.reviewno desc
+		order by a.reviewno desc limit 10
 	</select>
 	<update id="updateReview">
 		update shopreview set shopreview=#{shopreview}

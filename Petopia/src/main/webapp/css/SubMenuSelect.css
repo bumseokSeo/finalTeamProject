@@ -154,3 +154,11 @@
 	overflow:auto;
 }
 #resultArea>div {display:none; margin:0;}
+
+#SKey{
+	height:28px;
+}
+
+.container>div>ul>li>a>strong{
+	color:yellow;
+}

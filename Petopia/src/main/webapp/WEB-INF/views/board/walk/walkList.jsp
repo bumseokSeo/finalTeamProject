@@ -27,7 +27,7 @@
 		<br/><br/><br/>
 		<div class="info_search">
 			 <form action="/board/walk/walkSearch?type=walk" id="searchFrmW">
-				<select name="searchKey">
+				<select name="searchKey" id="SKey">
 					<option value="title" selected="selected">제목</option>
 					<option value="content">내용</option>
 					<option value="username">작성자</option>
@@ -92,7 +92,11 @@ $(document).ready(function(){
 				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlW += "<li>"+data[i].boardno+"</li>";
-					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
+					if(data[i].likes>10){
+						addListHtmlW +="<strong>★</strong>";
+					}
+					addListHtmlW += data[i].title;
 					if(data[i].reviewcnt != 0){
 						addListHtmlW += " [" + data[i].reviewcnt+"]";
 					}
@@ -165,7 +169,11 @@ $('#nextViewW').click(function(){
 				
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlW += "<li>"+data[i].boardno+"</li>";
-					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+					addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
+					if(data[i].likes>10){
+						addListHtmlW +="<strong>★</strong>";
+					}
+					addListHtmlW += data[i].title;
 					if(data[i].reviewcnt != 0){
 						addListHtmlW += " [" + data[i].reviewcnt+"]";
 					}
@@ -242,7 +250,11 @@ $('#prevViewW').click(function(){
 			
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlW += "<li>"+data[i].boardno+"</li>";
-				addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>"+data[i].title;
+				addListHtmlW += "<li><a href='/board/boardView?boardno="+data[i].boardno+"'>";
+				if(data[i].likes>10){
+					addListHtmlW +="<strong>★</strong>";
+				}
+				addListHtmlW += data[i].title;
 				if(data[i].reviewcnt != 0){
 					addListHtmlW += " [" + data[i].reviewcnt+"]";
 				}

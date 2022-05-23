@@ -21,7 +21,7 @@
 	<br/><br/><br/>
 	<div class="Boast_search">
 		 <form action="/board/boast/boastSearch?type=boast" id="searchFrmB">
-			<select name="searchKey">
+			<select name="searchKey" id="SKey">
 				<option value="title" selected="selected">제목</option>
 				<option value="content">내용</option>
 				<option value="username">작성자</option>
@@ -74,7 +74,11 @@ $(document).ready(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlB += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 					addListHtmlB += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-					addListHtmlB += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlB += "<h4 class='card-title text-center'>";
+					if(data[i].likes>10){
+					addListHtmlB +=	"<strong>★</strong>";
+					}
+					addListHtmlB += data[i].title+"</h4>";
 					addListHtmlB += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
 					addListHtmlB += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlB += "</div></div>";
@@ -129,7 +133,11 @@ $('#nextViewB').click(function(){
 				for (var i = 0; i < data.length; i++) {
 					addListHtmlB += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 					addListHtmlB += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-					addListHtmlB += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+					addListHtmlB += "<h4 class='card-title text-center'>";
+					if(data[i].likes>10){
+					addListHtmlB +=	"<strong>★</strong>";
+					}
+					addListHtmlB += data[i].title+"</h4>";
 					addListHtmlB += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
 					addListHtmlB += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 					addListHtmlB += "</div></div>";
@@ -187,7 +195,11 @@ $('#prevViewB').click(function(){
 			for (var i = 0; i < data.length; i++) {
 				addListHtmlB += "<div class='col col-xl-3 col-lg-4 col-md-6 col-sm-12 cardDiv'><div class='card'>";
 				addListHtmlB += "<a href='/board/boardView?boardno="+data[i].boardno+"'><img class='shareimg' src='"+data[i].filename1+"'></a></div>";
-				addListHtmlB += "<h4 class='card-title text-center'>"+data[i].title+"</h4>";
+				addListHtmlB += "<h4 class='card-title text-center'>";
+				if(data[i].likes>10){
+				addListHtmlB +=	"<strong>★</strong>";
+				}
+				addListHtmlB += data[i].title+"</h4>";
 				addListHtmlB += "<div class='card-body'><p class='card-text text-end'>"+data[i].username+"</p>";
 				addListHtmlB += "<p class='card-text text-end'><small class='text-muted'>"+data[i].writedate+"</small></p></div>";
 				addListHtmlB += "</div></div>";
