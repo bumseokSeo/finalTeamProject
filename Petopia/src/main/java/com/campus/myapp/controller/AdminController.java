@@ -372,7 +372,7 @@ public class AdminController {
 				}
 			}
 			
-			String msg = "<script>alert('반려동물정보가 수정되었습니다.'); location.href='/admin/admin_animalInfo';</script>";
+			String msg = "<script>alert('반려동물정보가 수정되었습니다.'); location.href='/admin/admin_animalInfo?searchKey=all';</script>";
 			
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 			
