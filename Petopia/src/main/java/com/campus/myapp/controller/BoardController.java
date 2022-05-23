@@ -244,8 +244,8 @@ public class BoardController {
 	public List<BoardVO> searchMoreViewSu(String searchKey, String searchWord,@RequestParam(value = "startNum", required = false) String startNum) throws Exception {
 		int start = Integer.parseInt(startNum);
 		int end = 19;
-
 		
+
 		return service.boardSearch(searchKey, "%"+searchWord+"%", start, end, "suggest");
 	}
 	//adopt
