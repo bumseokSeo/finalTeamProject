@@ -201,7 +201,10 @@ a:hover{
 	width:10%;
 	height: 70%;
 }
-
+.msg_send_btn{
+	width:30px;
+	height:30px;
+}
 .tab_title2{
 	margin-bottom: 50px;
 	display: none;
