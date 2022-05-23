@@ -120,9 +120,8 @@ a:link, a:visited {
 #Top_LGN_section{
 	float:left;
 	padding:10px;
-	
 	position: absolute;
-	right:90px;
+	right:0px;
 }
 
 #Top_LGN_section>div{
