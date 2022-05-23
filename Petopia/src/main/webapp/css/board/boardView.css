@@ -76,12 +76,13 @@
 	right:130px;
 	width:80px; 
 	height:40px; 
-	border:2px solid pink;  
+	border:2px solid rgba(222, 222, 222 , 0.7);
 	font-size:18px; 
 	line-height:40px; 
 	text-align:center; 
 	margin-top:10px;
 	top:10px;
+	text-decoration:none;
 }
 
 #Del_AA{
@@ -89,18 +90,19 @@
 	right:0px;
 	width:80px; 
 	height:40px; 
-	border:2px solid pink; 
+	border:2px solid rgba(222, 222, 222 , 0.7);
 	font-size:18px; 
 	line-height:40px; 
 	text-align:center; 
 	margin-right:40px; 
 	margin-top:10px;
 	top:10px;
+	text-decoration:none;
 }
 
 .likebutton{
 	display:inline-block;
-	border:1px solid grey;
+	border:1px solid rgba(222, 222, 222 , 1);
 	text-align: center;
 	border-radius: 5px;
 	padding: 0.5rem 1.3rem;
@@ -149,13 +151,13 @@
 #reply_area{
 	position:relative;
 	border-radius: 15px;
-	border:2px solid pink;
+	border:2px solid rgba(222, 222, 222 , 0.7);
 }
 #reply_info{
 	height:30px;
 	line-height: 30px;
 	padding-left:10px;
-	border-bottom:1px solid pink;
+	border-bottom:1px solid rgba(222, 222, 222 , 0.7);
 }
 #replybtn{
 	position:absolute;
@@ -163,7 +165,7 @@
 	height:40px;
 	right:15px;
 	bottom:10px;
-	border:2px solid pink;
+	border:2px solid rgba(222, 222, 222 , 0.7);
 	background-color:rgba(0,0,0,0);
 	z-index:50;
 }
@@ -183,10 +185,14 @@
 	font-size: 1rem;
 }
 
+#View_conment:focus{
+	outline:none;
+}
+
 .reply_area{
 position:relative;
 width:100%;
-border:1px solid pink;
+border:1px solid rgba(222, 222, 222 , 0.7);
 margin-top:10px;
 margin-bottom:10px;
 }
@@ -195,7 +201,7 @@ margin-bottom:10px;
 position:relative;
 height:40px;
 line-height:40px;
-border:1px solid pink;
+border:1px solid rgba(222, 222, 222 , 0.7);
 }
 
 .reply_user{
@@ -239,6 +245,10 @@ border:none;
 	width:100%;
 	border:none;
 	padding:10px 10px;
+}
+
+.content_modi:focus{
+	outline:none;
 }
 
 .modi_button{
