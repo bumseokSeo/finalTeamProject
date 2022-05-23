@@ -21,7 +21,7 @@
   	</insert>
   	<!--  글목록 불러오기 -->
   	<select id="BoardSelectList" resultType="com.campus.myapp.vo.BoardVO">
-  	SELECT A.boardno, A.title, A.userid, A.content, A.hit, A.writedate,
+  	SELECT A.boardno, A.title, A.userid, A.content, A.hit, A.writedate,A.likes,
   		   A.filename1, B.profileimage, B.userlevel, B.username,
   		   (select count(reply.replyno) from reply where A.boardno=reply.boardno) as reviewcnt
   	<choose>
@@ -60,13 +60,13 @@
     </select>
   	<!--  글 1개 선택 -->
   	<select id="BoardSelect" resultType="com.campus.myapp.vo.BoardVO">
-  	SELECT b.boardno, b.title, b.userid, b.content, b.hit, b.writedate, m.username, m.profileimage, m.userlevel,
+  	SELECT b.boardno, b.title, b.userid, b.content, b.hit, b.writedate, b.likes, m.username, m.profileimage, m.userlevel,
   	(select count(reply.replyno) from reply where A.boardno=reply.boardno) as reviewcnt
   	FROM board b join member m on b.userid=m.userid
   	WHERE boardno = #{param1}
   	</select>
   	<select id="boardSearch" resultType="BoardVO">
-      SELECT   A.boardno, A.title, A.userid, A.writedate, A.filename1, A.hit, B.profileimage, B.username
+      SELECT   A.boardno, A.title, A.userid, A.writedate, A.filename1, A.hit, A.likes,B.profileimage, B.username
       FROM     board A, member B
       <choose>
 	  	<when test="param5.equals('adopt')">
@@ -105,8 +105,35 @@
   	<update id="hitCount">
     UPDATE board SET hit = hit+1 WHERE boardno=#{param1}
     </update>
+    
+    
+    <!--  추천 증가 -->
+    <insert id="LikeInsert">
+    INSERT INTO likes (boardno, userid)
+    values (#{param1}, #{param2})
+    </insert>
+    <!--  추천 삭제 -->
+    <delete id="LikeDelete">
+    DELETE FROM likes WHERE boardno=#{param1} AND userid=#{param2}
+    </delete>
+    <!--  추천 체크 -->
+    <select id="LikeCheck" resultType="int">
+    SELECT COUNT(userid) CNT
+    FROM likes
+    WHERE boardno=#{param1} AND userid=#{param2}
+    </select>
+     <!--  추천수 읽기 -->
+    <select id="LikeCnt" resultType="int">
+    SELECT COUNT(userid) CNT
+    FROM likes
+    WHERE boardno=#{param1}
+    </select>
+    <update id="LikeModi">
+    UPDATE board SET likes=#{param2}
+    WHERE boardno=#{param1}
+    </update>
   	<select id="BoardView" resultType="com.campus.myapp.vo.BoardVO">
-	    SELECT A.boardno, A.title, A.hit, A.writedate, A.content, A.userid, A.filename1, A.boardtype,
+	    SELECT A.boardno, A.title, A.hit, A.writedate, A.content, A.userid, A.filename1, A.boardtype,A.likes,
 	   		   B.profileimage, B.userlevel, B.username
 	   		    <choose>
 		  			<when test="param2.equals('suggest')">
@@ -139,6 +166,10 @@
     <!-- 글 수정 -->
     <update id="BoardUpdate">
   		UPDATE  board SET title=#{title}, content=#{content}, filename1=#{filename1}
+		WHERE boardno=#{boardno}
+  	</update>
+  	<update id="BoardAdUpdate">
+  		UPDATE  adopt SET category=#{category}, breed=#{breed}
 		WHERE boardno=#{boardno}
   	</update>
   	<select id="getFileName" resultType="com.campus.myapp.vo.BoardVO">

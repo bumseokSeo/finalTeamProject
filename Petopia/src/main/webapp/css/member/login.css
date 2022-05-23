@@ -91,6 +91,13 @@
 	padding: 10px 20px;
 	font-size: 15px;
 }
+.form_box input[name='userpwd']{
+	font-family: serif;
+}
+.form_box input[name='userpwd']::placeholder{
+	font-family: 'jua';
+}
+
 #btnLogin{
 	width: 100%;
 	height: 46px;

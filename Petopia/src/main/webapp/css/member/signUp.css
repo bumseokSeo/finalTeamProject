@@ -33,6 +33,13 @@
 	height:30px;
 	width:70%;
 }
+
+.form_box input[type='password']{
+	font-family: serif;
+}
+.form_box input[type='password']::placeholder{
+	font-family: 'jua';
+}
 .checkBtn{
 	float: right;
 	width: 120px;

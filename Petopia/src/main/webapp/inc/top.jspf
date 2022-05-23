@@ -54,7 +54,7 @@
 			$(this).slideUp(300);
 		  });
 		 
-		  
+		  $("input").attr("maxlength", 20);
 		  MessageReload();
 	});
 	
@@ -74,7 +74,7 @@
 					msg += "</a></div>";
 					
 					$('.unreadMessageDiv').html(msg);
-					
+					document.title = '(99+) 펫토피아';
 				}
 				if(result<=99 && result>0){
 					msg += "<div class='unreadMessage'><a href='/message_list.do'>"
@@ -82,6 +82,7 @@
 					msg += "</a></div>";
 						
 					$('.unreadMessageDiv').html(msg);
+					document.title = '('+result+') 펫토피아';
 				}
 				
 			},

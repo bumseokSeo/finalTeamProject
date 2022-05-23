@@ -7,6 +7,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,6 +61,7 @@ public class BoardController {
 		//게시판 타입
 		mav.addObject("type", type);
 		mav.addObject("vo", vo);
+		mav.addObject("likes", service.LikeCnt(vo.getBoardno()));
 		mav.setViewName("board/SubMenuSelect");
 		return mav;
 	}
@@ -359,8 +362,11 @@ public class BoardController {
 			vo.setFilename1(result);
 			
 			//게시판 회귀 선별조건
-			vo.setBoardno(service.BoardNum()+1); // 번호 매기도록 하는것.
-			
+			try {
+			vo.setBoardno(service.BoardNum()+1);// 번호 매기도록 하는것.
+			}catch(Exception E){
+				vo.setBoardno(1);
+			}
 			vo.setBoardtype(vo.getBoardtype());
 			
 			
@@ -430,6 +436,26 @@ public class BoardController {
 			return mav;
 		}
 		
+		//추천누르기
+		@ResponseBody
+		@PostMapping("/board/boardLike")
+		public Map<String, Object> LikeCnt(@RequestParam("boardno")int boardno, HttpSession session) {
+			BoardVO vo = new BoardVO();
+			vo.setUserid((String)session.getAttribute("logId"));
+			
+			int LCheck = service.LikeCheck(boardno,(String)session.getAttribute("logId"));
+			if(LCheck==0) {
+				service.LikeInsert(boardno,(String)session.getAttribute("logId"));
+			}else {
+				service.LikeDelete(boardno,(String)session.getAttribute("logId"));
+			}
+			service.LikeModi(boardno,service.LikeCnt(boardno));
+			Map<String, Object> LikeW = new HashMap<String, Object>();
+			LikeW.put("cnt", LCheck);
+			LikeW.put("likeno", service.LikeCnt(boardno));
+			return LikeW;
+		}
+		
 		//글 수정
 		@GetMapping("/board/boardEdit")
 		public ModelAndView BoardEdit(int boardno, @RequestParam("type")String type) {
@@ -471,13 +497,15 @@ public class BoardController {
 				}			
 				vo.setFilename1(result);
 				
-				//게시판 회귀 선별조건
+				//게시판 선별
 				String type = service.getType(vo.getBoardno());
-				
 				service.BoardUpdate(vo);
 				
-				
-				String msg = "<script>location.href='/board/boardView?boardno="+vo.getBoardno()+"';</script>";
+				if(type.equals("adopt")) {
+					service.BoardAdUpdate(vo);
+				}
+				String msg = "<script>alert('글이 수정되었습니다');";
+				msg = "<script>location.href='/board/boardView?boardno="+vo.getBoardno()+"';</script>";
 				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
 				
 				
@@ -514,9 +542,13 @@ public class BoardController {
 				
 				// 3. 파일 삭제
 				fileDelete(path, dbFileVO.getFilename1());
+				
 				String msg = "<script>alert('글이 삭제되었습니다');";
+				if(boardtype.equals("adopt")) {
+					  msg += "location.href='/board/adopt/adoptList';</script>";
+				}else {
 					   msg += "location.href='/board/SubMenuSelect?type="+boardtype+"';</script>";
-						
+				}
 
 				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 				

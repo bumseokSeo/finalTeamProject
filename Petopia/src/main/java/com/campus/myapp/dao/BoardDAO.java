@@ -25,6 +25,11 @@ public interface BoardDAO {
 	public List<BoardVO> BoardSelectList(String boardtype, PagingVO pVO);
 	//조회수 증가
 	public void hitCount(int boardno);
+	public void LikeInsert(int boardno, String userid);
+	public void LikeDelete(int boardno, String userid);
+	public int LikeCheck(int boardno,String userid);
+	public int LikeCnt(int boardno);
+	public int LikeModi(int boardno, int likes);
 
 	
 	public int BoardNum();
@@ -40,13 +45,6 @@ public interface BoardDAO {
 	//검색
 	public List<BoardVO> boardSearch(String searchKey, String string, int start, int end, String boardtype);
 	
-	//Share Board
-	//게시글 작성
-	public int shareInsert(BoardVO vo);
-	// 게시글 리스트
-	public List<BoardVO> shareSelectList(PagingVO pvo, BoardVO vo);
-	// 게시판 총 레코드 수 
-	public int shareTotalRecord(PagingVO pvo, BoardVO vo);
 	// 조회수 증가
 	public void updateHit(int boardno);
 	
@@ -54,6 +52,7 @@ public interface BoardDAO {
 	
 	//글수정
 	public int BoardUpdate(BoardVO vo);
+	public int BoardAdUpdate(BoardVO vo);
 	public int BoardFileUpdate(BoardVO vo);
 	//파일명 선택
 	public BoardVO getFileName(int boardno);

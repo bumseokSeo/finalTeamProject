@@ -21,12 +21,19 @@ public interface BoardService {
 	public List<BoardVO> boardSearch(String searchKey, String string, int start, int end, String boardtype);
 	//조회수 증가
 	public void hitCount(int boardno);
+	//추천수 증가
+	public void LikeInsert(int boardno, String userid);
+	public void LikeDelete(int boardno, String userid);
+	public int LikeCheck(int boardno,String userid);
+	public int LikeCnt(int boardno);
+	public int LikeModi(int boardno,int likes);
 	
 	public int BoardNum();
 	public int SuggestNum();
 	
 	//글수정
 	public int BoardUpdate(BoardVO vo);
+	public int BoardAdUpdate(BoardVO vo);
 	public int BoardFileUpdate(BoardVO vo);
 	//파일명 선택
 	public BoardVO getFileName(int boardno);
@@ -37,11 +44,6 @@ public interface BoardService {
 	public String getType(int boardno);
 	
 	public int BoardtotalRecord(PagingVO pVO, String boardtype);
-
-	// Share Board
-	public int shareInsert(BoardVO vo);
-	public List<BoardVO> shareSelectList(PagingVO pvo, BoardVO vo);
-	public int shareTotalRecord(PagingVO pvo, BoardVO vo);
 	
 	public int myWriteCnt(String userid);
 	public int myReviewCnt(String userid);

@@ -97,6 +97,22 @@
 	margin-top:10px;
 	top:10px;
 }
+
+.likebutton{
+	display:inline-block;
+	border:1px solid grey;
+	text-align: center;
+	border-radius: 5px;
+	padding: 0.5rem 1.3rem;
+	position: relative;
+	background-color: rgba(0,0,0,0);
+}
+
+.View_vote{
+	text-align:center;
+	max-width:100%;
+	clear:both;
+}
 #chatBtn{
 	position: absolute;
 	right:10px;
@@ -150,6 +166,21 @@
 	border:2px solid pink;
 	background-color:rgba(0,0,0,0);
 	z-index:50;
+}
+
+#View_conment{
+	width: 100%; 
+
+	font-size:18px; 
+	border:none; 
+	border-radius: 15px; 
+	padding: 5px;
+	resize: none;
+}
+
+#View_conment::placeholder{
+	padding:5px;
+	font-size: 1rem;
 }
 
 .reply_area{

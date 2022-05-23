@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <link rel="stylesheet" href="/css/board/boardView.css" type="text/css"/>
 <script>
 function delCheck(){
@@ -111,6 +112,29 @@ $(function(){
 			});
 		}
 	});
+	$(".likebutton").click(function(){
+		event.preventDefault();
+		var addlike = "";
+		let params3 = $("#likeup").serialize();
+		$.ajax({
+			url:'/board/boardLike',
+			data:params3,
+			type:'post',
+			success:function(vo){
+				addlike = vo.likeno+"♥";
+				if(vo.cnt==0){
+					alert("글을 추천했습니다!");
+				}else{
+					alert("글 추천을 취소했습니다!");
+				}
+				$("#likeCnt").empty();
+				$("#likeCnt").html(addlike);
+			},error:function(e){
+				console.log(e.responseText);
+			}
+		});
+		
+	});
 	replyListAll();
 	
 });
@@ -123,12 +147,18 @@ $(function(){
 	<div class="View_topmenu">
   	  	<h2>${vo.title}</h2>
   	  	<div id="View_subtitle">
-  	  		<c:if test="${vo.profileimage != null && vo.profileimage != '' }">
-				<img src="${url}/img/memberimg/${vo.profileimage}" class="View_topmenu_profile" alt="보낸사람 프로필">
-			</c:if>
-			<c:if test="${vo.profileimage == null || vo.profileimage == '' }">
-				<img src="${url}/img/sampleProfile.jpg" class="View_topmenu_profile" alt="보낸사람 프로필">
-			</c:if>
+  	  		<c:set var ="profile" value="${vo.profileimage}"/>
+			<c:choose>
+				<c:when test="${fn:startsWith(profile, 'http://')}">
+					<img src="${vo.profileimage}" class="View_topmenu_profile" alt="보낸사람 프로필">
+				</c:when>
+				<c:when test="${vo.profileimage != null && vo.profileimage != '' }">
+					<img src="${url}/img/memberimg/${vo.profileimage}" class="View_topmenu_profile" alt="보낸사람 프로필">
+				</c:when>
+				<c:when test="${vo.profileimage == null || vo.profileimage == '' }">
+					<img src="${url}/img/sampleProfile.jpg" class="View_topmenu_profile" alt="보낸사람 프로필">
+				</c:when>
+			</c:choose>
 	  	  	
 	  	  	<div class="View_author"><h4>${vo.username}</h4></div>
 	  	  	<p class='text-end'><small class='text-muted'>${vo.writedate} 조회수:${vo.hit}</small></p>
@@ -147,6 +177,12 @@ $(function(){
   	  	</div>
   	 </div>
   	  	<div class="View_content">${vo.content}</div>
+  	  	<div class="View_vote">
+  	  	<form id="likeup">
+  	  	<input type="hidden" name="boardno" value="${vo.boardno}"/>
+  	  	<button class="likebutton"><p>"좋아요!"</p><small id="likeCnt">${vo.likes}♥</small></button>
+  	  	</form>
+  	  	</div>
   	  	<div class="View_bottommenu">
   	  		<c:if test="${logId == vo.userid}">
   	  		<p style="float: right;">
@@ -169,7 +205,7 @@ $(function(){
 							<input type="hidden" name="boardno" value="${vo.boardno}"/>
 								<div id="reply_info">댓글 작성  | 작성자 : ${logName}</div>
 								<textarea name="content" id='View_conment' maxlength="99"
-									style="width: 100%; height: 120px; font-size:18px; border:none; border-radius: 15px;" placeholder=" 댓글 입력" ></textarea>
+									placeholder=" 댓글 입력" ></textarea>
 								<input type="submit" value="등록" id="replybtn" />						
 						</form>
 					</div>

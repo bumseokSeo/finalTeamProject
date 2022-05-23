@@ -4,6 +4,11 @@
   <script>
  $(function(){
 	 $("#noticeFrm").submit(function(){
+		 if($("input[name='breed']").val()==''){
+			 alert("종을 입력해주세요");
+			 return false;
+		 }
+		 
 		 if($("#title").val()==''){
 			 alert("제목을 입력해주세요");
 			 return false;
@@ -13,6 +18,8 @@
 			 alert("본문을 입력해주세요");
 			 return false;
 		 }
+		 
+		 
 	 });
 	 CKEDITOR.replace('content',{
 		 filebrowerUploadMethod:'form',
@@ -31,9 +38,9 @@
 	<select name="category" class="select01">
 				<option value="강아지" selected="selected">강아지</option>
 				<option value="고양이">고양이</option>
-				<option value="파충류 | 양서류">파충류 | 양서류</option>
+				<option value="파충류,양서류">파충류 | 양서류</option>
 				<option value="조류">조류</option>
-				<option value="기타동물">기타동물</option>
+				<option value="기타">기타동물</option>
 			</select>
 			<input type="text" name="breed" placeholder="종을 입력해주세요" class="input03"/>
   	  	<ul>

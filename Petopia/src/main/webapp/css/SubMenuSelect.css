@@ -24,6 +24,7 @@
 	border: 1px solid #ddd;
 	background: rgba(255, 158, 0, 0.7);
 	position: fixed;
+	z-index:20;
 }
 #Board_lnb2{
 	width:280px; height:370px;

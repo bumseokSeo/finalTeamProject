@@ -52,6 +52,31 @@ public class BoardServiceImp implements BoardService{
 	}
 	
 	@Override
+	public void LikeInsert(int boardno, String userid) {
+		dao.LikeInsert(boardno, userid);
+	}
+	
+	@Override
+	public void LikeDelete(int boardno, String userid) {
+		dao.LikeDelete(boardno,userid);
+	}
+	
+	@Override
+	public int LikeCheck(int boardno,String userid) {
+		return dao.LikeCheck(boardno, userid);
+	}
+	
+	@Override
+	public int LikeCnt(int boardno) {
+		return dao.LikeCnt(boardno);
+	}
+	
+	@Override
+	public int LikeModi(int boardno,int likes) {
+		return dao.LikeModi(boardno,likes);
+	}
+	
+	@Override
 	public int BoardNum(){
 		return dao.BoardNum();
 	}
@@ -80,26 +105,15 @@ public class BoardServiceImp implements BoardService{
 	public int BoardUpdate(BoardVO vo) {
 		return dao.BoardUpdate(vo);
 	}
+	
+	@Override
+	public int BoardAdUpdate(BoardVO vo) {
+		return dao.BoardAdUpdate(vo);
+	}
 
 	@Override
 	public int BoardFileUpdate(BoardVO vo) {
 		return dao.BoardFileUpdate(vo);
-	}
-
-	//Share Board
-	@Override
-	public List<BoardVO> shareSelectList(PagingVO pvo, BoardVO vo) {
-		return dao.shareSelectList(pvo,vo);
-	}
-
-	@Override
-	public int shareInsert(BoardVO vo) {
-		return dao.shareInsert(vo);
-	}
-
-	@Override
-	public int shareTotalRecord(PagingVO pvo, BoardVO vo) {
-		return dao.shareTotalRecord(pvo,vo);
 	}
 
 	@Override
