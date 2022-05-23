@@ -258,7 +258,9 @@ $(document).ready(function() {
 		<div class="modalbody">
 			<form method="get" id="messageForm" action="#">			
 				<input type="text" name="messagecontent" id="messagecontent" maxlength="100" />
-				<input type="button" value="전송" id="messagebtn"/>
+				<button id="messagebtn" class='msg_send_btn' type='button' title='전송' style="background-color: #97df93;border: medium none;border-radius: 50%;position: relative;left:0px;top:0px;color: #fff;font-size: 17px;">
+				<i class='fa fa-paper-plane-o' aria-hidden='true'></i></button>	
+				
 			</form>
 		</div>
 	</div>

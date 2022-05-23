@@ -173,7 +173,7 @@ a:hover{
 	left: 50%;
 	transform: translate(-50%, -20%);
 	background-color: #ffffff;
-	width: 40%;
+	width: 30%;
 	height: 20%;
 	text-align: center;
 }
@@ -201,7 +201,10 @@ a:hover{
 	width:10%;
 	height: 70%;
 }
-
+.msg_send_btn{
+	width:30px;
+	height:30px;
+}
 .tab_title2{
 	margin-bottom: 50px;
 	display: none;

@@ -8,8 +8,6 @@
 	width:100%;
 	padding-left:10px;
 	border-bottom: 1px solid #e9ecef;
-	padding-bottom: 20px;
-	height:100px;
 }
 /*
 #View_title{
@@ -258,7 +256,7 @@ border:none;
 	height:40px;
 	right:20px;
 	bottom:10px;
-	border:2px solid pink;
+	border:2px solid rgba(222, 222, 222 , 0.7);
 	background-color:rgba(0,0,0,0);
 	z-index:50;
 }

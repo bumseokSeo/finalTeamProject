@@ -58,7 +58,7 @@ $(document).ready(function(){
 		var param;
 		const params = new URL(window.location.href).searchParams;
 		var key = params.get('searchKey');
-		var word = params.get('searchWordSU');
+		var word = params.get('searchWord');
 		var pathname = window.location.pathname;
 		var pn = pathname.substring(pathname.lastIndexOf('/')+1);
 		var pn2 = pn.substring(pn.lastIndexOf('Search'));
@@ -72,7 +72,7 @@ $(document).ready(function(){
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
-				"searchWordSU" : word
+				"searchWord" : word
 			};
 		}else if(pn2 =='Search'){
 			url = '/board/suggest/suggestLists';
@@ -80,6 +80,7 @@ $(document).ready(function(){
 				"startNum" : startNum
 			};
 		}
+		console.log(param);
 		$.ajax({
 			url : url,
 			type : 'POST',
@@ -168,7 +169,7 @@ $('#nextViewSU').click(function(){
 			param = {
 				"startNum" : startNum ,
 				"searchKey" : key,
-				"searchWordSU" : word
+				"searchWord" : word
 			};
 		}else if(pn2 =='Search'){
 			url = '/board/suggest/suggestLists';
@@ -255,7 +256,7 @@ $('#prevViewSU').click(function(){
 		param = {
 			"startNum" : startNum ,
 			"searchKey" : key,
-			"searchWordSU" : word
+			"searchWord" : word
 		};
 	}else if(pn2 =='Search'){
 		url = '/board/suggest/suggestLists';
