@@ -17,9 +17,9 @@
 		</ul><!-- 게시물 -->
 		
 		 <div class="paging">
-           <b id="prevView"> ◀ </b>
+           <b id="prevView">  </b>
            <b id="pView"></b>
-           <b id="nextView" > ▶ </b>
+           <b id="nextView" > > </b>
             
         </div>
     
@@ -141,12 +141,12 @@ $('#nextView').click(function(){
 		}else if(pn=='SubMenuSelect'){
 			url = '/board/notice/noticeLists';
 			param = {
-				"startNum" : startNum*18+1
+				"startNum" : startNum*19+1
 			};
 		}else if(pn2 =='Search'){
 			url = '/board/notice/noticeLists';
 			param = {
-				"startNum" : startNum*18+1
+				"startNum" : startNum*19+1
 			};
 		}
 		$.ajax({
@@ -184,7 +184,7 @@ $('#nextView').click(function(){
 				$("#List_menu_F").append(addListHtml);
 				$("#pView").empty();
 				$("#pView").append(startNum+1);
-				$("#prevView").append("◀");
+				$("#prevView").append("<");
 			}
 		});
 	   
@@ -217,12 +217,12 @@ $('#prevView').click(function(){
 	}else if(pn=='SubMenuSelect'){
 		url = '/board/notice/noticeLists';
 		param = {
-			"startNum" : (startNum-1)*18-18
+			"startNum" : (startNum-1)*19-19
 		};
 	}else if(pn2 =='Search'){
 		url = '/board/notice/noticeLists';
 		param = {
-			"startNum" : (startNum-1)*18-18
+			"startNum" : (startNum-1)*19-19
 		};
 	}
 	$.ajax({
@@ -252,7 +252,7 @@ $('#prevView').click(function(){
 				addListHtml += "<li>"+data[i].hit+"</li>";
 			}
 			$("#nextView").empty();
-			$("#nextView").append("▶");
+			$("#nextView").append(">");
 			$("#List_menu_F").empty();
 			$("#List_menu_F").append(addListHtmlpo);
 			$("#List_menu_F").append(addListHtml);
