@@ -61,7 +61,7 @@ function noticeDelChk(boardno){
 				<li>${vo.hit }</li>
 				<li>${vo.writedate }</li>
 				<li>
-					<a class="editBtn" href="/board/boardEdit?boardno=${vo.boardno}">수정</a>
+					<a class="editBtn" href="/board/boardEdit?type=notice&boardno=${vo.boardno}">수정</a>
 					<a class="delBtn" href="javascript:noticeDelChk('${vo.boardno}')">삭제</a>
 				</li>
 			</c:forEach>
