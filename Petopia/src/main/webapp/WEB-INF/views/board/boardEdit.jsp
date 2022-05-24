@@ -33,5 +33,14 @@
 	</form>
 </div>
 <script>
-     CKEDITOR.replace('ckeditor1');
+     CKEDITOR.replace('ckeditor1',{
+		 filebrowerUploadMethod:'form',
+         filebrowserImageUploadUrl : '/board/ckeditorImageUpload',
+         height:500,
+         toolbar :[['NewPage','Preview','Bold','Italic','Underline','Strike','-','Subscript','Superscript','-','-',
+     		'JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','Outdent','Indent','HorizontalRule','Link','Unlink','-',
+     		'Find','Replace','SelectAll','Image','Flash','Table','SpecialChar'],
+     		'/',['Styles','Format','Font','FontSize','Undo','Redo'],['TextColor','BGColor'],['Cut','Copy','Paste','PasteText'],['Source']],
+         extraPlugins:'autogrow'
+  	});
 </script>
