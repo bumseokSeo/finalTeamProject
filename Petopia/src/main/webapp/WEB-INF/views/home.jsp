@@ -122,49 +122,7 @@
 	<div class="animalHospitallink">
 		<a href="/map/mapMain"><img src="/img/home/veterinarian.png"></a>
 	</div>
-		
-	<!--
-		<div class="slide">
-			<div class="slide_card">
-				<a href="/animalInfo/animalInfoMain">
-					<img src="/img/home/dog.jpg"/>
-					<span class="intext">Dog</span>
-				</a>
-			</div>
-		</div>
-		<div class="slide">
-			<div class="slide_card">
-				<a href="/animalInfo/animalInfoCat">
-					<img src="/img/home/cat.jpg"/>
-					<span class="intext">Cat</span>
-				</a>
-			</div>
-		</div>
-		<div class="slide">
-			<div class="slide_card">
-				<a href="/animalInfo/animalInfoReptile">
-					<img src="/img/home/reptile.jpg"/>
-					<span class="intext">Reptile | Amphibian</span>
-				</a>
-			</div>
-		</div>
-		<div class="slide">
-			<div class="slide_card">
-				<a href="/animalInfo/animalInfoBird">
-					<img src="/img/home/bird.jpg"/>
-					<span class="intext">Bird</span>
-				</a>
-			</div>
-		</div>
-		<div class="slide">
-			<div class="slide_card">
-				<a href="/animalInfo/animalInfoEtc">
-					<img src="/img/home/etc.jpg"/>
-					<span class="intext">Etc</span>
-				</a>
-			</div>
-		</div>
-	-->
+	
 	</section>
 	
 	<section class="section section3">
