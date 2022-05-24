@@ -115,7 +115,7 @@ public class MemberServiceImpl implements MemberService {
 		String charSet = "utf-8";
 		String hostSMTP = "smtp.gmail.com";
 		String hostSMTPid = "titia914@gmail.com";
-		String hostSMTPpwd = "trgrw553213#@";
+		String hostSMTPpwd = "********";
 
 		// 보내는 사람 EMail, 제목, 내용
 		String fromEmail = "titia914@gmail.com";
